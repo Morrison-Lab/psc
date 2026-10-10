@@ -202,8 +202,36 @@ body.quarto-dark .preview-home-changes-banner a:hover {
   color: #bbdefb;
 }
 
+/* Quarto's secondary grey is too dim on the dark page. */
+body.quarto-dark .code-tools-button,
+body.quarto-dark details > summary,
+body.quarto-dark .breadcrumb-item.active,
+body.quarto-dark .breadcrumb-item.active a {
+  color: #adb5bd;
+}
+
 /* Inline code styling for dark mode */
 body.quarto-dark code:not(pre > code) {
   background-color: #404040;
   color: #e6e6e6;
+}
+
+.equation-anchor-target {
+  --equation-anchor-offset: 1.2rem;
+  position: relative;
+  display: block;
+}
+
+.equation-anchor {
+  position: absolute;
+  right: calc(-1 * var(--equation-anchor-offset));
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  opacity: 0.7;
+  font-size: 0.9em;
+}
+
+.equation-anchor:hover {
+  opacity: 1;
 }
