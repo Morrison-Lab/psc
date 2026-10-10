@@ -44,7 +44,7 @@ quarto render    # full build into _site/
 These chapters began in the [UCD-SERG lab manual](https://ucd-serg.github.io/lab-manual/),
 a fork of the
 [Benjamin-Chung Lab Manual](https://jadebc.github.io/lab-manual/index.html).
-We thank Jade Benjamin-Chung and the manual's original contributors,
+We thank Jade Benjamin-Chung and the Benjamin-Chung manual's other original contributors,
 Kunal Mishra, Stephanie Djajadi, Nolan Pokpongkiat, Anna Nguyen,
 Iris Tong, and Gabby Barratt Heitmann,
 for writing it and sharing it openly.

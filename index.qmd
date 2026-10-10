@@ -70,7 +70,7 @@ outside that group.
 
 The UCD-SERG lab manual is a fork of the
 [Benjamin-Chung Lab Manual](https://jadebc.github.io/lab-manual/index.html),
-and many of these chapters keep text from it.
+and many of these chapters keep text from the Benjamin-Chung manual.
 We are grateful to Jade Benjamin-Chung
 and that manual's other original contributors,
 Kunal Mishra,
