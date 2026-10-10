@@ -1,0 +1,98 @@
+# Build half of the PR-preview family: renders the site in the (possibly fork)
+# PR context and uploads it + PR metadata as an artifact. The deploy half
+# (preview-deploy.yml) publishes it to gh-pages. This job is read-only
+# (contents: read) -- it must never write to the base repo.
+#
+# IMPORTANT: keep this workflow's `name:` in sync with the `workflows:` list in
+# preview-deploy.yml -- that's how the deploy half finds this run.
+#
+# Do NOT name a `concurrency:` group `gh-pages` in this caller (deadlock,
+# https://github.com/Morrison-Lab/gha/issues/809). The reusable workflow
+# already cancels a superseded preview build for the same ref.
+name: Quarto Preview Build
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled, closed]
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    uses: Morrison-Lab/gha/.github/workflows/preview.yml@v3
+    with:
+      # Non-renv repo: install the packages the pages' chunks load.
+      use-renv: false
+      r-packages: |
+        any::knitr
+        any::rmarkdown
+        any::tibble
+      # This repo has a DESCRIPTION for lintr and tooling, but pages do not
+      # call its functions, and the old workflow never installed it.
+      install-package: false
+      apt-packages: ''
+      setup-chrome: false
+      # PDF handouts are part of the default render below, so TinyTeX is always needed.
+      tinytex: true
+      # `_quarto.yml` already selects the `website` profile by default.
+      render-profile: ''
+      # One bare `quarto render` of every format the project declares (html,
+      # revealjs, pdf, docx), so slide decks are built in every preview. Never
+      # leave this empty: empty selects a legacy branch that renders html plus
+      # only the formats requested by `preview:*` labels.
+      formats: default
+      timezone: America/Los_Angeles
+      # Rebuild when this label is added or removed (it toggles highlighting below).
+      extra-preview-labels: '["no-preview-highlights"]'
+      # Compare against the published render: banner on the home page naming the
+      # changed pages, highlighted changed text, and Word files with tracked
+      # changes. Highlighting is off while the PR carries the
+      # `no-preview-highlights` label. The per-page banners are added by the
+      # `page-banners` job below.
+      changed-chapters-banner: true
+      highlight-changes: ${{ !contains(github.event.pull_request.labels.*.name, 'no-preview-highlights') }}
+      docx-tracked-changes: true
+      # The home page plus chapters/, and the slide decks that sit beside them
+      # (gha's default `chapters/*.html` and `chapters/*.docx` would miss index).
+      changed-chapters-glob: '**/*.html'
+      docx-tracked-changes-glob: '**/*.docx'
+
+  # gha has no per-page banner linking a page's tracked-changes Word file and slide
+  # deck, nor one listing the changed pages on every page (gha#1025), so this keeps
+  # the repo's own script. It edits the staged artifact before the deploy workflow
+  # (which runs only after this whole workflow finishes) publishes it. Same trust
+  # level as the build job: read-only token, PR code.
+  page-banners:
+    needs: build
+    if: github.event.action != 'closed' && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          submodules: false
+      - name: Download preview artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: pr-preview-site
+          path: preview_artifact/
+      - name: Add banners to preview pages
+        run: python3 .github/scripts/add-page-banners.py
+        env:
+          # Fails if this directory is missing: gha uploads `site/` and `meta/`.
+          HTML_DIR: preview_artifact/site
+          CHANGED_CHAPTERS: ${{ needs.build.outputs.changed-chapters }}
+          DETECTION_STATUS: ${{ needs.build.outputs.detection-status }}
+      # Same name, path and settings as gha's own upload (preview/action.yml), so the
+      # deploy workflow finds the artifact unchanged. gha sets no `include-hidden-files`,
+      # so this artifact has no dotfiles to lose.
+      - name: Replace preview artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: pr-preview-site
+          path: preview_artifact/
+          overwrite: true
+          retention-days: 1
