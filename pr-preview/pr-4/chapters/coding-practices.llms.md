@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-10 00:17:35 (PDT)
+Last modified: 2026-10-10 00:23:39 (PDT)
 
 ## 1 Lab Protocols for Code and Data
 
@@ -30,7 +30,7 @@ The mindset in practice:
 - **Build for your own repeated use first.** A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next lab member too.
 - **Don’t gold-plate.** The tool only needs to beat doing the task by hand; polish it further only when its use grows to warrant it.
 
-Much of our lab’s shared infrastructure came from exactly this pattern: the [`{snapr}`](https://d-morrison.github.io/snapr/) package packages the lab’s snapshot-testing helpers, the [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package packages our shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the lab’s repositories.
+Much of our lab’s shared infrastructure came from exactly this pattern: the [`{snapr}`](https://morrison-lab.github.io/snapr/) package packages the lab’s snapshot-testing helpers, the [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package packages our shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the lab’s repositories.
 
 ## 3 Essential R Package Development Tools
 
@@ -437,7 +437,7 @@ test_that("prep_study_data produces expected structure", {
 })
 ```
 
-Our lab’s [`{snapr}`](https://d-morrison.github.io/snapr/) package (on [CRAN](https://cran.r-project.org/package=snapr)) adds convenience wrappers on top of [`{testthat}`](https://testthat.r-lib.org/)’s snapshot functions: `expect_snapshot_data()` for data frames (adapted, with permission, from the [`{ssdtools}`](https://cran.r-project.org/package=ssdtools) package) and `expect_snapshot_object()`, which generalizes it to any R object.
+Our lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package (on [CRAN](https://cran.r-project.org/package=snapr)) adds convenience wrappers on top of [`{testthat}`](https://testthat.r-lib.org/)’s snapshot functions: `expect_snapshot_data()` for data frames (adapted, with permission, from the [`{ssdtools}`](https://cran.r-project.org/package=ssdtools) package) and `expect_snapshot_object()`, which generalizes it to any R object.
 
 ``` r
 test_that("prep_study_data output is stable", {
