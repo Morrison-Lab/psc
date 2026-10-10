@@ -1,0 +1,155 @@
+/*-- scss:rules --*/
+
+// qwt revealjs light/dark palette.
+//
+// Quarto's `revealjs:` block only accepts a scalar `theme:` (no
+// `{light, dark}` map like the HTML format), so we layer this file on top
+// of the upstream `simple` theme via `theme: [simple, styles-reveal.scss]`
+// and switch palettes at runtime by toggling `body.qwt-dark`. The toggle
+// button + persistence logic lives in `qwt-reveal-toggle.html`; the
+// "Webpage version" link injected by `revealjs-html-links.lua` reads the
+// same vars so it stays legible in both modes.
+
+:root {
+  --qwt-bg: #fff;
+  --qwt-fg: #000;
+  --qwt-heading: #000;
+  // reveal.js's #2a76dd is 4.44:1 on white, just under AA.
+  --qwt-link: #1a64b8;
+  --qwt-link-hover: #6ca0e8;
+  // 0.99 (not 1) is a deliberate carryover from reveal.js's `simple` theme:
+  // some browsers render fully-opaque selections on a different compositing
+  // path, so the upstream theme uses 0.99. We keep it for consistency.
+  --qwt-selection-bg: rgba(0, 0, 0, 0.99);
+  --qwt-selection-fg: #fff;
+  --qwt-border: rgba(0, 0, 0, 0.2);
+  --qwt-muted: rgba(0, 0, 0, 0.5);
+  --qwt-chip-bg: rgba(255, 255, 255, 0.8);
+  --qwt-chip-bg-hover: rgba(255, 255, 255, 0.98);
+}
+
+// Off-white and Parchment, the same palettes as the website's theme dropdown
+// (offwhite.scss). qwt-reveal-toggle.html sets data-palette on <html>; Dark
+// stays the body.qwt-dark class below. The attribute selector outranks :root.
+@mixin qwt-palette($bg, $fg, $link, $link-hover, $muted) {
+  --qwt-bg: #{$bg};
+  --qwt-fg: #{$fg};
+  --qwt-heading: #{$fg};
+  --qwt-link: #{$link};
+  --qwt-link-hover: #{$link-hover};
+  --qwt-selection-bg: #{rgba($fg, 0.99)};
+  --qwt-selection-fg: #{$bg};
+  --qwt-border: #{rgba($fg, 0.25)};
+  --qwt-muted: #{$muted};
+  --qwt-chip-bg: #{rgba($bg, 0.85)};
+  --qwt-chip-bg-hover: #{rgba($bg, 0.98)};
+}
+
+html[data-palette="offwhite"] {
+  @include qwt-palette(#f5f2ea, #2b2a27, #1a64b8, #134a88, #5f666d);
+}
+
+html[data-palette="parchment"] {
+  @include qwt-palette(#f1e8d0, #3a2f1f, #8a3b0f, #5e2808, #6b5a43);
+}
+
+body.qwt-dark {
+  --qwt-bg: #1c1e20;
+  --qwt-fg: #f8f9fa;
+  --qwt-heading: #f8f9fa;
+  --qwt-link: #42affa;
+  --qwt-link-hover: #8dcffc;
+  --qwt-selection-bg: rgba(248, 249, 250, 0.99);
+  --qwt-selection-fg: #1c1e20;
+  --qwt-border: rgba(248, 249, 250, 0.3);
+  --qwt-muted: rgba(248, 249, 250, 0.7);
+  --qwt-chip-bg: rgba(28, 30, 32, 0.85);
+  --qwt-chip-bg-hover: rgba(28, 30, 32, 0.98);
+}
+
+// Quarto loads its light syntax colours in every deck, and some of them (the
+// function blue) vanish on the dark page. These are Quarto's own dark token
+// colours, scoped under body.qwt-dark so they outrank the light ones.
+body.qwt-dark .reveal {
+  // Inline code keeps the simple theme's blue, which is 2.6:1 on this page.
+  code:not(pre > code) { color: var(--qwt-fg); }
+  code span.al { color: #f07178; }
+  code span.an { color: #d4d0ab; }
+  code span.at { color: #00e0e0; }
+  code span.bn { color: #d4d0ab; }
+  code span.bu { color: #abe338; }
+  code span.cf { color: #ffa07a; }
+  code span.ch { color: #abe338; }
+  code span.cn { color: #ffd700; }
+  code span.co { color: #f8f8f2; }
+  code span.cv { color: #ffd700; }
+  code span.do { color: #f8f8f2; }
+  code span.dt { color: #ffa07a; }
+  code span.dv { color: #d4d0ab; }
+  code span.er { color: #f07178; }
+  code span.ex { color: #00e0e0; }
+  code span.fl { color: #d4d0ab; }
+  code span.fu { color: #ffa07a; }
+  code span.im { color: #abe338; }
+  code span.kw { color: #ffa07a; }
+  code span.op { color: #ffa07a; }
+  code span.ot { color: #00e0e0; }
+  code span.pp { color: #dcc6e0; }
+  code span.re { color: #f8f8f2; }
+  code span.sc { color: #abe338; }
+  code span.ss { color: #abe338; }
+  code span.st { color: #abe338; }
+  code span.va { color: #00e0e0; }
+  code span.vs { color: #abe338; }
+  code span.wa { color: #dcc6e0; }
+  code span.in { color: #d4d0ab; }
+}
+
+// The code-fold summary ("[R code]") is the text colour softened toward the page,
+// which stays above AA on every palette.
+.reveal details > summary,
+.reveal details > summary p {
+  color: color-mix(in srgb, var(--qwt-fg) 70%, var(--qwt-bg));
+}
+
+.reveal-viewport,
+.reveal {
+  background-color: var(--qwt-bg);
+  color: var(--qwt-fg);
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: var(--qwt-heading);
+}
+
+.reveal a {
+  color: var(--qwt-link);
+
+  &:hover {
+    color: var(--qwt-link-hover);
+  }
+}
+
+.reveal ::selection {
+  background-color: var(--qwt-selection-bg);
+  color: var(--qwt-selection-fg);
+}
+
+.reveal .controls {
+  color: var(--qwt-link);
+}
+
+.reveal .progress {
+  color: var(--qwt-link);
+  background-color: var(--qwt-border);
+}
+
+.reveal .slide-number {
+  color: var(--qwt-muted);
+  background-color: transparent;
+}

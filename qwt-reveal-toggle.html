@@ -1,0 +1,106 @@
+<!--
+  Colour-theme dropdown for the qwt revealjs format: Light, Off-white,
+  Parchment, Dark. Pulled into every slide deck via the `include-in-header`
+  entry in the `revealjs:` block of `_quarto-website.yml`. Pairs with
+  `styles-reveal.scss`, which defines the palette CSS variables; the select
+  reads those vars so it stays legible in every palette. Light is the
+  default variable set, Off-white and Parchment are a data-palette attribute
+  on <html>, and Dark is the body.qwt-dark class. The choice is saved under
+  "mln-theme", the key the website's theme dropdown (theme-picker.html) uses,
+  so it carries across the site and the decks. First-time visitors get
+  Dark if their system prefers it, and Off-white otherwise.
+-->
+<style>
+  #qwt-theme-select {
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+    /* Matches reveal.js's `.slide-number` and the `#revealjs-html-link` chip
+       from `revealjs-html-links.lua`; the three elements occupy different
+       corners so they don't overlap. Keep them aligned if you bump this. */
+    z-index: 31;
+    padding: 2px 4px;
+    border: 1px solid var(--qwt-border, rgba(0, 0, 0, 0.2));
+    border-radius: 4px;
+    background: var(--qwt-chip-bg, rgba(255, 255, 255, 0.8));
+    color: var(--qwt-fg, #000);
+    cursor: pointer;
+    font: 12px sans-serif;
+    opacity: 0.7;
+  }
+  #qwt-theme-select:hover,
+  #qwt-theme-select:focus-visible {
+    opacity: 1;
+    border-color: var(--qwt-fg, rgba(0, 0, 0, 0.4));
+  }
+  #qwt-theme-select:focus-visible {
+    outline: 2px solid var(--qwt-link, #2a76dd);
+    outline-offset: 2px;
+  }
+  @media print { #qwt-theme-select { display: none; } }
+</style>
+<script>
+(function () {
+  "use strict";
+  var KEY = "mln-theme";
+  var DARK_CLASS = "qwt-dark";
+  var OPTIONS = [["light", "Light"], ["offwhite", "Off-white"], ["parchment", "Parchment"], ["dark", "Dark"]];
+  var root = document.documentElement;
+
+  function valid(choice) {
+    return OPTIONS.some(function (o) { return o[0] === choice; });
+  }
+
+  function stored() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+
+  function initialTheme() {
+    var saved = stored();
+    if (valid(saved)) return saved;
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "offwhite";
+  }
+
+  function applyTheme(choice) {
+    if (choice === "offwhite" || choice === "parchment") {
+      root.setAttribute("data-palette", choice);
+    } else {
+      root.removeAttribute("data-palette");
+    }
+    // The body can be missing when this runs from <head>; init() re-applies it.
+    if (document.body) document.body.classList.toggle(DARK_CLASS, choice === "dark");
+  }
+
+  var start = initialTheme();
+  applyTheme(start); // set the palette before first paint
+
+  function init() {
+    if (document.getElementById("qwt-theme-select")) return;
+    applyTheme(start);
+    var sel = document.createElement("select");
+    sel.id = "qwt-theme-select";
+    sel.setAttribute("aria-label", "Colour theme");
+    OPTIONS.forEach(function (o) {
+      var opt = document.createElement("option");
+      opt.value = o[0];
+      opt.textContent = o[1];
+      sel.appendChild(opt);
+    });
+    sel.value = start;
+    sel.addEventListener("change", function () {
+      applyTheme(sel.value);
+      try { localStorage.setItem(KEY, sel.value); } catch (e) { /* private mode */ }
+    });
+    document.body.appendChild(sel);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
