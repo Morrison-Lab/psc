@@ -1,0 +1,35 @@
+# Renders the site and deploys it to the gh-pages branch (which GitHub Pages
+# serves), keeping the pr-preview/ subtree.
+#
+# Do NOT name a `concurrency:` group `gh-pages` in this caller (deadlock,
+# https://github.com/Morrison-Lab/gha/issues/809).
+name: Quarto Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
+# Serialize deploys; `cancel-in-progress: false` so a half-written deploy
+# finishes rather than being killed part-way.
+concurrency:
+  group: quarto-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    permissions:
+      contents: write
+    uses: Morrison-Lab/gha/.github/workflows/quarto-publish.yml@v3
+    with:
+      setup-r: true
+      r-packages: |
+        any::knitr
+        any::rmarkdown
+        any::tibble
+      tinytex: true
+      # One bare `quarto render` of every declared format, as before.
+      formats: ''
+      timezone: America/Los_Angeles
+      freeze-cache: true
+      checkout-submodules: true
