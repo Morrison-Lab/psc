@@ -1,0 +1,26 @@
+# Code repositories {#sec-code-repositories}
+
+Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier for us to efficiently collaborate across projects. 
+
+UCD-SeRG projects use R package structure for most R-based work.
+This provides benefits for reproducibility, collaboration, and code quality even for analysis-only projects.
+
+## Template repositories
+
+{{< include code-repositories/template-repositories.qmd >}}
+
+## Package Structure
+
+{{< include code-repositories/package-structure.qmd >}}
+
+## `.Rproj` files
+
+{{< include code-repositories/rproj-files.qmd >}}
+
+## Organizing the `data-raw` folder
+
+{{< include code-repositories/project-structure.qmd >}}
+
+## Repository Status Badges {#sec-repostatus}
+
+{{< include code-repositories/repository-status.qmd >}}

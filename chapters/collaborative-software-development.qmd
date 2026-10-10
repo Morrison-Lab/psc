@@ -1,0 +1,34 @@
+# Collaborative Software Development {#sec-collab-dev}
+
+This chapter covers the social side of writing code together:
+opening pull requests,
+reviewing each other's work,
+and responding to review feedback.
+
+## Pull Requests {#sec-pull-requests}
+
+### Pull request roles {#sec-pr-roles}
+
+{{< include collaborative-software-development/_pull-request-roles.qmd >}}
+
+### Opening pull requests {#sec-opening-pull-requests}
+
+{{< include collaborative-software-development/_opening-pull-requests.qmd >}}
+
+### Stacked pull requests {#sec-stacked-pull-requests}
+
+{{< include collaborative-software-development/_stacked-pull-requests.qmd >}}
+
+## Code Review {#sec-code-review}
+
+### Reviewing pull requests {#sec-reviewing-pull-requests}
+
+{{< include collaborative-software-development/_reviewing-pull-requests.qmd >}}
+
+### Responding to review comments {#sec-responding-to-review-comments}
+
+{{< include collaborative-software-development/_responding-to-review-comments.qmd >}}
+
+### Avoid closing and restarting pull requests {#sec-avoid-closing-restarting-prs}
+
+{{< include collaborative-software-development/_avoid-closing-and-restarting.qmd >}}
