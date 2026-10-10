@@ -1,0 +1,19 @@
+# Principles of Scientific Computing
+
+> General-purpose coding guidance for research projects
+
+## Pages
+
+- [Principles of Scientific Computing](https://morrison-lab.github.io/psc/index.llms.md)
+- [Reproducible Environments](https://morrison-lab.github.io/psc/chapters/reproducible-environments.llms.md)
+- [Git and GitHub](https://morrison-lab.github.io/psc/chapters/github.llms.md)
+- [Continuous Integration](https://morrison-lab.github.io/psc/chapters/continuous-integration.llms.md)
+- [R Code Style](https://morrison-lab.github.io/psc/chapters/coding-style.llms.md)
+- [Code repositories](https://morrison-lab.github.io/psc/chapters/code-repositories.llms.md)
+- [Big data](https://morrison-lab.github.io/psc/chapters/big-data.llms.md)
+- [Code Publication](https://morrison-lab.github.io/psc/chapters/code-publication.llms.md)
+- [R Coding Practices](https://morrison-lab.github.io/psc/chapters/coding-practices.llms.md)
+- [Collaborative Software Development](https://morrison-lab.github.io/psc/chapters/collaborative-software-development.llms.md)
+- [Data masking](https://morrison-lab.github.io/psc/chapters/data-masking.llms.md)
+- [Quarto](https://morrison-lab.github.io/psc/chapters/quarto.llms.md)
+- [Unix](https://morrison-lab.github.io/psc/chapters/unix.llms.md)
