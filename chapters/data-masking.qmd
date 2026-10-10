@@ -1,0 +1,39 @@
+---
+title: "Data masking"
+format:
+  html: default
+  revealjs:
+    output-file: data-masking-slides.html
+  pdf:
+    output-file: data-masking-handout.pdf
+  docx:
+    output-file: data-masking.docx
+---
+
+## General Overview
+
+{{< include data-masking/general-overview.qmd >}}
+
+### What is Data Masking?
+
+{{< include data-masking/what-is-data-masking.qmd >}}
+
+### Using tidy evaluation for data masking
+
+{{< include data-masking/tidy-evaluation-for-data-masking.qmd >}}
+
+## Data masking vs. tidy selection {#sec-data-masking-vs-tidy-selection}
+
+{{< include data-masking/masking-vs-selection.qmd >}}
+
+### The `.data` pronoun does not belong in tidy selection
+
+{{< include data-masking/data-pronoun-tidy-selection.qmd >}}
+
+## Technical Overview
+
+{{< include data-masking/technical-overview.qmd >}}
+
+### Example
+
+{{< include data-masking/descriptive-table-example.qmd >}}

@@ -4,6 +4,9 @@ project:
   render:
     - "*.qmd"
     - "chapters/*.qmd"
+    # Each chapter's sections live in chapters/<chapter>/ and are pulled in
+    # with `{{< include >}}`; they are not standalone pages.
+    - "!chapters/*/"
     - "!README.md"
     - "!appendix-document-metadata.qmd"
     - "!references.qmd"
@@ -14,9 +17,9 @@ project:
     - "!macros/"
 
 website:
-  title: "Quarto Website Template"
-  site-url: https://ucd-serg.github.io/qwt/
-  description: "A template for creating websites with Quarto"
+  title: "Principles of Scientific Computing"
+  site-url: https://morrison-lab.github.io/psc/
+  description: "General-purpose coding guidance for research projects"
   # https://quarto.org/docs/websites/website-llms.html --- use `llms-txt:`, not `llms:` (schema error)
   llms-txt: true
   page-footer:
@@ -27,23 +30,47 @@ website:
   # https://quarto.org/docs/websites/website-navigation.html#page-navigation
   page-navigation: true
   reader-mode: true
-  repo-url: https://github.com/UCD-SERG/qwt
+  repo-url: https://github.com/Morrison-Lab/psc
   repo-actions: [edit, issue, source]
   navbar:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Chapters"
+      - text: "Writing code"
         menu:
-          - text: "Chapter 1: Introduction"
-            href: chapters/chapter1.qmd
-          - text: "Chapter 2: Advanced Topics"
-            href: chapters/chapter2.qmd
-          - text: "Theorem Examples"
-            href: chapters/theorem-examples.qmd
+          - text: "R Code Style"
+            href: chapters/coding-style.qmd
+          - text: "R Coding Practices"
+            href: chapters/coding-practices.qmd
+          - text: "Data masking"
+            href: chapters/data-masking.qmd
+          - text: "Big data"
+            href: chapters/big-data.qmd
+      - text: "Projects"
+        menu:
+          - text: "Code repositories"
+            href: chapters/code-repositories.qmd
+          - text: "Reproducible Environments"
+            href: chapters/reproducible-environments.qmd
+          - text: "Code Publication"
+            href: chapters/code-publication.qmd
+      - text: "Collaboration"
+        menu:
+          - text: "Git and GitHub"
+            href: chapters/github.qmd
+          - text: "Collaborative Software Development"
+            href: chapters/collaborative-software-development.qmd
+          - text: "Continuous Integration"
+            href: chapters/continuous-integration.qmd
+      - text: "Tools"
+        menu:
+          - text: "Unix"
+            href: chapters/unix.qmd
+          - text: "Quarto"
+            href: chapters/quarto.qmd
     right:
       - icon: github
-        href: https://github.com/UCD-SERG/qwt
+        href: https://github.com/Morrison-Lab/psc
         aria-label: GitHub
 
   # The sidebar sets the previous/next page links, so keep it in the same
@@ -58,11 +85,26 @@ website:
     style: docked
     search: false # the navbar already has search
     contents:
-      - section: "Chapters"
+      - section: "Writing code"
         contents:
-          - chapters/chapter1.qmd
-          - chapters/chapter2.qmd
-          - chapters/theorem-examples.qmd
+          - chapters/coding-style.qmd
+          - chapters/coding-practices.qmd
+          - chapters/data-masking.qmd
+          - chapters/big-data.qmd
+      - section: "Projects"
+        contents:
+          - chapters/code-repositories.qmd
+          - chapters/reproducible-environments.qmd
+          - chapters/code-publication.qmd
+      - section: "Collaboration"
+        contents:
+          - chapters/github.qmd
+          - chapters/collaborative-software-development.qmd
+          - chapters/continuous-integration.qmd
+      - section: "Tools"
+        contents:
+          - chapters/unix.qmd
+          - chapters/quarto.qmd
 
 callouty-theorem:
   thm:

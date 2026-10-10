@@ -4,9 +4,11 @@ This file provides custom instructions for GitHub Copilot when working in this r
 
 ## General Guidelines
 
-Follow the guidance in the [UCD-SERG Lab Manual](https://ucd-serg.github.io/lab-manual/).
-
-The source files for the lab manual are available at <https://github.com/UCD-SERG/lab-manual> if easier to read.
+Follow the coding guidance published by this site,
+[Principles of Scientific Computing](https://morrison-lab.github.io/psc/)
+(source in `chapters/`).
+Write for a general audience:
+these pages serve projects inside and outside UCD-SERG.
 
 For workflow fixes, do not restrict the publish workflow render target to HTML only.
 Keep publish rendering all configured formats and fix underlying failures instead.
@@ -29,12 +31,12 @@ When describing lists of three or more items, use a bullet list instead of a com
 
 ❌ **Don't** use comma-separated lists for three or more items:
 ```
-The template includes GitHub Actions workflows for publishing, link checking, and spell checking.
+The site includes GitHub Actions workflows for publishing, link checking, and spell checking.
 ```
 
 ✅ **Do** use bullet lists instead:
 ```
-The template includes GitHub Actions workflows for:
+The site includes GitHub Actions workflows for:
 
 - Publishing
 - Link checking
