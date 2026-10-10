@@ -22,7 +22,7 @@ Write for a general audience: these pages serve SERG and non-SERG projects alike
 - `offwhite.scss`, `theme-picker.html` --- the website's Light / Off-white / Parchment / Dark theme dropdown (`theme-picker.html` builds it, `offwhite.scss` styles the two tinted palettes); the choice is saved under `mln-theme`, shared with the slides and with the other sites on this origin
 - `page-navigation.html` --- opt-in HTML include (off by default; turn on with `format.html.include-after-body`) that adds floating previous/next arrows in the page margins and fixes navbar highlighting when Home is in the sidebar; vendored from `Morrison-Lab/lbt` (a private repo, so not linked)
 - `styles.css` --- website styling; `styles-reveal.scss`, `qwt-reveal-toggle.html` (the same four-theme dropdown for slides), and the `revealjs-*.lua` filters drive the reveal.js slide output
-- `assets/`, `images/` --- static image and asset files (site pages, docs, CI/PR screenshots)
+- `assets/images/` --- images for the pages (site pages, docs, CI/PR screenshots)
 - `.github/workflows/` --- CI workflow definitions
 - `.github/scripts/` --- helper scripts used by workflows
 - `.github/instructions/` --- path-scoped Copilot rules that attach by file glob (see `.github/copilot-instructions.md`)

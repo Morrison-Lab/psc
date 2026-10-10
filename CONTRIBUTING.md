@@ -37,7 +37,7 @@ If you're working on content for this site:
 - Include code examples where appropriate
 - Add references to `references.bib` for any citations
 - Use appropriate headings (h2 `##` for main sections, h3 `###` for subsections)
-- Include images in an `images/` or `figures/` directory
+- Store images locally under `assets/images/`, not as external URLs
 - Test code examples to ensure they work
 
 ### Markdown formatting
@@ -54,10 +54,11 @@ If you're working on content for this site:
 
 ### Adding images
 
-1. Place images in the `images/` directory
-2. Reference them in your `.qmd` file:
+1. Place images in the `assets/images/` directory
+2. Reference them with a path relative to the page;
+   from a page in `chapters/`, that is:
    ```markdown
-   ![Caption text](images/your-image.png){#fig-label}
+   ![Caption text](../assets/images/your-image.png){#fig-label}
    ```
 
 ### Adding URLs
