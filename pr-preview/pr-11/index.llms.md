@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-10 12:05:13 (PDT)
+Last modified: 2026-10-10 12:19:44 (PDT)
 
 # Welcome
 
@@ -36,7 +36,7 @@ Each page is also available as RevealJS slides (`-slides.html`), a PDF handout (
 
 These chapters began in the [UCD-SERG lab manual](https://ucd-serg.github.io/lab-manual/) and moved here, with their history, so that they can serve projects outside that group.
 
-The UCD-SERG lab manual is a fork of the [Benjamin-Chung Lab Manual](https://jadebc.github.io/lab-manual/index.html), and many of these chapters keep text from it. We are grateful to Jade Benjamin-Chung and that manual’s other original contributors, Kunal Mishra, Stephanie Djajadi, Nolan Pokpongkiat, Anna Nguyen, Iris Tong, and Gabby Barratt Heitmann, for writing it and sharing it openly.
+The UCD-SERG lab manual is a fork of the [Benjamin-Chung Lab Manual](https://jadebc.github.io/lab-manual/index.html), and many of these chapters keep text from the Benjamin-Chung manual. We are grateful to Jade Benjamin-Chung and that manual’s other original contributors, Kunal Mishra, Stephanie Djajadi, Nolan Pokpongkiat, Anna Nguyen, Iris Tong, and Gabby Barratt Heitmann, for writing it and sharing it openly.
 
 This site is built from the [qwt](https://github.com/Morrison-Lab/qwt) Quarto website template, whose structure also comes from the UCD-SERG lab manual.
 
