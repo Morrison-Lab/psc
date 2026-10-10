@@ -1,0 +1,148 @@
+---
+title: "Protected Page"
+format:
+  html: default
+  revealjs:
+    output-file: protected-page-slides.html
+  pdf:
+    output-file: protected-page-handout.pdf
+  docx:
+    output-file: protected-page.docx
+---
+
+<div id="password-gate" style="max-width: 500px; margin: 100px auto; padding: 30px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+  <h2>🔒 This page is password protected</h2>
+  <p>Please enter the password to view this content:</p>
+  <form id="password-form" onsubmit="return checkPassword(event)">
+    <input
+      type="password"
+      id="password-input"
+      placeholder="Enter password"
+      style="padding: 10px; width: 80%; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;"
+      autofocus
+    />
+    <br/>
+    <button
+      type="submit"
+      style="padding: 10px 30px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;"
+    >
+      Submit
+    </button>
+  </form>
+  <div id="error-message" style="color: red; margin-top: 10px; display: none;">
+    Incorrect password. Please try again.
+  </div>
+</div>
+
+<div id="protected-content" style="display: none;">
+
+# Welcome to the Protected Page {.unnumbered}
+
+Congratulations! You have successfully accessed the password-protected content.
+
+## About This Page
+
+This page demonstrates password protection for a Quarto website. The password is verified client-side using JavaScript, which means:
+
+- It provides basic access control for non-sensitive content
+- It's suitable for demos, previews, or educational materials
+- It's not secure for truly sensitive information (use server-side authentication for that)
+
+## Protected Content
+
+Here's some example protected content:
+
+### Features Demonstrated
+
+You can include all standard Quarto features on a protected page:
+
+- **Lists** with various formatting
+- *Italic* and **bold** text
+- `Code snippets` inline
+- Links: [Quarto Documentation](https://quarto.org/)
+
+### Code Blocks
+
+You can include code blocks:
+
+```python
+# Example Python code on protected page
+def secret_function():
+    print("This is protected content!")
+    return "Secret data"
+
+result = secret_function()
+print(result)
+```
+
+### Mathematical Equations
+
+You can use LaTeX equations:
+
+$$
+E = mc^2
+$$
+
+Or inline math like $\pi \approx 3.14159$.
+
+### Callouts
+
+::: {.callout-note}
+This is a note callout in the protected content.
+:::
+
+::: {.callout-tip}
+## Tip for Protected Content
+Only users with the correct password can see this tip!
+:::
+
+### Theorem-Style Blocks
+
+::: {#thm-protected .thm}
+## Protected Theorem
+This theorem is only visible to authenticated users.
+:::
+
+## Security Note
+
+This is a **client-side** password protection mechanism. The page content is still downloaded to the user's browser; it's just hidden until the correct password is entered. For truly sensitive information, use:
+
+- Server-side authentication
+- Content delivery that requires server validation
+- A backend service with proper session management
+
+For this demo, the simple client-side approach is sufficient.
+
+</div>
+
+<script>
+function checkPassword(event) {
+  event.preventDefault();
+  const password = document.getElementById('password-input').value;
+  const correctPassword = 'passwyrd';
+
+  if (password === correctPassword) {
+    // Hide password gate
+    document.getElementById('password-gate').style.display = 'none';
+    // Show protected content
+    document.getElementById('protected-content').style.display = 'block';
+    // Store authentication in session storage (persists during browser session)
+    sessionStorage.setItem('authenticated', 'true');
+    return false;
+  } else {
+    // Show error message
+    document.getElementById('error-message').style.display = 'block';
+    // Clear password input
+    document.getElementById('password-input').value = '';
+    return false;
+  }
+}
+
+// Check if already authenticated in this session
+window.addEventListener('DOMContentLoaded', function() {
+  if (sessionStorage.getItem('authenticated') === 'true') {
+    document.getElementById('password-gate').style.display = 'none';
+    document.getElementById('protected-content').style.display = 'block';
+  }
+});
+</script>
