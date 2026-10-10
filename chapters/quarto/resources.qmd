@@ -40,10 +40,10 @@ and upcoming features:
 - [reveal.js bugs & improvements epic](https://github.com/quarto-dev/quarto-cli/issues/4894) -
   example epic tracking reveal.js-related issues
 
-### Related Lab Manual Chapters
+### Related chapters
 
-For additional context about using Quarto in our lab:
+For additional context about using Quarto:
 
 - [R Coding Practices](coding-practices.qmd#sec-r-coding-practices) - R coding practices that apply to code in Quarto documents
 - [R Code Style](coding-style.qmd#sec-r-code-style) - Code style guidelines including formatting for Quarto documents
-- [Github](github.qmd#sec-github) - Version control for Quarto projects
+- [Git and GitHub](github.qmd#sec-github) - Version control for Quarto projects

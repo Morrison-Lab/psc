@@ -124,7 +124,7 @@ The two above had to be cloned because they live outside Oh My Zsh.
 Oh My Zsh itself ships several hundred plugins that are already on disk ---
 adding a name to `plugins=()` is the whole installation.
 Run `ls ~/.oh-my-zsh/plugins` to see the full list.
-These are the ones that earn their place for the work this manual describes:
+These are the ones that earn their place for the work this guide describes:
 
 | Plugin | What it gives you |
 |--------|-------------------|

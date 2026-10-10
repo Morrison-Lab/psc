@@ -10,8 +10,6 @@ format:
     output-file: data-masking.docx
 ---
 
-For UC Davis computing resources for data-intensive work, see the [UCD-SERG lab manual's Slurm chapter](https://ucd-serg.github.io/lab-manual/slurm.html#sec-slurm).
-
 ## General Overview
 
 {{< include data-masking/general-overview.qmd >}}

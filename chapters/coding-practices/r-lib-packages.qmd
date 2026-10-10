@@ -204,7 +204,7 @@ It is used by `googledrive`, `googlesheets4`, and other Google-backed R packages
 
 [`{here}`](https://here.r-lib.org/) builds file paths relative to the project root,
 so scripts work regardless of the current working directory.
-This manual requires `{here}` for file paths (see @sec-here-package-practices).
+We recommend `{here}` for file paths (see @sec-here-package-practices).
 
 ### [`{memoise}`](https://memoise.r-lib.org/) {#sec-memoise}
 

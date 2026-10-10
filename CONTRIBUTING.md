@@ -1,12 +1,12 @@
-# Contributing to Your Quarto Book
+# Contributing to Principles of Scientific Computing
 
-Thank you for your interest in contributing to this book!
+Thank you for your interest in contributing to this site!
 
 ## How to contribute
 
-### For book authors
+### For authors
 
-If you're working on content for this book:
+If you're working on content for this site:
 
 1. **Create a new branch** for your work:
    ```bash

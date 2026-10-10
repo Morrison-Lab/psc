@@ -2,7 +2,7 @@ Package: psc
 Title: Principles of Scientific Computing
 Version: 0.1.0
 Authors@R: 
-    person("Your Name", email = "your.email@example.com", role = c("aut", "cre"))
+    person("Douglas", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
 Description: Practical guidance on writing, organizing, sharing, and
     maintaining code for research projects, published as a Quarto website.
 License: MIT + file LICENSE

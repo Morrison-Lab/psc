@@ -36,7 +36,7 @@ Mirrors [`.github/copilot-instructions.md`](.github/copilot-instructions.md). Ke
 - **Lists of 3+ items**: use bullet lists rather than comma-separated prose. Always leave a blank line before a markdown bullet list (especially in `.qmd` files).
 - **Code chunks**: HTML output folds code by default: `_quarto-website.yml` sets `code-fold: true` (with `code-tools: true`, so readers can show all code at once), as rme does. Keep the default when the *output* (plot, table) is the point and the code is incidental. Set `#| code-fold: false` on tutorial code, short examples, code that is the main focus, and chunks where the console output is the main content.
 - **R style**: respect `.lintr.R`. Run `lintr::lint_dir()` before declaring R changes done.
-- **Navigation**: `_quarto-website.yml` defines a docked sidebar because `page-navigation: true` builds its previous/next links from the sidebar. Add each new page to both the navbar and the sidebar, in the same order. Leave Home out of the sidebar unless `page-navigation.html` is turned on (see the README's "Page navigation" section).
+- **Navigation**: `_quarto-website.yml` defines a docked sidebar because `page-navigation: true` builds its previous/next links from the sidebar. Add each new page to both the navbar and the sidebar, in the same order. Leave Home out of the sidebar unless `page-navigation.html` is turned on, since that include is what fixes navbar highlighting when Home is in the sidebar.
 - **Quarto chunks**: prefer chunk options as YAML-style `#|` directives, not as inline `r, opt = val` arguments.
 
 ## Working in this repo
@@ -54,12 +54,10 @@ Mirrors [`.github/copilot-instructions.md`](.github/copilot-instructions.md). Ke
 `.claude/settings.json` declares the `Morrison-Lab` marketplace (source:
 [`Morrison-Lab/ai-config`](https://github.com/Morrison-Lab/ai-config)) and enables
 its `ai-config@Morrison-Lab` plugin, along with the `posit-dev-skills` and `sembr`
-marketplaces this template also carries, matching
+marketplaces from the `qwt` template, matching
 [`Morrison-Lab/qbt`](https://github.com/Morrison-Lab/qbt). Declaring is not
 installing: a local session still needs `claude plugin install ai-config@Morrison-Lab`
-once. Because this is a template repository, this declaration is copied once into
-every repo created from it --- an omission here silently ships to every downstream
-site.
+once.
 
 ## Pull request expectations
 
