@@ -13,8 +13,8 @@ as it provides pre-configured settings,
 example content,
 and GitHub Actions workflows for automated deployment:
 
-1. **UCD-SeRG Quarto Book Template** - Our recommended template with pre-configured settings for lab publications:
-   - Repository: <https://github.com/UCD-SERG/qbt>
+1. **Quarto Book Template (`qbt`)** - our recommended template, with pre-configured settings and CI:
+   - Repository: <https://github.com/Morrison-Lab/qbt>
    - Click "Use this template" → "Create a new repository" on GitHub
    - Clone your new repository and start editing
    - Includes GitHub Actions for automatic deployment to GitHub Pages
@@ -138,10 +138,10 @@ Custom themes,
 CSS,
 and templates for professional appearance.
 
-### Example: This Lab Manual
+### Example: The UCD-SERG Lab Manual
 
-This lab manual itself is a Quarto book!
-You can view its source code at <https://github.com/UCD-SERG/lab-manual> to see how we've structured chapters,
+The [UCD-SERG lab manual](https://ucd-serg.github.io/lab-manual/) is a Quarto book.
+You can view its source code at <https://github.com/UCD-SERG/lab-manual> to see how it structures chapters,
 used includes for modular content,
 and configured various output formats.
 

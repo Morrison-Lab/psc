@@ -5,7 +5,7 @@ Place your images and figures in this directory.
 ## Naming conventions
 
 Use descriptive names for your images:
-- `chapter1-workflow-diagram.png`
+- `github-workflow-diagram.png`
 - `results-plot-2024.png`
 - `methodology-flowchart.svg`
 

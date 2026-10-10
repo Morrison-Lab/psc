@@ -120,4 +120,4 @@ articles:
 
 ### Alternatives to pkgdown
 
-{{< include coding-practices/pkgdown-alternatives.qmd >}}
+{{< include /chapters/coding-practices/pkgdown-alternatives.qmd >}}

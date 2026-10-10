@@ -13,7 +13,7 @@ The following principles apply to all R code:
 - **Write tidy code**: Keep code clean, readable, and well-organized
 - **Avoid redundant logical comparisons**: Use logical variables directly in conditional statements (e.g., `if (x)` instead of `if (x == TRUE)` or `if (x == 1)`)
 
-{{< include coding-style/_pipes.qmd >}}
+{{< include /chapters/coding-style/_pipes.qmd >}}
 
 Many of these rules are automatically enforced through our [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) configuration file.
 See @sec-style-auto-style for details on automated style checking.

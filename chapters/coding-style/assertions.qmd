@@ -96,7 +96,7 @@ calculate_rate <- function(count, person_years, call = rlang::caller_env()) {
 When a function validates multiple inputs with the same pattern,
 extract the repeated checks into a helper function
 rather than repeating the `if`/`cli_abort` block for each input.
-See @sec-decompose-validation for a worked example.
+See [Decomposing validation blocks](coding-practices.qmd#sec-decompose-validation) for a worked example.
 
 ### Note on `{assertthat}`
 

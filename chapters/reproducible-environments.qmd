@@ -1,4 +1,16 @@
-# Reproducible Environments {#sec-reproducible-environments}
+---
+title: "Reproducible Environments"
+format:
+  html: default
+  revealjs:
+    output-file: reproducible-environments-slides.html
+  pdf:
+    output-file: reproducible-environments-handout.pdf
+  docx:
+    output-file: reproducible-environments.docx
+---
+
+[]{#sec-reproducible-environments}
 
 ## Package Version Control with renv
 

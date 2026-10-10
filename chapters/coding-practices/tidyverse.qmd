@@ -158,4 +158,4 @@ we'd recommend checking out the following resources:
 - [Data Frame Columns as Arguments to Dplyr Functions](https://www.brodrigues.co/blog/2016-07-18-data-frame-columns-as-arguments-to-dplyr-functions/) (blog)
 - [Standard Evaluation for *_join](https://stackoverflow.com/questions/28125816/r-standard-evaluation-for-join-dplyr) (stackoverflow)
 
-See also @sec-tidyverse-replacements
+See also [Tidyverse Replacements](coding-style.qmd#sec-tidyverse-replacements)

@@ -1,7 +1,7 @@
 
 ### Function headers
 
-{{< include coding-practices/function-documentation.qmd >}}
+{{< include /chapters/coding-practices/function-documentation.qmd >}}
 
 ### Script headers
 
@@ -73,4 +73,4 @@ downstream table generators
 can automatically display human-readable descriptions and correct units
 without error-prone manual relabeling.
 
-*See also @sec-function-docs for function documentation style guidelines.*
+*See also [Function Structure and Documentation](coding-style.qmd#sec-function-docs) for function documentation style guidelines.*

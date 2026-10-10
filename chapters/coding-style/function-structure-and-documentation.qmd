@@ -22,7 +22,7 @@ my_function <- function(param1, param2) {
 }
 ```
 
-*See also @sec-documenting-code for general code documentation practices.*
+*See also [Documenting your code](coding-practices.qmd#sec-documenting-code) for general code documentation practices.*
 
 ### Explicit Return Statements
 

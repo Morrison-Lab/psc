@@ -15,7 +15,7 @@ with a few differences worth knowing:
 - **Continuous integration.** GitLab ships a built-in CI/CD system
   configured by a single `.gitlab-ci.yml` file at the repository root,
   where GitHub uses GitHub Actions workflows under `.github/workflows/`
-  (see @sec-r-ci).
+  (see [Continuous Integration](continuous-integration.qmd#sec-r-ci)).
 - **Command-line tool.** `glab` is the GitLab counterpart to `gh`;
   installation and authentication are covered in @sec-cli-tools.
 

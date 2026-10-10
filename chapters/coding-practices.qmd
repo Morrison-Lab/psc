@@ -1,4 +1,16 @@
-# R Coding Practices {#sec-r-coding-practices}
+---
+title: "R Coding Practices"
+format:
+  html: default
+  revealjs:
+    output-file: coding-practices-slides.html
+  pdf:
+    output-file: coding-practices-handout.pdf
+  docx:
+    output-file: coding-practices.docx
+---
+
+[]{#sec-r-coding-practices}
 
 ## Lab Protocols for Code and Data
 

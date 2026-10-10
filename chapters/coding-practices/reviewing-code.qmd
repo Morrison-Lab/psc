@@ -2,7 +2,7 @@ Peer code review is a collaborative practice that improves scientific rigor,
 fosters shared understanding,
 and catches bugs before analysis results are shared or published.
 The lab's pull request workflow, author and reviewer expectations, and response protocol
-are consolidated in @sec-collab-dev.
+are consolidated in [Collaborative Software Development](collaborative-software-development.qmd#sec-collab-dev).
 
 ### Why We Review Code {#sec-why-review-code}
 
@@ -23,7 +23,7 @@ When reviewing a colleague's code, evaluate these key dimensions:
 
 1. **Reproducibility**:
    - Does the script run cleanly from start to finish in a fresh R session?
-   - Are package dependencies managed reproducibly via [`{renv}`](https://rstudio.github.io/renv/) (see @sec-reproducible-environments)?
+   - Are package dependencies managed reproducibly via [`{renv}`](https://rstudio.github.io/renv/) (see [Reproducible Environments](reproducible-environments.qmd#sec-reproducible-environments))?
    - Are file paths relative and constructed with [`{here}`](https://here.r-lib.org/) (see @sec-here-package-practices),
      avoiding machine-specific absolute paths?
 2. **Code correctness and data integrity**:
@@ -31,9 +31,9 @@ When reviewing a colleague's code, evaluate these key dimensions:
    - Are missing values (`NA`), edge cases, and empty groupings handled appropriately?
    - Are key variables assigned descriptive labels and measurement units where applicable (see @sec-variable-labels)?
 3. **Style and structure**:
-   - Does the code follow the lab's R code style (see @sec-r-code-style)?
+   - Does the code follow the lab's R code style (see [R Code Style](coding-style.qmd#sec-r-code-style))?
    - Are long chunks broken into focused functions (see @sec-function-decomposition)?
-   - Are variable and function names self-describing (see @sec-object-naming)?
+   - Are variable and function names self-describing (see [Object Naming](coding-style.qmd#sec-object-naming))?
 4. **Documentation**:
    - Do comments explain non-obvious design choices or statistical assumptions (see @sec-documenting-code)?
    - Are architectural or analytical decisions documented with an ADR where appropriate (see @sec-adrs)?

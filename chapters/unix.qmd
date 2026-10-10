@@ -1,4 +1,16 @@
-# Unix {#sec-unix}
+---
+title: "Unix"
+format:
+  html: default
+  revealjs:
+    output-file: unix-slides.html
+  pdf:
+    output-file: unix-handout.pdf
+  docx:
+    output-file: unix.docx
+---
+
+[]{#sec-unix}
 
 We typically use Unix commands in Terminal (for Mac users) or Git Bash (for Windows users) to 
 
@@ -14,7 +26,7 @@ We typically use Unix commands in Terminal (for Mac users) or Git Bash (for Wind
 
 On the computer, there is a desktop with two folders, `folder1` and `folder2`, and a file called `file1.` Inside `folder1`, we have a file called `file2.` Mac users can run these commands on their terminal; it is recommended that Windows users use Git Bash, not Windows PowerShell.
 
-![Example desktop with folders and files](assets/images/ex-desktop.jpg){#fig-unix-desktop}
+![Example desktop with folders and files](../assets/images/ex-desktop.jpg){#fig-unix-desktop}
 
 ## Terminal Emulators {#sec-terminal-emulators}
 
@@ -40,7 +52,7 @@ When typing in directories or file names, quotes are necessary if the name inclu
 
 : Basic Unix commands for Mac and Windows {#tbl-unix-basic-commands}
 
-![Terminal output after executing basic Unix commands](assets/images/ex-terminal.PNG){#fig-unix-terminal}
+![Terminal output after executing basic Unix commands](../assets/images/ex-terminal.PNG){#fig-unix-terminal}
 
 ## Zsh and Oh My Zsh {#sec-zsh}
 

@@ -1,6 +1,6 @@
 When starting a new package,
 begin from the lab's template repository
-([`UCD-SERG/rpt`](https://github.com/UCD-SERG/rpt))
+([`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt))
 rather than an empty repository.
 On GitHub, click **Use this template** to create a new repository that already
 includes our standard structure, CI workflows, and documentation scaffolding.

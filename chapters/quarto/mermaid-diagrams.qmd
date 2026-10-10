@@ -72,7 +72,7 @@ The most robust workflow is to:
 **Example:**
 
 ```markdown
-![Workflow diagram description](assets/images/workflow-diagram.png){#fig-workflow}
+![Workflow diagram description](../assets/images/workflow-diagram.png){#fig-workflow}
 ```
 
 This approach guarantees compatibility with all output formats and gives you full control over image quality.
@@ -90,7 +90,7 @@ flowchart LR
 :::
 
 ::: {.content-visible unless-format="html"}
-![Workflow diagram](assets/images/workflow-diagram.png)
+![Workflow diagram](../assets/images/workflow-diagram.png)
 :::
 ````
 

@@ -2,20 +2,20 @@
 
 #### RStudio shortcuts
 
-{{< include coding-style/_rstudio-styling-shortcuts.qmd >}}
+{{< include /chapters/coding-style/_rstudio-styling-shortcuts.qmd >}}
 
 #### [`{styler}`](https://styler.r-lib.org/)
    
-{{< include coding-style/_styler-summary.qmd >}}   
+{{< include /chapters/coding-style/_styler-summary.qmd >}}   
    
 #### [`{lintr}`](https://lintr.r-lib.org/)
 
-{{< include coding-style/_lintr-summary.qmd >}}
+{{< include /chapters/coding-style/_lintr-summary.qmd >}}
 
 #### [`{jarl}`](https://jarl.etiennebacher.com/)
 
-{{< include coding-style/_jarl-summary.qmd >}}
+{{< include /chapters/coding-style/_jarl-summary.qmd >}}
 
 ### Linting Changed Files vs. the Whole Project in CI
 
-{{< include coding-style/_lint-changed-files-in-ci.qmd >}} 
+{{< include /chapters/coding-style/_lint-changed-files-in-ci.qmd >}} 

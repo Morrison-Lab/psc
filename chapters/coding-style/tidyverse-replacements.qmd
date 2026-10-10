@@ -29,4 +29,4 @@ labelled::set_variable_labels() # instead of attr(x, "label") <- ...
 sessioninfo::session_info() # instead of sessionInfo()
 ```
 
-See also @sec-tidyverse.
+See also [Tidyverse](coding-practices.qmd#sec-tidyverse).

@@ -36,4 +36,4 @@ but harder to read and obscures the intent.
 `here()` was designed to replace `file.path()` for project-relative paths,
 so let it do its job.
 
-*See also @sec-here-package-practices for detailed explanation of the here package.*
+*See also [The here package](coding-practices.qmd#sec-here-package-practices) for detailed explanation of the here package.*

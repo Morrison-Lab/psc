@@ -1,4 +1,16 @@
-# R Code Style {#sec-r-code-style}
+---
+title: "R Code Style"
+format:
+  html: default
+  revealjs:
+    output-file: coding-style-slides.html
+  pdf:
+    output-file: coding-style-handout.pdf
+  docx:
+    output-file: coding-style.docx
+---
+
+[]{#sec-r-code-style}
 
 Follow these code style guidelines for all R code:
 

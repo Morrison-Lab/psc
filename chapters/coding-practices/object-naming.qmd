@@ -17,4 +17,4 @@ You may also see `camelCase` throughout the R code you come across. This is _oka
 Again, it's also worth noting there's nothing inherently wrong with using `.` in variable names, just that it goes against style best practices that are cropping up in data science, so it's worth getting rid of these bad habits now.
 :::
 
-See also @sec-object-naming.
+See also [Object Naming](coding-style.qmd#sec-object-naming).

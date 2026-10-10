@@ -1,8 +1,20 @@
-# Code repositories {#sec-code-repositories}
+---
+title: "Code repositories"
+format:
+  html: default
+  revealjs:
+    output-file: code-repositories-slides.html
+  pdf:
+    output-file: code-repositories-handout.pdf
+  docx:
+    output-file: code-repositories.docx
+---
 
-Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier for us to efficiently collaborate across projects. 
+[]{#sec-code-repositories}
 
-UCD-SeRG projects use R package structure for most R-based work.
+Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier to collaborate across projects. 
+
+We recommend R package structure for most R-based projects.
 This provides benefits for reproducibility, collaboration, and code quality even for analysis-only projects.
 
 ## Template repositories

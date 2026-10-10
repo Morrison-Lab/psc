@@ -1,4 +1,16 @@
-# Continuous Integration {#sec-r-ci}
+---
+title: "Continuous Integration"
+format:
+  html: default
+  revealjs:
+    output-file: continuous-integration-slides.html
+  pdf:
+    output-file: continuous-integration-handout.pdf
+  docx:
+    output-file: continuous-integration.docx
+---
+
+[]{#sec-r-ci}
 
 ## Understanding GitHub Actions
 

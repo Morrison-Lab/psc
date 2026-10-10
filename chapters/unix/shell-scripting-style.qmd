@@ -43,7 +43,7 @@ explain *why*, not *what*.
 Keep inline comments brief,
 and point to an Architecture Decision Record
 for rationale too long for a comment
-(see @sec-adrs).
+(see [Design Documentation with ADRs](coding-practices.qmd#sec-adrs)).
 
 ### Logging
 

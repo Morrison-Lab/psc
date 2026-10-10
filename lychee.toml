@@ -23,6 +23,20 @@ exclude = [
   "https://your-username.github.io/.*",
   "http://localhost.*",
   "https://localhost.*",
+  # Ported from UCD-SERG/lab-manual along with the chapters that link these:
+  # Example placeholder URL in documentation
+  "https://ucd-serg.github.io/YOURPROJECT",
+  # Old RStudio blog moved to posit.co; frequently times out in CI
+  "https://blog.rstudio.com/.*",
+  # Posit support returns 403 for automated checks
+  "https://support.posit.co/.*",
+  # How-To Geek throws HTTP/2 protocol errors on automated checkers
+  "https://www\\.howtogeek\\.com/.*",
+  # GitHub PR review pages require authentication
+  "https://github.com/pulls/review-requested.*",
+  "https://github.com/.*/pulls\\?q=.*review-requested.*",
+  # Example preview URLs in documentation (not real URLs)
+  "https://preview.*",
   "http://127.0.0.1.*",
   "https://127.0.0.1.*",
   # quarto.org is a trusted site but may be unreachable from CI runners

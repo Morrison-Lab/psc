@@ -4,9 +4,9 @@ Project guidance for Claude Code (CLI, IDE, and the GitHub Action). The same con
 
 ## Project context
 
-`qwt` (Quarto Website Template) is a template repository for [Quarto](https://quarto.org/) websites maintained by the UCD-SERG lab. Downstream repos are created from this template via the GitHub "Use this template" button, so changes here propagate to new books.
+`psc` (Principles of Scientific Computing) is a [Quarto](https://quarto.org/) website of general-purpose coding guidance for research projects, the computing companion to [`psw`](https://github.com/Morrison-Lab/psw). Its chapters were moved, with git history, out of the [UCD-SERG Lab Manual](https://ucd-serg.github.io/lab-manual/); SERG-specific material (Slurm, onboarding, UC Davis accounts) stays there. It was created from the [`qwt`](https://github.com/Morrison-Lab/qwt) website template, so each page also renders as RevealJS slides, a PDF handout, and DOCX. Cross-page references are ordinary links (`[Heading](page.qmd#sec-id)`), because a Quarto website does not resolve `@sec-` references across pages.
 
-Authoritative style guide: [UCD-SERG Lab Manual](https://ucd-serg.github.io/lab-manual/) (source: <https://github.com/UCD-SERG/lab-manual>).
+Write for a general audience: these pages serve SERG and non-SERG projects alike.
 
 ## Repository layout
 
@@ -70,7 +70,7 @@ site.
 
 ## Things to avoid
 
-- Adding new top-level dependencies (R packages, Quarto extensions) without a clear reason; this is a template, so every dependency lands in every downstream book.
+- Adding new top-level dependencies (R packages, Quarto extensions) without a clear reason; keep the build lean.
 - Reformatting unrelated files.
 - Inventing URLs or citations --- only use sources actually present in `references.bib` or explicitly provided.
 

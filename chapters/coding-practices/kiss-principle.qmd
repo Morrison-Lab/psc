@@ -31,5 +31,5 @@ Simplicity is not an excuse to drop requirements:
 the goal is the simplest solution that still does the whole job,
 not a simpler job.
 The preceding sections on function decomposition and function length limits,
-and the guidance on [avoiding deep nesting](@sec-avoid-nesting),
+and the guidance on [avoiding deep nesting](coding-style.qmd#sec-avoid-nesting),
 are concrete applications of this principle.

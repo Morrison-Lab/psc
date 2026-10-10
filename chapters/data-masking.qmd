@@ -1,6 +1,16 @@
-# Data masking
+---
+title: "Data masking"
+format:
+  html: default
+  revealjs:
+    output-file: data-masking-slides.html
+  pdf:
+    output-file: data-masking-handout.pdf
+  docx:
+    output-file: data-masking.docx
+---
 
-For information about UC Davis computing resources for data-intensive work, see @sec-slurm.
+For UC Davis computing resources for data-intensive work, see the [UCD-SERG lab manual's Slurm chapter](https://ucd-serg.github.io/lab-manual/slurm.html#sec-slurm).
 
 ## General Overview
 

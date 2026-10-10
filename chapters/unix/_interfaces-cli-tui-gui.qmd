@@ -83,7 +83,7 @@ Key characteristics:
   unless the application provides an underlying scripting API.
 - **Remote latency and display requirements:**
   Running a remote GUI requires an active graphical display server,
-  such as X11 forwarding (see @sec-x11-forwarding)
+  such as X11 forwarding (see [X11 Forwarding](https://ucd-serg.github.io/lab-manual/slurm.html#sec-x11-forwarding))
   or a web-based portal like RStudio Server on Mercury.
 
 Common data science examples: RStudio, VS Code, GitHub Desktop, and GitKraken.

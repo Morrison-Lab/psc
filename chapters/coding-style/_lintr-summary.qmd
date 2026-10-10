@@ -65,4 +65,4 @@ but we prefer `.lintr.R` for better R syntax support).
 
 ### Our Lab's Lintr Configuration
 
-{{< include coding-style/_lintr-lab-configuration.qmd >}}
+{{< include /chapters/coding-style/_lintr-lab-configuration.qmd >}}

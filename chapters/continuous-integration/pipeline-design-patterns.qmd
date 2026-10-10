@@ -146,7 +146,7 @@ before anyone notices.
 
 ### Pipeline Decomposition {#sec-ci-decomposition}
 
-The function-decomposition principles from @sec-r-coding-practices
+The function-decomposition principles from [R Coding Practices](coding-practices.qmd#sec-r-coding-practices)
 apply to pipelines:
 split a pipeline into jobs along the lines of
 **independent failure and re-run** ---

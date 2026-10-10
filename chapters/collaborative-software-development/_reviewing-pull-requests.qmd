@@ -95,7 +95,7 @@ such as typo fixes or comment additions,
 use GitHub's suggestion feature
 so the author can accept the change directly in the UI.
 
-![GitHub's suggestion feature in a PR review comment](assets/images/github-suggestion-feature.png){#fig-github-suggestion-feature}
+![GitHub's suggestion feature in a PR review comment](../assets/images/github-suggestion-feature.png){#fig-github-suggestion-feature}
 
 #### Ignore auto-generated files when appropriate
 
@@ -126,7 +126,7 @@ review the rendered preview as well.
 The workflow should post a PR comment
 with a link to the preview build.
 
-![Example of an automated PR preview comment posted by GitHub Actions](assets/images/quarto-preview-comment.png){#fig-preview-comment}
+![Example of an automated PR preview comment posted by GitHub Actions](../assets/images/quarto-preview-comment.png){#fig-preview-comment}
 
 In GitHub's **Files changed** view,
 you can click the three dots (`...`) next to a file
