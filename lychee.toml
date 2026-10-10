@@ -41,4 +41,10 @@ exclude = [
   "https://127.0.0.1.*",
   # quarto.org is a trusted site but may be unreachable from CI runners
   "https://quarto.org/.*",
+  # These sites return 403 to automated checkers but load for readers
+  # (the lab manual accepts 403 globally; excluding the hosts is narrower)
+  "https://stackoverflow\\.com/.*",
+  "https://softwareengineering\\.stackexchange\\.com/.*",
+  "https://www\\.reddit\\.com/.*",
+  "https://medium\\.com/.*",
 ]
