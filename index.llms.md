@@ -1,72 +1,39 @@
-# Quarto Website Template
+# Principles of Scientific Computing
 
 Code
 
 Published
 
-Last modified: 2026-10-09 23:47:44 (PDT)
+Last modified: 2026-10-10 01:40:28 (PDT)
 
 # Welcome
 
-This is a Quarto website template that you can use to create your own website.
+*Principles of Scientific Computing* (psc) collects practical guidance on writing, organizing, sharing, and maintaining code for research projects. It is the computing companion to [*Principles of Scientific Writing*](https://morrison-lab.github.io/psw/).
 
-The notes are available in multiple formats:
+The guidance applies to any research project, whether it is a lab analysis, a course, or a software package. Most examples use R, but the principles carry over to other languages.
 
-- **HTML Website**: Navigate using the navbar for easy access to all pages
-- **RevealJS Slides**: Each chapter can generate a presentation format with `-slides.html` suffix
-- **PDF Handouts**: Each chapter can generate a PDF handout with `-handout.pdf` suffix
-- **DOCX Documents**: Each chapter can generate a Microsoft Word document with `.docx` extension
+## What’s here
 
-## 0.1 About this website
+- **Writing code**: [coding style](chapters/coding-style.llms.md), [coding practices](chapters/coding-practices.llms.md), [data masking](chapters/data-masking.llms.md), and [working with big data](chapters/big-data.llms.md).
 
-This website is built with [Quarto](https://quarto.org/), an open-source scientific and technical publishing system. You can use Quarto to create books, websites, blogs, presentations, and more from markdown files.
+- **Projects**: [code repositories](chapters/code-repositories.llms.md), [reproducible environments](chapters/reproducible-environments.llms.md), and [code publication](chapters/code-publication.llms.md).
 
-## 0.2 Getting Started
+- **Collaboration**: [Git and GitHub](chapters/github.llms.md), [collaborative software development](chapters/collaborative-software-development.llms.md), and [continuous integration](chapters/continuous-integration.llms.md).
 
-To use this template:
+- **Tools**: [the Unix command line](chapters/unix.llms.md) and [Quarto](chapters/quarto.llms.md).
 
-1.  **Update the configuration**: Edit `_quarto-website.yml` to change the website title, site URL, and navigation menu.
+Each page is also available as RevealJS slides (`-slides.html`), a PDF handout (`-handout.pdf`), and a Word document (`.docx`).
 
-2.  **Add your content**: Create new `.qmd` files for each page and add them to the navigation menu and the sidebar in `_quarto-website.yml` (the sidebar order sets the previous/next page links).
+## Related guides
 
-3.  **Customize the style**: Modify `styles.css` to change the appearance of your website.
+- [*Principles of Scientific Writing*](https://morrison-lab.github.io/psw/) covers writing about research and statistical analysis.
 
-4.  **Add references**: Update `references.bib` with your citations.
+- [*Working with AI*](https://morrison-lab.github.io/wai/) covers AI coding assistants and agent-driven pull requests.
 
-## 0.3 Building the website
+- The [UCD-SERG lab manual](https://ucd-serg.github.io/lab-manual/) covers policies and resources specific to the UC Davis Seroepidemiology Research Group, such as computing clusters, onboarding, and communication.
 
-To render the website locally:
+## Origin
 
-``` bash
-quarto render
-```
-
-To preview the website with live reload:
-
-``` bash
-quarto preview
-```
-
-The rendered output will be in the `_site/` directory, which can be published to GitHub Pages.
-
-## 0.4 Publishing to GitHub Pages
-
-This template includes a GitHub Actions workflow that automatically builds and publishes your website to GitHub Pages when you push to the main branch.
-
-To enable GitHub Pages:
-
-1.  Go to your repository settings
-2.  Navigate to “Pages” in the left sidebar
-3.  Under “Build and deployment”, set Source to “GitHub Actions”
-4.  Push your changes to the main branch
-5.  The workflow will automatically build and deploy your website
-
-Your website will be available at `https://YOUR-USERNAME.github.io/YOUR-REPO/`
-
-## 0.5 License
-
-Add your license information here.
-
-## References
+These chapters began in the UCD-SERG lab manual and moved here, with their history, so that they can serve projects outside that group.
 
 Back to top
