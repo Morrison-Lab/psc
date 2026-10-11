@@ -39,6 +39,18 @@ quarto preview   # live preview
 quarto render    # full build into _site/
 ```
 
+## Acknowledgments
+
+These chapters began in the [UCD-SERG lab manual](https://ucd-serg.github.io/lab-manual/),
+a fork of the
+[Benjamin-Chung Lab Manual](https://jadebc.github.io/lab-manual/index.html).
+We thank Jade Benjamin-Chung and the Benjamin-Chung manual's other original contributors,
+Kunal Mishra, Stephanie Djajadi, Nolan Pokpongkiat, Anna Nguyen,
+Iris Tong, and Gabby Barratt Heitmann,
+for writing the manual and sharing it openly.
+The site is built from the [qwt](https://github.com/Morrison-Lab/qwt) Quarto website template,
+whose structure also comes from the UCD-SERG lab manual.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
