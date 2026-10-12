@@ -14,7 +14,7 @@ format:
 
 Follow these code style guidelines for all R code:
 
-## General Principles
+## General Principles {#sec-general-principles}
 
 {{< include coding-style/general-principles.qmd >}}
 
@@ -54,11 +54,11 @@ Follow these code style guidelines for all R code:
 
 {{< include coding-style/comments.qmd >}}
 
-## Line Breaks and Formatting
+## Line Breaks and Formatting {#sec-line-breaks-and-formatting}
 
 {{< include coding-style/line-breaks.qmd >}}
 
-## Markdown and Quarto Formatting
+## Markdown and Quarto Formatting {#sec-markdown-and-quarto-formatting}
 
 ### Writing about code in Quarto documents
 
@@ -72,7 +72,7 @@ For example: [`{dplyr}`](https://dplyr.tidyverse.org/).
 **Important:** Do not use raw HTML (`<a href="...">`) in `.qmd` files.
 Always use Quarto/markdown link syntax instead.
 
-## Messaging and User Communication
+## Messaging and User Communication {#sec-messaging-and-user-communication}
 
 {{< include coding-style/messaging-and-user-communication.qmd >}}
 

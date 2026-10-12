@@ -12,7 +12,7 @@ format:
 
 []{#sec-github}
 
-## Basics
+## Basics {#sec-github-basics}
 
 - [GitHub Learn](https://learn.github.com/) hosts official interactive courses,
   Skills exercises, learning pathways, and credentials.
@@ -47,7 +47,7 @@ see the [wai site's "Best Practices for Safe and Successful Use" section](https:
 
 {{< include github/_sec-cli-tools.qmd >}}
 
-## Git Branching
+## Git Branching {#sec-git-branching}
 Branches allow you to keep track of multiple versions of your work simultaneously, and you can easily switch between versions and merge branches together once you've finished working on a section and want it to join the rest of your code. Here are some cases when it may be a good idea to branch:
 
 * You may want to make a dramatic change to your existing code (called refactoring) but it will break other parts of your project. But you want to be able to simultaneously work on other parts or you are collaborating with others, and you don't want to break the code for them.
@@ -60,7 +60,7 @@ A detailed tutorial on Git Branching can be found [here](https://sp19.datastruct
 
 {{< include github/_sec-dev-branches.qmd >}}
 
-## Example Workflow
+## Example Workflow {#sec-example-workflow}
 
 A standard workflow when starting on a new project and contributing code looks like this:
 
@@ -83,7 +83,7 @@ A standard workflow when starting on a new project and contributing code looks l
 
 : Standard Git workflow for new projects {#tbl-git-workflow}
 
-## Pull Request Roles and Protocol
+## Pull Request Roles and Protocol {#sec-pull-request-roles-and-protocol}
 
 The lab's pull request roles,
 author and reviewer expectations,
@@ -93,7 +93,7 @@ are consolidated in [Collaborative Software Development](collaborative-software-
 This GitHub chapter focuses on Git mechanics
 and GitHub-specific platform features.
 
-## Commonly Used Git Commands
+## Commonly Used Git Commands {#sec-commonly-used-git-commands}
 
 | Command   | Description      |
 | --------- | ---------------- |
@@ -118,11 +118,11 @@ and GitHub-specific platform features.
 
 : Commonly used Git commands {#tbl-git-commands}
 
-## How often should I commit? 
+## How often should I commit? {#sec-how-often-should-i-commit}
 
 It is good practice to commit every 15 minutes, or every time you make a significant change. It is better to commit more rather than less.
 
-## Repeated Amend Workflow
+## Repeated Amend Workflow {#sec-repeated-amend-workflow}
 
 When working on a complex task, you may want to make frequent incremental commits to protect your progress, but avoid cluttering your Git history with many tiny "work in progress" commits. The **Repeated Amend** pattern lets you build up a polished commit gradually.
 
@@ -151,7 +151,7 @@ In RStudio, you can use the "Amend previous commit" checkbox when committing.
 
 For more details and troubleshooting scenarios, see the [Repeated Amend chapter](https://happygitwithr.com/repeated-amend.html) in Happy Git with R. 
 
-## What should be pushed to Github?
+## What should be pushed to Github? {#sec-what-should-be-pushed-to-github}
 
 Never push .Rout files! If someone else runs an R script and creates an .Rout file at the same time and both of you try to push to github, it is incredibly difficult to reconcile these two logs. If you run logs, keep them on your own system or (preferably) set up a shared directory where all logs are name and date timestamped. 
 

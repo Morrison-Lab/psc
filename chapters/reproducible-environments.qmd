@@ -12,7 +12,7 @@ format:
 
 []{#sec-reproducible-environments}
 
-## Package Version Control with renv
+## Package Version Control with renv {#sec-package-version-control-with-renv}
 
 ### Introduction 
 Replicable code should produce the same results, regardless of when or where it's run. However, our analyses often leverage open-source R packages that are developed by other teams. These packages continue to be developed after research projects are completed, which may include changes to analysis functions that could impact how code runs for both other team members and external replicators. 
@@ -78,15 +78,15 @@ If you're starting to work on an ongoing project that already has `renv` set up,
 7. Your R environment should now be using the same package versions as specified in the `renv` lock file. You should now be able to replicate the code.
 8. If you make edits to the code and introduce new/updated packages, see the section above for instructions on how to make updates.
 
-## Fast Package Installation on Ubuntu with r2u
+## Fast Package Installation on Ubuntu with r2u {#sec-fast-package-installation-on-ubuntu-with-r2u}
 
 {{< include reproducible-environments/r2u-ubuntu-alternative.qmd >}}
 
-## Managing R Versions with rig
+## Managing R Versions with rig {#sec-managing-r-versions-with-rig}
 
 {{< include reproducible-environments/rig-r-installation-manager.qmd >}}
 
-## Clearing Docker Cache
+## Clearing Docker Cache {#sec-clearing-docker-cache}
 
 {{< include reproducible-environments/docker-cache.qmd >}}
 
