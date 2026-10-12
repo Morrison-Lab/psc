@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-11 20:59:42 (PDT)</p>
+  <p class="date">Last modified: 2026-10-11 21:04:29 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -2610,6 +2610,36 @@ future_lapply(x = mylist, FUN = func)</code></pre>
 </section>
 <section class="slide level2 smaller scrollable" id="references">
 
+<h3 id="learning-r">Learning R</h3>
+<ul>
+<li>R for Data Science <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span> - learn data science with the tidyverse</li>
+<li><a href="https://www.r4epi.com/">R for Epidemiology</a> - an introduction to R, with epidemiology examples</li>
+<li><a href="https://epirhandbook.com/">The Epidemiologist R Handbook</a> - task-oriented reference for applied epidemiology</li>
+<li><a href="https://r-graphics.org/">R Graphics Cookbook</a> - recipes for common <code>{ggplot2}</code> figures</li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder/">R for Reproducible Scientific Analysis</a> - Software Carpentry’s introductory lesson</li>
+<li><a href="https://raps-with-r.dev/">Building reproducible analytical pipelines with R</a> - project-level reproducibility in R</li>
+<li><a href="https://posit.cloud/learn/recipes">Posit Recipes</a> - short, task-focused R code snippets</li>
+</ul>
+<h3 id="coming-to-r-from-sas">Coming to R from SAS</h3>
+<ul>
+<li><a href="https://r-sassy.org/">The sassy system</a> - packages that bring familiar SAS concepts to R; its <a href="https://cran.r-project.org/package=procs"><code>{procs}</code></a> package provides versions of <code>proc freq</code>, <code>proc means</code>, <code>proc ttest</code>, <code>proc reg</code>, and other common procedures</li>
+<li><a href="https://link.springer.com/book/10.1007/978-1-4614-0685-3">R for SAS and SPSS Users</a> (Muenchen) - common SAS and SPSS tasks, done in R</li>
+<li><a href="https://www.routledge.com/SAS-and-R-Data-Management-Statistical-Analysis-and-Graphics-Second-Edition/Kleinman-Horton/p/book/9781466584495">SAS and R</a> (Kleinman and Horton) - side-by-side SAS and R code for data management and analysis</li>
+</ul>
+<h3 id="general-r-programming">General R Programming</h3>
+<ul>
+<li>Advanced R <span class="citation" data-cites="wickham2019advr">(<a href="#/references" role="doc-biblioref" onclick="">Wickham 2019</a>)</span> - deep dive into R programming and internals, including <a href="https://adv-r.hadley.nz/functions.html">functions</a>, <a href="https://adv-r.hadley.nz/oo.html#oop-systems">object-oriented systems</a>, and <a href="https://adv-r.hadley.nz/debugging.html">debugging</a></li>
+<li><a href="https://www.maths.ed.ac.uk/~swood34/RCdebug/RCdebug.html">Debugging R code</a> (Simon Wood) - debugging R and compiled code called from R</li>
+<li><a href="https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">Differences between the base R and <code>{magrittr}</code> pipes</a> - how <code>|&gt;</code> and <code>%&gt;%</code> behave differently</li>
+<li><a href="https://r-spatial.org/book">Spatial Data Science: With Applications in R</a> - spatial data analysis in R</li>
+</ul>
+<h3 id="summary-tables">Summary tables</h3>
+<ul>
+<li><a href="https://www.danieldsjoberg.com/gtsummary/"><code>{gtsummary}</code></a> - flexible demographics and summary tables; start here</li>
+<li><a href="https://cran.r-project.org/package=table1"><code>{table1}</code></a> - HTML “Table 1” demographics tables</li>
+<li><a href="https://cran.r-project.org/package=arsenal"><code>{arsenal}</code></a> - summary tables, from the Mayo Clinic</li>
+<li><code>{procs}</code> (under “Coming to R from SAS” above) - SAS-style frequency and means tables</li>
+</ul>
 <h3 id="r-package-development">R Package Development</h3>
 <ul>
 <li>R Packages <span class="citation" data-cites="wickham2023rpkgs">(<a href="#/references" role="doc-biblioref" onclick="">Wickham and Bryan 2023</a>)</span> - comprehensive guide to R package development</li>
@@ -2618,11 +2648,8 @@ future_lapply(x = mylist, FUN = func)</code></pre>
 <li><a href="https://devtools.r-lib.org/">devtools documentation</a> - essential development tools</li>
 <li><a href="https://pkgdown.r-lib.org/">pkgdown documentation</a> - create package websites</li>
 <li><a href="https://testthat.r-lib.org/">testthat documentation</a> - unit testing framework</li>
-</ul>
-<h3 id="general-r-programming">General R Programming</h3>
-<ul>
-<li>R for Data Science <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span> - learn data science with the tidyverse</li>
-<li>Advanced R <span class="citation" data-cites="wickham2019advr">(<a href="#/references" role="doc-biblioref" onclick="">Wickham 2019</a>)</span> - deep dive into R programming and internals</li>
+<li><a href="https://r-pkgs.org/release.html">Releasing to CRAN</a> and the <a href="https://contributor.r-project.org/cran-cookbook/">CRAN Cookbook</a> - preparing a CRAN submission (see also <a href="../chapters/code-publication.html">Code Publication</a>)</li>
+<li><a href="https://contributor.r-project.org/">Contributing to R</a> - getting involved with base R itself</li>
 </ul>
 <h3 id="shiny-development">Shiny Development</h3>
 <ul>
@@ -2632,6 +2659,10 @@ future_lapply(x = mylist, FUN = func)</code></pre>
 <h3 id="git-and-version-control">Git and Version Control</h3>
 <ul>
 <li>Happy Git and GitHub for the useR <span class="citation" data-cites="bryan2023happygit">(<a href="#/references" role="doc-biblioref" onclick="">Bryan 2023</a>)</span> - essential guide to using Git and GitHub with R</li>
+<li><a href="https://usethis.r-lib.org/articles/pr-functions.html">Pull request helpers in <code>{usethis}</code></a> - the <code>pr_*()</code> workflow from R</li>
+<li><a href="https://ohshitgit.com/">Oh Shit, Git!?!</a> - plain-language fixes for common Git mistakes</li>
+<li><a href="https://maelle.github.io/saperlipopette/"><code>{saperlipopette}</code></a> - practice Git rescue exercises from R</li>
+<li><a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">Git Magic</a> - a short, free Git book</li>
 <li><a href="https://thinkr-open.github.io/gitdown/"><code>{gitdown}</code></a> - R package for documenting git commit history as a bookdown report, organized by patterns like tags or issues</li>
 </ul>
 
