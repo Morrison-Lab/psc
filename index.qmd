@@ -83,3 +83,16 @@ for writing the manual and sharing it openly.
 
 This site is built from the [qwt](https://github.com/Morrison-Lab/qwt) Quarto website template,
 whose structure also comes from the UCD-SERG lab manual.
+
+## License
+
+The text of this site, including the code examples on its pages,
+is licensed under the
+[Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/),
+the license that the UCD-SERG lab manual and the Benjamin-Chung Lab Manual
+state on their home pages.
+Reuse of that text must credit the authors named under Origin above.
+
+The rest of the repository's code, such as its R package, scripts, and workflows,
+is licensed under the MIT License; see [`LICENSE`](https://github.com/Morrison-Lab/psc/blob/main/LICENSE).
+Quarto extensions copied into `_extensions/` keep their own licenses.
