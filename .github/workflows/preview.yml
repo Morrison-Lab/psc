@@ -52,6 +52,9 @@ jobs:
       changed-chapters-banner: true
       highlight-changes: ${{ !contains(github.event.pull_request.labels.*.name, 'no-preview-highlights') }}
       docx-tracked-changes: true
+      # Tracked changes need the Word files rendered. gha#1055 made previews
+      # skip docx by default, which leaves the step above nothing to compare.
+      skip-docx: false
       # The home page plus chapters/, and the slide decks that sit beside them
       # (gha's default `chapters/*.html` and `chapters/*.docx` would miss index).
       changed-chapters-glob: '**/*.html'

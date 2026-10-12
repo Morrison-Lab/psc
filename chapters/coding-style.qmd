@@ -1,0 +1,101 @@
+---
+title: "R Code Style"
+format:
+  html: default
+  revealjs:
+    output-file: coding-style-slides.html
+  pdf:
+    output-file: coding-style-handout.pdf
+  docx:
+    output-file: coding-style.docx
+---
+
+[]{#sec-r-code-style}
+
+Follow these code style guidelines for all R code:
+
+## General Principles {#sec-general-principles}
+
+{{< include coding-style/general-principles.qmd >}}
+
+## Clean Code Principles {#sec-clean-code}
+
+{{< include coding-style/clean-code.qmd >}}
+
+## Function Structure and Documentation {#sec-function-docs}
+
+{{< include coding-style/function-structure-and-documentation.qmd >}}
+
+## Assertions and Input Validation {#sec-assertions-input-validation}
+
+{{< include coding-style/assertions.qmd >}}
+
+## Avoiding Deep Nesting {#sec-avoid-nesting}
+
+{{< include coding-style/avoid-nesting.qmd >}}
+
+## Prefer Existing Packaged Functions {#sec-prefer-packaged-functions}
+
+{{< include coding-style/prefer-packaged-functions.qmd >}}
+
+## Prefer Per-Operation Grouping {#sec-per-operation-grouping}
+
+{{< include coding-style/per-operation-grouping.qmd >}}
+
+## Avoid Hard-Coding Data with an External Source of Truth {#sec-avoid-hardcoding-external-data}
+
+{{< include coding-style/avoid-hardcoding-external-data.qmd >}}
+
+## Construct Complex Inputs Before the Call {#sec-construct-inputs}
+
+{{< include coding-style/construct-inputs.qmd >}}
+
+## Comments {#sec-comments}
+
+{{< include coding-style/comments.qmd >}}
+
+## Line Breaks and Formatting {#sec-line-breaks-and-formatting}
+
+{{< include coding-style/line-breaks.qmd >}}
+
+## Markdown and Quarto Formatting {#sec-markdown-and-quarto-formatting}
+
+### Writing about code in Quarto documents
+
+When writing about code in prose sections of quarto documents, 
+use backticks to apply a code style:
+for example, `dplyr::mutate()`.
+When talking about packages,
+use backticks and curly-braces with a hyperlink to the package website.
+For example: [`{dplyr}`](https://dplyr.tidyverse.org/).
+
+**Important:** Do not use raw HTML (`<a href="...">`) in `.qmd` files.
+Always use Quarto/markdown link syntax instead.
+
+## Messaging and User Communication {#sec-messaging-and-user-communication}
+
+{{< include coding-style/messaging-and-user-communication.qmd >}}
+
+## Package Code Practices {#sec-package-code-practices}
+
+{{< include coding-style/package-code-practices.qmd >}}
+
+## Tidyverse Replacements {#sec-tidyverse-replacements}
+
+{{< include coding-style/tidyverse-replacements.qmd >}}
+
+## The here Package {#sec-here-package-style}
+
+{{< include coding-style/the-here-package.qmd >}}
+
+## Object Naming {#sec-object-naming}
+
+{{< include coding-style/object-naming.qmd >}}
+
+## Automated Tools for Style and Project Workflow {#sec-style-auto-style}
+
+{{< include coding-style/automated-tools.qmd >}}
+
+## Additional Resources {#sec-r-resources-style}
+
+- Tidyverse style guide [@wickham2023tidyverse]: Detailed coding style conventions for writing clear, consistent R code. Covers naming, syntax, pipes, functions, and more.

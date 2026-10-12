@@ -21,3 +21,9 @@ jobs:
     permissions:
       contents: read
     uses: Morrison-Lab/gha/.github/workflows/check-bibliography-dois.yml@v2
+    with:
+      # Trade and free online books whose publishers registered no DOI.
+      # The lab manual exempted the first two in its own DOI script.
+      exclude-keys: >-
+        martin2008cleancode hunt1999pragmatic bryan2023happygit
+        wickham2021shiny wickham2023r4ds wickham2023rpkgs
