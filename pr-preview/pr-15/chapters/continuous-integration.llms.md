@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-11 23:36:09 (PDT)
+Last modified: 2026-10-12 01:03:54 (PDT)
 
 ## 1 Understanding GitHub Actions
 
@@ -514,6 +514,7 @@ For complete documentation and setup instructions, see the [r2u website](https:/
 - [GitHub Actions documentation](https://docs.github.com/en/actions)
 - [Where to find help with r-lib/actions](https://github.com/r-lib/actions#where-to-find-help)
 - [r-ci: Easy and portable CI for R packages](https://eddelbuettel.github.io/r-ci/) - a portable shell script by Dirk Eddelbuettel for running R package CI across GitHub Actions, Azure Pipelines, CircleCI, and Docker
+- [r-codeberg](https://codeberg.org/r-codeberg) - community organization supporting R package development and hosting on Codeberg
 - [r-codeberg migration guide](https://codeberg.org/r-codeberg/migration-guide) - step-by-step tutorial on porting R package development, documentation, and CI workflows from GitHub to Codeberg
 - [Woodpecker CI](https://woodpecker-ci.org/) - community-driven, container-based continuous integration system that integrates with Codeberg, Forgejo, and Gitea for R package checks
 - [shinycoreci: CI Testing for shiny](https://rstudio.github.io/shinycoreci/) - R package developed by the Posit Shiny team for testing the Shiny ecosystem across GitHub Actions runner environments

@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-11 23:36:09 (PDT)
+Last modified: 2026-10-12 01:03:54 (PDT)
 
 # Welcome
 
@@ -21,6 +21,8 @@ The guidance applies to any research project, whether it is a lab analysis, a co
 - **Collaboration**: [Git and GitHub](chapters/github.llms.md), [collaborative software development](chapters/collaborative-software-development.llms.md), and [continuous integration](chapters/continuous-integration.llms.md).
 
 - **Tools**: [the Unix command line](chapters/unix.llms.md) and [Quarto](chapters/quarto.llms.md).
+
+- **Resources**: [learning resources](chapters/resources.llms.md) for R, Git, Python, Julia, and open science.
 
 Each page is also available as RevealJS slides (`-slides.html`), a PDF handout (`-handout.pdf`), and a Word document (`.docx`).
 
