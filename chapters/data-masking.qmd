@@ -10,7 +10,7 @@ format:
     output-file: data-masking.docx
 ---
 
-## General Overview
+## General Overview {#sec-general-overview}
 
 {{< include data-masking/general-overview.qmd >}}
 
@@ -30,7 +30,7 @@ format:
 
 {{< include data-masking/data-pronoun-tidy-selection.qmd >}}
 
-## Technical Overview
+## Technical Overview {#sec-technical-overview}
 
 {{< include data-masking/technical-overview.qmd >}}
 

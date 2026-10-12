@@ -10,7 +10,7 @@ format:
     output-file: code-publication.docx
 ---
 
-## Checklist overview
+## Checklist overview {#sec-checklist-overview}
 
 1. [Fill out file headers](#fill-out-file-headers)
 2. [Clean up comments](#clean-up-comments)
@@ -21,29 +21,29 @@ format:
 7. [Clean up feature branches](#clean-up-feature-branches)
 8. [Create GitHub release](#sec-create-github-release)
 
-## Fill out file headers
+## Fill out file headers {#sec-fill-out-file-headers}
 
 Every file in a project should have a header that allows it to be interpreted on its own. It should include the name of the project and a short description for what this file (among the many in your project) does specifically. See template [here.](coding-practices.qmd#sec-documenting-code)
 
-## Clean up comments
+## Clean up comments {#sec-clean-up-comments}
 
 Make sure comments in the code are for code documentation purposes only. Do not leave comments to self in the final script files.
 
-## Document functions
+## Document functions {#sec-document-functions}
 
 Every function you write must include a header to document its purpose, inputs, and outputs. See template for the function documentation [here.](coding-style.qmd#sec-function-docs) 
 
-## Remove deprecated filepaths
+## Remove deprecated filepaths {#sec-remove-deprecated-filepaths}
 
 All file paths should be defined in 0-config.R, and should be set relative to the project working directory. All absolute file paths from your local computer should be removed, and replaced with a relative path. If a third party were to re-run this analysis, if they need to download data from a separate source and change a filepath in the 0-config.R to match, make sure to specify in the README which line of 0-config.R needs to be substituted.
 
-## Ensure project runs via bash
+## Ensure project runs via bash {#sec-ensure-project-runs-via-bash}
 
 The project should be configured to be entirely reproducible by running a master bash script, run-project.sh, which should live at the top directory. This bash script can call other bash scripts in subfolders, if necessary. Bash scripts should use the runFileSaveLogs utility script, which is a wrapper around the Rscript command, allowing you to specify where .Rout log files are moved after the R scripts are run.
 
 See usage and documentation [here.](unix.qmd#example-code-for-runfilesavelogs)
 
-## Complete the README
+## Complete the README {#sec-complete-the-readme}
 
 A `README.md` should live at the top directory of the project.
 Include a repository status badge
@@ -126,7 +126,7 @@ See below for a template:
 
 When possible, also include a description of the RDS results that are generated, detailing what data sources were used, where the script lives that creates it, and what information the RDS results hold.
 
-## Clean up feature branches
+## Clean up feature branches {#sec-clean-up-feature-branches}
 
 In the remote repository on GitHub, all feature branches aside from master should be merged in and deleted. All outstanding PRs should be closed.
 
