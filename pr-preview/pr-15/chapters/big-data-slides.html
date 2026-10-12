@@ -245,9 +245,9 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-12 01:03:54 (PDT)</p>
+  <p class="date">Last modified: 2026-10-12 01:10:28 (PDT)</p>
 </section>
-<section id="the-data.table-package" class="slide level2" data-number="1">
+<section id="sec-the-data-table-package" class="slide level2" data-number="1">
 <h2><span class="header-section-number">1</span> The data.table package</h2>
 </section>
 <section class="slide level2">
@@ -256,14 +256,14 @@
 <p>You can also achieve a performance boost by running <code>dplyr</code> commands on <code>data.table</code>s, which I find to be the best of both worlds, given that a <code>data.table</code> is a special type of <code>data.frame</code> and fairly easy to convert with the <code>as.data.table()</code> function. The speedup is due to <code>dplyr</code>’s use of the <code>data.table</code> backend and in the future this coupling should become even more natural.</p>
 <p>If you want to test whether using a certain coding approach increases speed, consider the <code>tictoc</code> package. Run <code>tic()</code> before a code chunk and <code>toc()</code> after to measure the amount of system time it takes to run the chunk. For example, you might use this to decide if you <em>really</em> need to switch a code chunk from <code>dplyr</code> to <code>data.table</code>.</p>
 </section>
-<section id="using-downsampled-data" class="slide level2" data-number="2">
+<section id="sec-using-downsampled-data" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> Using downsampled data</h2>
 </section>
 <section class="slide level2">
 
 <p>In our studies with very large datasets, we save “downsampled” data that usually includes a 1% random sample stratified by any important variables, such as year or household id. This allows us to efficiently write and test our code without having to load in large, slow datasets that can cause RStudio to freeze. Be very careful to be sure which dataset you are working with and to label results output accordingly.</p>
 </section>
-<section id="optimal-rstudio-set-up" class="slide level2" data-number="3">
+<section id="sec-optimal-rstudio-set-up" class="slide level2" data-number="3">
 <h2><span class="header-section-number">3</span> Optimal RStudio set up</h2>
 </section>
 <section class="slide level2">

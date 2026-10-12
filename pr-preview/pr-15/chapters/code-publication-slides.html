@@ -311,53 +311,53 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-12 01:03:54 (PDT)</p>
+  <p class="date">Last modified: 2026-10-12 01:10:28 (PDT)</p>
 </section>
-<section id="checklist-overview" class="slide level2" data-number="1">
+<section id="sec-checklist-overview" class="slide level2" data-number="1">
 <h2><span class="header-section-number">1</span> Checklist overview</h2>
 </section>
 <section class="slide level2 scrollable">
 
 <ol type="1">
-<li><a href="#/fill-out-file-headers">Fill out file headers</a></li>
-<li><a href="#/clean-up-comments">Clean up comments</a></li>
-<li><a href="#/document-functions">Document functions</a></li>
-<li><a href="#/remove-deprecated-filepaths">Remove deprecated filepaths</a></li>
-<li><a href="#/ensure-project-runs-via-bash">Ensure project runs via bash</a></li>
-<li><a href="#/complete-the-readme">Complete the README</a></li>
-<li><a href="#/clean-up-feature-branches">Clean up feature branches</a></li>
+<li><a href="#/sec-fill-out-file-headers">Fill out file headers</a></li>
+<li><a href="#/sec-clean-up-comments">Clean up comments</a></li>
+<li><a href="#/sec-document-functions">Document functions</a></li>
+<li><a href="#/sec-remove-deprecated-filepaths">Remove deprecated filepaths</a></li>
+<li><a href="#/sec-ensure-project-runs-via-bash">Ensure project runs via bash</a></li>
+<li><a href="#/sec-complete-the-readme">Complete the README</a></li>
+<li><a href="#/sec-clean-up-feature-branches">Clean up feature branches</a></li>
 <li><a href="#/sec-create-github-release">Create GitHub release</a></li>
 </ol>
 </section>
-<section id="fill-out-file-headers" class="slide level2" data-number="2">
+<section id="sec-fill-out-file-headers" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> Fill out file headers</h2>
 </section>
 <section class="slide level2">
 
 <p>Every file in a project should have a header that allows it to be interpreted on its own. It should include the name of the project and a short description for what this file (among the many in your project) does specifically. See template <a href="../chapters/coding-practices.html#sec-documenting-code">here.</a></p>
 </section>
-<section id="clean-up-comments" class="slide level2" data-number="3">
+<section id="sec-clean-up-comments" class="slide level2" data-number="3">
 <h2><span class="header-section-number">3</span> Clean up comments</h2>
 </section>
 <section class="slide level2">
 
 <p>Make sure comments in the code are for code documentation purposes only. Do not leave comments to self in the final script files.</p>
 </section>
-<section id="document-functions" class="slide level2" data-number="4">
+<section id="sec-document-functions" class="slide level2" data-number="4">
 <h2><span class="header-section-number">4</span> Document functions</h2>
 </section>
 <section class="slide level2">
 
 <p>Every function you write must include a header to document its purpose, inputs, and outputs. See template for the function documentation <a href="../chapters/coding-style.html#sec-function-docs">here.</a></p>
 </section>
-<section id="remove-deprecated-filepaths" class="slide level2" data-number="5">
+<section id="sec-remove-deprecated-filepaths" class="slide level2" data-number="5">
 <h2><span class="header-section-number">5</span> Remove deprecated filepaths</h2>
 </section>
 <section class="slide level2">
 
 <p>All file paths should be defined in 0-config.R, and should be set relative to the project working directory. All absolute file paths from your local computer should be removed, and replaced with a relative path. If a third party were to re-run this analysis, if they need to download data from a separate source and change a filepath in the 0-config.R to match, make sure to specify in the README which line of 0-config.R needs to be substituted.</p>
 </section>
-<section id="ensure-project-runs-via-bash" class="slide level2" data-number="6">
+<section id="sec-ensure-project-runs-via-bash" class="slide level2" data-number="6">
 <h2><span class="header-section-number">6</span> Ensure project runs via bash</h2>
 </section>
 <section class="slide level2">
@@ -365,7 +365,7 @@
 <p>The project should be configured to be entirely reproducible by running a master bash script, run-project.sh, which should live at the top directory. This bash script can call other bash scripts in subfolders, if necessary. Bash scripts should use the runFileSaveLogs utility script, which is a wrapper around the Rscript command, allowing you to specify where .Rout log files are moved after the R scripts are run.</p>
 <p>See usage and documentation <a href="../chapters/unix.html#example-code-for-runfilesavelogs">here.</a></p>
 </section>
-<section id="complete-the-readme" class="slide level2" data-number="7">
+<section id="sec-complete-the-readme" class="slide level2" data-number="7">
 <h2><span class="header-section-number">7</span> Complete the README</h2>
 </section>
 <section class="slide level2">
@@ -414,7 +414,7 @@
 </blockquote>
 <p>When possible, also include a description of the RDS results that are generated, detailing what data sources were used, where the script lives that creates it, and what information the RDS results hold.</p>
 </section>
-<section id="clean-up-feature-branches" class="slide level2" data-number="8">
+<section id="sec-clean-up-feature-branches" class="slide level2" data-number="8">
 <h2><span class="header-section-number">8</span> Clean up feature branches</h2>
 </section>
 <section class="slide level2">

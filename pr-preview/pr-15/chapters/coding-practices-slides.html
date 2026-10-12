@@ -330,13 +330,13 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-12 01:03:54 (PDT)</p>
+  <p class="date">Last modified: 2026-10-12 01:10:28 (PDT)</p>
 </section>
 <section class="slide level2">
 
 <p><span id="sec-r-coding-practices"></span></p>
 </section>
-<section id="lab-protocols-for-code-and-data" class="slide level2" data-number="1">
+<section id="sec-lab-protocols-for-code-and-data" class="slide level2" data-number="1">
 <h2><span class="header-section-number">1</span> Lab Protocols for Code and Data</h2>
 </section>
 <section class="slide level2">
@@ -703,7 +703,7 @@
 <span id="cb15-2"><a aria-label="2"></a><span class="co"># The pkgdown site can be automatically deployed to GitHub Pages</span></span>
 <span id="cb15-3"><a aria-label="3"></a><span class="co"># using GitHub Actions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="organizing-scripts" class="slide level2" data-number="5">
+<section id="sec-organizing-scripts" class="slide level2" data-number="5">
 <h2><span class="header-section-number">5</span> Organizing scripts</h2>
 </section>
 <section class="slide level2 scrollable">
@@ -1812,7 +1812,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <h3 id="sec-adr-vs-pr">Relationship to pull request descriptions</h3>
 <p>A PR description explains <em>why this change, now</em>, and effectively disappears from view once the PR merges; an ADR persists in the repository and keeps answering “why is it built this way?” long after the merge. When a PR implements a significant decision, write the ADR in that PR and let the PR description summarize and link to it.</p>
 </section>
-<section id="object-naming" class="slide level2" data-number="16">
+<section id="sec-coding-practices-object-naming" class="slide level2" data-number="16">
 <h2><span class="header-section-number">16</span> Object naming</h2>
 </section>
 <section class="slide level2">
@@ -1854,7 +1854,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 </div>
 <p>See also <a href="../chapters/coding-style.html#sec-object-naming">Object Naming</a>.</p>
 </section>
-<section id="function-calls" class="slide level2" data-number="17">
+<section id="sec-function-calls" class="slide level2" data-number="17">
 <h2><span class="header-section-number">17</span> Function calls</h2>
 </section>
 <section class="slide level2">
@@ -2061,7 +2061,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <p>The <code>here</code> package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path <code>/home/oski/Some-R-Project</code>. My collaborator might clone the repository and work with it at some other path, such as <code>/home/bear/R-Code/Some-R-Project</code>. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the <code>here</code> package comes in and this a <a href="https://github.com/jennybc/here_here">great vignette describing it</a>.</p>
 <p><em>See also <a href="../chapters/coding-style.html#sec-here-package-style">The here Package</a> for code style guidelines on using the here package.</em></p>
 </section>
-<section id="readingsaving-data" class="slide level2" data-number="29">
+<section id="sec-readingsaving-data" class="slide level2" data-number="29">
 <h2><span class="header-section-number">29</span> Reading/Saving Data</h2>
 </section>
 <section class="slide level2">
@@ -2084,7 +2084,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <h3 id="csvs">CSVs</h3>
 <p>Once again, the <code>readr</code> package as part of the Tidvyerse is great, with a much faster <code>read_csv()</code> than Base R’s <code>read.csv()</code>. For massive CSVs (&gt; 5 GB), you’ll find <code>data.table::fread()</code> to be the fastest CSV reader in any data science language out there. For writing CSVs, <code>readr::write_csv()</code> and <code>data.table::fwrite()</code> outclass Base R’s <code>write.csv()</code> by a significant margin as well.</p>
 </section>
-<section id="integrating-box-and-dropbox" class="slide level2" data-number="30">
+<section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="30">
 <h2><span class="header-section-number">30</span> Integrating Box and Dropbox</h2>
 </section>
 <section class="slide level2">
@@ -2430,14 +2430,14 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </ul>
 <p>See also <a href="../chapters/coding-style.html#sec-tidyverse-replacements">Tidyverse Replacements</a></p>
 </section>
-<section id="coding-with-r-and-python" class="slide level2" data-number="43">
+<section id="sec-coding-with-r-and-python" class="slide level2" data-number="43">
 <h2><span class="header-section-number">43</span> Coding with R and Python</h2>
 </section>
 <section class="slide level2">
 
 <p>If you’re using both R and Python, you may wish to check out the <a href="https://www.rdocumentation.org/packages/feather/versions/0.3.3">Feather package</a> for exchanging data between the two languages <a href="https://blog.rstudio.com/2016/03/29/feather/">extremely quickly</a>.</p>
 </section>
-<section id="repeating-analyses-with-different-variations" class="slide level2" data-number="44">
+<section id="sec-repeating-analyses-with-different-variations" class="slide level2" data-number="44">
 <h2><span class="header-section-number">44</span> Repeating analyses with different variations</h2>
 </section>
 <section class="slide level2">
