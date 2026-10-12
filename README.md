@@ -68,4 +68,4 @@ Reuse of that text must credit the authors named under Acknowledgments above.
 
 The rest of the repository's code, such as its R package, scripts, and workflows,
 is licensed under the MIT License; see [`LICENSE`](LICENSE).
-Vendored Quarto extensions in `_extensions/` keep their own licenses.
+Quarto extensions copied into `_extensions/` keep their own licenses.
