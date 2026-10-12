@@ -26,5 +26,8 @@ rm(snake_case_ACROs1)
 exclusions <- list(
   `data-raw` = list(
     pipe_consistency_linter = Inf
-  )
+  ),
+  # Mermaid diagram chunks are not R code; the lab manual excluded this
+  # page for the same reason.
+  "chapters/quarto/mermaid-diagrams.qmd" = Inf
 )

@@ -1,0 +1,49 @@
+---
+title: "Quarto"
+format:
+  html: default
+  revealjs:
+    output-file: quarto-slides.html
+  pdf:
+    output-file: quarto-handout.pdf
+  docx:
+    output-file: quarto.docx
+---
+
+[]{#sec-quarto}
+
+## Introduction {#sec-quarto-introduction}
+
+{{< include quarto/introduction.qmd >}}
+
+## Quarto Basics {#sec-quarto-basics}
+
+{{< include quarto/basics.qmd >}}
+
+## Building Quarto Books {#sec-building-quarto-books}
+
+{{< include quarto/books.qmd >}}
+
+## Dashboards {#sec-quarto-dashboards}
+
+{{< include quarto/dashboards.qmd >}}
+
+## Quarto Profiles {#sec-quarto-profiles}
+
+{{< include quarto/profiles.qmd >}}
+
+## Advanced Features {#sec-advanced-features}
+
+{{< include quarto/advanced-features.qmd >}}
+
+## Mermaid Diagrams {#sec-mermaid-diagrams}
+
+{{< include quarto/mermaid-diagrams.qmd >}}
+
+## Troubleshooting {#sec-troubleshooting}
+
+{{< include quarto/troubleshooting.qmd >}}
+
+## Additional Resources {#sec-quarto-additional-resources}
+
+{{< include quarto/resources.qmd >}}

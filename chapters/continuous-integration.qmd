@@ -1,0 +1,57 @@
+---
+title: "Continuous Integration"
+format:
+  html: default
+  revealjs:
+    output-file: continuous-integration-slides.html
+  pdf:
+    output-file: continuous-integration-handout.pdf
+  docx:
+    output-file: continuous-integration.docx
+---
+
+[]{#sec-r-ci}
+
+## Understanding GitHub Actions {#sec-understanding-github-actions}
+
+{{< include continuous-integration/understanding-github-actions.qmd >}}
+
+### Action Versioning
+
+{{< include continuous-integration/action-versioning.qmd >}}
+
+## Setting Up GitHub Actions {#sec-setting-up-github-actions}
+
+{{< include continuous-integration/setting-up-github-actions.qmd >}}
+
+## Reusable Workflow Collections {#sec-reusable-workflow-collections}
+
+{{< include continuous-integration/reusable-workflow-collections.qmd >}}
+
+## How GitHub Actions Workflows Work {#sec-how-github-actions-workflows-work}
+
+{{< include continuous-integration/how-workflows-work.qmd >}}
+
+## Workflow Files and Security {#sec-workflow-files-and-security}
+
+{{< include continuous-integration/workflow-files-and-security.qmd >}}
+
+## Pipeline Design Patterns {#sec-ci-design-patterns}
+
+{{< include continuous-integration/pipeline-design-patterns.qmd >}}
+
+## Troubleshooting Failed Workflows {#sec-troubleshooting-failed-workflows}
+
+{{< include continuous-integration/troubleshooting-workflows.qmd >}}
+
+## Pull Request Comment Automation {#sec-pr-comment-automation}
+
+{{< include continuous-integration/pull-request-comment-automation.qmd >}}
+
+## Fast Package Installation with r2u {#sec-fast-package-installation-with-r2u}
+
+{{< include continuous-integration/r2u-for-fast-ci.qmd >}}
+
+## Additional Resources {#sec-continuous-integration-additional-resources}
+
+{{< include continuous-integration/additional-resources.qmd >}}
