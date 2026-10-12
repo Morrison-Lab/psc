@@ -45,6 +45,10 @@ but the principles carry over to other languages.
   [the Unix command line](chapters/unix.qmd)
   and [Quarto](chapters/quarto.qmd).
 
+- **Resources**:
+  [learning resources](chapters/resources.qmd)
+  for R, Git, Python, Julia, and open science.
+
 Each page is also available as RevealJS slides (`-slides.html`),
 a PDF handout (`-handout.pdf`),
 and a Word document (`.docx`).
