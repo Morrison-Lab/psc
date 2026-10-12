@@ -56,3 +56,16 @@ whose structure also comes from the UCD-SERG lab manual.
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 Pull requests get a rendered preview and automated checks
 (spelling, links, lint, non-standard characters).
+
+## License
+
+The text of this site, including the code examples on its pages,
+is licensed under the
+[Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/),
+the license that the UCD-SERG lab manual and the Benjamin-Chung Lab Manual
+state on their home pages.
+Reuse of that text must credit the authors named under Acknowledgments above.
+
+The rest of the repository's code, such as its R package, scripts, and workflows,
+is licensed under the MIT License; see [`LICENSE`](LICENSE).
+Vendored Quarto extensions in `_extensions/` keep their own licenses.
