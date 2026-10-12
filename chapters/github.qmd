@@ -118,7 +118,7 @@ and GitHub-specific platform features.
 
 : Commonly used Git commands {#tbl-git-commands}
 
-## How often should I commit?  {#sec-how-often-should-i-commit}
+## How often should I commit? {#sec-how-often-should-i-commit}
 
 It is good practice to commit every 15 minutes, or every time you make a significant change. It is better to commit more rather than less.
 

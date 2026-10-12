@@ -12,13 +12,13 @@ format:
 
 ## Checklist overview {#sec-checklist-overview}
 
-1. [Fill out file headers](#fill-out-file-headers)
-2. [Clean up comments](#clean-up-comments)
-3. [Document functions](#document-functions)
-4. [Remove deprecated filepaths](#remove-deprecated-filepaths)
-5. [Ensure project runs via bash](#ensure-project-runs-via-bash)
-6. [Complete the README](#complete-the-readme)
-7. [Clean up feature branches](#clean-up-feature-branches)
+1. [Fill out file headers](#sec-fill-out-file-headers)
+2. [Clean up comments](#sec-clean-up-comments)
+3. [Document functions](#sec-document-functions)
+4. [Remove deprecated filepaths](#sec-remove-deprecated-filepaths)
+5. [Ensure project runs via bash](#sec-ensure-project-runs-via-bash)
+6. [Complete the README](#sec-complete-the-readme)
+7. [Clean up feature branches](#sec-clean-up-feature-branches)
 8. [Create GitHub release](#sec-create-github-release)
 
 ## Fill out file headers {#sec-fill-out-file-headers}
