@@ -12,15 +12,15 @@ format:
 
 []{#sec-quarto}
 
-## Introduction
+## Introduction {#sec-quarto-introduction}
 
 {{< include quarto/introduction.qmd >}}
 
-## Quarto Basics
+## Quarto Basics {#sec-quarto-basics}
 
 {{< include quarto/basics.qmd >}}
 
-## Building Quarto Books
+## Building Quarto Books {#sec-building-quarto-books}
 
 {{< include quarto/books.qmd >}}
 
@@ -28,22 +28,22 @@ format:
 
 {{< include quarto/dashboards.qmd >}}
 
-## Quarto Profiles
+## Quarto Profiles {#sec-quarto-profiles}
 
 {{< include quarto/profiles.qmd >}}
 
-## Advanced Features
+## Advanced Features {#sec-advanced-features}
 
 {{< include quarto/advanced-features.qmd >}}
 
-## Mermaid Diagrams
+## Mermaid Diagrams {#sec-mermaid-diagrams}
 
 {{< include quarto/mermaid-diagrams.qmd >}}
 
-## Troubleshooting
+## Troubleshooting {#sec-troubleshooting}
 
 {{< include quarto/troubleshooting.qmd >}}
 
-## Additional Resources
+## Additional Resources {#sec-quarto-additional-resources}
 
 {{< include quarto/resources.qmd >}}

@@ -12,7 +12,7 @@ format:
 
 []{#sec-r-ci}
 
-## Understanding GitHub Actions
+## Understanding GitHub Actions {#sec-understanding-github-actions}
 
 {{< include continuous-integration/understanding-github-actions.qmd >}}
 
@@ -28,11 +28,11 @@ format:
 
 {{< include continuous-integration/reusable-workflow-collections.qmd >}}
 
-## How GitHub Actions Workflows Work
+## How GitHub Actions Workflows Work {#sec-how-github-actions-workflows-work}
 
 {{< include continuous-integration/how-workflows-work.qmd >}}
 
-## Workflow Files and Security
+## Workflow Files and Security {#sec-workflow-files-and-security}
 
 {{< include continuous-integration/workflow-files-and-security.qmd >}}
 
@@ -40,7 +40,7 @@ format:
 
 {{< include continuous-integration/pipeline-design-patterns.qmd >}}
 
-## Troubleshooting Failed Workflows
+## Troubleshooting Failed Workflows {#sec-troubleshooting-failed-workflows}
 
 {{< include continuous-integration/troubleshooting-workflows.qmd >}}
 
@@ -48,10 +48,10 @@ format:
 
 {{< include continuous-integration/pull-request-comment-automation.qmd >}}
 
-## Fast Package Installation with r2u
+## Fast Package Installation with r2u {#sec-fast-package-installation-with-r2u}
 
 {{< include continuous-integration/r2u-for-fast-ci.qmd >}}
 
-## Additional Resources
+## Additional Resources {#sec-continuous-integration-additional-resources}
 
 {{< include continuous-integration/additional-resources.qmd >}}
