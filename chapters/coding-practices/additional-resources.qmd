@@ -1,3 +1,39 @@
+### Learning R
+
+- R for Data Science [@wickham2023r4ds] - learn data science with the tidyverse
+- [R for Epidemiology](https://www.r4epi.com/) - an introduction to R, with epidemiology examples
+- [The Epidemiologist R Handbook](https://epirhandbook.com/) - task-oriented reference for applied epidemiology
+- [R Graphics Cookbook](https://r-graphics.org/) - recipes for common `{ggplot2}` figures
+- [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/) - Software Carpentry's introductory lesson
+- [Building reproducible analytical pipelines with R](https://raps-with-r.dev/) - project-level reproducibility in R
+- [Posit Recipes](https://posit.cloud/learn/recipes) - short, task-focused R code snippets
+
+### Coming to R from SAS
+
+- [The sassy system](https://r-sassy.org/) - packages that bring familiar SAS concepts to R;
+  its [`{procs}`](https://cran.r-project.org/package=procs) package
+  provides versions of `proc freq`, `proc means`, `proc ttest`, `proc reg`, and other common procedures
+- [R for SAS and SPSS Users](https://link.springer.com/book/10.1007/978-1-4614-0685-3) (Muenchen) - common SAS and SPSS tasks, done in R
+- [SAS and R](https://www.routledge.com/SAS-and-R-Data-Management-Statistical-Analysis-and-Graphics-Second-Edition/Kleinman-Horton/p/book/9781466584495) (Kleinman and Horton) - side-by-side SAS and R code for data management and analysis
+
+### General R Programming
+
+- Advanced R [@wickham2019advr] - deep dive into R programming and internals, including
+  [functions](https://adv-r.hadley.nz/functions.html),
+  [object-oriented systems](https://adv-r.hadley.nz/oo.html#oop-systems),
+  and [debugging](https://adv-r.hadley.nz/debugging.html)
+- [Debugging R code](https://www.maths.ed.ac.uk/~swood34/RCdebug/RCdebug.html) (Simon Wood) -
+  debugging R and compiled code called from R
+- [Differences between the base R and `{magrittr}` pipes](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) - how `|>` and `%>%` behave differently
+- [Spatial Data Science: With Applications in R](https://r-spatial.org/book) - spatial data analysis in R
+
+### Summary tables
+
+- [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/) - flexible demographics and summary tables; start here
+- [`{table1}`](https://cran.r-project.org/package=table1) - HTML "Table 1" demographics tables
+- [`{arsenal}`](https://cran.r-project.org/package=arsenal) - summary tables, from the Mayo Clinic
+- `{procs}` (under "Coming to R from SAS" above) - SAS-style frequency and means tables
+
 ### R Package Development
 
 - R Packages [@wickham2023rpkgs] - comprehensive guide to R package development
@@ -6,11 +42,10 @@
 - [devtools documentation](https://devtools.r-lib.org/) - essential development tools
 - [pkgdown documentation](https://pkgdown.r-lib.org/) - create package websites
 - [testthat documentation](https://testthat.r-lib.org/) - unit testing framework
-
-### General R Programming
-
-- R for Data Science [@wickham2023r4ds] - learn data science with the tidyverse
-- Advanced R [@wickham2019advr] - deep dive into R programming and internals
+- [Releasing to CRAN](https://r-pkgs.org/release.html) and the
+  [CRAN Cookbook](https://contributor.r-project.org/cran-cookbook/) - preparing a CRAN submission
+  (see also [Code Publication](code-publication.qmd))
+- [Contributing to R](https://contributor.r-project.org/) - getting involved with base R itself
 
 ### Shiny Development
 
@@ -20,5 +55,9 @@
 ### Git and Version Control
 
 - Happy Git and GitHub for the useR [@bryan2023happygit] - essential guide to using Git and GitHub with R
+- [Pull request helpers in `{usethis}`](https://usethis.r-lib.org/articles/pr-functions.html) - the `pr_*()` workflow from R
+- [Oh Shit, Git!?!](https://ohshitgit.com/) - plain-language fixes for common Git mistakes
+- [`{saperlipopette}`](https://maelle.github.io/saperlipopette/) - practice Git rescue exercises from R
+- [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/) - a short, free Git book
 - [`{gitdown}`](https://thinkr-open.github.io/gitdown/) - R package for documenting git commit history as a bookdown report,
   organized by patterns like tags or issues
