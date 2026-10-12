@@ -68,6 +68,8 @@ website:
             href: chapters/unix.qmd
           - text: "Quarto"
             href: chapters/quarto.qmd
+      - text: "Resources"
+        href: chapters/resources.qmd
     right:
       - icon: github
         href: https://github.com/Morrison-Lab/psc
@@ -105,6 +107,7 @@ website:
         contents:
           - chapters/unix.qmd
           - chapters/quarto.qmd
+      - chapters/resources.qmd
 
 callouty-theorem:
   thm:
