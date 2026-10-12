@@ -314,7 +314,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-12 00:36:52 (PDT)</p>
+  <p class="date">Last modified: 2026-10-12 01:04:11 (PDT)</p>
 </section>
 <section class="slide level2 scrollable">
 
@@ -420,7 +420,7 @@ Table&nbsp;1: Comparison of CLI, TUI, and GUI interface models
 </div>
 <p>In research computing, the three paradigms complement one another. A typical workflow uses a <strong>GUI</strong> (such as RStudio) for exploratory analysis and visualization, a <strong>TUI</strong> (such as <code>lazygit</code> or <code>htop</code>) for managing version control and monitoring remote cluster jobs, and a <strong>CLI</strong> (such as <code>quarto render</code> or <code>Rscript</code>) for reproducible scripts and automated pipelines.</p>
 </section>
-<section id="basics" class="slide level2" data-number="2">
+<section id="sec-unix-basics" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> Basics</h2>
 </section>
 <section class="slide level2">
@@ -567,7 +567,7 @@ Table&nbsp;2: Modern terminal emulator comparison
 </figure>
 </div>
 </section>
-<section id="syntax-for-both-macwindows" class="slide level2" data-number="4">
+<section id="sec-syntax-for-both-macwindows" class="slide level2" data-number="4">
 <h2><span class="header-section-number">4</span> Syntax for both Mac/Windows</h2>
 </section>
 <section class="slide level2">
@@ -816,7 +816,7 @@ Table&nbsp;5: Command-line tools worth knowing about
 <p>sitting at the bottom of <code>~/.bashrc</code> is what puts locally installed tools on your path, and nothing warns you when it stops being read — the tool just reports as not found. Copy any such lines into <code>~/.zshrc</code> when you switch, and check that the commands you rely on still resolve:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a aria-label="1"></a><span class="bu">command</span> <span class="at">-v</span> quarto Rscript</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="running-bash-scripts" class="slide level2" data-number="6">
+<section id="sec-running-bash-scripts" class="slide level2" data-number="6">
 <h2><span class="header-section-number">6</span> Running Bash Scripts</h2>
 </section>
 <section class="slide level2">
@@ -905,7 +905,7 @@ Table&nbsp;6: Commands for running Bash scripts
 <h3 id="formatting">Formatting</h3>
 <p>Follow the same readability conventions as our R style: lines under about 80 characters, two-space indentation, and one logical step per line, breaking long pipelines after the <code>|</code> with the continuation indented.</p>
 </section>
-<section id="running-rscripts-in-windows" class="slide level2" data-number="8">
+<section id="sec-running-rscripts-in-windows" class="slide level2" data-number="8">
 <h2><span class="header-section-number">8</span> Running Rscripts in Windows</h2>
 </section>
 <section class="slide level2">
@@ -923,7 +923,7 @@ Table&nbsp;6: Commands for running Bash scripts
 <li>If you attempt to run an R script but run into <code>Error: '\U' used without hex digits in character string starting "'C:\U"</code>, try replacing all <code>\</code> with <code>\\</code> or <code>/</code>.</li>
 </ul>
 </section>
-<section id="checking-tasks-and-killing-jobs" class="slide level2" data-number="9">
+<section id="sec-checking-tasks-and-killing-jobs" class="slide level2" data-number="9">
 <h2><span class="header-section-number">9</span> Checking tasks and killing jobs</h2>
 </section>
 <section class="slide level2">
@@ -986,7 +986,7 @@ Table&nbsp;6: Commands for running Bash scripts
 </table>
 <p>To kill a task in Windows, you can also go to Task Manager &gt; More details &gt; Select your desired app &gt; Click on End Task.</p>
 </section>
-<section id="running-big-jobs" class="slide level2" data-number="10">
+<section id="sec-running-big-jobs" class="slide level2" data-number="10">
 <h2><span class="header-section-number">10</span> Running big jobs</h2>
 </section>
 <section class="slide level2">
@@ -1106,7 +1106,7 @@ Table&nbsp;6: Commands for running Bash scripts
 <span id="cb18-15"><a aria-label="15"></a><span class="co"># Remove copied utility run script</span></span>
 <span id="cb18-16"><a aria-label="16"></a><span class="fu">rm</span> runFileSaveLogs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="external-resources" class="slide level2" data-number="11">
+<section id="sec-external-resources" class="slide level2" data-number="11">
 <h2><span class="header-section-number">11</span> External Resources</h2>
 </section>
 <section class="slide level2">

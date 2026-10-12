@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-12 00:36:52 (PDT)</p>
+  <p class="date">Last modified: 2026-10-12 01:04:11 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -338,7 +338,7 @@
 <p>Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier to collaborate across projects.</p>
 <p>We recommend R package structure for most R-based projects. This provides benefits for reproducibility, collaboration, and code quality even for analysis-only projects.</p>
 </section>
-<section id="template-repositories" class="slide level2" data-number="1">
+<section id="sec-template-repositories" class="slide level2" data-number="1">
 <h2><span class="header-section-number">1</span> Template repositories</h2>
 </section>
 <section class="slide level2">
@@ -353,7 +353,7 @@
 </ul>
 <p>In short: if the lab ever mirrors this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.</p>
 </section>
-<section id="package-structure" class="slide level2" data-number="2">
+<section id="sec-package-structure" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> Package Structure</h2>
 </section>
 <section class="slide level2 scrollable">
@@ -545,14 +545,14 @@
         ├── table2_main_results.xlsx
         └── tableS1_detailed_results.csv</code></pre>
 </section>
-<section id="rproj-files" class="slide level2" data-number="3">
+<section id="sec-rproj-files" class="slide level2" data-number="3">
 <h2><span class="header-section-number">3</span> <code>.Rproj</code> files</h2>
 </section>
 <section class="slide level2">
 
 <p>An “R Project” can be created within RStudio by going to <code>File &gt;&gt; New Project</code>. Depending on where you are with your research, choose the most appropriate option. This will save preferences, working directories, and even the results of running code/data (though I’d recommend starting from scratch each time you open your project, in general). Then, ensure that whenever you are working on that specific research project, you open your created project to enable the full utility of <code>.Rproj</code> files. This also automatically sets the directory to the top level of the project.</p>
 </section>
-<section id="organizing-the-data-raw-folder" class="slide level2" data-number="4">
+<section id="sec-organizing-the-data-raw-folder" class="slide level2" data-number="4">
 <h2><span class="header-section-number">4</span> Organizing the <code>data-raw</code> folder</h2>
 </section>
 <section class="slide level2">

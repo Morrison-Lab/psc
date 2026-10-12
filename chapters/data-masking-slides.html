@@ -314,9 +314,9 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-12 00:36:52 (PDT)</p>
+  <p class="date">Last modified: 2026-10-12 01:04:11 (PDT)</p>
 </section>
-<section id="general-overview" class="slide level2" data-number="1">
+<section id="sec-general-overview" class="slide level2" data-number="1">
 <h2><span class="header-section-number">1</span> General Overview</h2>
 </section>
 <section class="slide level2">
@@ -407,7 +407,7 @@ Table&nbsp;1: Referring to a column named by a string variable
 <span id="cb5-4"><a aria-label="4"></a>df <span class="sc">|&gt;</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"Parameter"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To make this class of soft deprecation fail loudly, set <code>options(lifecycle_verbosity = "error")</code> in your tests (for example in <code>tests/testthat/setup.R</code>). This option promotes deprecation signals to errors regardless of the soft-versus-warning distinction (<a href="https://lifecycle.r-lib.org/reference/deprecate_soft.html"><code>{lifecycle}</code> reference</a>). Plain <code>options(warn = 2)</code> will <em>not</em> catch it, because <code>warn = 2</code> only converts warnings into errors once a warning is actually signaled, and for a soft deprecation in installed-package code no warning is signaled in the first place.</p>
 </section>
-<section id="technical-overview" class="slide level2" data-number="3">
+<section id="sec-technical-overview" class="slide level2" data-number="3">
 <h2><span class="header-section-number">3</span> Technical Overview</h2>
 </section>
 <section class="slide level2">
