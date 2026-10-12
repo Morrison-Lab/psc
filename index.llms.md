@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-11 19:47:18 (PDT)
+Last modified: 2026-10-11 20:59:42 (PDT)
 
 # Welcome
 
@@ -39,5 +39,11 @@ These chapters began in the [UCD-SERG lab manual](https://ucd-serg.github.io/lab
 The UCD-SERG lab manual is a fork of the [Benjamin-Chung Lab Manual](https://jadebc.github.io/lab-manual/index.html), and many of these chapters keep text from the Benjamin-Chung manual. We are grateful to Jade Benjamin-Chung and that manual’s other original contributors, Kunal Mishra, Stephanie Djajadi, Nolan Pokpongkiat, Anna Nguyen, Iris Tong, and Gabby Barratt Heitmann, for writing the manual and sharing it openly.
 
 This site is built from the [qwt](https://github.com/Morrison-Lab/qwt) Quarto website template, whose structure also comes from the UCD-SERG lab manual.
+
+## License
+
+The text of this site, including the code examples on its pages, is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/), the license that the UCD-SERG lab manual and the Benjamin-Chung Lab Manual state on their home pages. Reuse of that text must credit the authors named under Origin above.
+
+The rest of the repository’s code, such as its R package, scripts, and workflows, is licensed under the MIT License; see [`LICENSE`](https://github.com/Morrison-Lab/psc/blob/main/LICENSE). Quarto extensions copied into `_extensions/` keep their own licenses.
 
 Back to top
