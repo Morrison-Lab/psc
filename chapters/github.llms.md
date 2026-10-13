@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-12 20:18:39 (PDT)
+Last modified: 2026-10-12 21:28:22 (PDT)
 
 ## 1 Basics
 
@@ -219,7 +219,7 @@ In RStudio, you can use the “Amend previous commit” checkbox when committing
 - If you need to undo changes, use `git reset --hard` to return to your last commit state
 - Think of commits as climbing protection: use them when in uncertain territory
 
-For more details and troubleshooting scenarios, see the [Repeated Amend chapter](https://happygitwithr.com/repeated-amend.html) in Happy Git with R.
+For more details and troubleshooting scenarios, see the [Repeated Amend chapter](https://happygitwithr.com/repeated-amend.html) of Happy Git and GitHub for the useR ([Bryan 2023](#ref-bryan2023happygit), ch. “Repeated amend”).
 
 ## 12 What should be pushed to Github?
 
@@ -441,6 +441,8 @@ For detailed step-by-step instructions, see GitHub’s guide on [Removing sensit
 Back to top
 
 ## References
+
+Bryan, Jennifer. 2023. *Happy Git and GitHub for the useR*. <https://happygitwithr.com/>.
 
 “GitHub Desktop.” n.d. GitHub. <https://desktop.github.com/>.
 
