@@ -241,6 +241,7 @@ format:
     prefer-html: true
   revealjs:
     output-file: "{stem}-slides.html"
+    search: false # decks duplicate the HTML pages, so the search indexes only the HTML format
     theme: [simple, styles-reveal.scss]
     include-in-header: qwt-reveal-toggle.html
     slide-number: true
