@@ -1,4 +1,4 @@
-**All R projects in our lab should be structured as R packages**, even if they are primarily analysis projects and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
+**We recommend structuring every R project as an R package**, even one that is primarily an analysis project and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
 
 ### Why Use R Package Structure?
 
@@ -212,10 +212,9 @@ Rscript data-raw/03-merge-datasets.R
 Rscript data-raw/04-create-analysis-data.R
 ```
 
-This is especially useful when data upstream changes --- you can simply run the shell script to reproduce everything. `Rscript` prints each script's output to the terminal and writes no log file.
-To keep a log, run each script with `R CMD BATCH`, which writes a `.Rout` file,
-or redirect the output, as in `Rscript script.R > script.log 2>&1`.
-Check these logs to ensure everything has run correctly.
+This is especially useful when data upstream changes --- you can simply run the shell script to reproduce everything.
+`Rscript` prints output and errors to the terminal and writes no log file, so check that output.
+Alternatively, run each script with `R CMD BATCH`, which writes a `.Rout` log file for each script, and check those files to ensure everything has run correctly.
 
 ### Storing Analysis Outputs
 

@@ -2,10 +2,10 @@ Several repositories collect reusable GitHub Actions and workflows for R project
 so you can call shared, community-maintained CI steps instead of writing your own:
 
 - [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha):
-  our lab's own collection of composite actions and reusable workflows
+  the Morrison Lab's collection of composite actions and reusable workflows
   for R-package and Quarto repositories,
   covering previews, publishing, test coverage, spell/link/character checks,
-  bibliography DOI checks, and the Claude review bots used across our repos.
+  bibliography DOI checks, and the Claude review bots used across its repos.
 - [r-lib/actions](https://github.com/r-lib/actions):
   the tidyverse team's actions and example workflows
   (`R CMD check`, test coverage, [`{pkgdown}`](https://pkgdown.r-lib.org/), [`{lintr}`](https://lintr.r-lib.org/)),

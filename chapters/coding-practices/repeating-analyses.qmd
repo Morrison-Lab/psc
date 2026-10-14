@@ -40,24 +40,19 @@ result2 <- pmap(.l = mylists, .f = square_sum)
 
 ```
 
-There are two major differences between `mapply()` and `pmap()`. The first difference is that `mapply()` takes seperate lists as its input arguments, while `pmap()` takes a list of list. Secondly, `mapply()` simplifies its output by default:
-it returns a vector, matrix, or array when it can (here, a matrix with one column), and a list otherwise,
-whereas `pmap()` always produces a list.
-Set `SIMPLIFY = FALSE` in `mapply()` to get a list.
+There are two major differences between `mapply()` and `pmap()`.
+The first difference is that `mapply()` takes separate lists as its input arguments, while `pmap()` takes a list of lists.
+Secondly, `mapply()` simplifies its output to a vector, matrix, or array when it can (`SIMPLIFY = TRUE` is the default) and otherwise returns a list, but `pmap()` always returns a list.
 
-However, when **the input lists are of different lengths AND/OR the wrapper function doesn't take arguments in pairs, `mapply()` and `pmap()` may not give the preferable results.**
+However, when **the input lists, or the vectors inside them, are of different lengths AND/OR the wrapper function doesn't take arguments in pairs, `mapply()` and `pmap()` may not give the preferable results.**
 
-The two functions treat inputs of different lengths differently.
-`mapply()` recycles shorter inputs to the length of the longest, with a warning if the lengths are not multiples.
-`pmap()` recycles only inputs of length 1 and gives an error for any other mismatch.
-In the example above, each list holds one vector, so both functions call `square_sum()` once, on whole vectors.
+`mapply()` recycles shorter inputs to the length of the longest input, while `pmap()` recycles only inputs of length 1 and requires all other inputs to have the same length.
+In the example above, `mylist1` and `mylist2` each hold a single element (a vector), so both functions make a single call, `square_sum(0:3, 6:9)`.
 Assume that now `mylist2 = list(6:12)`.
-Then `x^2 + y^2` itself recycles `0:3` to length 7 (as `0, 1, 2, 3, 0, 1, 2`),
-and both functions return `36  50  68  90 100 122 148`,
-with the warning "longer object length is not a multiple of shorter object length".
-That silent recycling is rarely what you want.
+Then, `pmap(mylists, square_sum)` calls `square_sum(0:3, 6:12)`, and R's vector arithmetic inside `square_sum()` recycles `0:3`, generating `[36  50  68  90 100 122 148]` where elements 0, 1, and 2 are recycled to match 10, 11, and 12.
+R also gives the warning "longer object length is not a multiple of shorter object length."
 
-Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, **when the input lists are of different lengths, the best practice is probably to use `lapply()` and then combine the results.** 
+Thus, unless the recycling pattern described above is a desirable feature for a certain experiment design, **when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use `lapply()` and then combine the results.** 
 
 Here is an example where we'd like to find the `square_sum` for every element combination of `mylist1` and `mylist2`. 
 
@@ -115,9 +110,9 @@ You can use `parallel::detectCores()` to test how many cores your machine has an
 
 We will always start `parLapply()` with `makeCluster()`. **`stopCluster()` is not fully necessary but follows the best practices.** If not stopped, the processing will continue in the back end and consuming the computation capacity for other software in your machine. But keep in mind that stopping the cluster is similar quitting R, meaning that you will need to re-load the packages needed when you need to do parallel processing use `parLapply()` again. 
 
-#### `future.lapply()`
+#### `future_lapply()`
 
-Below is a generic example of `future.lapply()`:
+Below is a generic example of `future_lapply()`:
 
 ```
 library(future)
