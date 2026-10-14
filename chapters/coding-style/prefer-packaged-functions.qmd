@@ -5,7 +5,7 @@ and prefer it over rolling your own:
   base R and the tidyverse / r-lib packages,
   then a focused, well-maintained CRAN package,
   then packages from your own group
-  (e.g. `{bcs}`, `{ettbc}`, `{gha}`, and the shared workflows there).
+  (for example, the Morrison-Lab maintains `{bcs}`, `{ettbc}`, and `{gha}`, with shared workflows).
   Packages can depend on each other, so reuse across your repos is fine.
 - Reach for the packaged version unless it is genuinely unfit ---
   the wrong API, a heavy dependency for a one-liner, or it does not quite do what you need.

@@ -16,7 +16,7 @@ but we recommend explicit returns for all new code, following the [Google R Styl
 
 **Exceptions:**
 
-Our configuration allows relaxed rules for certain directories:
+A configuration can allow relaxed rules for certain directories:
 
 - `data-raw/`: Pipe consistency and undesirable function rules relaxed (exploratory scripts)
 - `vignettes/`: Undesirable function and object naming rules relaxed (tutorial code may need `library()`)

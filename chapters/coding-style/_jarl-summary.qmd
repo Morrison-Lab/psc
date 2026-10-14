@@ -34,7 +34,7 @@ jarl check . --fix
 | **Execution speed** | Standard | Extremely fast (Rust binary) |
 | **Ecosystem maturity** | Industry standard, wide rule coverage | Emerging, expanding rule set |
 | **Custom R linters** | Yes (e.g., [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms)) | No (Rust-only rule definitions) |
-| **Primary use case** | CI verification, custom lab rules | Fast pre-commit checks, local interactive editing |
+| **Primary use case** | CI verification, custom rules | Fast pre-commit checks, local interactive editing |
 
 ::: {.callout-note}
 ### Recommendation

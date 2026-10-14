@@ -50,7 +50,7 @@ The linter checks for:
 - Style guide violations
 
 For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before**
-`lintr::lint_package()`. Our configuration includes `object_usage_linter()`, which
+`lintr::lint_package()`. A typical configuration includes `object_usage_linter()`, which
 resolves symbols using the loaded package; without loading first, it checks against a
 stale installed copy (or none), producing spurious
 `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the UCD-SERG
