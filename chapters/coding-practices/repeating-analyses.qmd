@@ -44,7 +44,7 @@ There are two major differences between `mapply()` and `pmap()`.
 The first difference is that `mapply()` takes separate lists as its input arguments, while `pmap()` takes a list of lists.
 Secondly, `mapply()` simplifies its output to a vector, matrix, or array when it can (`SIMPLIFY = TRUE` is the default) and otherwise returns a list, but `pmap()` always returns a list.
 
-However, when **the input lists are of different lengths AND/OR the wrapper function doesn't take arguments in pairs, `mapply()` and `pmap()` may not give the preferable results.**
+However, when **the input lists, or the vectors inside them, are of different lengths AND/OR the wrapper function doesn't take arguments in pairs, `mapply()` and `pmap()` may not give the preferable results.**
 
 `mapply()` recycles shorter inputs to the length of the longest input, while `pmap()` recycles only inputs of length 1 and requires all other inputs to have the same length.
 In the example above, `mylist1` and `mylist2` each hold a single element (a vector), so both functions make a single call, `square_sum(0:3, 6:9)`.
@@ -52,7 +52,7 @@ Assume that now `mylist2 = list(6:12)`.
 Then, `pmap(mylists, square_sum)` calls `square_sum(0:3, 6:12)`, and R's vector arithmetic inside `square_sum()` recycles `0:3`, generating `[36  50  68  90 100 122 148]` where elements 0, 1, and 2 are recycled to match 10, 11, and 12.
 R also gives the warning "longer object length is not a multiple of shorter object length."
 
-Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, **when the input lists are of different lengths, the best practice is probably to use `lapply()` and then combine the results.** 
+Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, **when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use `lapply()` and then combine the results.** 
 
 Here is an example where we'd like to find the `square_sum` for every element combination of `mylist1` and `mylist2`. 
 
