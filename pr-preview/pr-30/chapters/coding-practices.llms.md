@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 02:06:18 (PDT)
+Last modified: 2026-10-14 02:55:43 (PDT)
 
 ## 1 Lab Protocols for Code and Data
 
@@ -1548,7 +1548,7 @@ Every file in a project that doesn’t have roxygen function documentation shoul
 
 ### 14.5 Sections and subsections
 
-Rstudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of Sections and Subsections. You can easily navigate through longer scripts using the navigation pane in RStudio. Create sections and subsections with comment lines like these:
+RStudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of sections and subsections. You can easily navigate through longer scripts using the navigation pane in RStudio. Create sections and subsections with comment lines like these:
 
     # Section -------
 
@@ -1829,7 +1829,7 @@ Our shared linter set enforces the function-definition half of this rule: `lms::
 
 ## 28 The here package
 
-The `here` package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path `/home/oski/Some-R-Project`. My collaborator might clone the repository and work with it at some other path, such as `/home/bear/R-Code/Some-R-Project`. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the `here` package comes in and this a [great vignette describing it](https://here.r-lib.org/articles/here.html).
+The `here` package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path `/home/oski/Some-R-Project`. My collaborator might clone the repository and work with it at some other path, such as `/home/bear/R-Code/Some-R-Project`. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the `here` package comes in, and [here is a great vignette describing it](https://here.r-lib.org/articles/here.html).
 
 *See also [The here Package](../chapters/coding-style.llms.md#sec-here-package-style) for code style guidelines on using the here package.*
 
@@ -2212,7 +2212,7 @@ However, when **the input lists, or the vectors inside them, are of different le
 
 `mapply()` recycles shorter inputs to the length of the longest input, while `pmap()` recycles only inputs of length 1 and requires all other inputs to have the same length. In the example above, `mylist1` and `mylist2` each hold a single element (a vector), so both functions make a single call, `square_sum(0:3, 6:9)`. Assume that now `mylist2 = list(6:12)`. Then, `pmap(mylists, square_sum)` calls `square_sum(0:3, 6:12)`, and R’s vector arithmetic inside `square_sum()` recycles `0:3`, generating `[36 50 68 90 100 122 148]` where elements 0, 1, and 2 are recycled to match 10, 11, and 12. R also gives the warning “longer object length is not a multiple of shorter object length.”
 
-Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, **when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use `lapply()` and then combine the results.**
+Thus, unless the recycling pattern described above is a desirable feature for a certain experiment design, **when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use `lapply()` and then combine the results.**
 
 Here is an example where we’d like to find the `square_sum` for every element combination of `mylist1` and `mylist2`.
 

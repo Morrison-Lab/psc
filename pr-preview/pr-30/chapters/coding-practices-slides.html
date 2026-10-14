@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 02:06:18 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 02:55:43 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -1781,7 +1781,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 ################################################################################
 </code></pre>
 <h3 id="sections-and-subsections">Sections and subsections</h3>
-<p>Rstudio (<a href="https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/">v1.4 or more recent</a>) supports the use of Sections and Subsections. You can easily navigate through longer scripts using the navigation pane in RStudio. Create sections and subsections with comment lines like these:</p>
+<p>RStudio (<a href="https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/">v1.4 or more recent</a>) supports the use of sections and subsections. You can easily navigate through longer scripts using the navigation pane in RStudio. Create sections and subsections with comment lines like these:</p>
 <pre><code># Section -------
 
 ## Subsection -------
@@ -2078,7 +2078,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 </section>
 <section class="slide level2">
 
-<p>The <code>here</code> package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path <code>/home/oski/Some-R-Project</code>. My collaborator might clone the repository and work with it at some other path, such as <code>/home/bear/R-Code/Some-R-Project</code>. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the <code>here</code> package comes in and this a <a href="https://here.r-lib.org/articles/here.html">great vignette describing it</a>.</p>
+<p>The <code>here</code> package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path <code>/home/oski/Some-R-Project</code>. My collaborator might clone the repository and work with it at some other path, such as <code>/home/bear/R-Code/Some-R-Project</code>. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the <code>here</code> package comes in, and <a href="https://here.r-lib.org/articles/here.html">here is a great vignette describing it</a>.</p>
 <p><em>See also <a href="../chapters/coding-style.html#sec-here-package-style">The here Package</a> for code style guidelines on using the here package.</em></p>
 </section>
 <section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="29">
@@ -2468,7 +2468,7 @@ result2 &lt;- pmap(.l = mylists, .f = square_sum)
 <p>There are two major differences between <code>mapply()</code> and <code>pmap()</code>. The first difference is that <code>mapply()</code> takes separate lists as its input arguments, while <code>pmap()</code> takes a list of lists. Secondly, <code>mapply()</code> simplifies its output to a vector, matrix, or array when it can (<code>SIMPLIFY = TRUE</code> is the default) and otherwise returns a list, but <code>pmap()</code> always returns a list.</p>
 <p>However, when <strong>the input lists, or the vectors inside them, are of different lengths AND/OR the wrapper function doesn’t take arguments in pairs, <code>mapply()</code> and <code>pmap()</code> may not give the preferable results.</strong></p>
 <p><code>mapply()</code> recycles shorter inputs to the length of the longest input, while <code>pmap()</code> recycles only inputs of length 1 and requires all other inputs to have the same length. In the example above, <code>mylist1</code> and <code>mylist2</code> each hold a single element (a vector), so both functions make a single call, <code>square_sum(0:3, 6:9)</code>. Assume that now <code>mylist2 = list(6:12)</code>. Then, <code>pmap(mylists, square_sum)</code> calls <code>square_sum(0:3, 6:12)</code>, and R’s vector arithmetic inside <code>square_sum()</code> recycles <code>0:3</code>, generating <code>[36  50  68  90 100 122 148]</code> where elements 0, 1, and 2 are recycled to match 10, 11, and 12. R also gives the warning “longer object length is not a multiple of shorter object length.”</p>
-<p>Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, <strong>when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use <code>lapply()</code> and then combine the results.</strong></p>
+<p>Thus, unless the recycling pattern described above is a desirable feature for a certain experiment design, <strong>when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use <code>lapply()</code> and then combine the results.</strong></p>
 <p>Here is an example where we’d like to find the <code>square_sum</code> for every element combination of <code>mylist1</code> and <code>mylist2</code>.</p>
 <pre><code>mylist1 &lt;- list(0:3)
 mylist2 &lt;- list(6:12)
