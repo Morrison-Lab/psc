@@ -3,7 +3,7 @@ For shell scripts, we recommend the
 as the base authority,
 the same way the R chapters defer to the
 [tidyverse style guide](https://style.tidyverse.org/).
-The points below are our priorities and additions.
+The points below are recommended priorities and additions.
 
 ### Error handling
 
