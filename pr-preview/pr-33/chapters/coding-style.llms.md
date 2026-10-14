@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 10:05:03 (PDT)
+Last modified: 2026-10-14 10:35:08 (PDT)
 
 Follow these code style guidelines for all R code:
 
@@ -931,7 +931,7 @@ Linters are programming tools that check adherence to a given style, syntax erro
 > - Line length issues
 > - Style guide violations
 >
-> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. The example configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the [`lms`](https://github.com/Morrison-Lab/psc/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
+> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. The example configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
 >
 > We recommend `.lintr.R` files for configuration (lintr also supports the `.lintr` format, but `.lintr.R` gets full R syntax support).
 

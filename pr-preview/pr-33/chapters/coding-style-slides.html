@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 10:05:03 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 10:35:08 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -1202,7 +1202,7 @@
 <li>Line length issues</li>
 <li>Style guide violations</li>
 </ul>
-<p>For package code, run <code>pkgload::load_all()</code> (or <code>devtools::load_all()</code>) <strong>before</strong> <code>lintr::lint_package()</code>. The example configuration includes <code>object_usage_linter()</code>, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious <code>no visible binding for global variable</code> warnings. Loading also runs any <code>.onLoad()</code> side effects: for example, the <a href="https://github.com/Morrison-Lab/psc/tree/main/lms"><code>lms</code></a> linter package registers its <code>rex</code> shortcuts in <code>.onLoad()</code>, and the linter only sees them once the package is loaded.</p>
+<p>For package code, run <code>pkgload::load_all()</code> (or <code>devtools::load_all()</code>) <strong>before</strong> <code>lintr::lint_package()</code>. The example configuration includes <code>object_usage_linter()</code>, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious <code>no visible binding for global variable</code> warnings. Loading also runs any <code>.onLoad()</code> side effects: for example, the <a href="https://github.com/Morrison-Lab/psc/tree/main/lms"><code>{lms}</code></a> linter package registers its <code>rex</code> shortcuts in <code>.onLoad()</code>, and the linter only sees them once the package is loaded.</p>
 <p>We recommend <code>.lintr.R</code> files for configuration (lintr also supports the <code>.lintr</code> format, but <code>.lintr.R</code> gets full R syntax support).</p>
 </div>
 </div>
