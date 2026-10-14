@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:49:27 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 02:01:49 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -1326,7 +1326,7 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <ul>
 <li><a href="https://bench.r-lib.org/"><code>{bench}</code></a> - Accurate benchmarking</li>
 <li><a href="https://profvis.r-lib.org/"><code>{profvis}</code></a> - Interactive profiling</li>
-<li><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a> - Function-call caching to eliminate repeated bottlenecks (<a href="#/sec-memoise" class="quarto-xref">Section&nbsp;37.2</a>)</li>
+<li><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a> - Function-call caching to eliminate repeated bottlenecks (<a href="#/sec-memoise" class="quarto-xref">Section&nbsp;36.2</a>)</li>
 <li><a href="https://adv-r.hadley.nz/perf-measure.html">Measuring Performance</a> chapter in Advanced R</li>
 <li><a href="https://adv-r.hadley.nz/perf-improve.html">Improving Performance</a> chapter in Advanced R</li>
 <li><a href="https://github.com/lorenzwalthert/touchstone"><code>{touchstone}</code></a> - CI benchmarking with PR comments</li>
@@ -1396,6 +1396,7 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 </section>
 <section class="slide level2">
 
+<p><span id="sec-readingsaving-data"></span></p>
 <h3 id="rds-files-preferred">RDS Files (Preferred)</h3>
 <p>Use RDS format for R objects:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-label="1"></a><span class="co"># Save single object</span></span>
@@ -1403,7 +1404,25 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <span id="cb43-3"><a aria-label="3"></a></span>
 <span id="cb43-4"><a aria-label="4"></a><span class="co"># Read back</span></span>
 <span id="cb43-5"><a aria-label="5"></a>results <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(<span class="fu">here</span>(<span class="st">"results"</span>, <span class="st">"analysis.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Avoid <code>.RData</code> files</strong> because: - You can’t control object names when loading - Can’t load individual objects - Creates confusion in older code</p>
+<p><strong>Avoid <code>.RData</code> files</strong>. The base R function <code>save()</code> serializes several objects into one <code>.RData</code> file, and <code>load()</code> restores every object in it under its original name. That causes three problems:</p>
+<ul>
+<li>You can’t control object names when loading.</li>
+<li>You can’t load individual objects.</li>
+<li>Older code becomes hard to follow, because it is not clear which objects a <code>load()</code> call creates.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>If you have many related R objects that you would otherwise save together with <code>save()</code>, put them in a named list and save that list as one RDS file.</p>
+</div>
+</div>
+</div>
 <h3 id="csv-files">CSV Files</h3>
 <p>For tabular data that may be shared with non-R users:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-label="1"></a><span class="co"># Write</span></span>
@@ -1413,8 +1432,9 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <span id="cb44-5"><a aria-label="5"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"clean_data.csv"</span>))</span>
 <span id="cb44-6"><a aria-label="6"></a></span>
 <span id="cb44-7"><a aria-label="7"></a><span class="co"># For very large files, use data.table</span></span>
-<span id="cb44-8"><a aria-label="8"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(large_data, <span class="st">"big_file.csv"</span>)</span>
-<span id="cb44-9"><a aria-label="9"></a>data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">"big_file.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-8"><a aria-label="8"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(large_data, <span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"big_file.csv"</span>))</span>
+<span id="cb44-9"><a aria-label="9"></a>data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"big_file.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>readr::read_csv()</code> and <code>readr::write_csv()</code> are much faster than base R’s <code>read.csv()</code> and <code>write.csv()</code>. For very large files (several gigabytes), <code>data.table::fread()</code> and <code>data.table::fwrite()</code> are faster still.</p>
 </section>
 <section id="sec-r-version-control" class="slide level2" data-number="11">
 <h2><span class="header-section-number">11</span> Version Control and Collaboration</h2>
@@ -2061,31 +2081,8 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <p>The <code>here</code> package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path <code>/home/oski/Some-R-Project</code>. My collaborator might clone the repository and work with it at some other path, such as <code>/home/bear/R-Code/Some-R-Project</code>. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the <code>here</code> package comes in and this a <a href="https://github.com/jennybc/here_here">great vignette describing it</a>.</p>
 <p><em>See also <a href="../chapters/coding-style.html#sec-here-package-style">The here Package</a> for code style guidelines on using the here package.</em></p>
 </section>
-<section id="sec-readingsaving-data" class="slide level2" data-number="29">
-<h2><span class="header-section-number">29</span> Reading/Saving Data</h2>
-</section>
-<section class="slide level2">
-
-<h3 id="rds-vs-.rdata-files"><code>.RDS</code> vs <code>.RData</code> Files</h3>
-<p>One of the most common ways to load and save data in Base R is with the <code>load()</code> and <code>save()</code> functions to serialize multiple objects in a single <code>.RData</code> file. The biggest problems with this practice include an inability to control the names of things getting loaded in, the inherent confusion this creates in understanding older code, and the inability to load individual elements of a saved file. For this, we recommend using the RDS format to save R objects.</p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>If you have many related R objects you would have otherwise saved all together using the <code>save</code> function, the functional equivalent with <code>RDS</code> would be to create a (named) list containing each of these objects, and saving it.</p>
-</div>
-</div>
-</div>
-<h3 id="csvs">CSVs</h3>
-<p>Once again, the <code>readr</code> package as part of the Tidvyerse is great, with a much faster <code>read_csv()</code> than Base R’s <code>read.csv()</code>. For massive CSVs (&gt; 5 GB), you’ll find <code>data.table::fread()</code> to be the fastest CSV reader in any data science language out there. For writing CSVs, <code>readr::write_csv()</code> and <code>data.table::fwrite()</code> outclass Base R’s <code>write.csv()</code> by a significant margin as well.</p>
-</section>
-<section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="30">
-<h2><span class="header-section-number">30</span> Integrating Box and Dropbox</h2>
+<section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="29">
+<h2><span class="header-section-number">29</span> Integrating Box and Dropbox</h2>
 </section>
 <section class="slide level2">
 
@@ -2109,15 +2106,15 @@ saveRDS(token, "/path/to/tokenfile.RDS")
 drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </code></pre>
 </section>
-<section id="sec-r-lib-packages" class="slide level2" data-number="31">
-<h2><span class="header-section-number">31</span> r-lib Packages</h2>
+<section id="sec-r-lib-packages" class="slide level2" data-number="30">
+<h2><span class="header-section-number">30</span> r-lib Packages</h2>
 </section>
 <section class="slide level2">
 
 <p>The <a href="https://github.com/r-lib">r-lib</a> GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem and are widely used in our lab’s workflows.</p>
 </section>
-<section id="package-development" class="slide level2" data-number="32">
-<h2><span class="header-section-number">32</span> Package Development</h2>
+<section id="package-development" class="slide level2" data-number="31">
+<h2><span class="header-section-number">31</span> Package Development</h2>
 </section>
 <section class="slide level2">
 
@@ -2148,8 +2145,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lifecycle"><a href="https://lifecycle.r-lib.org/"><code>{lifecycle}</code></a></h3>
 <p><a href="https://lifecycle.r-lib.org/"><code>{lifecycle}</code></a> manages the life cycle of functions and arguments, providing the experimental/superseded/deprecated badges and deprecation warnings used across the tidyverse and r-lib ecosystems.</p>
 </section>
-<section id="testing-and-quality" class="slide level2" data-number="33">
-<h2><span class="header-section-number">33</span> Testing and Quality</h2>
+<section id="testing-and-quality" class="slide level2" data-number="32">
+<h2><span class="header-section-number">32</span> Testing and Quality</h2>
 </section>
 <section class="slide level2">
 
@@ -2162,8 +2159,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lintr"><a href="https://lintr.r-lib.org/"><code>{lintr}</code></a></h3>
 <p><a href="https://lintr.r-lib.org/"><code>{lintr}</code></a> performs static code analysis (linting) for R. It checks for style issues, potential errors, and common anti-patterns, and integrates with RStudio, VS Code, and CI pipelines.</p>
 </section>
-<section id="core-language-and-infrastructure" class="slide level2" data-number="34">
-<h2><span class="header-section-number">34</span> Core Language and Infrastructure</h2>
+<section id="core-language-and-infrastructure" class="slide level2" data-number="33">
+<h2><span class="header-section-number">33</span> Core Language and Infrastructure</h2>
 </section>
 <section class="slide level2">
 
@@ -2180,8 +2177,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-cpp11"><a href="https://cpp11.r-lib.org/"><code>{cpp11}</code></a></h3>
 <p><a href="https://cpp11.r-lib.org/"><code>{cpp11}</code></a> provides a modern C++11 interface for interacting with R’s C API. It is a lightweight, header-only alternative to <code>Rcpp</code>, designed to simplify writing and debugging C++ extensions for R.</p>
 </section>
-<section id="system-and-process" class="slide level2" data-number="35">
-<h2><span class="header-section-number">35</span> System and Process</h2>
+<section id="system-and-process" class="slide level2" data-number="34">
+<h2><span class="header-section-number">34</span> System and Process</h2>
 </section>
 <section class="slide level2">
 
@@ -2194,8 +2191,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-ps"><a href="https://ps.r-lib.org/"><code>{ps}</code></a></h3>
 <p><a href="https://ps.r-lib.org/"><code>{ps}</code></a> provides a cross-platform API for listing, querying, and manipulating system processes from R. It is used internally by <code>processx</code> and <code>callr</code>.</p>
 </section>
-<section id="http-and-web" class="slide level2" data-number="36">
-<h2><span class="header-section-number">36</span> HTTP and Web</h2>
+<section id="http-and-web" class="slide level2" data-number="35">
+<h2><span class="header-section-number">35</span> HTTP and Web</h2>
 </section>
 <section class="slide level2">
 
@@ -2208,8 +2205,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-gargle"><a href="https://gargle.r-lib.org/"><code>{gargle}</code></a></h3>
 <p><a href="https://gargle.r-lib.org/"><code>{gargle}</code></a> provides authentication utilities for Google APIs, including OAuth 2.0, service accounts, and Application Default Credentials. It is used by <code>googledrive</code>, <code>googlesheets4</code>, and other Google-backed R packages.</p>
 </section>
-<section id="utilities" class="slide level2" data-number="37">
-<h2><span class="header-section-number">37</span> Utilities</h2>
+<section id="utilities" class="slide level2" data-number="36">
+<h2><span class="header-section-number">36</span> Utilities</h2>
 </section>
 <section class="slide level2">
 
@@ -2240,8 +2237,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <li>Call <code>rex::rex(...)</code> to compile expressions into regular expression strings for use with functions like <code>grepl()</code>, <code>gsub()</code>, or <a href="https://stringr.tidyverse.org/"><code>{stringr}</code></a> functions.</li>
 </ul>
 </section>
-<section id="github-actions" class="slide level2" data-number="38">
-<h2><span class="header-section-number">38</span> GitHub Actions</h2>
+<section id="github-actions" class="slide level2" data-number="37">
+<h2><span class="header-section-number">37</span> GitHub Actions</h2>
 </section>
 <section class="slide level2">
 
@@ -2255,16 +2252,16 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </ul>
 <p>These actions are widely used across R packages hosted on GitHub, including this lab’s repositories.</p>
 </section>
-<section id="sec-tidyverse" class="slide level2" data-number="39">
-<h2><span class="header-section-number">39</span> Tidyverse</h2>
+<section id="sec-tidyverse" class="slide level2" data-number="38">
+<h2><span class="header-section-number">38</span> Tidyverse</h2>
 </section>
 <section class="slide level2">
 
 <p>Throughout this document there have been references to the Tidyverse, but this section is to explicitly show you how to transform your Base R tendencies to Tidyverse (or Data.Table, Tidyverse’s performance-optimized competitor). For most of our work that does not utilize very large datasets, we recommend that you code in Tidyverse rather than Base R. Tidyverse is quickly becoming <a href="https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/">the gold standard</a> in R data analysis and modern data science packages and code should use Tidyverse style and packages unless there’s a significant reason not to (i.e.&nbsp;big data pipelines that would benefit from Data.Table’s performance optimizations). Note that <a href="https://dtplyr.tidyverse.org/"><code>{dtplyr}</code></a> provides a data.table backend for dplyr, enabling you to use most of dplyr’s tidy syntax with data.table’s performance optimizations.</p>
 <p>The package author has published R for Data Science <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span>, which leans heavily on many Tidyverse packages and may be worth checking out.</p>
 </section>
-<section id="core-tidyverse-packages" class="slide level2" data-number="40">
-<h2><span class="header-section-number">40</span> Core Tidyverse Packages</h2>
+<section id="core-tidyverse-packages" class="slide level2" data-number="39">
+<h2><span class="header-section-number">39</span> Core Tidyverse Packages</h2>
 </section>
 <section class="slide level2">
 
@@ -2295,8 +2292,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lubridate"><a href="https://lubridate.tidyverse.org/">lubridate</a></h3>
 <p><a href="https://lubridate.tidyverse.org/"><code>{lubridate}</code></a> provides a set of functions for working with date-times, extending and improving on R’s existing support for them. Key functions include <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code> for parsing dates, and <code>year()</code>, <code>month()</code>, <code>day()</code> for extracting components.</p>
 </section>
-<section id="base-r-to-tidyverse-translation" class="slide level2" data-number="41">
-<h2><span class="header-section-number">41</span> Base R to Tidyverse Translation</h2>
+<section id="base-r-to-tidyverse-translation" class="slide level2" data-number="40">
+<h2><span class="header-section-number">40</span> Base R to Tidyverse Translation</h2>
 </section>
 <section class="slide level2">
 
@@ -2413,8 +2410,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </table>
 <p>For a more extensive set of syntactical translations to Tidyverse, you can check out <a href="https://tavareshugo.github.io/data_carpentry_extras/base-r_tidyverse_equivalents/base-r_tidyverse_equivalents.html">this document</a>.</p>
 </section>
-<section id="programming-with-tidyverse" class="slide level2" data-number="42">
-<h2><span class="header-section-number">42</span> Programming with Tidyverse</h2>
+<section id="programming-with-tidyverse" class="slide level2" data-number="41">
+<h2><span class="header-section-number">41</span> Programming with Tidyverse</h2>
 </section>
 <section class="slide level2">
 
@@ -2430,15 +2427,15 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </ul>
 <p>See also <a href="../chapters/coding-style.html#sec-tidyverse-replacements">Tidyverse Replacements</a></p>
 </section>
-<section id="sec-coding-with-r-and-python" class="slide level2" data-number="43">
-<h2><span class="header-section-number">43</span> Coding with R and Python</h2>
+<section id="sec-coding-with-r-and-python" class="slide level2" data-number="42">
+<h2><span class="header-section-number">42</span> Coding with R and Python</h2>
 </section>
 <section class="slide level2">
 
 <p>If you’re using both R and Python, you may wish to check out the <a href="https://www.rdocumentation.org/packages/feather/versions/0.3.3">Feather package</a> for exchanging data between the two languages <a href="https://blog.rstudio.com/2016/03/29/feather/">extremely quickly</a>.</p>
 </section>
-<section id="sec-repeating-analyses-with-different-variations" class="slide level2" data-number="44">
-<h2><span class="header-section-number">44</span> Repeating analyses with different variations</h2>
+<section id="sec-repeating-analyses-with-different-variations" class="slide level2" data-number="43">
+<h2><span class="header-section-number">43</span> Repeating analyses with different variations</h2>
 </section>
 <section class="slide level2">
 
@@ -2523,8 +2520,8 @@ future::plan(
 future_lapply(x = mylist, FUN = func)</code></pre>
 <p>Here, <code>future::availableCores()</code> checks how many cores your machine has. Similar to <code>parLapply()</code> showed above, <code>future_lapply()</code> parallelizes the computation of <code>lapply()</code> by executing the function <code>func</code> simultaneously on different sub-lists of <code>mylist</code>.</p>
 </section>
-<section id="sec-reviewing-code" class="slide level2" data-number="45">
-<h2><span class="header-section-number">45</span> Reviewing Code</h2>
+<section id="sec-reviewing-code" class="slide level2" data-number="44">
+<h2><span class="header-section-number">44</span> Reviewing Code</h2>
 </section>
 <section class="slide level2 scrollable">
 
@@ -2581,8 +2578,8 @@ future_lapply(x = mylist, FUN = func)</code></pre>
 <li>The author has completed the pre-review quality checks in <a href="#/sec-r-qa-checklist" class="quarto-xref">Section&nbsp;12</a>.</li>
 </ul>
 </section>
-<section id="sec-getting-help-with-code" class="slide level2" data-number="46">
-<h2><span class="header-section-number">46</span> Getting Help with Code</h2>
+<section id="sec-getting-help-with-code" class="slide level2" data-number="45">
+<h2><span class="header-section-number">45</span> Getting Help with Code</h2>
 </section>
 <section class="slide level2">
 
@@ -2605,8 +2602,8 @@ future_lapply(x = mylist, FUN = func)</code></pre>
 <li><a href="https://r4ds.hadley.nz/workflow-help.html#making-a-reprex">R for Data Science: Making a reprex</a> <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span>: Step-by-step guide to creating effective reproducible examples</li>
 </ul>
 </section>
-<section id="sec-r-resources" class="slide level2" data-number="47">
-<h2><span class="header-section-number">47</span> Additional Resources</h2>
+<section id="sec-r-resources" class="slide level2" data-number="46">
+<h2><span class="header-section-number">46</span> Additional Resources</h2>
 </section>
 <section class="slide level2 smaller scrollable" id="references">
 
