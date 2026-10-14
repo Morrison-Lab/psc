@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:01:08 (PDT)
+Last modified: 2026-10-14 04:10:23 (PDT)
 
 This chapter covers the social side of writing code together: opening pull requests, reviewing each other’s work, and responding to review feedback.
 
@@ -275,7 +275,7 @@ If the repository has a preview workflow such as `pkgdown` or Quarto, review the
 
 Figure 2: Example of an automated PR preview comment posted by GitHub Actions
 
-In GitHub’s **Files changed** view, you can select the **Viewed** checkbox in a file’s header to collapse that file in the diff. That helps you focus on the meaningful changes.
+In GitHub’s **Files changed** view, you can select the **Viewed** checkbox in a file’s header to mark it reviewed and collapse it. That helps you focus on the meaningful changes.
 
 #### Reviewing Copilot-generated pull requests
 

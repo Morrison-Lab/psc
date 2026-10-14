@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:01:08 (PDT)
+Last modified: 2026-10-14 04:10:23 (PDT)
 
 Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier to collaborate across projects.
 
@@ -114,7 +114,7 @@ All vignettes and articles will be rendered by `pkgdown::build_site()` on your p
 
 #### Analyses with Restricted Data (inst/analyses/)
 
-For analyses that rely on **private, sensitive, or restricted data**, place `.qmd` files in `inst/analyses/`:
+For analyses that rely on **private, sensitive, or restricted data**, place `.qmd` or `.Rmd` files in `inst/analyses/`:
 
     myproject/
     ├── inst/

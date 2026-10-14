@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:01:08 (PDT)
+Last modified: 2026-10-14 04:10:23 (PDT)
 
 We typically use Unix commands in Terminal (for Mac users) or Git Bash (for Windows users) to
 
@@ -227,7 +227,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 The empty `""` is not a typo. `sh -c` treats the argument after the script as `$0`, so without a placeholder there `--unattended` would be consumed as the script’s own name instead of reaching it as a flag. The installer’s header documents that flag as setting both `CHSH` and `RUNZSH` to `no`, which leaves the `chsh` step above to you.
 
-### 5.3 The two plugins we use
+### 5.3 The two plugins this guide uses
 
 [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions) proposes the rest of a command in gray as you type it, drawn from your history; press the right arrow to accept it. [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting) colors the command line as you type — a command that does not exist stays red, so a misspelled `git ceckout` is visible before you run it.
 
@@ -367,7 +367,7 @@ set -euo pipefail
 
 ### 7.2 Functions and naming
 
-Decompose scripts into functions the same way we decompose R code: small, single-purpose, and named in `snake_case`. Declare function-local variables with `local` so they don’t leak into the global namespace, and return status with `return` codes (write data results to stdout).
+Decompose scripts into functions the same way as R code: small, single-purpose, and named in `snake_case`. Declare function-local variables with `local` so they don’t leak into the global namespace, and return status with `return` codes (write data results to stdout).
 
 ### 7.3 Comments
 

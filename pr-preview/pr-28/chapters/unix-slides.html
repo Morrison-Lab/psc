@@ -314,7 +314,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 04:01:08 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 04:10:23 (PDT)</p>
 </section>
 <section class="slide level2 scrollable">
 
@@ -676,7 +676,7 @@ Figure&nbsp;2: Terminal output after executing basic Unix commands
 <p>The installer clones the framework to <code>~/.oh-my-zsh</code>, replaces <code>~/.zshrc</code> with its own template, and backs up whatever was there to <code>~/.zshrc.pre-oh-my-zsh</code>. Check that backup for anything worth carrying forward before you delete it. If you would rather it not touch your login shell or drop you into <code>zsh</code> immediately, run it unattended instead:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a aria-label="1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="va">)</span><span class="st">"</span> <span class="st">""</span> <span class="at">--unattended</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The empty <code>""</code> is not a typo. <code>sh -c</code> treats the argument after the script as <code>$0</code>, so without a placeholder there <code>--unattended</code> would be consumed as the script’s own name instead of reaching it as a flag. The installer’s header documents that flag as setting both <code>CHSH</code> and <code>RUNZSH</code> to <code>no</code>, which leaves the <code>chsh</code> step above to you.</p>
-<h3 id="the-two-plugins-we-use">The two plugins we use</h3>
+<h3 id="the-two-plugins-this-guide-uses">The two plugins this guide uses</h3>
 <p><a href="https://github.com/zsh-users/zsh-autosuggestions"><code>zsh-autosuggestions</code></a> proposes the rest of a command in gray as you type it, drawn from your history; press the right arrow to accept it. <a href="https://github.com/zsh-users/zsh-syntax-highlighting"><code>zsh-syntax-highlighting</code></a> colors the command line as you type — a command that does not exist stays red, so a misspelled <code>git ceckout</code> is visible before you run it.</p>
 <p>Neither ships with Oh My Zsh, so clone both into its custom-plugin directory:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-label="1"></a><span class="fu">git</span> clone https://github.com/zsh-users/zsh-autosuggestions <span class="dt">\</span></span>
@@ -878,7 +878,7 @@ Table&nbsp;6: Commands for running Bash scripts
 <li>Decide explicitly whether a step should fail the script (fail-closed) or log and continue (fail-open), and comment the choice when it isn’t obvious.</li>
 </ul>
 <h3 id="functions-and-naming">Functions and naming</h3>
-<p>Decompose scripts into functions the same way we decompose R code: small, single-purpose, and named in <code>snake_case</code>. Declare function-local variables with <code>local</code> so they don’t leak into the global namespace, and return status with <code>return</code> codes (write data results to stdout).</p>
+<p>Decompose scripts into functions the same way as R code: small, single-purpose, and named in <code>snake_case</code>. Declare function-local variables with <code>local</code> so they don’t leak into the global namespace, and return status with <code>return</code> codes (write data results to stdout).</p>
 <h3 id="comments">Comments</h3>
 <p>The same principle as in the R guidance applies: explain <em>why</em>, not <em>what</em>. Keep inline comments brief, and point to an Architecture Decision Record for rationale too long for a comment (see <a href="../chapters/coding-practices.html#sec-adrs">Design Documentation with ADRs</a>).</p>
 <h3 id="logging">Logging</h3>
