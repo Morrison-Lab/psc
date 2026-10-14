@@ -18,6 +18,7 @@ Write for a general audience: these pages serve SERG and non-SERG projects alike
 - `_extensions/` --- vendored Quarto extensions (including `code-language-labels`, which labels each code block with its language in HTML and revealjs output; vendored from [`d-morrison/code-language-labels`](https://github.com/d-morrison/code-language-labels))
 - `macros/` --- git submodule for shortcode/macro definitions (see `.gitmodules`)
 - `R/`, `man/`, `DESCRIPTION`, `NAMESPACE` --- the project is also a small R package
+- `lms/` --- the shared `{lintr}` configuration package (moved here from the UCD-SERG lab manual); a separate R package, excluded from the site package by `.Rbuildignore`. See `lms/README.md` for installing and tagging it
 - `references.bib` --- BibTeX bibliography
 - `offwhite.scss`, `theme-picker.html` --- the website's Light / Off-white / Parchment / Dark theme dropdown (`theme-picker.html` builds it, `offwhite.scss` styles the two tinted palettes); the choice is saved under `mln-theme`, shared with the slides and with the other sites on this origin
 - `page-navigation.html` --- opt-in HTML include (off by default; turn on with `format.html.include-after-body`) that adds floating previous/next arrows in the page margins and fixes navbar highlighting when Home is in the sidebar; vendored from `Morrison-Lab/lbt` (a private repo, so not linked)

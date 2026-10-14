@@ -5,7 +5,13 @@ configuration, packaged as a small R package so every lab repository enforces th
 **same** linter set without copy-pasting `.lintr.R` files (which drift apart over time).
 
 It lives in the `lms/` subdirectory of
-[`UCD-SERG/lab-manual`](https://github.com/UCD-SERG/lab-manual) and exports:
+[`Morrison-Lab/psc`](https://github.com/Morrison-Lab/psc),
+the repository behind
+[Principles of Scientific Computing](https://morrison-lab.github.io/psc/).
+It was written for, and first kept in, the
+[UCD-SERG lab manual](https://github.com/UCD-SERG/lab-manual),
+and moved here with its history in October 2026.
+It exports:
 
 - `default_linters()` --- the canonical linter set (`lintr::linters_with_defaults()`
   plus the lab's rules: `|>` pipe consistency, snake_case-with-acronyms object names,
@@ -25,7 +31,7 @@ if (!requireNamespace("lms", quietly = TRUE)) {
   stop(  # nolint: undesirable_function_linter. .lintr.R is config, not package code.
     "Package 'lms' is required to lint this project. Install it with:\n",
     "  install.packages('remotes')\n",
-    "  remotes::install_github('UCD-SERG/lab-manual/lms@v0.1.0')",
+    "  remotes::install_github('Morrison-Lab/psc/lms@lms-v0.1.1')",
     call. = FALSE
   )
 }
@@ -43,12 +49,12 @@ Install `lms` in CI with an **explicit** step in the lint workflow, before linti
 - name: Install lms (shared linter config)
   run: |
     install.packages("remotes")
-    remotes::install_github("UCD-SERG/lab-manual/lms@v0.1.0")
+    remotes::install_github("Morrison-Lab/psc/lms@lms-v0.1.1")
   shell: Rscript {0}
 ```
 
 For local linting, install `lms` once the same way:
-`remotes::install_github("UCD-SERG/lab-manual/lms@v0.1.0")`.
+`remotes::install_github("Morrison-Lab/psc/lms@lms-v0.1.1")`.
 
 ## Do NOT declare lms in DESCRIPTION
 
@@ -57,7 +63,7 @@ something your package calls. Keep it out of `Imports`/`Suggests`, and do not
 add a `Remotes:` entry for it. Two reasons:
 
 1. **`{pak}` cannot resolve the subdir Remote.** The reference
-   `UCD-SERG/lab-manual/lms@v0.1.0` (a package in a repo *subdirectory*) resolves with
+   `Morrison-Lab/psc/lms@lms-v0.1.1` (a package in a repo *subdirectory*) resolves with
    the `{remotes}` package but **not** with `{pak}` /
    `r-lib/actions/setup-r-dependencies`, which fail with `Can't find package called
    lms`. If `lms` is in `Suggests`, that failure breaks *every* `{pak}`-based workflow in
@@ -70,10 +76,17 @@ The version pin lives in the CI `install_github(...@<tag>)` step, not in DESCRIP
 
 ## Versioning
 
-`lms` is released as a git **tag** on `lab-manual` `main` (currently `v0.1.0`). To roll
-out a rule change: merge it to `main`, cut a new tag, then bump the `@<tag>` ref in each
-consuming repo's lint workflow when ready. Pinning to a tag (not `main`) means routine
-edits to the lab manual never churn downstream linting.
+`lms` is released as a git **tag** on `psc` `main`,
+named `lms-v` plus the `Version:` in `lms/DESCRIPTION` (currently `lms-v0.1.1`).
+The `lms-` prefix keeps these tags apart from anything else the repository tags.
+To roll out a rule change:
+merge it to `main`, bump `Version:`, cut a new tag,
+then bump the `@<tag>` ref in each consuming repo's lint workflow when ready.
+Pinning to a tag (not `main`) means routine edits to the guide never churn downstream linting.
+
+Releases before the move are tags on the lab manual
+(`remotes::install_github("UCD-SERG/lab-manual/lms@v0.1.0")`),
+and they still install from there.
 
 ## Developing lms
 

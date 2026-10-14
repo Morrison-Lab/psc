@@ -40,8 +40,10 @@ The mindset in practice:
 Much shared research infrastructure comes from exactly this pattern:
 the Morrison Lab's [`{snapr}`](https://morrison-lab.github.io/snapr/) package
 packages snapshot-testing helpers,
-the UCD-SERG lab manual's [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms)
-linter package packages a shared lint configuration,
+the [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms)
+linter package,
+written for the UCD-SERG lab manual and now kept in this guide's repository,
+packages a shared lint configuration,
 and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository
 collects reusable CI workflows and composite actions
 shared across the Morrison Lab's repositories.
