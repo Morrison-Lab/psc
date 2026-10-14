@@ -25,6 +25,9 @@ exclude = [
   "https://localhost.*",
   "https://YOUR-ORG.github.io/.*",
   "https://your-org.github.io/.*",
+  # Links into this repository's own main branch name files the same PR
+  # adds, so they 404 until it merges; the files themselves are in the tree.
+  "https://github.com/Morrison-Lab/psc/(tree|blob)/main/.*",
   # Ported from UCD-SERG/lab-manual along with the chapters that link these:
   # Old RStudio blog moved to posit.co; frequently times out in CI
   "https://blog.rstudio.com/.*",
