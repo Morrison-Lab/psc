@@ -1,6 +1,6 @@
 The [r-lib](https://github.com/r-lib) GitHub organization, maintained primarily by the Posit team,
 hosts a collection of foundational R packages for package development, infrastructure, and general programming.
-These packages underpin much of the modern R ecosystem and are widely used in our lab's workflows.
+These packages underpin much of the modern R ecosystem.
 
 ## Package Development
 
@@ -298,5 +298,4 @@ Commonly used actions include:
 - `r-lib/actions/check-r-package` --- runs `R CMD check`
 - `r-lib/actions/setup-r-dependencies` --- installs package dependencies
 
-These actions are widely used across R packages hosted on GitHub,
-including this lab's repositories.
+These actions are widely used across R packages hosted on GitHub.

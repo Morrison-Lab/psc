@@ -156,7 +156,7 @@ for what that data covers
 [@githubaccountarchive].
 Clicking through delivers the `.tar.gz` by emailed download link.
 That makes this the one route needing no code at all:
-a lab member who wants the whole record
+a team member who wants the whole record
 can click through Settings and skip everything above.
 
 This route is the right one for archiving a repository before it is deleted or transferred.
