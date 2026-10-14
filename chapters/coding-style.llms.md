@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:15:39 (PDT)
+Last modified: 2026-10-14 12:29:23 (PDT)
 
 Follow these code style guidelines for all R code:
 
@@ -931,7 +931,7 @@ Linters are programming tools that check adherence to a given style, syntax erro
 > - Line length issues
 > - Style guide violations
 >
-> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. The example configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the [`lms`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
+> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. The example configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
 >
 > We recommend `.lintr.R` files for configuration (lintr also supports the `.lintr` format, but `.lintr.R` gets full R syntax support).
 
@@ -993,12 +993,12 @@ jarl check . --fix
 | **Implementation** | R | Rust |
 | **Execution speed** | Standard | Extremely fast (Rust binary) |
 | **Ecosystem maturity** | Industry standard, wide rule coverage | Emerging, expanding rule set |
-| **Custom R linters** | Yes (e.g., [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms)) | No (Rust-only rule definitions) |
+| **Custom R linters** | Yes (e.g., [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms)) | No (Rust-only rule definitions) |
 | **Primary use case** | CI verification, custom project rules | Fast pre-commit checks, local interactive editing |
 
 > **NOTE:**
 >
-> We recommend [`{lintr}`](https://lintr.r-lib.org/) with a custom `.lintr.R` configuration and a shared linter package (for example, the UCD-SERG lab manual’s [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) and [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms)) as the primary standard for CI pipelines and package validation. However, `{jarl}` is an excellent choice for local pre-commit hooks and interactive developer workflows where instant lint feedback saves time on large repositories.
+> We recommend [`{lintr}`](https://lintr.r-lib.org/) with a custom `.lintr.R` configuration and a shared linter package (for example, the UCD-SERG lab manual’s [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) and this guide’s [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms)) as the primary standard for CI pipelines and package validation. However, `{jarl}` is an excellent choice for local pre-commit hooks and interactive developer workflows where instant lint feedback saves time on large repositories.
 
 ### 18.4 Linting Changed Files vs. the Whole Project in CI
 

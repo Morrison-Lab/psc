@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:15:39 (PDT)
+Last modified: 2026-10-14 12:29:23 (PDT)
 
 ## 1 Protocols for Code and Data
 
@@ -30,7 +30,7 @@ The mindset in practice:
 - **Build for your own repeated use first.** A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next person too.
 - **Don’t gold-plate.** The tool only needs to beat doing the task by hand; polish it further only when its use grows to warrant it.
 
-Much shared research infrastructure comes from exactly this pattern: the Morrison Lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package packages snapshot-testing helpers, the UCD-SERG lab manual’s [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package packages a shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the Morrison Lab’s repositories.
+Much shared research infrastructure comes from exactly this pattern: the Morrison Lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package packages snapshot-testing helpers, the [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms) linter package, written for the UCD-SERG lab manual and now kept in this guide’s repository, packages a shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the Morrison Lab’s repositories.
 
 ## 3 Essential R Package Development Tools
 
