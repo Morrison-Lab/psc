@@ -123,7 +123,7 @@ use one of the workarounds above.
 ### Real-World Example
 
 In [UCD-SERG/rpt PR #70](https://github.com/UCD-SERG/rpt/pull/70),
-the UCD-SERG team removed mermaid diagrams from package vignettes specifically because they were incompatible with DOCX output.
+the maintainers removed mermaid diagrams from package vignettes specifically because they were incompatible with DOCX output.
 This demonstrates the practical impact of these limitations in production workflows.
 
 ### Future Outlook

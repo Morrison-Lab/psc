@@ -104,10 +104,6 @@ format:
 
 {{< include coding-practices/here-package.qmd >}}
 
-## Reading/Saving Data {#sec-readingsaving-data}
-
-{{< include coding-practices/reading-saving-data.qmd >}}
-
 ## Integrating Box and Dropbox {#sec-integrating-box-and-dropbox}
 
 {{< include coding-practices/integrating-box-dropbox.qmd >}}

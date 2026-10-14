@@ -137,7 +137,7 @@ preserving merged PR previews for historical reference
 ```yaml
 # Deploy preview when PR is opened/updated
 - uses: rossjrw/pr-preview-action@v1
-  if: contains(['opened', 'reopened', 'synchronize'], github.event.action)
+  if: contains(fromJSON('["opened", "reopened", "synchronize"]'), github.event.action)
   with:
     source-dir: ./docs/
     action: deploy

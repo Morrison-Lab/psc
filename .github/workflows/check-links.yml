@@ -5,7 +5,9 @@ name: Check Links
 # link check over .qmd/.md/.html, a PR skip-label ("links checked by hand"),
 # and auto-filing an issue when links break on main. We pass our repo-local
 # lychee.toml so the qwt-specific excludes (e.g. quarto.org) still apply.
-# See https://github.com/Morrison-Lab/gha for inputs and versioning.
+# See https://github.com/Morrison-Lab/gha for inputs and versioning. Pinned to
+# @v3, which demotes 5xx on lines a PR does not add to warnings (gha#1052);
+# @v2 predates that fix and fails PRs on transient github.com 503s.
 
 on:
   push:
@@ -26,6 +28,6 @@ jobs:
       contents: read
       issues: write
       pull-requests: read
-    uses: Morrison-Lab/gha/.github/workflows/check-links.yml@v2
+    uses: Morrison-Lab/gha/.github/workflows/check-links.yml@v3
     with:
       lychee-config: lychee.toml
