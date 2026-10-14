@@ -13,8 +13,9 @@ results <- readr::read_rds(here("results", "analysis.rds"))
 ```
 
 **Avoid `.RData` files**.
-The base R functions `save()` and `load()` serialize several objects into one `.RData` file,
-which causes three problems:
+The base R function `save()` serializes several objects into one `.RData` file,
+and `load()` restores every object in it under its original name.
+That causes three problems:
 
 - You can't control object names when loading.
 - You can't load individual objects.
