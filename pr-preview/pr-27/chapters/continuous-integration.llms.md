@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:49:06 (PDT)
+Last modified: 2026-10-14 03:54:35 (PDT)
 
 ## 1 Understanding GitHub Actions
 
@@ -135,7 +135,7 @@ jobs:
 
 Several repositories collect reusable GitHub Actions and workflows for R projects, so you can call shared, community-maintained CI steps instead of writing your own:
 
-- [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha): our lab’s own collection of composite actions and reusable workflows for R-package and Quarto repositories, covering previews, publishing, test coverage, spell/link/character checks, bibliography DOI checks, and the Claude review bots used across our repos.
+- [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha): the Morrison Lab’s collection of composite actions and reusable workflows for R-package and Quarto repositories, covering previews, publishing, test coverage, spell/link/character checks, bibliography DOI checks, and the Claude review bots used across its repos.
 - [r-lib/actions](https://github.com/r-lib/actions): the tidyverse team’s actions and example workflows (`R CMD check`, test coverage, [`{pkgdown}`](https://pkgdown.r-lib.org/), [`{lintr}`](https://lintr.r-lib.org/)), installable with `usethis::use_github_action()` as described in [Section 2](#sec-setting-up-github-actions).
 - [eddelbuettel/r-ci](https://github.com/eddelbuettel/r-ci): a portable, shell-script-based CI setup for R that works across GitHub Actions, Azure DevOps, Docker, and other providers from one configuration; the successor to the r-travis project.
 - [easystats/workflows](https://github.com/easystats/workflows): reusable workflows the easystats collective runs across its R packages, useful as worked examples of centralizing many repos’ automation in one place.
@@ -145,7 +145,7 @@ When several of your repositories need the same workflow, prefer calling a share
 
 ## 4 How GitHub Actions Workflows Work
 
-When you set up a workflow, `usethis` creates a YAML configuration file in `.github/workflows/`. For example, `usethis::use_github_action("check-standard")` creates `.github/workflows/R-CMD-check.yaml`.
+When you set up a workflow, `usethis` creates a YAML configuration file in `.github/workflows/`. For example, `usethis::use_github_action("check-standard")` copies the `check-standard` example workflow from [r-lib/actions](https://github.com/r-lib/actions/tree/v2/examples) to `.github/workflows/R-CMD-check.yaml`.
 
 This workflow automatically runs when you:
 

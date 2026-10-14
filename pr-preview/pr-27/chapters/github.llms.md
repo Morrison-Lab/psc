@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:49:06 (PDT)
+Last modified: 2026-10-14 03:54:35 (PDT)
 
 ## 1 Basics
 
@@ -161,7 +161,7 @@ Table 1: Standard Git workflow for new projects
 
 ## 8 Pull Request Roles and Protocol
 
-The lab’s pull request roles, author and reviewer expectations, [stacked pull requests](../chapters/collaborative-software-development.llms.md#sec-stacked-pull-requests), and review-response protocol are consolidated in [Collaborative Software Development](../chapters/collaborative-software-development.llms.md#sec-collab-dev). This GitHub chapter focuses on Git mechanics and GitHub-specific platform features.
+Recommended pull request roles, author and reviewer expectations, [stacked pull requests](../chapters/collaborative-software-development.llms.md#sec-stacked-pull-requests), and review-response protocol are consolidated in [Collaborative Software Development](../chapters/collaborative-software-development.llms.md#sec-collab-dev). This GitHub chapter focuses on Git mechanics and GitHub-specific platform features.
 
 ## 9 Commonly Used Git Commands
 
@@ -225,11 +225,11 @@ For more details and troubleshooting scenarios, see the [Repeated Amend chapter]
 
 Never push .Rout files! If someone else runs an R script and creates an .Rout file at the same time and both of you try to push to github, it is incredibly difficult to reconcile these two logs. If you run logs, keep them on your own system or (preferably) set up a shared directory where all logs are name and date timestamped.
 
-There is a standardized `.gitignore` for `R` which you [can download](https://github.com/github/gitignore/blob/master/R.gitignore) and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a [great discussion of project-oriented workflows](https://tidyverse.org/blog/2017/12/workflow-vs-script/), extolling the virtues of a self-contained, portable projects, for your reference.
+There is a standardized `.gitignore` for `R` which you [can download](https://github.com/github/gitignore/blob/main/R.gitignore) and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a [great discussion of project-oriented workflows](https://tidyverse.org/blog/2017/12/workflow-vs-script/), extolling the virtues of self-contained, portable projects, for your reference.
 
 ## 13 GitLab
 
-Our lab primarily uses GitHub, but you may encounter [GitLab](https://about.gitlab.com/) — most often when collaborating with a group that self-hosts its own GitLab instance.
+This guide focuses on GitHub, but you may encounter [GitLab](https://about.gitlab.com/) — most often when collaborating with a group that self-hosts its own GitLab instance.
 
 The two platforms support the same core workflow (clone, branch, push, review, merge), with a few differences worth knowing:
 
@@ -241,7 +241,7 @@ The two platforms support the same core workflow (clone, branch, push, review, m
 Two R packages help when working with GitLab from R (the second works across both forges):
 
 - [`{gitlabr}`](https://thinkr-open.github.io/gitlabr/) provides R access to the GitLab API, with convenience wrappers for common tasks (repository file access, issue assignment and status, commenting).
-- [`{pr.helpers}`](https://github.com/d-morrison/pr.helpers), our lab’s own (experimental) package, provides helpers for common pull/merge request workflows from a local Git repository — creating and switching branches, fetching requests by number, generating request URLs, and syncing with the default branch — and works across both GitHub and GitLab remotes.
+- [`{pr.helpers}`](https://github.com/d-morrison/pr.helpers), an experimental package from the Morrison Lab, provides helpers for common pull/merge request workflows from a local Git repository — creating and switching branches, fetching requests by number, generating request URLs, and syncing with the default branch — and works across both GitHub and GitLab remotes.
 
 ## 14 Customizing How Files Appear on GitHub
 
@@ -409,7 +409,7 @@ The user migrations reference lists what the archive can hold ([“REST API Endp
 
 Start a migration with `POST /user/migrations` for repositories you own, or `POST /orgs/{org}/migrations` for an organization’s repositories if you are an organization owner ([“REST API Endpoints for Organization Migrations,” n.d.](#ref-githuborgmigrations)). Both are asynchronous: you poll the migration’s status until it reports `exported`, then download the archive, which stays available for seven days.
 
-**Settings \> Account \> Export account data** is the web-interface route to this same export rather than a separate feature. GitHub’s documentation states that you can export your personal account’s data “through your account settings on GitHub or with the User Migration API”, and refers readers to the migrations API reference for what that data covers ([“Requesting an Archive of Your Personal Account’s Data,” n.d.](#ref-githubaccountarchive)). Clicking through delivers the `.tar.gz` by emailed download link. That makes this the one route needing no code at all: a lab member who wants the whole record can click through Settings and skip everything above.
+**Settings \> Account \> Export account data** is the web-interface route to this same export rather than a separate feature. GitHub’s documentation states that you can export your personal account’s data “through your account settings on GitHub or with the User Migration API”, and refers readers to the migrations API reference for what that data covers ([“Requesting an Archive of Your Personal Account’s Data,” n.d.](#ref-githubaccountarchive)). Clicking through delivers the `.tar.gz` by emailed download link. That makes this the one route needing no code at all: a team member who wants the whole record can click through Settings and skip everything above.
 
 This route is the right one for archiving a repository before it is deleted or transferred. The per-repository scripts above are better for ongoing exports or for a subset of the discussion.
 

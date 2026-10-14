@@ -314,7 +314,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:49:06 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:54:35 (PDT)</p>
 </section>
 <section class="slide level2 scrollable">
 
@@ -659,7 +659,7 @@ Figure&nbsp;2: Terminal output after executing basic Unix commands
 <p>The commands in the tables above work the same in any shell. This section is about which shell to use <em>interactively</em> — the one that gives you a prompt, completes filenames, and remembers your history. It does not change how scripts run: a script beginning <code>#!/usr/bin/env bash</code> still runs under bash no matter which shell you launched it from.</p>
 <p>We recommend Z shell (<code>zsh</code>) with <a href="https://ohmyz.sh/">Oh My Zsh</a>, a configuration framework that supplies themes, completions, and a plugin system. Two reasons:</p>
 <ul>
-<li><code>zsh</code> has been the default login shell on macOS since 10.15 (Catalina), so most of the lab is already running it.</li>
+<li><code>zsh</code> has been the default login shell on macOS since 10.15 (Catalina), so many Mac users are already running it.</li>
 <li>The plugin pair below — suggestions from your own history, and syntax coloring that shows a typo before you press enter — removes a real class of command-line mistake.</li>
 </ul>
 <p>This applies to macOS, Linux, and Windows Subsystem for Linux (WSL). It does not apply to Git Bash on Windows, which is bash and has no <code>zsh</code> to switch to; Windows users who want this should work inside WSL.</p>
@@ -709,7 +709,7 @@ Table&nbsp;4: Bundled Oh My Zsh plugins worth enabling
 <tbody>
 <tr class="odd">
 <td><code>gh</code></td>
-<td>Completions for the GitHub CLI, which our workflow leans on heavily</td>
+<td>Completions for the GitHub CLI, which the workflows in this guide lean on heavily</td>
 </tr>
 <tr class="even">
 <td><code>tmux</code></td>
@@ -867,7 +867,7 @@ Table&nbsp;6: Commands for running Bash scripts
 </section>
 <section class="slide level2">
 
-<p>For shell scripts, we follow the <a href="https://google.github.io/styleguide/shellguide.html">Google Shell Style Guide</a> as the base authority, the same way our R chapters defer to the <a href="https://style.tidyverse.org/">tidyverse style guide</a>. The points below are the lab’s priorities and additions.</p>
+<p>For shell scripts, we follow the <a href="https://google.github.io/styleguide/shellguide.html">Google Shell Style Guide</a> as the base authority, the same way our R chapters defer to the <a href="https://style.tidyverse.org/">tidyverse style guide</a>. The points below are our priorities and additions.</p>
 <h3 id="error-handling">Error handling</h3>
 <p>Start every bash script with strict mode:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a aria-label="1"></a><span class="co">#!/usr/bin/env bash</span></span>

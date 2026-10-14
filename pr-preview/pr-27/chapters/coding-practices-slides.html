@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:49:06 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:54:35 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -362,17 +362,17 @@
 <li><strong>Notice the friction.</strong> When you catch yourself repeating a task, following a fragile manual sequence, or avoiding something because it is tedious, treat that as a signal to build (or find) a tool for it.</li>
 <li><strong>Look before you build — then chip away.</strong> Check whether an existing tool already solves the problem (see <a href="../chapters/coding-style.html#sec-prefer-packaged-functions">Prefer Existing Packaged Functions</a>); when nothing quite fits, don’t let “not worth the effort” stop you: a tool that removes part of an annoying task is already good enough to start with.</li>
 <li><strong>Start small and grow the tool as it earns it.</strong> A copy-pasted snippet becomes a function; a function used across analyses becomes a package (see <a href="#/sec-r-workflow" class="quarto-xref">Section&nbsp;4</a>); a workflow copied between repositories becomes a shared, reusable one.</li>
-<li><strong>Build for your own repeated use first.</strong> A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next lab member too.</li>
+<li><strong>Build for your own repeated use first.</strong> A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next person too.</li>
 <li><strong>Don’t gold-plate.</strong> The tool only needs to beat doing the task by hand; polish it further only when its use grows to warrant it.</li>
 </ul>
-<p>Much of our lab’s shared infrastructure came from exactly this pattern: the <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package packages the lab’s snapshot-testing helpers, the <a href="https://github.com/UCD-SERG/lab-manual/tree/main/lms"><code>{lms}</code></a> linter package packages our shared lint configuration, and the <a href="https://github.com/Morrison-Lab/gha">Morrison-Lab/gha</a> repository collects reusable CI workflows and composite actions shared across the lab’s repositories.</p>
+<p>Much shared research infrastructure comes from exactly this pattern: the Morrison Lab’s <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package packages the lab’s snapshot-testing helpers, the UCD-SERG lab manual’s <a href="https://github.com/UCD-SERG/lab-manual/tree/main/lms"><code>{lms}</code></a> linter package packages a shared lint configuration, and the <a href="https://github.com/Morrison-Lab/gha">Morrison-Lab/gha</a> repository collects reusable CI workflows and composite actions shared across the Morrison Lab’s repositories.</p>
 </section>
 <section id="sec-r-package-tools" class="slide level2" data-number="3">
 <h2><span class="header-section-number">3</span> Essential R Package Development Tools</h2>
 </section>
 <section class="slide level2">
 
-<p>The following tools are essential for R package development in our lab:</p>
+<p>The following tools are essential for R package development:</p>
 <h3 id="usethis-package-setup-and-management">usethis: Package Setup and Management</h3>
 <p><code>usethis</code> automates common package development tasks:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="co"># Install usethis</span></span>
@@ -451,7 +451,7 @@
 <span id="cb3-15"><a aria-label="15"></a>pkgdown<span class="sc">::</span><span class="fu">build_articles</span>()           <span class="co"># Vignettes</span></span>
 <span id="cb3-16"><a aria-label="16"></a>pkgdown<span class="sc">::</span><span class="fu">build_home</span>()               <span class="co"># Home page from README</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Configure your pkgdown site</strong> with <code>_pkgdown.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a aria-label="1"></a><span class="fu">url</span><span class="kw">:</span><span class="at"> https://ucd-serg.github.io/YOURPROJECT</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a aria-label="1"></a><span class="fu">url</span><span class="kw">:</span><span class="at"> https://YOUR-ORG.github.io/YOURPROJECT</span></span>
 <span id="cb4-2"><a aria-label="2"></a></span>
 <span id="cb4-3"><a aria-label="3"></a><span class="fu">template</span><span class="kw">:</span></span>
 <span id="cb4-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">bootstrap</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
@@ -619,10 +619,10 @@
 </section>
 <section class="slide level2">
 
-<p>Here’s the typical workflow for developing an R package in our lab:</p>
+<p>Here’s a typical workflow for developing an R package:</p>
 <h3 id="initial-setup">1. Initial Setup</h3>
 <p><strong>Starting from a template (recommended):</strong></p>
-<p>Using our R package template is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:</p>
+<p>Using an R package template such as <a href="https://github.com/Morrison-Lab/rpt"><code>Morrison-Lab/rpt</code></a> is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:</p>
 <ul>
 <li><strong>R Package Template (<code>rpt</code>)</strong> - Our recommended template with pre-configured development tools and CI workflows:
 <ul>
@@ -750,7 +750,7 @@
 <span id="cb17-2"><a aria-label="2"></a>  result <span class="ot">&lt;-</span> <span class="fu">prep_study_data</span>(raw_data)</span>
 <span id="cb17-3"><a aria-label="3"></a>  <span class="fu">expect_snapshot_value</span>(result, <span class="at">style =</span> <span class="st">"serialize"</span>)</span>
 <span id="cb17-4"><a aria-label="4"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Our lab’s <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package (on <a href="https://cran.r-project.org/package=snapr">CRAN</a>) adds convenience wrappers on top of <a href="https://testthat.r-lib.org/"><code>{testthat}</code></a>’s snapshot functions: <code>expect_snapshot_data()</code> for data frames (adapted, with permission, from the <a href="https://cran.r-project.org/package=ssdtools"><code>{ssdtools}</code></a> package) and <code>expect_snapshot_object()</code>, which generalizes it to any R object.</p>
+<p>The Morrison Lab’s <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package (on <a href="https://cran.r-project.org/package=snapr">CRAN</a>) adds convenience wrappers on top of <a href="https://testthat.r-lib.org/"><code>{testthat}</code></a>’s snapshot functions: <code>expect_snapshot_data()</code> for data frames (adapted, with permission, from the <a href="https://cran.r-project.org/package=ssdtools"><code>{ssdtools}</code></a> package) and <code>expect_snapshot_object()</code>, which generalizes it to any R object.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="fu">test_that</span>(<span class="st">"prep_study_data output is stable"</span>, {</span>
 <span id="cb18-2"><a aria-label="2"></a>  result <span class="ot">&lt;-</span> <span class="fu">prep_study_data</span>(raw_data)</span>
 <span id="cb18-3"><a aria-label="3"></a>  snapr<span class="sc">::</span><span class="fu">expect_snapshot_data</span>(result, <span class="at">name =</span> <span class="st">"prepped_study_data"</span>)</span>
@@ -1326,7 +1326,7 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <ul>
 <li><a href="https://bench.r-lib.org/"><code>{bench}</code></a> - Accurate benchmarking</li>
 <li><a href="https://profvis.r-lib.org/"><code>{profvis}</code></a> - Interactive profiling</li>
-<li><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a> - Function-call caching to eliminate repeated bottlenecks (<a href="#/sec-memoise" class="quarto-xref">Section&nbsp;37.2</a>)</li>
+<li><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a> - Function-call caching to eliminate repeated bottlenecks (<a href="#/sec-memoise" class="quarto-xref">Section&nbsp;36.2</a>)</li>
 <li><a href="https://adv-r.hadley.nz/perf-measure.html">Measuring Performance</a> chapter in Advanced R</li>
 <li><a href="https://adv-r.hadley.nz/perf-improve.html">Improving Performance</a> chapter in Advanced R</li>
 <li><a href="https://github.com/lorenzwalthert/touchstone"><code>{touchstone}</code></a> - CI benchmarking with PR comments</li>
@@ -1396,6 +1396,7 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 </section>
 <section class="slide level2">
 
+<p><span id="sec-readingsaving-data"></span></p>
 <h3 id="rds-files-preferred">RDS Files (Preferred)</h3>
 <p>Use RDS format for R objects:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-label="1"></a><span class="co"># Save single object</span></span>
@@ -1403,7 +1404,25 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <span id="cb43-3"><a aria-label="3"></a></span>
 <span id="cb43-4"><a aria-label="4"></a><span class="co"># Read back</span></span>
 <span id="cb43-5"><a aria-label="5"></a>results <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(<span class="fu">here</span>(<span class="st">"results"</span>, <span class="st">"analysis.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Avoid <code>.RData</code> files</strong> because: - You can’t control object names when loading - Can’t load individual objects - Creates confusion in older code</p>
+<p><strong>Avoid <code>.RData</code> files</strong>. The base R function <code>save()</code> serializes several objects into one <code>.RData</code> file, and <code>load()</code> restores every object in it under its original name. That causes three problems:</p>
+<ul>
+<li>You can’t control object names when loading.</li>
+<li>You can’t load individual objects.</li>
+<li>Older code becomes hard to follow, because it is not clear which objects a <code>load()</code> call creates.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>If you have many related R objects that you would otherwise save together with <code>save()</code>, put them in a named list and save that list as one RDS file.</p>
+</div>
+</div>
+</div>
 <h3 id="csv-files">CSV Files</h3>
 <p>For tabular data that may be shared with non-R users:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-label="1"></a><span class="co"># Write</span></span>
@@ -1413,8 +1432,9 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <span id="cb44-5"><a aria-label="5"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"clean_data.csv"</span>))</span>
 <span id="cb44-6"><a aria-label="6"></a></span>
 <span id="cb44-7"><a aria-label="7"></a><span class="co"># For very large files, use data.table</span></span>
-<span id="cb44-8"><a aria-label="8"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(large_data, <span class="st">"big_file.csv"</span>)</span>
-<span id="cb44-9"><a aria-label="9"></a>data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">"big_file.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-8"><a aria-label="8"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(large_data, <span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"big_file.csv"</span>))</span>
+<span id="cb44-9"><a aria-label="9"></a>data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"big_file.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>readr::read_csv()</code> and <code>readr::write_csv()</code> are much faster than base R’s <code>read.csv()</code> and <code>write.csv()</code>. For very large files (several gigabytes), <code>data.table::fread()</code> and <code>data.table::fwrite()</code> are faster still.</p>
 </section>
 <section id="sec-r-version-control" class="slide level2" data-number="11">
 <h2><span class="header-section-number">11</span> Version Control and Collaboration</h2>
@@ -1761,36 +1781,31 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 ################################################################################
 </code></pre>
 <h3 id="sections-and-subsections">Sections and subsections</h3>
-<p>Rstudio (<a href="https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/">v1.4 or more recent</a>) supports the use of Sections and Subsections. You can easily navigate through longer scripts using the navigation pane in RStudio. This is how to write a section and its subsections:</p>
+<p>RStudio (<a href="https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/">v1.4 or more recent</a>) supports the use of sections and subsections. You can easily navigate through longer scripts using the navigation pane in RStudio. Create sections and subsections with comment lines like these:</p>
 <pre><code># Section -------
 
 ## Subsection -------
 
 ### Sub-subsection -------</code></pre>
 <h3 id="code-folding">Code folding</h3>
-<p>Consider using RStudio’s <a href="https://support.posit.co/hc/en-us/articles/200484568-Code-Folding-and-Sections">code folding</a> feature to collapse and expand different sections of your code. Any comment line with at least four trailing dashes (-), equal signs (=), or pound signs (#) automatically creates a code section. For example, each of these comments creates a foldable section:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a aria-label="1"></a><span class="co"># Load packages ----</span></span>
-<span id="cb58-2"><a aria-label="2"></a></span>
-<span id="cb58-3"><a aria-label="3"></a><span class="co"># Clean data ====</span></span>
-<span id="cb58-4"><a aria-label="4"></a></span>
-<span id="cb58-5"><a aria-label="5"></a><span class="co"># Fit models ####</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Consider using RStudio’s <a href="https://support.posit.co/hc/en-us/articles/200484568-Code-Folding-and-Sections">code folding</a> feature to collapse and expand different sections of your code. Any comment line with at least four trailing dashes (-), equal signs (=), or pound signs (#) automatically creates a code section. The section headers shown above are examples.</p>
 <h3 id="comments-in-the-body-of-your-code">Comments in the body of your code</h3>
 <p>Commenting your code is an important part of reproducibility and helps document your code for the future. When things change or break, you’ll be thankful for comments. There’s no need to comment excessively or unnecessarily, but a comment describing what a large or complex chunk of code does is always helpful. See <a href="https://github.com/kmishra9/Flu-Absenteeism/blob/master/Master's%20Thesis%20-%20Spatial%20Epidemiology%20of%20Influenza/1b%20-%20Map-Management.R">this file</a> for an example of how to comment your code and notice that comments are always in the form of:</p>
 <pre><code># This is a comment -- first letter is capitalized and spaced away from the pound sign</code></pre>
 <h3 id="sec-variable-labels">Variable labels</h3>
 <p>Add a descriptive label as soon as you create each key variable (any variable that might end up in a figure, table, or output model). The label should explicitly include measurement units where applicable.</p>
 <p>In R, prefer the <a href="https://larmarange.github.io/labelled/"><code>{labelled}</code></a> package over raw base R attributes. <code>{labelled}</code> integrates seamlessly with tidyverse pipelines:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a aria-label="1"></a><span class="fu">library</span>(labelled)</span>
-<span id="cb60-2"><a aria-label="2"></a></span>
-<span id="cb60-3"><a aria-label="3"></a><span class="co"># Set variable labels directly in a pipeline</span></span>
-<span id="cb60-4"><a aria-label="4"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb60-5"><a aria-label="5"></a>  <span class="fu">set_variable_labels</span>(</span>
-<span id="cb60-6"><a aria-label="6"></a>    <span class="at">blood_lead_level =</span> <span class="st">"Blood lead concentration (ug/dL)"</span>,</span>
-<span id="cb60-7"><a aria-label="7"></a>    <span class="at">pm25_exposure =</span> <span class="st">"Annual average PM2.5 exposure (ug/m^3)"</span></span>
-<span id="cb60-8"><a aria-label="8"></a>  )</span>
-<span id="cb60-9"><a aria-label="9"></a></span>
-<span id="cb60-10"><a aria-label="10"></a><span class="co"># Set a single variable label using var_label()</span></span>
-<span id="cb60-11"><a aria-label="11"></a><span class="fu">var_label</span>(data<span class="sc">$</span>blood_lead_level) <span class="ot">&lt;-</span> <span class="st">"Blood lead concentration (ug/dL)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a aria-label="1"></a><span class="fu">library</span>(labelled)</span>
+<span id="cb59-2"><a aria-label="2"></a></span>
+<span id="cb59-3"><a aria-label="3"></a><span class="co"># Set variable labels directly in a pipeline</span></span>
+<span id="cb59-4"><a aria-label="4"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb59-5"><a aria-label="5"></a>  <span class="fu">set_variable_labels</span>(</span>
+<span id="cb59-6"><a aria-label="6"></a>    <span class="at">blood_lead_level =</span> <span class="st">"Blood lead concentration (ug/dL)"</span>,</span>
+<span id="cb59-7"><a aria-label="7"></a>    <span class="at">pm25_exposure =</span> <span class="st">"Annual average PM2.5 exposure (ug/m^3)"</span></span>
+<span id="cb59-8"><a aria-label="8"></a>  )</span>
+<span id="cb59-9"><a aria-label="9"></a></span>
+<span id="cb59-10"><a aria-label="10"></a><span class="co"># Set a single variable label using var_label()</span></span>
+<span id="cb59-11"><a aria-label="11"></a><span class="fu">var_label</span>(data<span class="sc">$</span>blood_lead_level) <span class="ot">&lt;-</span> <span class="st">"Blood lead concentration (ug/dL)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Labeling key variables at the point of creation ensures that downstream table generators (such as <a href="https://www.danieldsjoberg.com/gtsummary/"><code>{gtsummary}</code></a>) can automatically display human-readable descriptions and correct units without error-prone manual relabeling.</p>
 <p><em>See also <a href="../chapters/coding-style.html#sec-function-docs">Function Structure and Documentation</a> for function documentation style guidelines.</em></p>
 </section>
@@ -1922,56 +1937,56 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <section class="slide level2">
 
 <p>A common case for decomposition is a function that opens with a long sequence of input-validation checks. When the same validation pattern repeats for multiple inputs, extract it into a helper:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a aria-label="1"></a><span class="co"># Before: repeated validation blocks inline</span></span>
-<span id="cb63-2"><a aria-label="2"></a>build_analysis_cache <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb63-3"><a aria-label="3"></a>    rebuild_signal, signal_files, signal_dir,</span>
-<span id="cb63-4"><a aria-label="4"></a>    rebuild_finance, finance_files, finance_dir,</span>
-<span id="cb63-5"><a aria-label="5"></a>    ...) {</span>
-<span id="cb63-6"><a aria-label="6"></a>  <span class="cf">if</span> (rebuild_signal <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(signal_files) <span class="sc">==</span> <span class="dv">0</span>L) {</span>
-<span id="cb63-7"><a aria-label="7"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="fu">c</span>(</span>
-<span id="cb63-8"><a aria-label="8"></a>      <span class="st">"Cannot rebuild Signal source data."</span>,</span>
-<span id="cb63-9"><a aria-label="9"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"No raw files found in {.path {signal_dir}}."</span>,</span>
-<span id="cb63-10"><a aria-label="10"></a>      <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"Use {.val auto} to reuse an existing RDS."</span></span>
-<span id="cb63-11"><a aria-label="11"></a>    ))</span>
-<span id="cb63-12"><a aria-label="12"></a>  }</span>
-<span id="cb63-13"><a aria-label="13"></a>  <span class="cf">if</span> (rebuild_finance <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(finance_files) <span class="sc">==</span> <span class="dv">0</span>L) {</span>
-<span id="cb63-14"><a aria-label="14"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="fu">c</span>(</span>
-<span id="cb63-15"><a aria-label="15"></a>      <span class="st">"Cannot rebuild finance source data."</span>,</span>
-<span id="cb63-16"><a aria-label="16"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"No raw files found in {.path {finance_dir}}."</span>,</span>
-<span id="cb63-17"><a aria-label="17"></a>      <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"Use {.val auto} to reuse an existing RDS."</span></span>
-<span id="cb63-18"><a aria-label="18"></a>    ))</span>
-<span id="cb63-19"><a aria-label="19"></a>  }</span>
-<span id="cb63-20"><a aria-label="20"></a>  <span class="co"># ... same pattern for mapping, then more for cached-RDS checks ...</span></span>
-<span id="cb63-21"><a aria-label="21"></a>}</span>
-<span id="cb63-22"><a aria-label="22"></a></span>
-<span id="cb63-23"><a aria-label="23"></a><span class="co"># After: extract the repeated pattern into a helper</span></span>
-<span id="cb63-24"><a aria-label="24"></a>validate_source_rebuild <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb63-25"><a aria-label="25"></a>    rebuild,</span>
-<span id="cb63-26"><a aria-label="26"></a>    source_files,</span>
-<span id="cb63-27"><a aria-label="27"></a>    label,</span>
-<span id="cb63-28"><a aria-label="28"></a>    search_path,</span>
-<span id="cb63-29"><a aria-label="29"></a>    <span class="at">call =</span> rlang<span class="sc">::</span><span class="fu">caller_env</span>()) {</span>
-<span id="cb63-30"><a aria-label="30"></a>  <span class="cf">if</span> (<span class="sc">!</span>rebuild <span class="sc">||</span> <span class="fu">length</span>(source_files) <span class="sc">&gt;</span> <span class="dv">0</span>L) <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
-<span id="cb63-31"><a aria-label="31"></a>  cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
-<span id="cb63-32"><a aria-label="32"></a>    <span class="fu">c</span>(</span>
-<span id="cb63-33"><a aria-label="33"></a>      <span class="st">"Cannot rebuild {label} source data."</span>,</span>
-<span id="cb63-34"><a aria-label="34"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"No raw {label} files were found in {.path {search_path}}."</span>,</span>
-<span id="cb63-35"><a aria-label="35"></a>      <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"Use {.val auto} to reuse an existing source RDS."</span></span>
-<span id="cb63-36"><a aria-label="36"></a>    ),</span>
-<span id="cb63-37"><a aria-label="37"></a>    <span class="at">call =</span> call</span>
-<span id="cb63-38"><a aria-label="38"></a>  )</span>
-<span id="cb63-39"><a aria-label="39"></a>}</span>
-<span id="cb63-40"><a aria-label="40"></a></span>
-<span id="cb63-41"><a aria-label="41"></a>build_analysis_cache <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb63-42"><a aria-label="42"></a>    rebuild_signal, signal_files, signal_dir,</span>
-<span id="cb63-43"><a aria-label="43"></a>    rebuild_finance, finance_files, finance_dir,</span>
-<span id="cb63-44"><a aria-label="44"></a>    rebuild_mapping, mapping_files, s_drive_path,</span>
-<span id="cb63-45"><a aria-label="45"></a>    ...) {</span>
-<span id="cb63-46"><a aria-label="46"></a>  <span class="fu">validate_source_rebuild</span>(rebuild_signal, signal_files, <span class="st">"Signal"</span>, signal_dir)</span>
-<span id="cb63-47"><a aria-label="47"></a>  <span class="fu">validate_source_rebuild</span>(rebuild_finance, finance_files, <span class="st">"finance"</span>, finance_dir)</span>
-<span id="cb63-48"><a aria-label="48"></a>  <span class="fu">validate_source_rebuild</span>(rebuild_mapping, mapping_files, <span class="st">"mapping"</span>, s_drive_path)</span>
-<span id="cb63-49"><a aria-label="49"></a>  <span class="co"># ... main logic is now immediately visible</span></span>
-<span id="cb63-50"><a aria-label="50"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a aria-label="1"></a><span class="co"># Before: repeated validation blocks inline</span></span>
+<span id="cb62-2"><a aria-label="2"></a>build_analysis_cache <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb62-3"><a aria-label="3"></a>    rebuild_signal, signal_files, signal_dir,</span>
+<span id="cb62-4"><a aria-label="4"></a>    rebuild_finance, finance_files, finance_dir,</span>
+<span id="cb62-5"><a aria-label="5"></a>    ...) {</span>
+<span id="cb62-6"><a aria-label="6"></a>  <span class="cf">if</span> (rebuild_signal <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(signal_files) <span class="sc">==</span> <span class="dv">0</span>L) {</span>
+<span id="cb62-7"><a aria-label="7"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="fu">c</span>(</span>
+<span id="cb62-8"><a aria-label="8"></a>      <span class="st">"Cannot rebuild Signal source data."</span>,</span>
+<span id="cb62-9"><a aria-label="9"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"No raw files found in {.path {signal_dir}}."</span>,</span>
+<span id="cb62-10"><a aria-label="10"></a>      <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"Use {.val auto} to reuse an existing RDS."</span></span>
+<span id="cb62-11"><a aria-label="11"></a>    ))</span>
+<span id="cb62-12"><a aria-label="12"></a>  }</span>
+<span id="cb62-13"><a aria-label="13"></a>  <span class="cf">if</span> (rebuild_finance <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(finance_files) <span class="sc">==</span> <span class="dv">0</span>L) {</span>
+<span id="cb62-14"><a aria-label="14"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="fu">c</span>(</span>
+<span id="cb62-15"><a aria-label="15"></a>      <span class="st">"Cannot rebuild finance source data."</span>,</span>
+<span id="cb62-16"><a aria-label="16"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"No raw files found in {.path {finance_dir}}."</span>,</span>
+<span id="cb62-17"><a aria-label="17"></a>      <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"Use {.val auto} to reuse an existing RDS."</span></span>
+<span id="cb62-18"><a aria-label="18"></a>    ))</span>
+<span id="cb62-19"><a aria-label="19"></a>  }</span>
+<span id="cb62-20"><a aria-label="20"></a>  <span class="co"># ... same pattern for mapping, then more for cached-RDS checks ...</span></span>
+<span id="cb62-21"><a aria-label="21"></a>}</span>
+<span id="cb62-22"><a aria-label="22"></a></span>
+<span id="cb62-23"><a aria-label="23"></a><span class="co"># After: extract the repeated pattern into a helper</span></span>
+<span id="cb62-24"><a aria-label="24"></a>validate_source_rebuild <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb62-25"><a aria-label="25"></a>    rebuild,</span>
+<span id="cb62-26"><a aria-label="26"></a>    source_files,</span>
+<span id="cb62-27"><a aria-label="27"></a>    label,</span>
+<span id="cb62-28"><a aria-label="28"></a>    search_path,</span>
+<span id="cb62-29"><a aria-label="29"></a>    <span class="at">call =</span> rlang<span class="sc">::</span><span class="fu">caller_env</span>()) {</span>
+<span id="cb62-30"><a aria-label="30"></a>  <span class="cf">if</span> (<span class="sc">!</span>rebuild <span class="sc">||</span> <span class="fu">length</span>(source_files) <span class="sc">&gt;</span> <span class="dv">0</span>L) <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
+<span id="cb62-31"><a aria-label="31"></a>  cli<span class="sc">::</span><span class="fu">cli_abort</span>(</span>
+<span id="cb62-32"><a aria-label="32"></a>    <span class="fu">c</span>(</span>
+<span id="cb62-33"><a aria-label="33"></a>      <span class="st">"Cannot rebuild {label} source data."</span>,</span>
+<span id="cb62-34"><a aria-label="34"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"No raw {label} files were found in {.path {search_path}}."</span>,</span>
+<span id="cb62-35"><a aria-label="35"></a>      <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"Use {.val auto} to reuse an existing source RDS."</span></span>
+<span id="cb62-36"><a aria-label="36"></a>    ),</span>
+<span id="cb62-37"><a aria-label="37"></a>    <span class="at">call =</span> call</span>
+<span id="cb62-38"><a aria-label="38"></a>  )</span>
+<span id="cb62-39"><a aria-label="39"></a>}</span>
+<span id="cb62-40"><a aria-label="40"></a></span>
+<span id="cb62-41"><a aria-label="41"></a>build_analysis_cache <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb62-42"><a aria-label="42"></a>    rebuild_signal, signal_files, signal_dir,</span>
+<span id="cb62-43"><a aria-label="43"></a>    rebuild_finance, finance_files, finance_dir,</span>
+<span id="cb62-44"><a aria-label="44"></a>    rebuild_mapping, mapping_files, s_drive_path,</span>
+<span id="cb62-45"><a aria-label="45"></a>    ...) {</span>
+<span id="cb62-46"><a aria-label="46"></a>  <span class="fu">validate_source_rebuild</span>(rebuild_signal, signal_files, <span class="st">"Signal"</span>, signal_dir)</span>
+<span id="cb62-47"><a aria-label="47"></a>  <span class="fu">validate_source_rebuild</span>(rebuild_finance, finance_files, <span class="st">"finance"</span>, finance_dir)</span>
+<span id="cb62-48"><a aria-label="48"></a>  <span class="fu">validate_source_rebuild</span>(rebuild_mapping, mapping_files, <span class="st">"mapping"</span>, s_drive_path)</span>
+<span id="cb62-49"><a aria-label="49"></a>  <span class="co"># ... main logic is now immediately visible</span></span>
+<span id="cb62-50"><a aria-label="50"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Benefits of this pattern:</p>
 <ul>
 <li>The main function reads as a workflow outline rather than a wall of <code>if</code>/<code>cli_abort</code> blocks.</li>
@@ -2044,7 +2059,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <li><strong>Fewer bugs.</strong> Less code and simpler control flow leave fewer places for defects to hide and make the remaining logic easier to reason about.</li>
 <li><strong>Easier review.</strong> A reviewer can hold a short, single-purpose function in their head; they cannot do that with a sprawling one.</li>
 <li><strong>Cheaper maintenance.</strong> Simple code can be modified confidently; complex code makes every change risky and slow.</li>
-<li><strong>Faster onboarding.</strong> New lab members become productive sooner when the codebase does things the plain, expected way.</li>
+<li><strong>Faster onboarding.</strong> New team members become productive sooner when the codebase does things the plain, expected way.</li>
 </ul>
 <p>Simplicity is not an excuse to drop requirements: the goal is the simplest solution that still does the whole job, not a simpler job. The preceding sections on function decomposition and function length limits, and the guidance on <a href="../chapters/coding-style.html#sec-avoid-nesting">avoiding deep nesting</a>, are concrete applications of this principle.</p>
 </section>
@@ -2063,34 +2078,11 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 </section>
 <section class="slide level2">
 
-<p>The <code>here</code> package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path <code>/home/oski/Some-R-Project</code>. My collaborator might clone the repository and work with it at some other path, such as <code>/home/bear/R-Code/Some-R-Project</code>. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the <code>here</code> package comes in and this a <a href="https://github.com/jennybc/here_here">great vignette describing it</a>.</p>
+<p>The <code>here</code> package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path <code>/home/oski/Some-R-Project</code>. My collaborator might clone the repository and work with it at some other path, such as <code>/home/bear/R-Code/Some-R-Project</code>. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the <code>here</code> package comes in, and <a href="https://here.r-lib.org/articles/here.html">here is a great vignette describing it</a>.</p>
 <p><em>See also <a href="../chapters/coding-style.html#sec-here-package-style">The here Package</a> for code style guidelines on using the here package.</em></p>
 </section>
-<section id="sec-readingsaving-data" class="slide level2" data-number="29">
-<h2><span class="header-section-number">29</span> Reading/Saving Data</h2>
-</section>
-<section class="slide level2">
-
-<h3 id="rds-vs-.rdata-files"><code>.RDS</code> vs <code>.RData</code> Files</h3>
-<p>One of the most common ways to load and save data in Base R is with the <code>load()</code> and <code>save()</code> functions to serialize multiple objects in a single <code>.RData</code> file. The biggest problems with this practice include an inability to control the names of things getting loaded in, the inherent confusion this creates in understanding older code, and the inability to load individual elements of a saved file. For this, we recommend using the RDS format to save R objects.</p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>If you have many related R objects you would have otherwise saved all together using the <code>save</code> function, the functional equivalent with <code>RDS</code> would be to create a (named) list containing each of these objects, and saving it.</p>
-</div>
-</div>
-</div>
-<h3 id="csvs">CSVs</h3>
-<p>Once again, the <code>readr</code> package as part of the Tidyverse is great, with a much faster <code>read_csv()</code> than Base R’s <code>read.csv()</code>. For massive CSVs (&gt; 5 GB), you’ll find <code>data.table::fread()</code> to be the fastest CSV reader in any data science language out there. For writing CSVs, <code>readr::write_csv()</code> and <code>data.table::fwrite()</code> outclass Base R’s <code>write.csv()</code> by a significant margin as well.</p>
-</section>
-<section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="30">
-<h2><span class="header-section-number">30</span> Integrating Box and Dropbox</h2>
+<section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="29">
+<h2><span class="header-section-number">29</span> Integrating Box and Dropbox</h2>
 </section>
 <section class="slide level2">
 
@@ -2114,15 +2106,15 @@ saveRDS(token, "/path/to/tokenfile.RDS")
 drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </code></pre>
 </section>
-<section id="sec-r-lib-packages" class="slide level2" data-number="31">
-<h2><span class="header-section-number">31</span> r-lib Packages</h2>
+<section id="sec-r-lib-packages" class="slide level2" data-number="30">
+<h2><span class="header-section-number">30</span> r-lib Packages</h2>
 </section>
 <section class="slide level2">
 
-<p>The <a href="https://github.com/r-lib">r-lib</a> GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem and are widely used in our lab’s workflows.</p>
+<p>The <a href="https://github.com/r-lib">r-lib</a> GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem.</p>
 </section>
-<section id="package-development" class="slide level2" data-number="32">
-<h2><span class="header-section-number">32</span> Package Development</h2>
+<section id="package-development" class="slide level2" data-number="31">
+<h2><span class="header-section-number">31</span> Package Development</h2>
 </section>
 <section class="slide level2">
 
@@ -2153,8 +2145,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lifecycle"><a href="https://lifecycle.r-lib.org/"><code>{lifecycle}</code></a></h3>
 <p><a href="https://lifecycle.r-lib.org/"><code>{lifecycle}</code></a> manages the life cycle of functions and arguments, providing the experimental/superseded/deprecated badges and deprecation warnings used across the tidyverse and r-lib ecosystems.</p>
 </section>
-<section id="testing-and-quality" class="slide level2" data-number="33">
-<h2><span class="header-section-number">33</span> Testing and Quality</h2>
+<section id="testing-and-quality" class="slide level2" data-number="32">
+<h2><span class="header-section-number">32</span> Testing and Quality</h2>
 </section>
 <section class="slide level2">
 
@@ -2167,8 +2159,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lintr"><a href="https://lintr.r-lib.org/"><code>{lintr}</code></a></h3>
 <p><a href="https://lintr.r-lib.org/"><code>{lintr}</code></a> performs static code analysis (linting) for R. It checks for style issues, potential errors, and common anti-patterns, and integrates with RStudio, VS Code, and CI pipelines.</p>
 </section>
-<section id="core-language-and-infrastructure" class="slide level2" data-number="34">
-<h2><span class="header-section-number">34</span> Core Language and Infrastructure</h2>
+<section id="core-language-and-infrastructure" class="slide level2" data-number="33">
+<h2><span class="header-section-number">33</span> Core Language and Infrastructure</h2>
 </section>
 <section class="slide level2">
 
@@ -2185,8 +2177,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-cpp11"><a href="https://cpp11.r-lib.org/"><code>{cpp11}</code></a></h3>
 <p><a href="https://cpp11.r-lib.org/"><code>{cpp11}</code></a> provides a modern C++11 interface for interacting with R’s C API. It is a lightweight, header-only alternative to <code>Rcpp</code>, designed to simplify writing and debugging C++ extensions for R.</p>
 </section>
-<section id="system-and-process" class="slide level2" data-number="35">
-<h2><span class="header-section-number">35</span> System and Process</h2>
+<section id="system-and-process" class="slide level2" data-number="34">
+<h2><span class="header-section-number">34</span> System and Process</h2>
 </section>
 <section class="slide level2">
 
@@ -2199,8 +2191,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-ps"><a href="https://ps.r-lib.org/"><code>{ps}</code></a></h3>
 <p><a href="https://ps.r-lib.org/"><code>{ps}</code></a> provides a cross-platform API for listing, querying, and manipulating system processes from R. It is used internally by <code>processx</code> and <code>callr</code>.</p>
 </section>
-<section id="http-and-web" class="slide level2" data-number="36">
-<h2><span class="header-section-number">36</span> HTTP and Web</h2>
+<section id="http-and-web" class="slide level2" data-number="35">
+<h2><span class="header-section-number">35</span> HTTP and Web</h2>
 </section>
 <section class="slide level2">
 
@@ -2213,8 +2205,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-gargle"><a href="https://gargle.r-lib.org/"><code>{gargle}</code></a></h3>
 <p><a href="https://gargle.r-lib.org/"><code>{gargle}</code></a> provides authentication utilities for Google APIs, including OAuth 2.0, service accounts, and Application Default Credentials. It is used by <code>googledrive</code>, <code>googlesheets4</code>, and other Google-backed R packages.</p>
 </section>
-<section id="utilities" class="slide level2" data-number="37">
-<h2><span class="header-section-number">37</span> Utilities</h2>
+<section id="utilities" class="slide level2" data-number="36">
+<h2><span class="header-section-number">36</span> Utilities</h2>
 </section>
 <section class="slide level2">
 
@@ -2245,8 +2237,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <li>Call <code>rex::rex(...)</code> to compile expressions into regular expression strings for use with functions like <code>grepl()</code>, <code>gsub()</code>, or <a href="https://stringr.tidyverse.org/"><code>{stringr}</code></a> functions.</li>
 </ul>
 </section>
-<section id="github-actions" class="slide level2" data-number="38">
-<h2><span class="header-section-number">38</span> GitHub Actions</h2>
+<section id="github-actions" class="slide level2" data-number="37">
+<h2><span class="header-section-number">37</span> GitHub Actions</h2>
 </section>
 <section class="slide level2">
 
@@ -2258,18 +2250,18 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <li><code>r-lib/actions/check-r-package</code> — runs <code>R CMD check</code></li>
 <li><code>r-lib/actions/setup-r-dependencies</code> — installs package dependencies</li>
 </ul>
-<p>These actions are widely used across R packages hosted on GitHub, including this lab’s repositories.</p>
+<p>These actions are widely used across R packages hosted on GitHub.</p>
 </section>
-<section id="sec-tidyverse" class="slide level2" data-number="39">
-<h2><span class="header-section-number">39</span> Tidyverse</h2>
+<section id="sec-tidyverse" class="slide level2" data-number="38">
+<h2><span class="header-section-number">38</span> Tidyverse</h2>
 </section>
 <section class="slide level2">
 
 <p>Throughout this document there have been references to the Tidyverse, but this section is to explicitly show you how to transform your Base R tendencies to Tidyverse (or Data.Table, Tidyverse’s performance-optimized competitor). For most of our work that does not utilize very large datasets, we recommend that you code in Tidyverse rather than Base R. Tidyverse is quickly becoming <a href="https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/">the gold standard</a> in R data analysis and modern data science packages and code should use Tidyverse style and packages unless there’s a significant reason not to (i.e.&nbsp;big data pipelines that would benefit from Data.Table’s performance optimizations). Note that <a href="https://dtplyr.tidyverse.org/"><code>{dtplyr}</code></a> provides a data.table backend for dplyr, enabling you to use most of dplyr’s tidy syntax with data.table’s performance optimizations.</p>
 <p>The package author has published R for Data Science <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span>, which leans heavily on many Tidyverse packages and may be worth checking out.</p>
 </section>
-<section id="core-tidyverse-packages" class="slide level2" data-number="40">
-<h2><span class="header-section-number">40</span> Core Tidyverse Packages</h2>
+<section id="core-tidyverse-packages" class="slide level2" data-number="39">
+<h2><span class="header-section-number">39</span> Core Tidyverse Packages</h2>
 </section>
 <section class="slide level2">
 
@@ -2300,8 +2292,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lubridate"><a href="https://lubridate.tidyverse.org/">lubridate</a></h3>
 <p><a href="https://lubridate.tidyverse.org/"><code>{lubridate}</code></a> provides a set of functions for working with date-times, extending and improving on R’s existing support for them. Key functions include <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code> for parsing dates, and <code>year()</code>, <code>month()</code>, <code>day()</code> for extracting components.</p>
 </section>
-<section id="base-r-to-tidyverse-translation" class="slide level2" data-number="41">
-<h2><span class="header-section-number">41</span> Base R to Tidyverse Translation</h2>
+<section id="base-r-to-tidyverse-translation" class="slide level2" data-number="40">
+<h2><span class="header-section-number">40</span> Base R to Tidyverse Translation</h2>
 </section>
 <section class="slide level2">
 
@@ -2418,8 +2410,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </table>
 <p>For a more extensive set of syntactical translations to Tidyverse, you can check out <a href="https://tavareshugo.github.io/data_carpentry_extras/base-r_tidyverse_equivalents/base-r_tidyverse_equivalents.html">this document</a>.</p>
 </section>
-<section id="programming-with-tidyverse" class="slide level2" data-number="42">
-<h2><span class="header-section-number">42</span> Programming with Tidyverse</h2>
+<section id="programming-with-tidyverse" class="slide level2" data-number="41">
+<h2><span class="header-section-number">41</span> Programming with Tidyverse</h2>
 </section>
 <section class="slide level2">
 
@@ -2428,22 +2420,22 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <li><a href="https://dplyr.tidyverse.org/articles/programming.html">Programming with dplyr</a> (package vignette)</li>
 <li><a href="https://dplyr.tidyverse.org/articles/in-packages.html">Using dplyr in packages</a> (package vignette)</li>
 <li><a href="https://www.youtube.com/watch?v=nERXS3ssntw">Tidy Eval in 5 Minutes</a> (video)</li>
-<li><a href="https://rlang.r-lib.org/reference/topic-data-mask.html">Data masking</a> (rlang reference)</li>
+<li><a href="https://rlang.r-lib.org/reference/topic-data-mask.html">Data masking</a> (rlang documentation)</li>
 <li><a href="https://adv-r.hadley.nz/evaluation.html">Evaluation</a> (advanced details)</li>
 <li><a href="https://www.brodrigues.co/blog/2016-07-18-data-frame-columns-as-arguments-to-dplyr-functions/">Data Frame Columns as Arguments to Dplyr Functions</a> (blog)</li>
 <li><a href="https://stackoverflow.com/questions/28125816/r-standard-evaluation-for-join-dplyr">Standard Evaluation for *_join</a> (stackoverflow)</li>
 </ul>
 <p>See also <a href="../chapters/coding-style.html#sec-tidyverse-replacements">Tidyverse Replacements</a></p>
 </section>
-<section id="sec-coding-with-r-and-python" class="slide level2" data-number="43">
-<h2><span class="header-section-number">43</span> Coding with R and Python</h2>
+<section id="sec-coding-with-r-and-python" class="slide level2" data-number="42">
+<h2><span class="header-section-number">42</span> Coding with R and Python</h2>
 </section>
 <section class="slide level2">
 
 <p>If you’re using both R and Python, you may wish to check out the <a href="https://www.rdocumentation.org/packages/feather/versions/0.3.3">Feather package</a> for exchanging data between the two languages <a href="https://blog.rstudio.com/2016/03/29/feather/">extremely quickly</a>.</p>
 </section>
-<section id="sec-repeating-analyses-with-different-variations" class="slide level2" data-number="44">
-<h2><span class="header-section-number">44</span> Repeating analyses with different variations</h2>
+<section id="sec-repeating-analyses-with-different-variations" class="slide level2" data-number="43">
+<h2><span class="header-section-number">43</span> Repeating analyses with different variations</h2>
 </section>
 <section class="slide level2">
 
@@ -2473,10 +2465,10 @@ result2 &lt;- pmap(.l = mylists, .f = square_sum)
 
 #unlist(as.list(result1)) = result2 = [36 50 68 90]
 </code></pre>
-<p>There are two major differences between <code>mapply()</code> and <code>pmap()</code>. The first difference is that <code>mapply()</code> takes seperate lists as its input arguments, while <code>pmap()</code> takes a list of list. Secondly, <code>mapply()</code> simplifies its output by default: it returns a vector, matrix, or array when it can (here, a matrix with one column), and a list otherwise, whereas <code>pmap()</code> always produces a list. Set <code>SIMPLIFY = FALSE</code> in <code>mapply()</code> to get a list.</p>
-<p>However, when <strong>the input lists are of different lengths AND/OR the wrapper function doesn’t take arguments in pairs, <code>mapply()</code> and <code>pmap()</code> may not give the preferable results.</strong></p>
-<p>The two functions treat inputs of different lengths differently. <code>mapply()</code> recycles shorter inputs to the length of the longest, with a warning if the lengths are not multiples. <code>pmap()</code> recycles only inputs of length 1 and gives an error for any other mismatch. In the example above, each list holds one vector, so both functions call <code>square_sum()</code> once, on whole vectors. Assume that now <code>mylist2 = list(6:12)</code>. Then <code>x^2 + y^2</code> itself recycles <code>0:3</code> to length 7 (as <code>0, 1, 2, 3, 0, 1, 2</code>), and both functions return <code>36  50  68  90 100 122 148</code>, with the warning “longer object length is not a multiple of shorter object length”. That silent recycling is rarely what you want.</p>
-<p>Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, <strong>when the input lists are of different lengths, the best practice is probably to use <code>lapply()</code> and then combine the results.</strong></p>
+<p>There are two major differences between <code>mapply()</code> and <code>pmap()</code>. The first difference is that <code>mapply()</code> takes separate lists as its input arguments, while <code>pmap()</code> takes a list of lists. Secondly, <code>mapply()</code> simplifies its output to a vector, matrix, or array when it can (<code>SIMPLIFY = TRUE</code> is the default) and otherwise returns a list, but <code>pmap()</code> always returns a list.</p>
+<p>However, when <strong>the input lists, or the vectors inside them, are of different lengths AND/OR the wrapper function doesn’t take arguments in pairs, <code>mapply()</code> and <code>pmap()</code> may not give the preferable results.</strong></p>
+<p><code>mapply()</code> recycles shorter inputs to the length of the longest input, while <code>pmap()</code> recycles only inputs of length 1 and requires all other inputs to have the same length. In the example above, <code>mylist1</code> and <code>mylist2</code> each hold a single element (a vector), so both functions make a single call, <code>square_sum(0:3, 6:9)</code>. Assume that now <code>mylist2 = list(6:12)</code>. Then, <code>pmap(mylists, square_sum)</code> calls <code>square_sum(0:3, 6:12)</code>, and R’s vector arithmetic inside <code>square_sum()</code> recycles <code>0:3</code>, generating <code>[36  50  68  90 100 122 148]</code> where elements 0, 1, and 2 are recycled to match 10, 11, and 12. R also gives the warning “longer object length is not a multiple of shorter object length.”</p>
+<p>Thus, unless the recycling pattern described above is a desirable feature for a certain experiment design, <strong>when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use <code>lapply()</code> and then combine the results.</strong></p>
 <p>Here is an example where we’d like to find the <code>square_sum</code> for every element combination of <code>mylist1</code> and <code>mylist2</code>.</p>
 <pre><code>mylist1 &lt;- list(0:3)
 mylist2 &lt;- list(6:12)
@@ -2514,8 +2506,8 @@ stopCluster(cl)</code></pre>
 <p>Let’s still assume <code>mylist</code> is of length 1000. The <code>parLapply</code> above splits <code>mylist</code> into 4 sub-lists each of length 250 and applies the function to the elements of each sub-list in parallel. To be more specific, first apply the function to element 1, 251, 501, 751; second apply to element 2, 252, 502, 752; so on and so forth. As such, the computation time will be greatly reduced.</p>
 <p>You can use <code>parallel::detectCores()</code> to test how many cores your machine has and to help decide what to put for <code>n_cores</code>. It would be a good idea to leave at least one core free for the operating system to use.</p>
 <p>We will always start <code>parLapply()</code> with <code>makeCluster()</code>. <strong><code>stopCluster()</code> is not fully necessary but follows the best practices.</strong> If not stopped, the processing will continue in the back end and consuming the computation capacity for other software in your machine. But keep in mind that stopping the cluster is similar quitting R, meaning that you will need to re-load the packages needed when you need to do parallel processing use <code>parLapply()</code> again.</p>
-<h4 id="future.lapply"><code>future.lapply()</code></h4>
-<p>Below is a generic example of <code>future.lapply()</code>:</p>
+<h4 id="future_lapply"><code>future_lapply()</code></h4>
+<p>Below is a generic example of <code>future_lapply()</code>:</p>
 <pre><code>library(future)
 library(future.apply)
 
@@ -2528,19 +2520,19 @@ future::plan(
 future_lapply(X = mylist, FUN = func)</code></pre>
 <p>Here, <code>future::availableCores()</code> checks how many cores your machine has. Similar to <code>parLapply()</code> showed above, <code>future_lapply()</code> parallelizes the computation of <code>lapply()</code> by executing the function <code>func</code> simultaneously on different sub-lists of <code>mylist</code>.</p>
 </section>
-<section id="sec-reviewing-code" class="slide level2" data-number="45">
-<h2><span class="header-section-number">45</span> Reviewing Code</h2>
+<section id="sec-reviewing-code" class="slide level2" data-number="44">
+<h2><span class="header-section-number">44</span> Reviewing Code</h2>
 </section>
 <section class="slide level2 scrollable">
 
-<p>Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The lab’s pull request workflow, author and reviewer expectations, and response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>.</p>
+<p>Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The recommended pull request workflow, author and reviewer expectations, and response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>.</p>
 <h3 id="sec-why-review-code">Why We Review Code</h3>
 <p>Code review serves several vital purposes:</p>
 <ul>
 <li><strong>Error prevention</strong>: Catching data processing and analytical bugs early, before findings enter manuscripts or reports.</li>
 <li><strong>Reproducibility</strong>: Verifying that scripts execute cleanly from scratch without undocumented manual interventions or environment-specific dependencies.</li>
-<li><strong>Knowledge transfer</strong>: Sharing analytical methods, R idioms, and package features across the lab team.</li>
-<li><strong>Maintainability</strong>: Ensuring that analysis pipelines can be understood, modified, and extended by other lab members in the future.</li>
+<li><strong>Knowledge transfer</strong>: Sharing analytical methods, R idioms, and package features across the team.</li>
+<li><strong>Maintainability</strong>: Ensuring that analysis pipelines can be understood, modified, and extended by other team members in the future.</li>
 </ul>
 <h3 id="sec-what-to-look-for">What Reviewers Look For</h3>
 <p>When reviewing a colleague’s code, evaluate these key dimensions:</p>
@@ -2559,7 +2551,7 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 </ul></li>
 <li><strong>Style and structure</strong>:
 <ul>
-<li>Does the code follow the lab’s R code style (see <a href="../chapters/coding-style.html#sec-r-code-style">R Code Style</a>)?</li>
+<li>Does the code follow the project’s R code style (see <a href="../chapters/coding-style.html#sec-r-code-style">R Code Style</a>)?</li>
 <li>Are long chunks broken into focused functions (see 1)?</li>
 <li>Are variable and function names self-describing (see <a href="../chapters/coding-style.html#sec-object-naming">Object Naming</a>)?</li>
 </ul></li>
@@ -2586,8 +2578,8 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 <li>The author has completed the pre-review quality checks in <a href="#/sec-r-qa-checklist" class="quarto-xref">Section&nbsp;12</a>.</li>
 </ul>
 </section>
-<section id="sec-getting-help-with-code" class="slide level2" data-number="46">
-<h2><span class="header-section-number">46</span> Getting Help with Code</h2>
+<section id="sec-getting-help-with-code" class="slide level2" data-number="45">
+<h2><span class="header-section-number">45</span> Getting Help with Code</h2>
 </section>
 <section class="slide level2">
 
@@ -2610,8 +2602,8 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 <li><a href="https://r4ds.hadley.nz/workflow-help.html#making-a-reprex">R for Data Science: Making a reprex</a> <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span>: Step-by-step guide to creating effective reproducible examples</li>
 </ul>
 </section>
-<section id="sec-r-resources" class="slide level2" data-number="47">
-<h2><span class="header-section-number">47</span> Additional Resources</h2>
+<section id="sec-r-resources" class="slide level2" data-number="46">
+<h2><span class="header-section-number">46</span> Additional Resources</h2>
 </section>
 <section class="slide level2 smaller scrollable" id="references">
 

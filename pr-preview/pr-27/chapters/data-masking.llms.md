@@ -4,11 +4,11 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:49:06 (PDT)
+Last modified: 2026-10-14 03:54:35 (PDT)
 
 ## 1 General Overview
 
-This chapter covers data masking, a unique process in R in which columns are treated as distinct objects within their dataframe’s environment. In our lab, data masking most frequently comes up when writing wrapper functions where arguments to indicate column names are supplied as strings. We often do this when we repeat the same code on multiple columns, and want to apply a function to a vector of strings that correspond to column names in a dataframe. For example, we might want to clean multiple columns using the same function or estimate the same model under different feature sets. Here, we try to break down what data masking is, why this error comes up, and common approaches to solve this problem.
+This chapter covers data masking, a unique process in R in which columns are treated as distinct objects within their dataframe’s environment. In research code, data masking most frequently comes up when writing wrapper functions where arguments to indicate column names are supplied as strings. We often do this when we repeat the same code on multiple columns, and want to apply a function to a vector of strings that correspond to column names in a dataframe. For example, we might want to clean multiple columns using the same function or estimate the same model under different feature sets. Here, we try to break down what data masking is, why this error comes up, and common approaches to solve this problem.
 
 ### 1.1 What is Data Masking?
 
@@ -45,7 +45,7 @@ var_name = "heavyrain"
 df |> mutate(outcome = as.factor(!!sym(var_name)))
 ```
 
-While cleaner and often more convenient, the data frame that var_name is in is now “masked” and we refer to the vectors in the dataframe (data-variables) as though it is an object of its own (an environmental-variable). This is why we can just say the variable’s name in the context of a pipe – we treat it as though it’s an object defined in our environment. Within normal scripts, this is usually fine, because the data frame is “held on to” in the pipe. However, it can cause some programming hurdles when writing functions that take strings of variable/column names as arguments. In the next section, we briefly describe how to troubleshoot common errors in data masking, as relevant to our lab’s work.
+While cleaner and often more convenient, the data frame that `var_name` is in is now “masked” and we refer to the vectors in the dataframe (data-variables) as though they were objects of their own (environmental-variables). This is why we can just say the variable’s name in the context of a pipe – we treat it as though it’s an object defined in our environment. Within normal scripts, this is usually fine, because the data frame is “held on to” in the pipe. However, it can cause some programming hurdles when writing functions that take strings of variable/column names as arguments. In the next section, we briefly describe how to troubleshoot common errors in data masking, as relevant to research code.
 
 ## 2 Data masking vs. tidy selection
 

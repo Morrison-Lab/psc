@@ -4,15 +4,15 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:49:06 (PDT)
+Last modified: 2026-10-14 03:54:35 (PDT)
 
 Follow these code style guidelines for all R code:
 
 ## 1 General Principles
 
-Our lab follows the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html), which in turn mostly follows the [tidyverse style guide](https://style.tidyverse.org/) ([Wickham 2023](#ref-wickham2023tidyverse)). The following principles apply to all R code:
+We recommend the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html), which in turn mostly follows the [tidyverse style guide](https://style.tidyverse.org/) ([Wickham 2023](#ref-wickham2023tidyverse)). The following principles apply to all R code:
 
-- **Follow tidyverse conventions**: Our style is built on the tidyverse style guide, which provides comprehensive guidance on naming, syntax, pipes, functions, and more
+- **Follow tidyverse conventions**: This style is built on the tidyverse style guide, which provides comprehensive guidance on naming, syntax, pipes, functions, and more
 
 - **Naming**: Use `snake_case` for functions and variables; acronyms may be uppercase (e.g., `prep_IDs_data`)
 
@@ -22,9 +22,9 @@ Our lab follows the [Google R Style Guide](https://google.github.io/styleguide/R
 
 - **Use pipes to emphasize primary inputs**: When writing functions and code, use the pipe operator to clearly show transformations on a primary object. The primary input should flow as the first argument to each function in the chain. Design functions so the most important argument (usually data) comes first, enabling natural pipeline composition. See the [tidyverse design principles](https://design.tidyverse.org/important-args-first.html) for more details.
 
-- **Use native pipe**: `|>` not `%>%` (available in R \>= 4.1.0). This is enforced by our `.lintr.R` configuration via `pipe_consistency_linter(pipe = "|>")`
+- **Use native pipe**: `|>` not `%>%` (available in R \>= 4.1.0). This is enforced by the example `.lintr.R` configuration via `pipe_consistency_linter(pipe = "|>")`
 
-Many of these rules are automatically enforced through our [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) configuration file. See [Section 18](#sec-style-auto-style) for details on automated style checking.
+Many of these rules can be enforced automatically with a `.lintr.R` configuration file; see the UCD-SERG lab manual’s [example](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R). See [Section 18](#sec-style-auto-style) for details on automated style checking.
 
 ## 2 Clean Code Principles
 
@@ -104,7 +104,7 @@ calculate_mean <- function(x) {
 }
 ```
 
-Note: Our `.lintr.R` configuration disables the `return_linter` to allow flexibility in code, but we still require explicit returns as a lab standard.
+Note: The example `.lintr.R` configuration disables the `return_linter` to allow flexibility in older code, but we still recommend explicit returns in new code.
 
 ## 4 Assertions and Input Validation
 
@@ -268,7 +268,7 @@ When a wrapper genuinely is necessary — the mapped element is not the callee�
 
 Before writing a function, look for an existing packaged one that already does the job — and prefer it over rolling your own:
 
-- Check, roughly in this order: base R and the tidyverse / r-lib packages, then a focused, well-maintained CRAN package, then our own lab packages (e.g. `{bcs}`, `{ettbc}`, `{gha}`, and the shared workflows there). Packages can depend on each other, so reuse across our repos is fine.
+- Check, roughly in this order: base R and the tidyverse / r-lib packages, then a focused, well-maintained CRAN package, then packages your own group maintains (for the Morrison Lab, e.g. `{bcs}`, `{ettbc}`, `{gha}`, and the shared workflows there). Packages can depend on each other, so reuse across your own repos is fine.
 - Reach for the packaged version unless it is genuinely unfit — the wrong API, a heavy dependency for a one-liner, or it does not quite do what you need.
 
 Packaged functions are tested, documented, and maintained by other people; hand-rolling an equivalent duplicates that work, adds surface area to maintain, and risks subtle bugs the package already fixed. For example, use `withr::with_seed()` to set a seed and restore the RNG stream, rather than hand-rolling a `.Random.seed` save/restore.
@@ -605,7 +605,7 @@ When writing about code in prose sections of quarto documents, use backticks to 
 
 ## 13 Messaging and User Communication
 
-Use [`{cli}`](https://cli.r-lib.org/) package functions for all user-facing messages in package functions. This is enforced by our `.lintr.R` configuration via `undesirable_function_linter()`.
+Use [`{cli}`](https://cli.r-lib.org/) package functions for all user-facing messages in package functions. This is enforced by the example `.lintr.R` configuration via `undesirable_function_linter()`.
 
 **Required messaging functions:**
 
@@ -613,7 +613,7 @@ Use [`{cli}`](https://cli.r-lib.org/) package functions for all user-facing mess
 - Use `cli::cli_warn()` instead of `warning()` or `warn()`
 - Use `cli::cli_abort()` instead of `stop()` or `abort()`
 
-This provides better formatting, color support, and consistent messaging across our packages.
+This provides better formatting, color support, and consistent messaging across packages.
 
 **Examples:**
 
@@ -664,7 +664,7 @@ cli::cli_inform("failed: check inputs")
 
 ## 14 Package Code Practices
 
-- **No `library()` in package code**: Use `::` notation or declare in DESCRIPTION Imports. This is enforced by our `.lintr.R` configuration via `undesirable_function_linter()`. Instead, use:
+- **No `library()` in package code**: Use `::` notation or declare in DESCRIPTION Imports. This is enforced by the example `.lintr.R` configuration via `undesirable_function_linter()`. Instead, use:
   - `::` for explicit namespace references (e.g., `dplyr::mutate()`)
   - `usethis::use_import_from()` to declare imports in `NAMESPACE`
   - `withr::local_package()` for temporary package loading in tests
@@ -796,7 +796,7 @@ This distinction makes the return type visible from the call site without readin
 
 Use `snake_case` for all variable and function names. Avoid using `.` in names (as in base R’s `read.csv()`), as this goes against best practices in modern R and other languages. Modern packages like `readr::read_csv()` follow this convention.
 
-**Uppercase acronyms are allowed** in `snake_case` names (e.g., `prep_IDs_data`, `calculate_BMI_score`). This is enforced via a custom `object_name_linter` regex pattern in our `.lintr.R` configuration.
+**Uppercase acronyms are allowed** in `snake_case` names (e.g., `prep_IDs_data`, `calculate_BMI_score`). This is enforced via a custom `object_name_linter` regex pattern in the example `.lintr.R` configuration.
 
 Try to make your variable names both more expressive and more explicit. Being a bit more verbose is useful and easy in the age of autocompletion! For example, instead of naming a variable `vaxcov_1718`, try naming it `vaccination_coverage_2017_18`. Similarly, `flu_res` could be named `absentee_flu_residuals`, making your code more readable and explicit.
 
@@ -931,13 +931,13 @@ Linters are programming tools that check adherence to a given style, syntax erro
 > - Line length issues
 > - Style guide violations
 >
-> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. Our configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, our [`lms`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
+> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. The example configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the [`lms`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
 >
-> Our lab uses `.lintr.R` files for configuration (the `.lintr` format is also supported by lintr, but we prefer `.lintr.R` for better R syntax support).
+> We recommend `.lintr.R` files for configuration (lintr also supports the `.lintr` format, but `.lintr.R` gets full R syntax support).
 
-### 18.3 Our Lab’s Lintr Configuration
+### 18.3 A Recommended Lintr Configuration
 
-Our lab uses a custom `.lintr.R` configuration file in each repository to enforce our style standards. You can view the lab-manual’s configuration at <https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R>.
+We recommend a custom `.lintr.R` configuration file in each repository to enforce these style standards. You can view an example configuration, from the UCD-SERG lab manual, at <https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R>.
 
 **Key linters we enable:**
 
@@ -948,12 +948,12 @@ Our lab uses a custom `.lintr.R` configuration file in each repository to enforc
 
 **Linters we disable:**
 
-- `return_linter(return_style = "explicit")`: Every function should end with `return(return_value)` rather than just `return_value`. We may sometimes disable this linter in older projects when we aren’t ready to clean this issue up, but for all new code, we require explicit returns as a lab standard, following the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html#use-explicit-returns).
+- `return_linter(return_style = "explicit")`: Every function should end with `return(return_value)` rather than just `return_value`. We may sometimes disable this linter in older projects when we aren’t ready to clean this issue up, but for all new code, we recommend explicit returns, following the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html#use-explicit-returns).
 - `trailing_whitespace_linter`: Disabled (handled by `styler` instead)
 
 **Exceptions:**
 
-Our configuration allows relaxed rules for certain directories:
+The example configuration allows relaxed rules for certain directories:
 
 - `data-raw/`: Pipe consistency and undesirable function rules relaxed (exploratory scripts)
 - `vignettes/`: Undesirable function and object naming rules relaxed (tutorial code may need `library()`)
@@ -994,11 +994,11 @@ jarl check . --fix
 | **Execution speed** | Standard | Extremely fast (Rust binary) |
 | **Ecosystem maturity** | Industry standard, wide rule coverage | Emerging, expanding rule set |
 | **Custom R linters** | Yes (e.g., [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms)) | No (Rust-only rule definitions) |
-| **Primary use case** | CI verification, custom lab rules | Fast pre-commit checks, local interactive editing |
+| **Primary use case** | CI verification, custom project rules | Fast pre-commit checks, local interactive editing |
 
 > **NOTE:**
 >
-> Our lab uses [`{lintr}`](https://lintr.r-lib.org/) with our custom [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) configuration and [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) package as the primary standard for CI pipelines and package validation. However, `{jarl}` is an excellent choice for local pre-commit hooks and interactive developer workflows where instant lint feedback saves time on large repositories.
+> We recommend [`{lintr}`](https://lintr.r-lib.org/) with a custom `.lintr.R` configuration and a shared linter package (for example, the UCD-SERG lab manual’s [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) and [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms)) as the primary standard for CI pipelines and package validation. However, `{jarl}` is an excellent choice for local pre-commit hooks and interactive developer workflows where instant lint feedback saves time on large repositories.
 
 ### 18.4 Linting Changed Files vs. the Whole Project in CI
 
