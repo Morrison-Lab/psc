@@ -4,7 +4,7 @@ Here's a typical workflow for developing an R package:
 
 **Starting from a template (recommended):**
 
-Using an R package template such as `rpt` is the fastest way to get started with a new R package,
+Using an R package template such as [`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt) is the fastest way to get started with a new R package,
 as it provides pre-configured settings,
 GitHub Actions workflows,
 and development tools:

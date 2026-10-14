@@ -15,5 +15,6 @@ The following principles apply to all R code:
 
 {{< include /chapters/coding-style/_pipes.qmd >}}
 
-Many of these rules are automatically enforced through a [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) configuration file.
+Many of these rules can be enforced automatically with a `.lintr.R` configuration file;
+see the UCD-SERG lab manual's [example](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R).
 See @sec-style-auto-style for details on automated style checking.
