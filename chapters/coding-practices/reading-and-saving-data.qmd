@@ -1,3 +1,5 @@
+[]{#sec-readingsaving-data}
+
 ### RDS Files (Preferred)
 
 Use RDS format for R objects:
@@ -10,10 +12,19 @@ readr::write_rds(analysis_results, here("results", "analysis.rds"))
 results <- readr::read_rds(here("results", "analysis.rds"))
 ```
 
-**Avoid `.RData` files** because:
-- You can't control object names when loading
-- Can't load individual objects
-- Creates confusion in older code
+**Avoid `.RData` files**.
+The base R functions `save()` and `load()` serialize several objects into one `.RData` file,
+which causes three problems:
+
+- You can't control object names when loading.
+- You can't load individual objects.
+- Older code becomes hard to follow,
+  because it is not clear which objects a `load()` call creates.
+
+::: {.callout-note}
+If you have many related R objects that you would otherwise save together with `save()`,
+put them in a named list and save that list as one RDS file.
+:::
 
 ### CSV Files
 
@@ -30,3 +41,7 @@ data <- readr::read_csv(here("data-raw", "clean_data.csv"))
 data.table::fwrite(large_data, "big_file.csv")
 data <- data.table::fread("big_file.csv")
 ```
+
+`readr::read_csv()` and `readr::write_csv()` are much faster than base R's `read.csv()` and `write.csv()`.
+For very large files (several gigabytes),
+`data.table::fread()` and `data.table::fwrite()` are faster still.
