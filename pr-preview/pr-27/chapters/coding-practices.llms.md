@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:35:48 (PDT)
+Last modified: 2026-10-14 01:49:06 (PDT)
 
 ## 1 Lab Protocols for Code and Data
 
@@ -2170,7 +2170,7 @@ Working with Tidyverse within functions can be somewhat of a pain due to non-sta
 - [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html) (package vignette)
 - [Using dplyr in packages](https://dplyr.tidyverse.org/articles/in-packages.html) (package vignette)
 - [Tidy Eval in 5 Minutes](https://www.youtube.com/watch?v=nERXS3ssntw) (video)
-- [Tidy Evaluation](https://tidyeval.tidyverse.org/) (e-book)
+- [Data masking](https://rlang.r-lib.org/reference/topic-data-mask.html) (rlang reference)
 - [Evaluation](https://adv-r.hadley.nz/evaluation.html) (advanced details)
 - [Data Frame Columns as Arguments to Dplyr Functions](https://www.brodrigues.co/blog/2016-07-18-data-frame-columns-as-arguments-to-dplyr-functions/) (blog)
 - [Standard Evaluation for \*\_join](https://stackoverflow.com/questions/28125816/r-standard-evaluation-for-join-dplyr) (stackoverflow)

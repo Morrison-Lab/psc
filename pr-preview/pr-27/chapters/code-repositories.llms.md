@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:35:48 (PDT)
+Last modified: 2026-10-14 01:49:06 (PDT)
 
 Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier to collaborate across projects.
 
@@ -74,7 +74,7 @@ In short: if the lab ever mirrors this workflow onto a self-managed GitLab CE in
     │   │       ├── table1.csv
     │   │       └── table2.xlsx
     │   └── analyses/       # Analyses using restricted data (see below)
-    └── <package>.Rproj     # RStudio project file
+    └── myproject.Rproj     # RStudio project file
 
 ### 2.3 Where to Place Analysis Files
 
