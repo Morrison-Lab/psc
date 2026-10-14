@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 03:08:22 (PDT)
+Last modified: 2026-10-14 03:38:56 (PDT)
 
 ## 1 Lab Protocols for Code and Data
 
@@ -27,14 +27,14 @@ The mindset in practice:
 - **Notice the friction.** When you catch yourself repeating a task, following a fragile manual sequence, or avoiding something because it is tedious, treat that as a signal to build (or find) a tool for it.
 - **Look before you build — then chip away.** Check whether an existing tool already solves the problem (see [Prefer Existing Packaged Functions](../chapters/coding-style.llms.md#sec-prefer-packaged-functions)); when nothing quite fits, don’t let “not worth the effort” stop you: a tool that removes part of an annoying task is already good enough to start with.
 - **Start small and grow the tool as it earns it.** A copy-pasted snippet becomes a function; a function used across analyses becomes a package (see [Section 4](#sec-r-workflow)); a workflow copied between repositories becomes a shared, reusable one.
-- **Build for your own repeated use first.** A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next lab member too.
+- **Build for your own repeated use first.** A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next person too.
 - **Don’t gold-plate.** The tool only needs to beat doing the task by hand; polish it further only when its use grows to warrant it.
 
-Much of our lab’s shared infrastructure came from exactly this pattern: the [`{snapr}`](https://morrison-lab.github.io/snapr/) package packages the lab’s snapshot-testing helpers, the [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package packages our shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the lab’s repositories.
+Much shared research infrastructure comes from exactly this pattern: the Morrison Lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package packages the lab’s snapshot-testing helpers, the UCD-SERG lab manual’s [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package packages a shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the Morrison Lab’s repositories.
 
 ## 3 Essential R Package Development Tools
 
-The following tools are essential for R package development in our lab:
+The following tools are essential for R package development:
 
 ### 3.1 usethis: Package Setup and Management
 
@@ -122,7 +122,7 @@ pkgdown::build_home()               # Home page from README
 **Configure your pkgdown site** with `_pkgdown.yml`:
 
 ``` yaml
-url: https://ucd-serg.github.io/YOURPROJECT
+url: https://YOUR-ORG.github.io/YOURPROJECT
 
 template:
   bootstrap: 5
@@ -259,13 +259,13 @@ While not a dedicated package documentation tool, Quarto can be used to create s
 
 ## 4 Complete Package Development Workflow
 
-Here’s the typical workflow for developing an R package in our lab:
+Here’s a typical workflow for developing an R package:
 
 ### 4.1 1. Initial Setup
 
 **Starting from a template (recommended):**
 
-Using our R package template is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:
+Using an R package template such as [`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt) is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:
 
 - **R Package Template (`rpt`)** - Our recommended template with pre-configured development tools and CI workflows:
   - Repository: <https://github.com/Morrison-Lab/rpt>
@@ -437,7 +437,7 @@ test_that("prep_study_data produces expected structure", {
 })
 ```
 
-Our lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package (on [CRAN](https://cran.r-project.org/package=snapr)) adds convenience wrappers on top of [`{testthat}`](https://testthat.r-lib.org/)’s snapshot functions: `expect_snapshot_data()` for data frames (adapted, with permission, from the [`{ssdtools}`](https://cran.r-project.org/package=ssdtools) package) and `expect_snapshot_object()`, which generalizes it to any R object.
+The Morrison Lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package (on [CRAN](https://cran.r-project.org/package=snapr)) adds convenience wrappers on top of [`{testthat}`](https://testthat.r-lib.org/)’s snapshot functions: `expect_snapshot_data()` for data frames (adapted, with permission, from the [`{ssdtools}`](https://cran.r-project.org/package=ssdtools) package) and `expect_snapshot_object()`, which generalizes it to any R object.
 
 ``` r
 test_that("prep_study_data output is stable", {
@@ -1813,7 +1813,7 @@ Rationales for keeping code short and simple:
 - **Fewer bugs.** Less code and simpler control flow leave fewer places for defects to hide and make the remaining logic easier to reason about.
 - **Easier review.** A reviewer can hold a short, single-purpose function in their head; they cannot do that with a sprawling one.
 - **Cheaper maintenance.** Simple code can be modified confidently; complex code makes every change risky and slow.
-- **Faster onboarding.** New lab members become productive sooner when the codebase does things the plain, expected way.
+- **Faster onboarding.** New team members become productive sooner when the codebase does things the plain, expected way.
 
 Simplicity is not an excuse to drop requirements: the goal is the simplest solution that still does the whole job, not a simpler job. The preceding sections on function decomposition and function length limits, and the guidance on [avoiding deep nesting](../chapters/coding-style.llms.md#sec-avoid-nesting), are concrete applications of this principle.
 
@@ -1865,7 +1865,7 @@ Saving the authentication token is not required, although it may be useful if yo
 
 ## 30 r-lib Packages
 
-The [r-lib](https://github.com/r-lib) GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem and are widely used in our lab’s workflows.
+The [r-lib](https://github.com/r-lib) GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem.
 
 ## 31 Package Development
 
@@ -2060,7 +2060,7 @@ The [`r-lib/actions`](https://github.com/r-lib/actions) repository provides reus
 - `r-lib/actions/check-r-package` — runs `R CMD check`
 - `r-lib/actions/setup-r-dependencies` — installs package dependencies
 
-These actions are widely used across R packages hosted on GitHub, including this lab’s repositories.
+These actions are widely used across R packages hosted on GitHub.
 
 ## 38 Tidyverse
 
@@ -2283,7 +2283,7 @@ Here, `future::availableCores()` checks how many cores your machine has. Similar
 
 ## 44 Reviewing Code
 
-Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The lab’s pull request workflow, author and reviewer expectations, and response protocol are consolidated in [Collaborative Software Development](../chapters/collaborative-software-development.llms.md#sec-collab-dev).
+Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The recommended pull request workflow, author and reviewer expectations, and response protocol are consolidated in [Collaborative Software Development](../chapters/collaborative-software-development.llms.md#sec-collab-dev).
 
 ### 44.1 Why We Review Code
 
@@ -2291,8 +2291,8 @@ Code review serves several vital purposes:
 
 - **Error prevention**: Catching data processing and analytical bugs early, before findings enter manuscripts or reports.
 - **Reproducibility**: Verifying that scripts execute cleanly from scratch without undocumented manual interventions or environment-specific dependencies.
-- **Knowledge transfer**: Sharing analytical methods, R idioms, and package features across the lab team.
-- **Maintainability**: Ensuring that analysis pipelines can be understood, modified, and extended by other lab members in the future.
+- **Knowledge transfer**: Sharing analytical methods, R idioms, and package features across the team.
+- **Maintainability**: Ensuring that analysis pipelines can be understood, modified, and extended by other team members in the future.
 
 ### 44.2 What Reviewers Look For
 
@@ -2307,7 +2307,7 @@ When reviewing a colleague’s code, evaluate these key dimensions:
     - Are missing values (`NA`), edge cases, and empty groupings handled appropriately?
     - Are key variables assigned descriptive labels and measurement units where applicable (see [Section 14.8](#sec-variable-labels))?
 3.  **Style and structure**:
-    - Does the code follow the lab’s R code style (see [R Code Style](../chapters/coding-style.llms.md#sec-r-code-style))?
+    - Does the code follow the project’s R code style (see [R Code Style](../chapters/coding-style.llms.md#sec-r-code-style))?
     - Are long chunks broken into focused functions (see 1)?
     - Are variable and function names self-describing (see [Object Naming](../chapters/coding-style.llms.md#sec-object-naming))?
 4.  **Documentation**:

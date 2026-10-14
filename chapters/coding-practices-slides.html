@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 03:08:22 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:38:56 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -362,17 +362,17 @@
 <li><strong>Notice the friction.</strong> When you catch yourself repeating a task, following a fragile manual sequence, or avoiding something because it is tedious, treat that as a signal to build (or find) a tool for it.</li>
 <li><strong>Look before you build — then chip away.</strong> Check whether an existing tool already solves the problem (see <a href="../chapters/coding-style.html#sec-prefer-packaged-functions">Prefer Existing Packaged Functions</a>); when nothing quite fits, don’t let “not worth the effort” stop you: a tool that removes part of an annoying task is already good enough to start with.</li>
 <li><strong>Start small and grow the tool as it earns it.</strong> A copy-pasted snippet becomes a function; a function used across analyses becomes a package (see <a href="#/sec-r-workflow" class="quarto-xref">Section&nbsp;4</a>); a workflow copied between repositories becomes a shared, reusable one.</li>
-<li><strong>Build for your own repeated use first.</strong> A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next lab member too.</li>
+<li><strong>Build for your own repeated use first.</strong> A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next person too.</li>
 <li><strong>Don’t gold-plate.</strong> The tool only needs to beat doing the task by hand; polish it further only when its use grows to warrant it.</li>
 </ul>
-<p>Much of our lab’s shared infrastructure came from exactly this pattern: the <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package packages the lab’s snapshot-testing helpers, the <a href="https://github.com/UCD-SERG/lab-manual/tree/main/lms"><code>{lms}</code></a> linter package packages our shared lint configuration, and the <a href="https://github.com/Morrison-Lab/gha">Morrison-Lab/gha</a> repository collects reusable CI workflows and composite actions shared across the lab’s repositories.</p>
+<p>Much shared research infrastructure comes from exactly this pattern: the Morrison Lab’s <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package packages the lab’s snapshot-testing helpers, the UCD-SERG lab manual’s <a href="https://github.com/UCD-SERG/lab-manual/tree/main/lms"><code>{lms}</code></a> linter package packages a shared lint configuration, and the <a href="https://github.com/Morrison-Lab/gha">Morrison-Lab/gha</a> repository collects reusable CI workflows and composite actions shared across the Morrison Lab’s repositories.</p>
 </section>
 <section id="sec-r-package-tools" class="slide level2" data-number="3">
 <h2><span class="header-section-number">3</span> Essential R Package Development Tools</h2>
 </section>
 <section class="slide level2">
 
-<p>The following tools are essential for R package development in our lab:</p>
+<p>The following tools are essential for R package development:</p>
 <h3 id="usethis-package-setup-and-management">usethis: Package Setup and Management</h3>
 <p><code>usethis</code> automates common package development tasks:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="co"># Install usethis</span></span>
@@ -451,7 +451,7 @@
 <span id="cb3-15"><a aria-label="15"></a>pkgdown<span class="sc">::</span><span class="fu">build_articles</span>()           <span class="co"># Vignettes</span></span>
 <span id="cb3-16"><a aria-label="16"></a>pkgdown<span class="sc">::</span><span class="fu">build_home</span>()               <span class="co"># Home page from README</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Configure your pkgdown site</strong> with <code>_pkgdown.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a aria-label="1"></a><span class="fu">url</span><span class="kw">:</span><span class="at"> https://ucd-serg.github.io/YOURPROJECT</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a aria-label="1"></a><span class="fu">url</span><span class="kw">:</span><span class="at"> https://YOUR-ORG.github.io/YOURPROJECT</span></span>
 <span id="cb4-2"><a aria-label="2"></a></span>
 <span id="cb4-3"><a aria-label="3"></a><span class="fu">template</span><span class="kw">:</span></span>
 <span id="cb4-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">bootstrap</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
@@ -619,10 +619,10 @@
 </section>
 <section class="slide level2">
 
-<p>Here’s the typical workflow for developing an R package in our lab:</p>
+<p>Here’s a typical workflow for developing an R package:</p>
 <h3 id="initial-setup">1. Initial Setup</h3>
 <p><strong>Starting from a template (recommended):</strong></p>
-<p>Using our R package template is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:</p>
+<p>Using an R package template such as <a href="https://github.com/Morrison-Lab/rpt"><code>Morrison-Lab/rpt</code></a> is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:</p>
 <ul>
 <li><strong>R Package Template (<code>rpt</code>)</strong> - Our recommended template with pre-configured development tools and CI workflows:
 <ul>
@@ -750,7 +750,7 @@
 <span id="cb17-2"><a aria-label="2"></a>  result <span class="ot">&lt;-</span> <span class="fu">prep_study_data</span>(raw_data)</span>
 <span id="cb17-3"><a aria-label="3"></a>  <span class="fu">expect_snapshot_value</span>(result, <span class="at">style =</span> <span class="st">"serialize"</span>)</span>
 <span id="cb17-4"><a aria-label="4"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Our lab’s <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package (on <a href="https://cran.r-project.org/package=snapr">CRAN</a>) adds convenience wrappers on top of <a href="https://testthat.r-lib.org/"><code>{testthat}</code></a>’s snapshot functions: <code>expect_snapshot_data()</code> for data frames (adapted, with permission, from the <a href="https://cran.r-project.org/package=ssdtools"><code>{ssdtools}</code></a> package) and <code>expect_snapshot_object()</code>, which generalizes it to any R object.</p>
+<p>The Morrison Lab’s <a href="https://morrison-lab.github.io/snapr/"><code>{snapr}</code></a> package (on <a href="https://cran.r-project.org/package=snapr">CRAN</a>) adds convenience wrappers on top of <a href="https://testthat.r-lib.org/"><code>{testthat}</code></a>’s snapshot functions: <code>expect_snapshot_data()</code> for data frames (adapted, with permission, from the <a href="https://cran.r-project.org/package=ssdtools"><code>{ssdtools}</code></a> package) and <code>expect_snapshot_object()</code>, which generalizes it to any R object.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="fu">test_that</span>(<span class="st">"prep_study_data output is stable"</span>, {</span>
 <span id="cb18-2"><a aria-label="2"></a>  result <span class="ot">&lt;-</span> <span class="fu">prep_study_data</span>(raw_data)</span>
 <span id="cb18-3"><a aria-label="3"></a>  snapr<span class="sc">::</span><span class="fu">expect_snapshot_data</span>(result, <span class="at">name =</span> <span class="st">"prepped_study_data"</span>)</span>
@@ -2059,7 +2059,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <li><strong>Fewer bugs.</strong> Less code and simpler control flow leave fewer places for defects to hide and make the remaining logic easier to reason about.</li>
 <li><strong>Easier review.</strong> A reviewer can hold a short, single-purpose function in their head; they cannot do that with a sprawling one.</li>
 <li><strong>Cheaper maintenance.</strong> Simple code can be modified confidently; complex code makes every change risky and slow.</li>
-<li><strong>Faster onboarding.</strong> New lab members become productive sooner when the codebase does things the plain, expected way.</li>
+<li><strong>Faster onboarding.</strong> New team members become productive sooner when the codebase does things the plain, expected way.</li>
 </ul>
 <p>Simplicity is not an excuse to drop requirements: the goal is the simplest solution that still does the whole job, not a simpler job. The preceding sections on function decomposition and function length limits, and the guidance on <a href="../chapters/coding-style.html#sec-avoid-nesting">avoiding deep nesting</a>, are concrete applications of this principle.</p>
 </section>
@@ -2111,7 +2111,7 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </section>
 <section class="slide level2">
 
-<p>The <a href="https://github.com/r-lib">r-lib</a> GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem and are widely used in our lab’s workflows.</p>
+<p>The <a href="https://github.com/r-lib">r-lib</a> GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem.</p>
 </section>
 <section id="package-development" class="slide level2" data-number="31">
 <h2><span class="header-section-number">31</span> Package Development</h2>
@@ -2250,7 +2250,7 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <li><code>r-lib/actions/check-r-package</code> — runs <code>R CMD check</code></li>
 <li><code>r-lib/actions/setup-r-dependencies</code> — installs package dependencies</li>
 </ul>
-<p>These actions are widely used across R packages hosted on GitHub, including this lab’s repositories.</p>
+<p>These actions are widely used across R packages hosted on GitHub.</p>
 </section>
 <section id="sec-tidyverse" class="slide level2" data-number="38">
 <h2><span class="header-section-number">38</span> Tidyverse</h2>
@@ -2525,14 +2525,14 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 </section>
 <section class="slide level2 scrollable">
 
-<p>Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The lab’s pull request workflow, author and reviewer expectations, and response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>.</p>
+<p>Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The recommended pull request workflow, author and reviewer expectations, and response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>.</p>
 <h3 id="sec-why-review-code">Why We Review Code</h3>
 <p>Code review serves several vital purposes:</p>
 <ul>
 <li><strong>Error prevention</strong>: Catching data processing and analytical bugs early, before findings enter manuscripts or reports.</li>
 <li><strong>Reproducibility</strong>: Verifying that scripts execute cleanly from scratch without undocumented manual interventions or environment-specific dependencies.</li>
-<li><strong>Knowledge transfer</strong>: Sharing analytical methods, R idioms, and package features across the lab team.</li>
-<li><strong>Maintainability</strong>: Ensuring that analysis pipelines can be understood, modified, and extended by other lab members in the future.</li>
+<li><strong>Knowledge transfer</strong>: Sharing analytical methods, R idioms, and package features across the team.</li>
+<li><strong>Maintainability</strong>: Ensuring that analysis pipelines can be understood, modified, and extended by other team members in the future.</li>
 </ul>
 <h3 id="sec-what-to-look-for">What Reviewers Look For</h3>
 <p>When reviewing a colleague’s code, evaluate these key dimensions:</p>
@@ -2551,7 +2551,7 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 </ul></li>
 <li><strong>Style and structure</strong>:
 <ul>
-<li>Does the code follow the lab’s R code style (see <a href="../chapters/coding-style.html#sec-r-code-style">R Code Style</a>)?</li>
+<li>Does the code follow the project’s R code style (see <a href="../chapters/coding-style.html#sec-r-code-style">R Code Style</a>)?</li>
 <li>Are long chunks broken into focused functions (see 1)?</li>
 <li>Are variable and function names self-describing (see <a href="../chapters/coding-style.html#sec-object-naming">Object Naming</a>)?</li>
 </ul></li>

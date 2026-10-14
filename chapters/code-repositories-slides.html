@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 03:08:22 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:38:56 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -343,7 +343,7 @@
 </section>
 <section class="slide level2">
 
-<p>When starting a new package, begin from the lab’s template repository (<a href="https://github.com/Morrison-Lab/rpt"><code>Morrison-Lab/rpt</code></a>) rather than an empty repository. On GitHub, click <strong>Use this template</strong> to create a new repository that already includes our standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, <code>Title</code>, and <code>Description</code> in <code>DESCRIPTION</code> with your project’s details.</p>
+<p>When starting a new package, begin from a template repository, such as <a href="https://github.com/Morrison-Lab/rpt"><code>Morrison-Lab/rpt</code></a>, rather than an empty repository. On GitHub, click <strong>Use this template</strong> to create a new repository that already includes a standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, <code>Title</code>, and <code>Description</code> in <code>DESCRIPTION</code> with your project’s details.</p>
 <h3 id="a-note-on-gitlab">A note on GitLab</h3>
 <p>GitHub-style template repositories do <strong>not</strong> have a direct equivalent in GitLab Community Edition (CE):</p>
 <ul>
@@ -351,14 +351,14 @@
 <li><strong>Custom project templates</strong> (instance- or group-level) — the feature most analogous to GitHub’s template repositories — are <a href="https://docs.gitlab.com/user/group/custom_project_templates/">Premium/Ultimate tier</a> only, so they are unavailable in CE.</li>
 <li>On CE, the practical workaround is to <strong>fork</strong> (or clone and re-push) a “seed” project to start new work from it.</li>
 </ul>
-<p>In short: if the lab ever mirrors this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.</p>
+<p>In short: if you mirror this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.</p>
 </section>
 <section id="sec-package-structure" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> Package Structure</h2>
 </section>
 <section class="slide level2 scrollable">
 
-<p><strong>All R projects in our lab should be structured as R packages</strong>, even if they are primarily analysis projects and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:</p>
+<p><strong>We recommend structuring every R project as an R package</strong>, even one that is primarily an analysis project and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:</p>
 <h3 id="why-use-r-package-structure">Why Use R Package Structure?</h3>
 <ol type="1">
 <li><strong>Organized code</strong>: Clear separation of functions (<code>R/</code>), documentation (<code>man/</code>), tests (<code>tests/</code>), data (<code>data/</code>), and vignettes/analyses</li>

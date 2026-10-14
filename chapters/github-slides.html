@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 03:08:22 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:38:56 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -542,7 +542,7 @@ Table&nbsp;1: Standard Git workflow for new projects
 </section>
 <section class="slide level2">
 
-<p>The lab’s pull request roles, author and reviewer expectations, <a href="../chapters/collaborative-software-development.html#sec-stacked-pull-requests">stacked pull requests</a>, and review-response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>. This GitHub chapter focuses on Git mechanics and GitHub-specific platform features.</p>
+<p>Recommended pull request roles, author and reviewer expectations, <a href="../chapters/collaborative-software-development.html#sec-stacked-pull-requests">stacked pull requests</a>, and review-response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>. This GitHub chapter focuses on Git mechanics and GitHub-specific platform features.</p>
 </section>
 <section id="sec-commonly-used-git-commands" class="slide level2" data-number="9">
 <h2><span class="header-section-number">9</span> Commonly Used Git Commands</h2>
@@ -690,7 +690,7 @@ Table&nbsp;2: Commonly used Git commands
 </section>
 <section class="slide level2">
 
-<p>Our lab primarily uses GitHub, but you may encounter <a href="https://about.gitlab.com/">GitLab</a> — most often when collaborating with a group that self-hosts its own GitLab instance.</p>
+<p>This guide focuses on GitHub, but you may encounter <a href="https://about.gitlab.com/">GitLab</a> — most often when collaborating with a group that self-hosts its own GitLab instance.</p>
 <p>The two platforms support the same core workflow (clone, branch, push, review, merge), with a few differences worth knowing:</p>
 <ul>
 <li><strong>Terminology.</strong> A GitHub <em>pull request</em> is a GitLab <em>merge request</em> (MR); the concept is identical.</li>
@@ -701,7 +701,7 @@ Table&nbsp;2: Commonly used Git commands
 <p>Two R packages help when working with GitLab from R (the second works across both forges):</p>
 <ul>
 <li><a href="https://thinkr-open.github.io/gitlabr/"><code>{gitlabr}</code></a> provides R access to the GitLab API, with convenience wrappers for common tasks (repository file access, issue assignment and status, commenting).</li>
-<li><a href="https://github.com/d-morrison/pr.helpers"><code>{pr.helpers}</code></a>, our lab’s own (experimental) package, provides helpers for common pull/merge request workflows from a local Git repository — creating and switching branches, fetching requests by number, generating request URLs, and syncing with the default branch — and works across both GitHub and GitLab remotes.</li>
+<li><a href="https://github.com/d-morrison/pr.helpers"><code>{pr.helpers}</code></a>, an experimental package from the Morrison Lab, provides helpers for common pull/merge request workflows from a local Git repository — creating and switching branches, fetching requests by number, generating request URLs, and syncing with the default branch — and works across both GitHub and GitLab remotes.</li>
 </ul>
 </section>
 <section id="sec-gitattributes" class="slide level2" data-number="14">
@@ -848,7 +848,7 @@ Table&nbsp;2: Commonly used Git commands
 <p>GitHub’s migration API builds a downloadable archive of your data as JSON. It is the most complete of the routes here.</p>
 <p>The user migrations reference lists what the archive can hold <span class="citation" data-cites="githubusermigrations">(<a href="#/references" role="doc-biblioref" onclick=""><span>“REST API Endpoints for User Migrations,”</span> n.d.</a>)</span>. Every stream named above is in it — <code>issues</code>, <code>issue_comments</code>, <code>pull_requests</code>, <code>pull_request_reviews</code>, and <code>review_comments</code> — along with <code>issue_events</code>, <code>commit_comments</code>, <code>milestones</code>, <code>releases</code>, <code>repositories</code>, and <code>users</code>.</p>
 <p>Start a migration with <code>POST /user/migrations</code> for repositories you own, or <code>POST /orgs/{org}/migrations</code> for an organization’s repositories if you are an organization owner <span class="citation" data-cites="githuborgmigrations">(<a href="#/references" role="doc-biblioref" onclick=""><span>“REST API Endpoints for Organization Migrations,”</span> n.d.</a>)</span>. Both are asynchronous: you poll the migration’s status until it reports <code>exported</code>, then download the archive, which stays available for seven days.</p>
-<p><strong>Settings &gt; Account &gt; Export account data</strong> is the web-interface route to this same export rather than a separate feature. GitHub’s documentation states that you can export your personal account’s data “through your account settings on GitHub or with the User Migration API”, and refers readers to the migrations API reference for what that data covers <span class="citation" data-cites="githubaccountarchive">(<a href="#/references" role="doc-biblioref" onclick=""><span>“Requesting an Archive of Your Personal Account’s Data,”</span> n.d.</a>)</span>. Clicking through delivers the <code>.tar.gz</code> by emailed download link. That makes this the one route needing no code at all: a lab member who wants the whole record can click through Settings and skip everything above.</p>
+<p><strong>Settings &gt; Account &gt; Export account data</strong> is the web-interface route to this same export rather than a separate feature. GitHub’s documentation states that you can export your personal account’s data “through your account settings on GitHub or with the User Migration API”, and refers readers to the migrations API reference for what that data covers <span class="citation" data-cites="githubaccountarchive">(<a href="#/references" role="doc-biblioref" onclick=""><span>“Requesting an Archive of Your Personal Account’s Data,”</span> n.d.</a>)</span>. Clicking through delivers the <code>.tar.gz</code> by emailed download link. That makes this the one route needing no code at all: a team member who wants the whole record can click through Settings and skip everything above.</p>
 <p>This route is the right one for archiving a repository before it is deleted or transferred. The per-repository scripts above are better for ongoing exports or for a subset of the discussion.</p>
 <h3 id="sec-export-cautions">Practical cautions</h3>
 <ul>

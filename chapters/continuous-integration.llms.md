@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 03:08:22 (PDT)
+Last modified: 2026-10-14 03:38:56 (PDT)
 
 ## 1 Understanding GitHub Actions
 
@@ -135,7 +135,7 @@ jobs:
 
 Several repositories collect reusable GitHub Actions and workflows for R projects, so you can call shared, community-maintained CI steps instead of writing your own:
 
-- [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha): our lab’s own collection of composite actions and reusable workflows for R-package and Quarto repositories, covering previews, publishing, test coverage, spell/link/character checks, bibliography DOI checks, and the Claude review bots used across our repos.
+- [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha): the Morrison Lab’s collection of composite actions and reusable workflows for R-package and Quarto repositories, covering previews, publishing, test coverage, spell/link/character checks, bibliography DOI checks, and the Claude review bots used across its repos.
 - [r-lib/actions](https://github.com/r-lib/actions): the tidyverse team’s actions and example workflows (`R CMD check`, test coverage, [`{pkgdown}`](https://pkgdown.r-lib.org/), [`{lintr}`](https://lintr.r-lib.org/)), installable with `usethis::use_github_action()` as described in [Section 2](#sec-setting-up-github-actions).
 - [eddelbuettel/r-ci](https://github.com/eddelbuettel/r-ci): a portable, shell-script-based CI setup for R that works across GitHub Actions, Azure DevOps, Docker, and other providers from one configuration; the successor to the r-travis project.
 - [easystats/workflows](https://github.com/easystats/workflows): reusable workflows the easystats collective runs across its R packages, useful as worked examples of centralizing many repos’ automation in one place.

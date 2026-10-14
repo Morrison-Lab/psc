@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 03:08:22 (PDT)
+Last modified: 2026-10-14 03:38:56 (PDT)
 
 Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier to collaborate across projects.
 
@@ -12,7 +12,7 @@ We recommend R package structure for most R-based projects. This provides benefi
 
 ## 1 Template repositories
 
-When starting a new package, begin from the lab’s template repository ([`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt)) rather than an empty repository. On GitHub, click **Use this template** to create a new repository that already includes our standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, `Title`, and `Description` in `DESCRIPTION` with your project’s details.
+When starting a new package, begin from a template repository, such as [`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt), rather than an empty repository. On GitHub, click **Use this template** to create a new repository that already includes a standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, `Title`, and `Description` in `DESCRIPTION` with your project’s details.
 
 ### 1.1 A note on GitLab
 
@@ -22,11 +22,11 @@ GitHub-style template repositories do **not** have a direct equivalent in GitLab
 - **Custom project templates** (instance- or group-level) — the feature most analogous to GitHub’s template repositories — are [Premium/Ultimate tier](https://docs.gitlab.com/user/group/custom_project_templates/) only, so they are unavailable in CE.
 - On CE, the practical workaround is to **fork** (or clone and re-push) a “seed” project to start new work from it.
 
-In short: if the lab ever mirrors this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.
+In short: if you mirror this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.
 
 ## 2 Package Structure
 
-**All R projects in our lab should be structured as R packages**, even if they are primarily analysis projects and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
+**We recommend structuring every R project as an R package**, even one that is primarily an analysis project and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
 
 ### 2.1 Why Use R Package Structure?
 

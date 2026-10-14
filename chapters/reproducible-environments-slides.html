@@ -311,7 +311,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 03:08:22 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:38:56 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -353,7 +353,7 @@
 <li>Install the <code>renv</code> package by running <code>install.packages("renv")</code></li>
 <li>Pull the most updated version of the project from GitHub</li>
 <li>Open the project’s RProject file</li>
-<li>Run <code>renv::restore()</code>. In our lab’s projects, this is often already found at the top of the config file, so you can just run scripts as is.</li>
+<li>Run <code>renv::restore()</code>. Some projects call <code>renv::restore()</code> at the top of a setup or config script; if yours does, running that script restores the environment for you.</li>
 <li>This will pull up a list of the project’s packages that need to be updated for you to be consistent with the project. The console will ask if you want to proceed with updating these packages - type “Y” to continue.</li>
 <li>Wait for the correct versions of each package to install/update. This may take some time, depending on how many packages the project uses.</li>
 <li>Your R environment should now be using the same package versions as specified in the <code>renv</code> lock file. You should now be able to replicate the code.</li>
