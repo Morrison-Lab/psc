@@ -91,7 +91,8 @@ and they still install from there.
 ## Developing lms
 
 Because `default_linters()` includes `object_usage_linter()`, lint **this** package
-with the source loaded so symbols (and `.onLoad()` side effects) resolve correctly:
+with the source loaded so symbols (and `.onLoad()` side effects) resolve correctly.
+From the `lms/` directory, run:
 
 ```r
 pkgload::load_all()
@@ -103,7 +104,8 @@ It has to be there:
 lintr looks for a config in parent directories too,
 so without it, linting `lms/` inside psc would read psc's root `.lintr.R`,
 which excludes `lms/` and so reports no lints at all.
-psc's `lint-lms` CI job runs the same two lines.
+psc's `lint-lms` CI job runs the same two calls from the repository root,
+passing `"lms"` as the path to each.
 
 `.onLoad()` calls `rex::register_shortcuts()` so the `{rex}` DSL tokens used in the
 snake_case regex are not flagged as undefined globals. After editing `R/` roxygen
