@@ -1,4 +1,4 @@
-**All R projects in our lab should be structured as R packages**, even if they are primarily analysis projects and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
+**We recommend structuring every R project as an R package**, even one that is primarily an analysis project and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
 
 ### Why Use R Package Structure?
 

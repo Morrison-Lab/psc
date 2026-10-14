@@ -1,7 +1,7 @@
 Peer code review is a collaborative practice that improves scientific rigor,
 fosters shared understanding,
 and catches bugs before analysis results are shared or published.
-The lab's pull request workflow, author and reviewer expectations, and response protocol
+The recommended pull request workflow, author and reviewer expectations, and response protocol
 are consolidated in [Collaborative Software Development](collaborative-software-development.qmd#sec-collab-dev).
 
 ### Why We Review Code {#sec-why-review-code}
@@ -13,9 +13,9 @@ Code review serves several vital purposes:
 - **Reproducibility**: Verifying that scripts execute cleanly from scratch
   without undocumented manual interventions or environment-specific dependencies.
 - **Knowledge transfer**: Sharing analytical methods, R idioms,
-  and package features across the lab team.
+  and package features across the team.
 - **Maintainability**: Ensuring that analysis pipelines can be understood,
-  modified, and extended by other lab members in the future.
+  modified, and extended by other team members in the future.
 
 ### What Reviewers Look For {#sec-what-to-look-for}
 
@@ -31,7 +31,7 @@ When reviewing a colleague's code, evaluate these key dimensions:
    - Are missing values (`NA`), edge cases, and empty groupings handled appropriately?
    - Are key variables assigned descriptive labels and measurement units where applicable (see @sec-variable-labels)?
 3. **Style and structure**:
-   - Does the code follow the lab's R code style (see [R Code Style](coding-style.qmd#sec-r-code-style))?
+   - Does the code follow the project's R code style (see [R Code Style](coding-style.qmd#sec-r-code-style))?
    - Are long chunks broken into focused functions (see @sec-function-decomposition)?
    - Are variable and function names self-describing (see [Object Naming](coding-style.qmd#sec-object-naming))?
 4. **Documentation**:

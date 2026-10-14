@@ -1,9 +1,9 @@
 When starting a new package,
-begin from the lab's template repository
-([`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt))
+begin from a template repository,
+such as [`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt),
 rather than an empty repository.
 On GitHub, click **Use this template** to create a new repository that already
-includes our standard structure, CI workflows, and documentation scaffolding.
+includes a standard structure, CI workflows, and documentation scaffolding.
 Then replace the placeholder package name, `Title`, and `Description` in
 `DESCRIPTION` with your project's details.
 
@@ -21,5 +21,5 @@ GitLab Community Edition (CE):
 - On CE, the practical workaround is to **fork** (or clone and re-push) a "seed"
   project to start new work from it.
 
-In short: if the lab ever mirrors this workflow onto a self-managed GitLab CE
+In short: if you mirror this workflow onto a self-managed GitLab CE
 instance, plan to either fork a seed repository or budget for a paid tier.

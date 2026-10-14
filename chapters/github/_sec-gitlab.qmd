@@ -1,4 +1,4 @@
-Our lab primarily uses GitHub,
+This guide focuses on GitHub,
 but you may encounter [GitLab](https://about.gitlab.com/) ---
 most often when collaborating with a group
 that self-hosts its own GitLab instance.
@@ -27,7 +27,7 @@ Two R packages help when working with GitLab from R
   with convenience wrappers for common tasks
   (repository file access, issue assignment and status, commenting).
 - [`{pr.helpers}`](https://github.com/d-morrison/pr.helpers),
-  our lab's own (experimental) package,
+  an experimental package from the Morrison Lab,
   provides helpers for common pull/merge request workflows
   from a local Git repository ---
   creating and switching branches, fetching requests by number,

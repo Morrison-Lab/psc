@@ -1,10 +1,10 @@
-Here's the typical workflow for developing an R package in our lab:
+Here's a typical workflow for developing an R package:
 
 ### 1. Initial Setup
 
 **Starting from a template (recommended):**
 
-Using our R package template is the fastest way to get started with a new R package,
+Using an R package template such as `rpt` is the fastest way to get started with a new R package,
 as it provides pre-configured settings,
 GitHub Actions workflows,
 and development tools:

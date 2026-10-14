@@ -24,7 +24,7 @@ Rationales for keeping code short and simple:
   in their head; they cannot do that with a sprawling one.
 - **Cheaper maintenance.** Simple code can be modified confidently;
   complex code makes every change risky and slow.
-- **Faster onboarding.** New lab members become productive sooner
+- **Faster onboarding.** New team members become productive sooner
   when the codebase does things the plain, expected way.
 
 Simplicity is not an excuse to drop requirements:

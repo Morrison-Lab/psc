@@ -85,7 +85,7 @@ A standard workflow when starting on a new project and contributing code looks l
 
 ## Pull Request Roles and Protocol {#sec-pull-request-roles-and-protocol}
 
-The lab's pull request roles,
+Recommended pull request roles,
 author and reviewer expectations,
 [stacked pull requests](collaborative-software-development.qmd#sec-stacked-pull-requests),
 and review-response protocol
