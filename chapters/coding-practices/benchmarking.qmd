@@ -470,7 +470,7 @@ See @sec-r-testing for more on testing with [`{testthat}`](https://testthat.r-li
 
 ```r
 # Good: Realistic data size
-n <- 50000  # Typical cohort size in our studies
+n <- 50000  # Typical cohort size in a large study
 test_data <- generate_realistic_cohort(n)
 
 # Avoid: Unrealistically small data

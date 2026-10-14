@@ -1,9 +1,9 @@
-For shell scripts, we follow the
+For shell scripts, we recommend the
 [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
 as the base authority,
-the same way our R chapters defer to the
+the same way the R chapters defer to the
 [tidyverse style guide](https://style.tidyverse.org/).
-The points below are our priorities and additions.
+The points below are recommended priorities and additions.
 
 ### Error handling
 
@@ -29,7 +29,7 @@ set -euo pipefail
 
 ### Functions and naming
 
-Decompose scripts into functions the same way we decompose R code:
+Decompose scripts into functions the same way as R code:
 small, single-purpose, and named in `snake_case`.
 Declare function-local variables with `local`
 so they don't leak into the global namespace,
@@ -38,7 +38,7 @@ and return status with `return` codes
 
 ### Comments
 
-The same principle as our R guidance applies:
+The same principle as in the R guidance applies:
 explain *why*, not *what*.
 Keep inline comments brief,
 and point to an Architecture Decision Record
@@ -105,7 +105,7 @@ ShellCheck understands both and checks against the declared shell.
 
 ### Formatting
 
-Follow the same readability conventions as our R style:
+Follow the same readability conventions as the R style:
 lines under about 80 characters,
 two-space indentation,
 and one logical step per line,

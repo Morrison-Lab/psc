@@ -12,7 +12,7 @@ format:
 
 []{#sec-r-coding-practices}
 
-## Lab Protocols for Code and Data {#sec-lab-protocols-for-code-and-data}
+## Protocols for Code and Data {#sec-lab-protocols-for-code-and-data}
 
 {{< include coding-practices/lab-protocols-for-code-and-data.qmd >}}
 

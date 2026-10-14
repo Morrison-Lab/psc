@@ -76,7 +76,7 @@ reaching it as a flag.
 The installer's header documents that flag as setting both `CHSH` and `RUNZSH`
 to `no`, which leaves the `chsh` step above to you.
 
-### The two plugins we use
+### The two plugins this guide uses
 
 [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions)
 proposes the rest of a command in gray as you type it,
@@ -233,7 +233,7 @@ Each stands alone; install the ones that answer a problem you actually have.
 
 : Command-line tools worth knowing about {#tbl-unix-cli-tools}
 
-`direnv` is the one with the most direct bearing on our own workflows: it is how
+`direnv` is the one with the most direct bearing on research workflows: it is how
 a project can set `R_LIBS`, an API key, or a `RETICULATE_PYTHON` that applies
 inside that project and nowhere else.
 Oh My Zsh bundles `direnv` and `zoxide` plugins, so those two need no hook line
