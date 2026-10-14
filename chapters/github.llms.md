@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 03:38:56 (PDT)
+Last modified: 2026-10-14 04:06:05 (PDT)
 
 ## 1 Basics
 
@@ -180,6 +180,7 @@ Recommended pull request roles, author and reviewer expectations, [stacked pull 
 | `git branch --set-upstream-to=origin/<branch_name>` | set upstream to `origin/<branch_name>` (use if you forgot -u on first push) |
 | `git push origin <branch_name>` | push work to branch |
 | `git checkout <branch_name>`  `git merge master` | switch to branch and merge changes from `master` into `<branch_name>` (two commands) |
+| `git merge master` | while on `<branch_name>`, merge changes from `master` into it (does not switch branches) |
 | `git checkout --track origin/<branch_name>` | pulls a remote branch and creates a local branch to track it (use when trying to pull someone else’s branch onto your local computer) |
 | `git push --delete <remote_name> <branch_name>` | delete remote branch |
 | `git branch -d <branch_name>` | deletes local branch, -D to force |

@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 03:38:56 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 04:06:05 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -620,18 +620,22 @@ Table&nbsp;2: Commonly used Git commands
 <td>switch to branch and merge changes from <code>master</code> into <code>&lt;branch_name&gt;</code> (two commands)</td>
 </tr>
 <tr class="even">
+<td><code>git merge master</code></td>
+<td>while on <code>&lt;branch_name&gt;</code>, merge changes from <code>master</code> into it (does not switch branches)</td>
+</tr>
+<tr class="odd">
 <td><code>git checkout --track origin/&lt;branch_name&gt;</code></td>
 <td>pulls a remote branch and creates a local branch to track it (use when trying to pull someone else’s branch onto your local computer)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>git push --delete &lt;remote_name&gt; &lt;branch_name&gt;</code></td>
 <td>delete remote branch</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>git branch -d &lt;branch_name&gt;</code></td>
 <td>deletes local branch, -D to force</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>git fetch --all --prune</code></td>
 <td>untrack deleted remote branches</td>
 </tr>
