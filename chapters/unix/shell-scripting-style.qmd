@@ -29,7 +29,7 @@ set -euo pipefail
 
 ### Functions and naming
 
-Decompose scripts into functions the same way we decompose R code:
+Decompose scripts into functions the same way as R code:
 small, single-purpose, and named in `snake_case`.
 Declare function-local variables with `local`
 so they don't leak into the global namespace,

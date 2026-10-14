@@ -76,7 +76,7 @@ reaching it as a flag.
 The installer's header documents that flag as setting both `CHSH` and `RUNZSH`
 to `no`, which leaves the `chsh` step above to you.
 
-### The two plugins we use
+### The two plugins this guide uses
 
 [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions)
 proposes the rest of a command in gray as you type it,
