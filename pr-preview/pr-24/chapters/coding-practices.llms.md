@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 00:38:24 (PDT)
+Last modified: 2026-10-14 01:29:01 (PDT)
 
 ## 1 Lab Protocols for Code and Data
 
@@ -1179,8 +1179,8 @@ readr::write_csv(data, here("data-raw", "clean_data.csv"))
 data <- readr::read_csv(here("data-raw", "clean_data.csv"))
 
 # For very large files, use data.table
-data.table::fwrite(large_data, "big_file.csv")
-data <- data.table::fread("big_file.csv")
+data.table::fwrite(large_data, here("data-raw", "big_file.csv"))
+data <- data.table::fread(here("data-raw", "big_file.csv"))
 ```
 
 `readr::read_csv()` and `readr::write_csv()` are much faster than base R’s `read.csv()` and `write.csv()`. For very large files (several gigabytes), `data.table::fread()` and `data.table::fwrite()` are faster still.
