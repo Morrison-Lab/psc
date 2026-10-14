@@ -47,7 +47,7 @@ myproject/
 │   │       ├── table1.csv
 │   │       └── table2.xlsx
 │   └── analyses/       # Analyses using restricted data (see below)
-└── <package>.Rproj     # RStudio project file
+└── myproject.Rproj     # RStudio project file
 ```
 
 ### Where to Place Analysis Files {#sec-analysis-file-placement}
