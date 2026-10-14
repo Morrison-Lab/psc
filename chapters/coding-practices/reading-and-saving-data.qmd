@@ -38,8 +38,8 @@ readr::write_csv(data, here("data-raw", "clean_data.csv"))
 data <- readr::read_csv(here("data-raw", "clean_data.csv"))
 
 # For very large files, use data.table
-data.table::fwrite(large_data, "big_file.csv")
-data <- data.table::fread("big_file.csv")
+data.table::fwrite(large_data, here("data-raw", "big_file.csv"))
+data <- data.table::fread(here("data-raw", "big_file.csv"))
 ```
 
 `readr::read_csv()` and `readr::write_csv()` are much faster than base R's `read.csv()` and `write.csv()`.
