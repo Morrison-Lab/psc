@@ -1,7 +1,7 @@
 Peer code review is a collaborative practice that improves scientific rigor,
 fosters shared understanding,
 and catches bugs before analysis results are shared or published.
-The pull request workflow, author and reviewer expectations, and response protocol
+The recommended pull request workflow, author and reviewer expectations, and response protocol
 are consolidated in [Collaborative Software Development](collaborative-software-development.qmd#sec-collab-dev).
 
 ### Why We Review Code {#sec-why-review-code}

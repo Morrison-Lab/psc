@@ -1,5 +1,5 @@
 - **No `library()` in package code**: Use `::` notation or declare in DESCRIPTION Imports.
-  A `.lintr.R` configuration can enforce this via `undesirable_function_linter()`.
+  This is enforced by the example `.lintr.R` configuration via `undesirable_function_linter()`.
   Instead, use:
   - `::` for explicit namespace references (e.g., `dplyr::mutate()`)
   - `usethis::use_import_from()` to declare imports in `NAMESPACE`

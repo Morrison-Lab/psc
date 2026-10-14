@@ -2,7 +2,7 @@ Several repositories collect reusable GitHub Actions and workflows for R project
 so you can call shared, community-maintained CI steps instead of writing your own:
 
 - [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha):
-  Morrison-Lab's own collection of composite actions and reusable workflows
+  the Morrison Lab's collection of composite actions and reusable workflows
   for R-package and Quarto repositories,
   covering previews, publishing, test coverage, spell/link/character checks,
   bibliography DOI checks, and the Claude review bots used across its repos.

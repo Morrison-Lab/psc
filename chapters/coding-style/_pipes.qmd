@@ -5,4 +5,4 @@
   enabling natural pipeline composition.
   See the [tidyverse design principles](https://design.tidyverse.org/important-args-first.html) for more details.
 - **Use native pipe**: `|>` not `%>%` (available in R >= 4.1.0).
-  A `.lintr.R` configuration can enforce this via `pipe_consistency_linter(pipe = "|>")`
+  This is enforced by the example `.lintr.R` configuration via `pipe_consistency_linter(pipe = "|>")`

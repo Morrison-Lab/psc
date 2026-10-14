@@ -23,9 +23,9 @@ exclude = [
   "https://your-username.github.io/.*",
   "http://localhost.*",
   "https://localhost.*",
+  "https://YOUR-ORG.github.io/.*",
+  "https://your-org.github.io/.*",
   # Ported from UCD-SERG/lab-manual along with the chapters that link these:
-  # Example placeholder URL in documentation
-  "https://ucd-serg.github.io/YOURPROJECT",
   # Old RStudio blog moved to posit.co; frequently times out in CI
   "https://blog.rstudio.com/.*",
   # Posit support returns 403 for automated checks
