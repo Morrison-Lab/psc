@@ -20,7 +20,7 @@ You may optionally wish to include the inputs and outputs of the script as well,
 ```
   
 ### Sections and subsections
-Rstudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of Sections and Subsections.
+RStudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of sections and subsections.
 You can easily navigate through longer scripts using the navigation pane in RStudio.
 Create sections and subsections with comment lines like these:
 

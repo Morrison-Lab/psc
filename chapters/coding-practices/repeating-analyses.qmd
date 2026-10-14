@@ -52,7 +52,7 @@ Assume that now `mylist2 = list(6:12)`.
 Then, `pmap(mylists, square_sum)` calls `square_sum(0:3, 6:12)`, and R's vector arithmetic inside `square_sum()` recycles `0:3`, generating `[36  50  68  90 100 122 148]` where elements 0, 1, and 2 are recycled to match 10, 11, and 12.
 R also gives the warning "longer object length is not a multiple of shorter object length."
 
-Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, **when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use `lapply()` and then combine the results.** 
+Thus, unless the recycling pattern described above is a desirable feature for a certain experiment design, **when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use `lapply()` and then combine the results.** 
 
 Here is an example where we'd like to find the `square_sum` for every element combination of `mylist1` and `mylist2`. 
 
