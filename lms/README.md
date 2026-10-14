@@ -95,16 +95,15 @@ with the source loaded so symbols (and `.onLoad()` side effects) resolve correct
 
 ```r
 pkgload::load_all()
-lintr::lint_package(
-  linters = default_linters(),
-  exclusions = list("tests/testthat.R" = list(undesirable_function_linter = Inf))
-)
+lintr::lint_package()
 ```
 
-The package has no `.lintr` file of its own,
-so name its linters explicitly;
-without them `lint_package()` falls back to lintr's defaults.
-psc's `lint-lms` CI job lints with the same linters and exclusions.
+`lms/.lintr.R` sets the linters (`default_linters()`) and exclusions.
+It has to be there:
+lintr looks for a config in parent directories too,
+so without it, linting `lms/` inside psc would read psc's root `.lintr.R`,
+which excludes `lms/` and so reports no lints at all.
+psc's `lint-lms` CI job runs the same two lines.
 
 `.onLoad()` calls `rex::register_shortcuts()` so the `{rex}` DSL tokens used in the
 snake_case regex are not flagged as undefined globals. After editing `R/` roxygen

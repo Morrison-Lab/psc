@@ -53,15 +53,10 @@ jobs:
 
       - name: Lint lms as a package
         run: |
+          # lms/.lintr.R supplies the linters and exclusions. Without it,
+          # lintr would read the root .lintr.R, which excludes lms/ entirely.
           pkgload::load_all("lms")
-          lintr::lint_package(
-            "lms",
-            linters = lms::default_linters(),
-            exclusions = list(
-              # Standard testthat boilerplate; library() is expected there.
-              "tests/testthat.R" = list(undesirable_function_linter = Inf)
-            )
-          )
+          lintr::lint_package("lms")
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true

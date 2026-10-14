@@ -54,7 +54,7 @@ For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before
 resolves symbols using the loaded package; without loading first, it checks against a
 stale installed copy (or none), producing spurious
 `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the
-[`lms`](https://github.com/Morrison-Lab/psc/tree/main/lms) linter package registers
+[`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms) linter package registers
 its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is
 loaded.
 
