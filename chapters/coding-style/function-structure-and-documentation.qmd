@@ -46,6 +46,6 @@ calculate_mean <- function(x) {
 }
 ```
 
-Note: Our `.lintr.R` configuration disables the `return_linter` to allow flexibility in code,
-but we still require explicit returns as a lab standard.
+Note: The example `.lintr.R` configuration disables the `return_linter` to allow flexibility in code,
+but we still recommend explicit returns.
 

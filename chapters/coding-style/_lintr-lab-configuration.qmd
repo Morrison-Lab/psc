@@ -1,16 +1,17 @@
-Our lab uses a custom `.lintr.R` configuration file in each repository to enforce our style standards.
-You can view the lab-manual's configuration at <https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R>.
+We recommend a custom `.lintr.R` configuration file in each repository to enforce your style standards.
+For an example, see the UCD-SERG lab manual's configuration at <https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R>.
 
-**Key linters we enable:**
+**Key linters to enable:**
 
 - `pipe_consistency_linter(pipe = "|>")`: Enforces use of native pipe `|>` instead of `%>%`
 - `object_name_linter()`: Enforces `snake_case` with custom regex allowing uppercase acronyms
 - `undesirable_function_linter()`: Prohibits base messaging functions and `library()` in package code
 - `redundant_equals_linter()`: Catches redundant `= TRUE` when `TRUE` is the default
 
-**Linters we disable:**
+**Linters to disable:**
 
-- `return_linter(return_style = "explicit")`: Every function should end with `return(return_value)` rather than just `return_value`. We may sometimes disable this linter in older projects when we aren't ready to clean this issue up, but for all new code, we require explicit returns as a lab standard, following the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html#use-explicit-returns).
+- `return_linter(return_style = "explicit")`: Every function should end with `return(return_value)` rather than just `return_value`. You may disable this linter in older projects until you are ready to clean them up,
+but we recommend explicit returns for all new code, following the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html#use-explicit-returns).
 - `trailing_whitespace_linter`: Disabled (handled by `styler` instead)
 
 **Exceptions:**

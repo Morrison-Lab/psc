@@ -104,7 +104,7 @@ Place each extracted helper in its own file
 (@sec-one-function-per-file),
 not above or below the caller in the same file.
 
-## Examples borrowed from lab package PRs
+## Examples borrowed from package PRs
 
 In [`UCD-SERG/rpt` PR #100](https://github.com/UCD-SERG/rpt/pull/100),
 a top-level function was updated to call dedicated helpers,

@@ -60,7 +60,7 @@ as this goes against best practices in modern R and other languages.
 Modern packages like `readr::read_csv()` follow this convention.
 
 **Uppercase acronyms are allowed** in `snake_case` names (e.g., `prep_IDs_data`, `calculate_BMI_score`).
-This is enforced via a custom `object_name_linter` regex pattern in our `.lintr.R` configuration.
+This is enforced via a custom `object_name_linter` regex pattern in a `.lintr.R` configuration.
 
 Try to make your variable names both more expressive and more explicit.
 Being a bit more verbose is useful and easy in the age of autocompletion!

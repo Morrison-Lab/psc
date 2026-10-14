@@ -53,16 +53,16 @@ For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before
 `lintr::lint_package()`. Our configuration includes `object_usage_linter()`, which
 resolves symbols using the loaded package; without loading first, it checks against a
 stale installed copy (or none), producing spurious
-`no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, our
+`no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the UCD-SERG
 [`lms`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package registers
 its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is
 loaded.
 
-Our lab uses `.lintr.R` files for configuration (the `.lintr` format is also supported by lintr,
-but we prefer `.lintr.R` for better R syntax support).
+We recommend `.lintr.R` files for configuration (lintr also supports the `.lintr` format,
+but `.lintr.R` has better R syntax support).
 
 :::
 
-### Our Lab's Lintr Configuration
+### An Example Lintr Configuration
 
 {{< include /chapters/coding-style/_lintr-lab-configuration.qmd >}}

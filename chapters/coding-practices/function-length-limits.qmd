@@ -26,7 +26,7 @@ Sources:
   this reinforces that branching complexity is often a better risk indicator
   than raw line count alone.
 
-Synthesizing these viewpoints for lab code
+Synthesizing these viewpoints for research code
 yields the following practical rules:
 
 1. Use `<150` lines as a provisional heuristic trigger to reassess decomposition, not a hard constraint.

@@ -15,12 +15,12 @@ and static graphics ([`{ggplot2}`](https://ggplot2.tidyverse.org/), `Matplotlib`
 
 By default a dashboard renders to static HTML,
 so it can be published anywhere a web page can
-(including GitHub Pages, like the rest of our Quarto output)
+(including GitHub Pages, like other Quarto output)
 with no server behind it.
 When server-side interactivity is genuinely needed,
 a [Shiny](https://shiny.posit.co/) backend can drive the dashboard,
 at the cost of needing a Shiny server to host it.
-For most lab reporting,
+For most research reporting,
 start with the static form and add Shiny only if filtering or
 recomputation on the reader's side becomes necessary.
 

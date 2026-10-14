@@ -1,4 +1,4 @@
-Here's the typical workflow for developing an R package in our lab:
+Here's the typical workflow for developing an R package:
 
 ### 1. Initial Setup
 

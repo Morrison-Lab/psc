@@ -10,7 +10,7 @@ those newly introduced findings surface on whatever pull request
 happens to run CI next.
 That pull request then has to expand into unrelated files
 just to turn the lint check green,
-which conflicts with our expectation that a pull request
+which conflicts with the expectation that a pull request
 stays scoped to one concern.
 
 In most cases,

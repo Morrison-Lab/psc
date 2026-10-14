@@ -1,4 +1,4 @@
-The following tools are essential for R package development in our lab:
+The following tools are essential for R package development:
 
 ### usethis: Package Setup and Management
 

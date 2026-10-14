@@ -30,11 +30,11 @@ Why it helps:
   so later changes get regression protection for free.
 - Code written to be testable tends toward
   small, single-purpose functions with explicit inputs and outputs ---
-  the same design our function-decomposition
-  (@sec-function-decomposition) guidance pushes toward.
+  the same design the function-decomposition
+  guidance (@sec-function-decomposition) pushes toward.
 
 You do not have to practice strict TDD to benefit from it.
-Our testing guidance (@sec-r-testing) already applies its core move ---
+The testing guidance (@sec-r-testing) already applies its core move ---
 establish tests *before* modifying existing functions ---
 and writing the test first is just that same discipline
 applied to new code as well.

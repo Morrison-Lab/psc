@@ -37,8 +37,8 @@ jarl check . --fix
 | **Primary use case** | CI verification, custom lab rules | Fast pre-commit checks, local interactive editing |
 
 ::: {.callout-note}
-### Lab Guidance
+### Recommendation
 
-Our lab uses [`{lintr}`](https://lintr.r-lib.org/) with our custom [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) configuration and [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) package as the primary standard for CI pipelines and package validation.
+We recommend [`{lintr}`](https://lintr.r-lib.org/) with a custom [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) configuration (the UCD-SERG lab manual's) and the [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) package as the primary standard for CI pipelines and package validation.
 However, `{jarl}` is an excellent choice for local pre-commit hooks and interactive developer workflows where instant lint feedback saves time on large repositories.
 :::

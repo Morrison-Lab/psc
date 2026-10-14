@@ -27,7 +27,7 @@ Keeping logic inline also buries the analysis narrative
 under implementation detail,
 and duplicates code that should have one home.
 
-Our shared linter set enforces the function-definition half of this rule:
+The UCD-SERG shared linter set enforces the function-definition half of this rule:
 `lms::function_location_linter()`
 (part of `lms::default_linters()`)
 flags a named function defined at the top level of any file
