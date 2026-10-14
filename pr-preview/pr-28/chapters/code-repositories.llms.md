@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:53:35 (PDT)
+Last modified: 2026-10-14 04:01:08 (PDT)
 
 Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier to collaborate across projects.
 
@@ -12,7 +12,7 @@ We recommend R package structure for most R-based projects. This provides benefi
 
 ## 1 Template repositories
 
-When starting a new package, we recommend beginning from a template repository, such as [`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt), rather than an empty repository. On GitHub, click **Use this template** to create a new repository that already includes a standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, `Title`, and `Description` in `DESCRIPTION` with your project’s details.
+When starting a new package, begin from a template repository, such as [`Morrison-Lab/rpt`](https://github.com/Morrison-Lab/rpt), rather than an empty repository. On GitHub, click **Use this template** to create a new repository that already includes a standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, `Title`, and `Description` in `DESCRIPTION` with your project’s details.
 
 ### 1.1 A note on GitLab
 
@@ -22,11 +22,11 @@ GitHub-style template repositories do **not** have a direct equivalent in GitLab
 - **Custom project templates** (instance- or group-level) — the feature most analogous to GitHub’s template repositories — are [Premium/Ultimate tier](https://docs.gitlab.com/user/group/custom_project_templates/) only, so they are unavailable in CE.
 - On CE, the practical workaround is to **fork** (or clone and re-push) a “seed” project to start new work from it.
 
-In short: if you ever mirror this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.
+In short: if you mirror this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.
 
 ## 2 Package Structure
 
-**We recommend structuring all R projects as R packages**, even if they are primarily analysis projects and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
+**We recommend structuring every R project as an R package**, even one that is primarily an analysis project and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:
 
 ### 2.1 Why Use R Package Structure?
 
@@ -74,7 +74,7 @@ In short: if you ever mirror this workflow onto a self-managed GitLab CE instanc
     │   │       ├── table1.csv
     │   │       └── table2.xlsx
     │   └── analyses/       # Analyses using restricted data (see below)
-    └── .Rproj              # RStudio project file
+    └── myproject.Rproj     # RStudio project file
 
 ### 2.3 Where to Place Analysis Files
 
@@ -114,7 +114,7 @@ All vignettes and articles will be rendered by `pkgdown::build_site()` on your p
 
 #### Analyses with Restricted Data (inst/analyses/)
 
-For analyses that rely on **private, sensitive, or restricted data**, place `.qmd` or `.qmd` files in `inst/analyses/`:
+For analyses that rely on **private, sensitive, or restricted data**, place `.qmd` files in `inst/analyses/`:
 
     myproject/
     ├── inst/
@@ -213,7 +213,7 @@ Rscript data-raw/03-merge-datasets.R
 Rscript data-raw/04-create-analysis-data.R
 ```
 
-This is especially useful when data upstream changes — you can simply run the shell script to reproduce everything. After running shell scripts, `.Rout` log files will be generated for each script. It is important to check these files to ensure everything has run correctly.
+This is especially useful when data upstream changes — you can simply run the shell script to reproduce everything. `Rscript` prints output and errors to the terminal and writes no log file, so check that output. Alternatively, run each script with `R CMD BATCH`, which writes a `.Rout` log file for each script, and check those files to ensure everything has run correctly.
 
 ### 2.6 Storing Analysis Outputs
 
@@ -306,7 +306,7 @@ For brevity, not every directory is “expanded”, but we can glean some import
 
 ### 4.1 Configuration (‘config’) File
 
-This is the single most important file for your project. It will be responsible for a variety of common tasks, declare global variables, load functions, declare paths, and more. *Every other file in the project* will begin with `source("0-config")`, and its role is to reduce redundancy and create an abstraction layer that allows you to make changes in one place (`0-config.R`) rather than 5 different files. To this end, paths which will be reference in multiple scripts (i.e. a `merged_data_path`) can be declared in `0-config.R` and simply referred to by its variable name in scripts. If you ever want to change things, rename them, or even switch from a downsample to the full data, all you would then to need to do is modify the path in one place and the change will automatically update throughout your project. See the example config file for more details. The paths defined in the `0-config.R` file assume that users have opened the `.Rproj` file, which sets the directory to the top level of the project.
+This is the single most important file for your project. It will be responsible for a variety of common tasks, declare global variables, load functions, declare paths, and more. *Every other file in the project* will begin with `source("0-config.R")`, and its role is to reduce redundancy and create an abstraction layer that allows you to make changes in one place (`0-config.R`) rather than 5 different files. To this end, paths which will be referenced in multiple scripts (e.g. a `merged_data_path`) can be declared in `0-config.R` and simply referred to by their variable names in scripts. If you ever want to change things, rename them, or even switch from a downsample to the full data, all you would then need to do is modify the path in one place and the change will automatically update throughout your project. See the example config file for more details. The paths defined in the `0-config.R` file assume that users have opened the `.Rproj` file, which sets the directory to the top level of the project.
 
 ### 4.2 Order Files and Directories
 

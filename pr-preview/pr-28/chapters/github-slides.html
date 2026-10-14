@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:53:35 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 04:01:08 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -542,7 +542,7 @@ Table&nbsp;1: Standard Git workflow for new projects
 </section>
 <section class="slide level2">
 
-<p>Pull request roles, author and reviewer expectations, <a href="../chapters/collaborative-software-development.html#sec-stacked-pull-requests">stacked pull requests</a>, and review-response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>. This GitHub chapter focuses on Git mechanics and GitHub-specific platform features.</p>
+<p>Recommended pull request roles, author and reviewer expectations, <a href="../chapters/collaborative-software-development.html#sec-stacked-pull-requests">stacked pull requests</a>, and review-response protocol are consolidated in <a href="../chapters/collaborative-software-development.html#sec-collab-dev">Collaborative Software Development</a>. This GitHub chapter focuses on Git mechanics and GitHub-specific platform features.</p>
 </section>
 <section id="sec-commonly-used-git-commands" class="slide level2" data-number="9">
 <h2><span class="header-section-number">9</span> Commonly Used Git Commands</h2>
@@ -608,7 +608,7 @@ Table&nbsp;2: Commonly used Git commands
 <td>push branch to remote and set to track (-u only works if this is first push)</td>
 </tr>
 <tr class="odd">
-<td><code>git branch --set-upstream-to origin &lt;branch_name&gt;</code></td>
+<td><code>git branch --set-upstream-to=origin/&lt;branch_name&gt;</code></td>
 <td>set upstream to <code>origin/&lt;branch_name&gt;</code> (use if you forgot -u on first push)</td>
 </tr>
 <tr class="even">
@@ -620,22 +620,18 @@ Table&nbsp;2: Commonly used Git commands
 <td>switch to branch and merge changes from <code>master</code> into <code>&lt;branch_name&gt;</code> (two commands)</td>
 </tr>
 <tr class="even">
-<td><code>git merge &lt;branch_name&gt; master</code></td>
-<td>switch to branch and merge changes from <code>master</code> into <code>&lt;branch_name&gt;</code> (one command)</td>
-</tr>
-<tr class="odd">
 <td><code>git checkout --track origin/&lt;branch_name&gt;</code></td>
 <td>pulls a remote branch and creates a local branch to track it (use when trying to pull someone else’s branch onto your local computer)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>git push --delete &lt;remote_name&gt; &lt;branch_name&gt;</code></td>
 <td>delete remote branch</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>git branch -d &lt;branch_name&gt;</code></td>
 <td>deletes local branch, -D to force</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>git fetch --all --prune</code></td>
 <td>untrack deleted remote branches</td>
 </tr>
@@ -687,14 +683,14 @@ Table&nbsp;2: Commonly used Git commands
 <section class="slide level2">
 
 <p>Never push .Rout files! If someone else runs an R script and creates an .Rout file at the same time and both of you try to push to github, it is incredibly difficult to reconcile these two logs. If you run logs, keep them on your own system or (preferably) set up a shared directory where all logs are name and date timestamped.</p>
-<p>There is a standardized <code>.gitignore</code> for <code>R</code> which you <a href="https://github.com/github/gitignore/blob/master/R.gitignore">can download</a> and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a <a href="https://tidyverse.org/blog/2017/12/workflow-vs-script/">great discussion of project-oriented workflows</a>, extolling the virtues of a self-contained, portable projects, for your reference.</p>
+<p>There is a standardized <code>.gitignore</code> for <code>R</code> which you <a href="https://github.com/github/gitignore/blob/main/R.gitignore">can download</a> and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a <a href="https://tidyverse.org/blog/2017/12/workflow-vs-script/">great discussion of project-oriented workflows</a>, extolling the virtues of self-contained, portable projects, for your reference.</p>
 </section>
 <section id="sec-gitlab" class="slide level2" data-number="13">
 <h2><span class="header-section-number">13</span> GitLab</h2>
 </section>
 <section class="slide level2">
 
-<p>These notes focus on GitHub, but you may encounter <a href="https://about.gitlab.com/">GitLab</a> — most often when collaborating with a group that self-hosts its own GitLab instance.</p>
+<p>This guide focuses on GitHub, but you may encounter <a href="https://about.gitlab.com/">GitLab</a> — most often when collaborating with a group that self-hosts its own GitLab instance.</p>
 <p>The two platforms support the same core workflow (clone, branch, push, review, merge), with a few differences worth knowing:</p>
 <ul>
 <li><strong>Terminology.</strong> A GitHub <em>pull request</em> is a GitLab <em>merge request</em> (MR); the concept is identical.</li>
@@ -705,7 +701,7 @@ Table&nbsp;2: Commonly used Git commands
 <p>Two R packages help when working with GitLab from R (the second works across both forges):</p>
 <ul>
 <li><a href="https://thinkr-open.github.io/gitlabr/"><code>{gitlabr}</code></a> provides R access to the GitLab API, with convenience wrappers for common tasks (repository file access, issue assignment and status, commenting).</li>
-<li><a href="https://github.com/d-morrison/pr.helpers"><code>{pr.helpers}</code></a>, an experimental package, provides helpers for common pull/merge request workflows from a local Git repository — creating and switching branches, fetching requests by number, generating request URLs, and syncing with the default branch — and works across both GitHub and GitLab remotes.</li>
+<li><a href="https://github.com/d-morrison/pr.helpers"><code>{pr.helpers}</code></a>, an experimental package from the Morrison Lab, provides helpers for common pull/merge request workflows from a local Git repository — creating and switching branches, fetching requests by number, generating request URLs, and syncing with the default branch — and works across both GitHub and GitLab remotes.</li>
 </ul>
 </section>
 <section id="sec-gitattributes" class="slide level2" data-number="14">
@@ -852,7 +848,7 @@ Table&nbsp;2: Commonly used Git commands
 <p>GitHub’s migration API builds a downloadable archive of your data as JSON. It is the most complete of the routes here.</p>
 <p>The user migrations reference lists what the archive can hold <span class="citation" data-cites="githubusermigrations">(<a href="#/references" role="doc-biblioref" onclick=""><span>“REST API Endpoints for User Migrations,”</span> n.d.</a>)</span>. Every stream named above is in it — <code>issues</code>, <code>issue_comments</code>, <code>pull_requests</code>, <code>pull_request_reviews</code>, and <code>review_comments</code> — along with <code>issue_events</code>, <code>commit_comments</code>, <code>milestones</code>, <code>releases</code>, <code>repositories</code>, and <code>users</code>.</p>
 <p>Start a migration with <code>POST /user/migrations</code> for repositories you own, or <code>POST /orgs/{org}/migrations</code> for an organization’s repositories if you are an organization owner <span class="citation" data-cites="githuborgmigrations">(<a href="#/references" role="doc-biblioref" onclick=""><span>“REST API Endpoints for Organization Migrations,”</span> n.d.</a>)</span>. Both are asynchronous: you poll the migration’s status until it reports <code>exported</code>, then download the archive, which stays available for seven days.</p>
-<p><strong>Settings &gt; Account &gt; Export account data</strong> is the web-interface route to this same export rather than a separate feature. GitHub’s documentation states that you can export your personal account’s data “through your account settings on GitHub or with the User Migration API”, and refers readers to the migrations API reference for what that data covers <span class="citation" data-cites="githubaccountarchive">(<a href="#/references" role="doc-biblioref" onclick=""><span>“Requesting an Archive of Your Personal Account’s Data,”</span> n.d.</a>)</span>. Clicking through delivers the <code>.tar.gz</code> by emailed download link. That makes this the one route needing no code at all: anyone who wants the whole record can click through Settings and skip everything above.</p>
+<p><strong>Settings &gt; Account &gt; Export account data</strong> is the web-interface route to this same export rather than a separate feature. GitHub’s documentation states that you can export your personal account’s data “through your account settings on GitHub or with the User Migration API”, and refers readers to the migrations API reference for what that data covers <span class="citation" data-cites="githubaccountarchive">(<a href="#/references" role="doc-biblioref" onclick=""><span>“Requesting an Archive of Your Personal Account’s Data,”</span> n.d.</a>)</span>. Clicking through delivers the <code>.tar.gz</code> by emailed download link. That makes this the one route needing no code at all: a team member who wants the whole record can click through Settings and skip everything above.</p>
 <p>This route is the right one for archiving a repository before it is deleted or transferred. The per-repository scripts above are better for ongoing exports or for a subset of the discussion.</p>
 <h3 id="sec-export-cautions">Practical cautions</h3>
 <ul>

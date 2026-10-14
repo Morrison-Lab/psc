@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:53:35 (PDT)
+Last modified: 2026-10-14 04:01:08 (PDT)
 
 We typically use Unix commands in Terminal (for Mac users) or Git Bash (for Windows users) to
 
@@ -256,7 +256,7 @@ The two above had to be cloned because they live outside Oh My Zsh. Oh My Zsh it
 
 | Plugin | What it gives you |
 |----|----|
-| `gh` | Completions for the GitHub CLI, which this chapter’s workflow leans on heavily |
+| `gh` | Completions for the GitHub CLI, which the workflows in this guide lean on heavily |
 | `tmux` | Aliases for the `tmux` session commands this chapter uses for long-running jobs |
 | `extract` | `x <file>` unpacks any archive, so you stop looking up `tar` flags |
 | `command-not-found` | On Ubuntu and WSL, names the package that would supply a missing command |
@@ -350,7 +350,7 @@ Table 6: Commands for running Bash scripts
 
 ## 7 Shell Scripting Style
 
-For shell scripts, we recommend the [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) as the base authority, the same way the R chapters defer to the [tidyverse style guide](https://style.tidyverse.org/). The points below are our priorities and additions.
+For shell scripts, we recommend the [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) as the base authority, the same way the R chapters defer to the [tidyverse style guide](https://style.tidyverse.org/). The points below are recommended priorities and additions.
 
 ### 7.1 Error handling
 

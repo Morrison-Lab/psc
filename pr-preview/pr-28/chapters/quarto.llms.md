@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:53:35 (PDT)
+Last modified: 2026-10-14 04:01:08 (PDT)
 
 ## 1 Introduction
 
@@ -624,7 +624,7 @@ If DOCX output is required for collaboration or submission, use one of the worka
 
 ### 7.4 Real-World Example
 
-In [UCD-SERG/rpt PR \#70](https://github.com/UCD-SERG/rpt/pull/70), the UCD-SERG team removed mermaid diagrams from package vignettes specifically because they were incompatible with DOCX output. This demonstrates the practical impact of these limitations in production workflows.
+In [UCD-SERG/rpt PR \#70](https://github.com/UCD-SERG/rpt/pull/70), the maintainers removed mermaid diagrams from package vignettes specifically because they were incompatible with DOCX output. This demonstrates the practical impact of these limitations in production workflows.
 
 ### 7.5 Future Outlook
 

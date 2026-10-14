@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:53:35 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 04:01:08 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -343,7 +343,7 @@
 </section>
 <section class="slide level2">
 
-<p>When starting a new package, we recommend beginning from a template repository, such as <a href="https://github.com/Morrison-Lab/rpt"><code>Morrison-Lab/rpt</code></a>, rather than an empty repository. On GitHub, click <strong>Use this template</strong> to create a new repository that already includes a standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, <code>Title</code>, and <code>Description</code> in <code>DESCRIPTION</code> with your project’s details.</p>
+<p>When starting a new package, begin from a template repository, such as <a href="https://github.com/Morrison-Lab/rpt"><code>Morrison-Lab/rpt</code></a>, rather than an empty repository. On GitHub, click <strong>Use this template</strong> to create a new repository that already includes a standard structure, CI workflows, and documentation scaffolding. Then replace the placeholder package name, <code>Title</code>, and <code>Description</code> in <code>DESCRIPTION</code> with your project’s details.</p>
 <h3 id="a-note-on-gitlab">A note on GitLab</h3>
 <p>GitHub-style template repositories do <strong>not</strong> have a direct equivalent in GitLab Community Edition (CE):</p>
 <ul>
@@ -351,14 +351,14 @@
 <li><strong>Custom project templates</strong> (instance- or group-level) — the feature most analogous to GitHub’s template repositories — are <a href="https://docs.gitlab.com/user/group/custom_project_templates/">Premium/Ultimate tier</a> only, so they are unavailable in CE.</li>
 <li>On CE, the practical workaround is to <strong>fork</strong> (or clone and re-push) a “seed” project to start new work from it.</li>
 </ul>
-<p>In short: if you ever mirror this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.</p>
+<p>In short: if you mirror this workflow onto a self-managed GitLab CE instance, plan to either fork a seed repository or budget for a paid tier.</p>
 </section>
 <section id="sec-package-structure" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> Package Structure</h2>
 </section>
 <section class="slide level2 scrollable">
 
-<p><strong>We recommend structuring all R projects as R packages</strong>, even if they are primarily analysis projects and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:</p>
+<p><strong>We recommend structuring every R project as an R package</strong>, even one that is primarily an analysis project and not intended for distribution on CRAN or Bioconductor. This standardized structure provides numerous benefits:</p>
 <h3 id="why-use-r-package-structure">Why Use R Package Structure?</h3>
 <ol type="1">
 <li><strong>Organized code</strong>: Clear separation of functions (<code>R/</code>), documentation (<code>man/</code>), tests (<code>tests/</code>), data (<code>data/</code>), and vignettes/analyses</li>
@@ -404,7 +404,7 @@
 │   │       ├── table1.csv
 │   │       └── table2.xlsx
 │   └── analyses/       # Analyses using restricted data (see below)
-└── .Rproj              # RStudio project file</code></pre>
+└── myproject.Rproj     # RStudio project file</code></pre>
 <h3 id="sec-analysis-file-placement">Where to Place Analysis Files</h3>
 <h4 id="vignettes-vs-articles">Vignettes vs Articles</h4>
 <p><strong>Vignettes</strong> (<code>vignettes/*.qmd</code>): - <strong>Shipped with the package</strong> when installed - Accessible via <code>vignette()</code> and <code>browseVignettes()</code> in R - Displayed on CRAN - Built at package build time - Use for core package documentation and tutorials - Created with <code>usethis::use_vignette("name")</code></p>
@@ -434,7 +434,7 @@
 </ul>
 <p>All vignettes and articles will be rendered by <code>pkgdown::build_site()</code> on your package website.</p>
 <h4 id="analyses-with-restricted-data-instanalyses">Analyses with Restricted Data (inst/analyses/)</h4>
-<p>For analyses that rely on <strong>private, sensitive, or restricted data</strong>, place <code>.qmd</code> or <code>.qmd</code> files in <code>inst/analyses/</code>:</p>
+<p>For analyses that rely on <strong>private, sensitive, or restricted data</strong>, place <code>.qmd</code> files in <code>inst/analyses/</code>:</p>
 <pre><code>myproject/
 ├── inst/
 │   ├── analyses/
@@ -513,7 +513,7 @@
 <span id="cb8-4"><a aria-label="4"></a><span class="ex">Rscript</span> data-raw/02-clean-survey.R</span>
 <span id="cb8-5"><a aria-label="5"></a><span class="ex">Rscript</span> data-raw/03-merge-datasets.R</span>
 <span id="cb8-6"><a aria-label="6"></a><span class="ex">Rscript</span> data-raw/04-create-analysis-data.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This is especially useful when data upstream changes — you can simply run the shell script to reproduce everything. After running shell scripts, <code>.Rout</code> log files will be generated for each script. It is important to check these files to ensure everything has run correctly.</p>
+<p>This is especially useful when data upstream changes — you can simply run the shell script to reproduce everything. <code>Rscript</code> prints output and errors to the terminal and writes no log file, so check that output. Alternatively, run each script with <code>R CMD BATCH</code>, which writes a <code>.Rout</code> log file for each script, and check those files to ensure everything has run correctly.</p>
 <h3 id="storing-analysis-outputs">Storing Analysis Outputs</h3>
 <p><strong>Results files (.RDS)</strong>: Save analysis results in <code>inst/extdata/</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a><span class="co"># Save results</span></span>
@@ -597,7 +597,7 @@
 .gitignore</code></pre>
 <p>For brevity, not every directory is “expanded”, but we can glean some important takeaways from what we <em>do</em> see.</p>
 <h3 id="configuration-config-file">Configuration (‘config’) File</h3>
-<p>This is the single most important file for your project. It will be responsible for a variety of common tasks, declare global variables, load functions, declare paths, and more. <em>Every other file in the project</em> will begin with <code>source("0-config")</code>, and its role is to reduce redundancy and create an abstraction layer that allows you to make changes in one place (<code>0-config.R</code>) rather than 5 different files. To this end, paths which will be reference in multiple scripts (i.e.&nbsp;a <code>merged_data_path</code>) can be declared in <code>0-config.R</code> and simply referred to by its variable name in scripts. If you ever want to change things, rename them, or even switch from a downsample to the full data, all you would then to need to do is modify the path in one place and the change will automatically update throughout your project. See the example config file for more details. The paths defined in the <code>0-config.R</code> file assume that users have opened the <code>.Rproj</code> file, which sets the directory to the top level of the project.</p>
+<p>This is the single most important file for your project. It will be responsible for a variety of common tasks, declare global variables, load functions, declare paths, and more. <em>Every other file in the project</em> will begin with <code>source("0-config.R")</code>, and its role is to reduce redundancy and create an abstraction layer that allows you to make changes in one place (<code>0-config.R</code>) rather than 5 different files. To this end, paths which will be referenced in multiple scripts (e.g.&nbsp;a <code>merged_data_path</code>) can be declared in <code>0-config.R</code> and simply referred to by their variable names in scripts. If you ever want to change things, rename them, or even switch from a downsample to the full data, all you would then need to do is modify the path in one place and the change will automatically update throughout your project. See the example config file for more details. The paths defined in the <code>0-config.R</code> file assume that users have opened the <code>.Rproj</code> file, which sets the directory to the top level of the project.</p>
 <h3 id="order-files-and-directories">Order Files and Directories</h3>
 <p>This makes the jumble of alphabetized filenames much more coherent and places similar code and files next to one another. This also helps us understand how data flows from start to finish and allows us to easily map a script to its output (i.e.&nbsp;<code>2 - Analysis/1 - Absentee-Mean/1-absentee-mean-primary.R</code> =&gt; <code>5 - Results/1 - Absentee-Mean/1-absentee-mean-primary.RDS</code>). If you take nothing else away from this guide, this is the single most helpful suggestion to make your workflow more coherent. Often the particular order of files will be in flux until an analysis is close to completion. At that time it is important to review file order and naming and reproduce everything prior to drafting a manuscript.</p>
 <h3 id="using-bash-scripts-to-ensure-reproducibility">Using Bash scripts to ensure reproducibility</h3>

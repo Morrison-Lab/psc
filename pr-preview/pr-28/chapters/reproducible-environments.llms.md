@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:53:35 (PDT)
+Last modified: 2026-10-14 04:01:08 (PDT)
 
 ## 1 Package Version Control with renv
 
@@ -58,7 +58,7 @@ If you’re starting to work on an ongoing project that already has `renv` set u
 1.  Install the `renv` package by running `install.packages("renv")`
 2.  Pull the most updated version of the project from GitHub
 3.  Open the project’s RProject file
-4.  Run `renv::restore()`. Many projects put this call at the top of the config file, so you can just run scripts as is.
+4.  Run `renv::restore()`. Some projects call `renv::restore()` at the top of a setup or config script; if yours does, running that script restores the environment for you.
 5.  This will pull up a list of the project’s packages that need to be updated for you to be consistent with the project. The console will ask if you want to proceed with updating these packages - type “Y” to continue.
 6.  Wait for the correct versions of each package to install/update. This may take some time, depending on how many packages the project uses.
 7.  Your R environment should now be using the same package versions as specified in the `renv` lock file. You should now be able to replicate the code.
