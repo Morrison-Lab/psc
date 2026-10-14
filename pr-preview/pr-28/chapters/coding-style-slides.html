@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:44:13 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 01:53:35 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -562,7 +562,7 @@
 
 <p>Before writing a function, look for an existing packaged one that already does the job — and prefer it over rolling your own:</p>
 <ul>
-<li>Check, roughly in this order: base R and the tidyverse / r-lib packages, then a focused, well-maintained CRAN package, then packages from your own group (e.g.&nbsp;<code>{bcs}</code>, <code>{ettbc}</code>, <code>{gha}</code>, and the shared workflows there). Packages can depend on each other, so reuse across your repos is fine.</li>
+<li>Check, roughly in this order: base R and the tidyverse / r-lib packages, then a focused, well-maintained CRAN package, then packages from your own group (for example, the Morrison-Lab maintains <code>{bcs}</code>, <code>{ettbc}</code>, and <code>{gha}</code>, with shared workflows). Packages can depend on each other, so reuse across your repos is fine.</li>
 <li>Reach for the packaged version unless it is genuinely unfit — the wrong API, a heavy dependency for a one-liner, or it does not quite do what you need.</li>
 </ul>
 <p>Packaged functions are tested, documented, and maintained by other people; hand-rolling an equivalent duplicates that work, adds surface area to maintain, and risks subtle bugs the package already fixed. For example, use <code>withr::with_seed()</code> to set a seed and restore the RNG stream, rather than hand-rolling a <code>.Random.seed</code> save/restore.</p>
@@ -1202,7 +1202,7 @@
 <li>Line length issues</li>
 <li>Style guide violations</li>
 </ul>
-<p>For package code, run <code>pkgload::load_all()</code> (or <code>devtools::load_all()</code>) <strong>before</strong> <code>lintr::lint_package()</code>. Our configuration includes <code>object_usage_linter()</code>, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious <code>no visible binding for global variable</code> warnings. Loading also runs any <code>.onLoad()</code> side effects: for example, the UCD-SERG <a href="https://github.com/UCD-SERG/lab-manual/tree/main/lms"><code>lms</code></a> linter package registers its <code>rex</code> shortcuts in <code>.onLoad()</code>, and the linter only sees them once the package is loaded.</p>
+<p>For package code, run <code>pkgload::load_all()</code> (or <code>devtools::load_all()</code>) <strong>before</strong> <code>lintr::lint_package()</code>. A typical configuration includes <code>object_usage_linter()</code>, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious <code>no visible binding for global variable</code> warnings. Loading also runs any <code>.onLoad()</code> side effects: for example, the UCD-SERG <a href="https://github.com/UCD-SERG/lab-manual/tree/main/lms"><code>lms</code></a> linter package registers its <code>rex</code> shortcuts in <code>.onLoad()</code>, and the linter only sees them once the package is loaded.</p>
 <p>We recommend <code>.lintr.R</code> files for configuration (lintr also supports the <code>.lintr</code> format, but <code>.lintr.R</code> has better R syntax support).</p>
 </div>
 </div>
@@ -1222,7 +1222,7 @@
 <li><code>trailing_whitespace_linter</code>: Disabled (handled by <code>styler</code> instead)</li>
 </ul>
 <p><strong>Exceptions:</strong></p>
-<p>Our configuration allows relaxed rules for certain directories:</p>
+<p>A configuration can allow relaxed rules for certain directories:</p>
 <ul>
 <li><code>data-raw/</code>: Pipe consistency and undesirable function rules relaxed (exploratory scripts)</li>
 <li><code>vignettes/</code>: Undesirable function and object naming rules relaxed (tutorial code may need <code>library()</code>)</li>
@@ -1279,7 +1279,7 @@
 </tr>
 <tr class="odd">
 <td><strong>Primary use case</strong></td>
-<td>CI verification, custom lab rules</td>
+<td>CI verification, custom rules</td>
 <td>Fast pre-commit checks, local interactive editing</td>
 </tr>
 </tbody>

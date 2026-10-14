@@ -4,11 +4,11 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:44:13 (PDT)
+Last modified: 2026-10-14 01:53:35 (PDT)
 
 ## 1 General Overview
 
-This chapter covers data masking, a unique process in R in which columns are treated as distinct objects within their dataframe’s environment. Data masking most frequently comes up when writing wrapper functions where arguments to indicate column names are supplied as strings. This is common when you repeat the same code on multiple columns and want to apply a function to a vector of strings that correspond to column names in a dataframe. For example, we might want to clean multiple columns using the same function or estimate the same model under different feature sets. Here, we try to break down what data masking is, why this error comes up, and common approaches to solve this problem.
+This chapter covers data masking, a unique process in R in which columns are treated as distinct objects within their dataframe’s environment. Data masking most frequently comes up when writing wrapper functions where arguments to indicate column names are supplied as strings. This is common when you repeat the same code on multiple columns and want to apply a function to a vector of strings that correspond to column names in a dataframe. For example, you might want to clean multiple columns using the same function or estimate the same model under different feature sets. Here, we try to break down what data masking is, why this error comes up, and common approaches to solve this problem.
 
 ### 1.1 What is Data Masking?
 

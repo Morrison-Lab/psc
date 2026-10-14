@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:44:13 (PDT)
+Last modified: 2026-10-14 01:53:35 (PDT)
 
 Follow these code style guidelines for all R code:
 
@@ -268,7 +268,7 @@ When a wrapper genuinely is necessary — the mapped element is not the callee�
 
 Before writing a function, look for an existing packaged one that already does the job — and prefer it over rolling your own:
 
-- Check, roughly in this order: base R and the tidyverse / r-lib packages, then a focused, well-maintained CRAN package, then packages from your own group (e.g. `{bcs}`, `{ettbc}`, `{gha}`, and the shared workflows there). Packages can depend on each other, so reuse across your repos is fine.
+- Check, roughly in this order: base R and the tidyverse / r-lib packages, then a focused, well-maintained CRAN package, then packages from your own group (for example, the Morrison-Lab maintains `{bcs}`, `{ettbc}`, and `{gha}`, with shared workflows). Packages can depend on each other, so reuse across your repos is fine.
 - Reach for the packaged version unless it is genuinely unfit — the wrong API, a heavy dependency for a one-liner, or it does not quite do what you need.
 
 Packaged functions are tested, documented, and maintained by other people; hand-rolling an equivalent duplicates that work, adds surface area to maintain, and risks subtle bugs the package already fixed. For example, use `withr::with_seed()` to set a seed and restore the RNG stream, rather than hand-rolling a `.Random.seed` save/restore.
@@ -931,7 +931,7 @@ Linters are programming tools that check adherence to a given style, syntax erro
 > - Line length issues
 > - Style guide violations
 >
-> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. Our configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the UCD-SERG [`lms`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
+> For package code, run `pkgload::load_all()` (or `devtools::load_all()`) **before** `lintr::lint_package()`. A typical configuration includes `object_usage_linter()`, which resolves symbols using the loaded package; without loading first, it checks against a stale installed copy (or none), producing spurious `no visible binding for global variable` warnings. Loading also runs any `.onLoad()` side effects: for example, the UCD-SERG [`lms`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package registers its `rex` shortcuts in `.onLoad()`, and the linter only sees them once the package is loaded.
 >
 > We recommend `.lintr.R` files for configuration (lintr also supports the `.lintr` format, but `.lintr.R` has better R syntax support).
 
@@ -953,7 +953,7 @@ We recommend a custom `.lintr.R` configuration file in each repository to enforc
 
 **Exceptions:**
 
-Our configuration allows relaxed rules for certain directories:
+A configuration can allow relaxed rules for certain directories:
 
 - `data-raw/`: Pipe consistency and undesirable function rules relaxed (exploratory scripts)
 - `vignettes/`: Undesirable function and object naming rules relaxed (tutorial code may need `library()`)
@@ -994,7 +994,7 @@ jarl check . --fix
 | **Execution speed** | Standard | Extremely fast (Rust binary) |
 | **Ecosystem maturity** | Industry standard, wide rule coverage | Emerging, expanding rule set |
 | **Custom R linters** | Yes (e.g., [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms)) | No (Rust-only rule definitions) |
-| **Primary use case** | CI verification, custom lab rules | Fast pre-commit checks, local interactive editing |
+| **Primary use case** | CI verification, custom rules | Fast pre-commit checks, local interactive editing |
 
 > **NOTE:**
 >

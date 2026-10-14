@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:44:13 (PDT)
+Last modified: 2026-10-14 01:53:35 (PDT)
 
 ## 1 Protocols for Code and Data
 
@@ -265,7 +265,7 @@ Here’s the typical workflow for developing an R package:
 
 **Starting from a template (recommended):**
 
-Using our R package template is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:
+Using an R package template is the fastest way to get started with a new R package, as it provides pre-configured settings, GitHub Actions workflows, and development tools:
 
 - **R Package Template (`rpt`)** - Our recommended template with pre-configured development tools and CI workflows:
   - Repository: <https://github.com/Morrison-Lab/rpt>

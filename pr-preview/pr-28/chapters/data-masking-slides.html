@@ -314,14 +314,14 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:44:13 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 01:53:35 (PDT)</p>
 </section>
 <section id="sec-general-overview" class="slide level2" data-number="1">
 <h2><span class="header-section-number">1</span> General Overview</h2>
 </section>
 <section class="slide level2">
 
-<p>This chapter covers data masking, a unique process in R in which columns are treated as distinct objects within their dataframe’s environment. Data masking most frequently comes up when writing wrapper functions where arguments to indicate column names are supplied as strings. This is common when you repeat the same code on multiple columns and want to apply a function to a vector of strings that correspond to column names in a dataframe. For example, we might want to clean multiple columns using the same function or estimate the same model under different feature sets. Here, we try to break down what data masking is, why this error comes up, and common approaches to solve this problem.</p>
+<p>This chapter covers data masking, a unique process in R in which columns are treated as distinct objects within their dataframe’s environment. Data masking most frequently comes up when writing wrapper functions where arguments to indicate column names are supplied as strings. This is common when you repeat the same code on multiple columns and want to apply a function to a vector of strings that correspond to column names in a dataframe. For example, you might want to clean multiple columns using the same function or estimate the same model under different feature sets. Here, we try to break down what data masking is, why this error comes up, and common approaches to solve this problem.</p>
 <h3 id="what-is-data-masking">What is Data Masking?</h3>
 <p>Within certain tidyverse operations, columns are called as if they were variables. For example, while running <code>df |&gt; mutate(X = …)</code> R recognizes that <code>X</code> specifically references a column in <code>df</code> without explicitly stating its membership <code>df |&gt; mutate(df$X = …)</code> or calling the column name as a string <code>df |&gt; mutate("X" = …)</code>.</p>
 <div id="fig-data-masking" class="quarto-float quarto-figure quarto-figure-center">
