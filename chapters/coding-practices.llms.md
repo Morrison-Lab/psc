@@ -4,11 +4,11 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:06:05 (PDT)
+Last modified: 2026-10-14 04:15:39 (PDT)
 
-## 1 Lab Protocols for Code and Data
+## 1 Protocols for Code and Data
 
-Just as wet labs have strict safety protocols to ensure reproducible results and prevent contamination, our computational lab has protocols for coding and data management. These protocols are not suggestions—they are essential practices that:
+Just as wet labs have strict safety protocols to ensure reproducible results and prevent contamination, computational work needs protocols for coding and data management. These protocols are not suggestions—they are essential practices that:
 
 - **Ensure reproducibility**: Others (including your future self) can recreate your analysis
 - **Prevent errors**: Systematic approaches reduce the risk of mistakes
@@ -30,7 +30,7 @@ The mindset in practice:
 - **Build for your own repeated use first.** A tool that saves you an hour a week justifies itself quickly, and the discipline of packaging it (documentation, tests) makes it usable by the next person too.
 - **Don’t gold-plate.** The tool only needs to beat doing the task by hand; polish it further only when its use grows to warrant it.
 
-Much shared research infrastructure comes from exactly this pattern: the Morrison Lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package packages the lab’s snapshot-testing helpers, the UCD-SERG lab manual’s [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package packages a shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the Morrison Lab’s repositories.
+Much shared research infrastructure comes from exactly this pattern: the Morrison Lab’s [`{snapr}`](https://morrison-lab.github.io/snapr/) package packages snapshot-testing helpers, the UCD-SERG lab manual’s [`{lms}`](https://github.com/UCD-SERG/lab-manual/tree/main/lms) linter package packages a shared lint configuration, and the [Morrison-Lab/gha](https://github.com/Morrison-Lab/gha) repository collects reusable CI workflows and composite actions shared across the Morrison Lab’s repositories.
 
 ## 3 Essential R Package Development Tools
 
@@ -527,10 +527,9 @@ Why it helps:
 
 - The test pins down what the function *should* do before you are invested in what it happens to do, turning requirements into executable checks.
 - Every unit of behavior ends up covered by construction, so later changes get regression protection for free.
-- Code written to be testable tends toward small, single-purpose functions with explicit inputs and outputs — the same design our function-decomposition
-  1.  guidance pushes toward.
+- Code written to be testable tends toward small, single-purpose functions with explicit inputs and outputs — the same design the function-decomposition guidance ([Section 18](#sec-function-decomposition)) pushes toward.
 
-You do not have to practice strict TDD to benefit from it. Our testing guidance ([Section 6](#sec-r-testing)) already applies its core move — establish tests *before* modifying existing functions — and writing the test first is just that same discipline applied to new code as well. In R packages, the mechanics are light: `usethis::use_test()` creates the matching [`{testthat}`](https://testthat.r-lib.org/) test file, and `devtools::test()` runs the suite (see [R Packages, ch. “Testing basics”](https://r-pkgs.org/testing-basics.html)).
+You do not have to practice strict TDD to benefit from it. The testing guidance ([Section 6](#sec-r-testing)) already applies its core move — establish tests *before* modifying existing functions — and writing the test first is just that same discipline applied to new code as well. In R packages, the mechanics are light: `usethis::use_test()` creates the matching [`{testthat}`](https://testthat.r-lib.org/) test file, and `devtools::test()` runs the suite (see [R Packages, ch. “Testing basics”](https://r-pkgs.org/testing-basics.html)).
 
 ## 8 Benchmarking
 
@@ -989,7 +988,7 @@ See [Section 6](#sec-r-testing) for more on testing with [`{testthat}`](https:/
 
 ``` r
 # Good: Realistic data size
-n <- 50000  # Typical cohort size in our studies
+n <- 50000  # Typical cohort size in a large study
 test_data <- generate_realistic_cohort(n)
 
 # Avoid: Unrealistically small data
@@ -1373,7 +1372,7 @@ See also [Automated Tools](../chapters/coding-style.llms.md#sec-style-auto-style
 
 Every function you write must include documentation to describe its purpose, inputs, and outputs. For any reproducible workflows, this is essential, because R is dynamically typed. This means you can pass a `string` into an argument that is meant to be a `data.table`, or a `list` into an argument meant for a `tibble`. It is the responsibility of a function’s author to document what each argument is meant to do and its basic type.
 
-We use [`{roxygen2}`](https://roxygen2.r-lib.org/) ([Wickham et al. 2024](#ref-R-roxygen2)) for function documentation. Roxygen2 allows you to describe your functions in special comments next to their definitions, and automatically generates R documentation files (`.Rd` files) and helps manage your package `NAMESPACE`. The roxygen2 format uses `#'` comments placed immediately before the function definition.
+We recommend [`{roxygen2}`](https://roxygen2.r-lib.org/) ([Wickham et al. 2024](#ref-R-roxygen2)) for function documentation. Roxygen2 allows you to describe your functions in special comments next to their definitions, and automatically generates R documentation files (`.Rd` files) and helps manage your package `NAMESPACE`. The roxygen2 format uses `#'` comments placed immediately before the function definition.
 
 Here is an example of documenting a function using roxygen2:
 
@@ -1754,7 +1753,7 @@ Benefits of this pattern:
 
 Place each extracted helper in its own file ([Section 24](#sec-one-function-per-file)), not above or below the caller in the same file.
 
-## 22 Examples borrowed from lab package PRs
+## 22 Examples borrowed from package PRs
 
 In [`UCD-SERG/rpt` PR \#100](https://github.com/UCD-SERG/rpt/pull/100), a top-level function was updated to call dedicated helpers, with helper logic split into separate files. The workflow moved from “do everything in one function” toward a clearer sequence of validation, cleaning, calculation, and formatting steps. This made the top-level function easier to read, while isolating validation and formatting details in reusable units.
 
@@ -1782,7 +1781,7 @@ When adding a function to a file that already holds others (common in older code
 
 ### 24.4 Relationship to function decomposition
 
-When decomposing a large function (1), place each extracted helper in its own file rather than above or below the caller in the same file. The caller file then contains only the orchestration function, and each helper is independently findable and testable.
+When decomposing a large function ([Section 18](#sec-function-decomposition)), place each extracted helper in its own file rather than above or below the caller in the same file. The caller file then contains only the orchestration function, and each helper is independently findable and testable.
 
 ## 25 Function length limits
 
@@ -1795,7 +1794,7 @@ Sources:
 - [Stack Overflow: “When is a function too long?”](https://stackoverflow.com/questions/475675/when-is-a-function-too-long) and [Software Engineering Stack Exchange: “What is the ideal length of a method for you?”](https://softwareengineering.stackexchange.com/questions/133404/what-is-the-ideal-length-of-a-method-for-you): older Q&A threads (September 2008 and February 2012, respectively) focused on practical criteria for deciding when to split methods.
 - [Cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity): defines complexity by counting independent execution paths/decision points; this reinforces that branching complexity is often a better risk indicator than raw line count alone.
 
-Synthesizing these viewpoints for lab code yields the following practical rules:
+Synthesizing these viewpoints for research code yields the following practical rules:
 
 1.  Use `<150` lines as a provisional heuristic trigger to reassess decomposition, not a hard constraint.
 2.  Prefer single-purpose functions with clear names and contracts.
@@ -1821,11 +1820,11 @@ Simplicity is not an excuse to drop requirements: the goal is the simplest solut
 
 A Quarto document should read as narrative plus orchestration: each code chunk calls documented functions and displays their results, and the surrounding prose carries the analysis story. Complex logic belongs in named functions, not inline in chunks.
 
-When a chunk grows into substantial logic — a multi-step data manipulation, a function defined inline, a non-trivial transformation, or the same block copied across chunks — extract that logic into a function and have the chunk call it. Following the function-decomposition (1), one-function-per-file ([Section 24](#sec-one-function-per-file)), and length-limit ([Section 25](#sec-function-length-limits)) principles, give the function its own file under `R/`, with full [`{roxygen2}`](https://roxygen2.r-lib.org/) documentation, the same way any other package function is written. The chunk then shrinks to a call plus whatever narrative or display wraps it.
+When a chunk grows into substantial logic — a multi-step data manipulation, a function defined inline, a non-trivial transformation, or the same block copied across chunks — extract that logic into a function and have the chunk call it. Following the function-decomposition ([Section 18](#sec-function-decomposition)), one-function-per-file ([Section 24](#sec-one-function-per-file)), and length-limit ([Section 25](#sec-function-length-limits)) principles, give the function its own file under `R/`, with full [`{roxygen2}`](https://roxygen2.r-lib.org/) documentation, the same way any other package function is written. The chunk then shrinks to a call plus whatever narrative or display wraps it.
 
 Why this matters: a function can be unit-tested, reused across chunks and analyses, and documented; inline chunk code can be none of these. Keeping logic inline also buries the analysis narrative under implementation detail, and duplicates code that should have one home.
 
-Our shared linter set enforces the function-definition half of this rule: `lms::function_location_linter()` (part of `lms::default_linters()`) flags a named function defined at the top level of any file outside the designated directories (`R/` and `tests/` by default), including inside a `.qmd` chunk. Loose chunk logic that was never wrapped in a function at all is not something a linter can catch, so watch for it when writing and reviewing analyses: a chunk carrying substantial inline logic is a decomposition finding, and the fix is to move the logic into `R/` and leave the chunk calling it.
+The UCD-SERG shared linter set enforces the function-definition half of this rule: `lms::function_location_linter()` (part of `lms::default_linters()`) flags a named function defined at the top level of any file outside the designated directories (`R/` and `tests/` by default), including inside a `.qmd` chunk. Loose chunk logic that was never wrapped in a function at all is not something a linter can catch, so watch for it when writing and reviewing analyses: a chunk carrying substantial inline logic is a decomposition finding, and the fix is to move the logic into `R/` and leave the chunk calling it.
 
 ## 28 The here package
 
@@ -2308,7 +2307,7 @@ When reviewing a colleague’s code, evaluate these key dimensions:
     - Are key variables assigned descriptive labels and measurement units where applicable (see [Section 14.8](#sec-variable-labels))?
 3.  **Style and structure**:
     - Does the code follow the project’s R code style (see [R Code Style](../chapters/coding-style.llms.md#sec-r-code-style))?
-    - Are long chunks broken into focused functions (see 1)?
+    - Are long chunks broken into focused functions (see [Section 18](#sec-function-decomposition))?
     - Are variable and function names self-describing (see [Object Naming](../chapters/coding-style.llms.md#sec-object-naming))?
 4.  **Documentation**:
     - Do comments explain non-obvious design choices or statistical assumptions (see [Section 14](#sec-documenting-code))?

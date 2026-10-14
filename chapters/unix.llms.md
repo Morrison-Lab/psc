@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:06:05 (PDT)
+Last modified: 2026-10-14 04:15:39 (PDT)
 
 We typically use Unix commands in Terminal (for Mac users) or Git Bash (for Windows users) to
 
@@ -227,7 +227,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 The empty `""` is not a typo. `sh -c` treats the argument after the script as `$0`, so without a placeholder there `--unattended` would be consumed as the script’s own name instead of reaching it as a flag. The installer’s header documents that flag as setting both `CHSH` and `RUNZSH` to `no`, which leaves the `chsh` step above to you.
 
-### 5.3 The two plugins we use
+### 5.3 The two plugins this guide uses
 
 [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions) proposes the rest of a command in gray as you type it, drawn from your history; press the right arrow to accept it. [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting) colors the command line as you type — a command that does not exist stays red, so a misspelled `git ceckout` is visible before you run it.
 
@@ -320,7 +320,7 @@ These are not zsh plugins, and they are most of what people mean when they say s
 
 Table 5: Command-line tools worth knowing about
 
-`direnv` is the one with the most direct bearing on our own workflows: it is how a project can set `R_LIBS`, an API key, or a `RETICULATE_PYTHON` that applies inside that project and nowhere else. Oh My Zsh bundles `direnv` and `zoxide` plugins, so those two need no hook line in `~/.zshrc`.
+`direnv` is the one with the most direct bearing on research workflows: it is how a project can set `R_LIBS`, an API key, or a `RETICULATE_PYTHON` that applies inside that project and nowhere else. Oh My Zsh bundles `direnv` and `zoxide` plugins, so those two need no hook line in `~/.zshrc`.
 
 ### 5.7 Startup files, and what breaks when you switch
 
@@ -350,7 +350,7 @@ Table 6: Commands for running Bash scripts
 
 ## 7 Shell Scripting Style
 
-For shell scripts, we follow the [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) as the base authority, the same way our R chapters defer to the [tidyverse style guide](https://style.tidyverse.org/). The points below are our priorities and additions.
+For shell scripts, we recommend the [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) as the base authority, the same way the R chapters defer to the [tidyverse style guide](https://style.tidyverse.org/). The points below are recommended priorities and additions.
 
 ### 7.1 Error handling
 
@@ -367,11 +367,11 @@ set -euo pipefail
 
 ### 7.2 Functions and naming
 
-Decompose scripts into functions the same way we decompose R code: small, single-purpose, and named in `snake_case`. Declare function-local variables with `local` so they don’t leak into the global namespace, and return status with `return` codes (write data results to stdout).
+Decompose scripts into functions the same way as R code: small, single-purpose, and named in `snake_case`. Declare function-local variables with `local` so they don’t leak into the global namespace, and return status with `return` codes (write data results to stdout).
 
 ### 7.3 Comments
 
-The same principle as our R guidance applies: explain *why*, not *what*. Keep inline comments brief, and point to an Architecture Decision Record for rationale too long for a comment (see [Design Documentation with ADRs](../chapters/coding-practices.llms.md#sec-adrs)).
+The same principle as in the R guidance applies: explain *why*, not *what*. Keep inline comments brief, and point to an Architecture Decision Record for rationale too long for a comment (see [Design Documentation with ADRs](../chapters/coding-practices.llms.md#sec-adrs)).
 
 ### 7.4 Logging
 
@@ -406,7 +406,7 @@ Decide whether a script targets bash or POSIX `sh`, and match the shebang to the
 
 ### 7.8 Formatting
 
-Follow the same readability conventions as our R style: lines under about 80 characters, two-space indentation, and one logical step per line, breaking long pipelines after the `|` with the continuation indented.
+Follow the same readability conventions as the R style: lines under about 80 characters, two-space indentation, and one logical step per line, breaking long pipelines after the `|` with the continuation indented.
 
 ## 8 Running Rscripts in Windows
 

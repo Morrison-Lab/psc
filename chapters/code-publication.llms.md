@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:06:05 (PDT)
+Last modified: 2026-10-14 04:15:39 (PDT)
 
 ## 1 Checklist overview
 
@@ -119,7 +119,7 @@ Detailed instructions: [Managing releases in a repository](https://docs.github.c
 
 ## 10 Releasing to CRAN
 
-If your R package is intended for public distribution, you may want to release it on [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network). This section summarizes the release process and adds lab-specific guidance on versioning and tagging. For full details, see the [R Packages book chapter on releasing to CRAN](https://r-pkgs.org/release.html) by Hadley Wickham and Jennifer Bryan.
+If your R package is intended for public distribution, you may want to release it on [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network). This section summarizes the release process and adds guidance on versioning and tagging. For full details, see the [R Packages book chapter on releasing to CRAN](https://r-pkgs.org/release.html) by Hadley Wickham and Jennifer Bryan.
 
 The CRAN submission pipeline goes through several stages: initial upload, automated checks, human review by CRAN maintainers, and final acceptance or rejection. For a visual overview of the full pipeline, see the [CRAN stages diagram](https://github.com/edgararuiz-zz/cran-stages) by Edgar Ruiz.
 

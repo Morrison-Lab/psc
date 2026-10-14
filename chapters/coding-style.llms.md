@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:06:05 (PDT)
+Last modified: 2026-10-14 04:15:39 (PDT)
 
 Follow these code style guidelines for all R code:
 
@@ -939,16 +939,16 @@ Linters are programming tools that check adherence to a given style, syntax erro
 
 We recommend a custom `.lintr.R` configuration file in each repository to enforce these style standards. You can view an example configuration, from the UCD-SERG lab manual, at <https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R>.
 
-**Key linters we enable:**
+**Key linters to enable:**
 
 - `pipe_consistency_linter(pipe = "|>")`: Enforces use of native pipe `|>` instead of `%>%`
 - `object_name_linter()`: Enforces `snake_case` with custom regex allowing uppercase acronyms
 - `undesirable_function_linter()`: Prohibits base messaging functions and `library()` in package code
 - `redundant_equals_linter()`: Catches redundant `= TRUE` when `TRUE` is the default
 
-**Linters we disable:**
+**Linters to disable:**
 
-- `return_linter(return_style = "explicit")`: Every function should end with `return(return_value)` rather than just `return_value`. We may sometimes disable this linter in older projects when we aren’t ready to clean this issue up, but for all new code, we recommend explicit returns, following the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html#use-explicit-returns).
+- `return_linter(return_style = "explicit")`: Every function should end with `return(return_value)` rather than just `return_value`. You may disable this linter in older projects until you are ready to clean them up, but we recommend explicit returns for all new code, following the [Google R Style Guide](https://google.github.io/styleguide/Rguide.html#use-explicit-returns).
 - `trailing_whitespace_linter`: Disabled (handled by `styler` instead)
 
 **Exceptions:**
@@ -1004,7 +1004,7 @@ jarl check . --fix
 
 A project can fall out of lint compliance without any change to its own source code or `.lintr` configuration: [`{lintr}`](https://lintr.r-lib.org/) releases sometimes add default linters or tighten existing ones, so code that passed yesterday can fail after a routine package update.
 
-When a continuous-integration job lints the whole project (for example, `lintr::lint_dir()` on every pull request), those newly introduced findings surface on whatever pull request happens to run CI next. That pull request then has to expand into unrelated files just to turn the lint check green, which conflicts with our expectation that a pull request stays scoped to one concern.
+When a continuous-integration job lints the whole project (for example, `lintr::lint_dir()` on every pull request), those newly introduced findings surface on whatever pull request happens to run CI next. That pull request then has to expand into unrelated files just to turn the lint check green, which conflicts with the expectation that a pull request stays scoped to one concern.
 
 In most cases, a better default is to lint **changed files only**, so pre-existing findings elsewhere in the project don’t block unrelated work. [r-lib/actions](https://github.com/r-lib/actions/blob/v2-branch/examples/lint-changed-files.yaml) provides a ready-made `lint-changed-files` example workflow; install it with `usethis::use_github_action("lint-changed-files")`.
 

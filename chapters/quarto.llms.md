@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 04:06:05 (PDT)
+Last modified: 2026-10-14 04:15:39 (PDT)
 
 ## 1 Introduction
 
@@ -301,7 +301,7 @@ Layout is driven by ordinary markdown headings, which define pages, rows, column
 
 Dashboards work with R, Python, Julia, and Observable JavaScript, and display both interactive widgets ([`{plotly}`](https://plotly.com/r/), [`{leaflet}`](https://rstudio.github.io/leaflet/), [`{htmlwidgets}`](https://www.htmlwidgets.org/)) and static graphics ([`{ggplot2}`](https://ggplot2.tidyverse.org/), `Matplotlib`).
 
-By default a dashboard renders to static HTML, so it can be published anywhere a web page can (including GitHub Pages, like the rest of our Quarto output) with no server behind it. When server-side interactivity is genuinely needed, a [Shiny](https://shiny.posit.co/) backend can drive the dashboard, at the cost of needing a Shiny server to host it. For most lab reporting, start with the static form and add Shiny only if filtering or recomputation on the reader’s side becomes necessary.
+By default a dashboard renders to static HTML, so it can be published anywhere a web page can (including GitHub Pages, like other Quarto output) with no server behind it. When server-side interactivity is genuinely needed, a [Shiny](https://shiny.posit.co/) backend can drive the dashboard, at the cost of needing a Shiny server to host it. For most research reporting, start with the static form and add Shiny only if filtering or recomputation on the reader’s side becomes necessary.
 
 See the [dashboard examples gallery](https://quarto.org/docs/gallery/#dashboards) for layouts to copy from.
 
