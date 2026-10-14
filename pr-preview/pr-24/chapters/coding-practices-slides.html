@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 01:29:01 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 01:37:31 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -1404,7 +1404,7 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <span id="cb43-3"><a aria-label="3"></a></span>
 <span id="cb43-4"><a aria-label="4"></a><span class="co"># Read back</span></span>
 <span id="cb43-5"><a aria-label="5"></a>results <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(<span class="fu">here</span>(<span class="st">"results"</span>, <span class="st">"analysis.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Avoid <code>.RData</code> files</strong>. The base R functions <code>save()</code> and <code>load()</code> serialize several objects into one <code>.RData</code> file, which causes three problems:</p>
+<p><strong>Avoid <code>.RData</code> files</strong>. The base R function <code>save()</code> serializes several objects into one <code>.RData</code> file, and <code>load()</code> restores every object in it under its original name. That causes three problems:</p>
 <ul>
 <li>You can’t control object names when loading.</li>
 <li>You can’t load individual objects.</li>

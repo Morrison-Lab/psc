@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 01:29:01 (PDT)
+Last modified: 2026-10-14 01:37:31 (PDT)
 
 ## 1 Lab Protocols for Code and Data
 
@@ -1157,7 +1157,7 @@ readr::write_rds(analysis_results, here("results", "analysis.rds"))
 results <- readr::read_rds(here("results", "analysis.rds"))
 ```
 
-**Avoid `.RData` files**. The base R functions `save()` and `load()` serialize several objects into one `.RData` file, which causes three problems:
+**Avoid `.RData` files**. The base R function `save()` serializes several objects into one `.RData` file, and `load()` restores every object in it under its original name. That causes three problems:
 
 - You can’t control object names when loading.
 - You can’t load individual objects.
