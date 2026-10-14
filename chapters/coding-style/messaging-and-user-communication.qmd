@@ -1,5 +1,5 @@
 Use [`{cli}`](https://cli.r-lib.org/) package functions for all user-facing messages in package functions.
-This is enforced by the recommended `.lintr.R` configuration via `undesirable_function_linter()`.
+This is enforced by the example `.lintr.R` configuration via `undesirable_function_linter()`.
 
 **Required messaging functions:**
 
