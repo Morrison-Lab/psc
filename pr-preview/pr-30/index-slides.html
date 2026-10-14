@@ -6,10 +6,11 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.37">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-contrib/code-language-labels-1.0.2/code-language-labels.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <title>Quarto Website Template</title>
+  <title>Principles of Scientific Computing</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -19,10 +20,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -30,93 +34,8 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-    /* CSS for citations */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-    }
-    .hanging-indent div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }  </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-3a7eae3b872f08785a56513611f0329a.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -209,18 +128,124 @@
       margin-right: 0; 
     }
   </style>
+  <!--
+    Colour-theme dropdown for the qwt revealjs format: Light, Off-white,
+    Parchment, Dark. Pulled into every slide deck via the `include-in-header`
+    entry in the `revealjs:` block of `_quarto-website.yml`. Pairs with
+    `styles-reveal.scss`, which defines the palette CSS variables; the select
+    reads those vars so it stays legible in every palette. Light is the
+    default variable set, Off-white and Parchment are a data-palette attribute
+    on <html>, and Dark is the body.qwt-dark class. The choice is saved under
+    "mln-theme", the key the website's theme dropdown (theme-picker.html) uses,
+    so it carries across the site and the decks. First-time visitors get
+    Dark if their system prefers it, and Off-white otherwise.
+  -->
+  <style>
+    #qwt-theme-select {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      /* Matches reveal.js's `.slide-number` and the `#revealjs-html-link` chip
+         from `revealjs-html-links.lua`; the three elements occupy different
+         corners so they don't overlap. Keep them aligned if you bump this. */
+      z-index: 31;
+      padding: 2px 4px;
+      border: 1px solid var(--qwt-border, rgba(0, 0, 0, 0.2));
+      border-radius: 4px;
+      background: var(--qwt-chip-bg, rgba(255, 255, 255, 0.8));
+      color: var(--qwt-fg, #000);
+      cursor: pointer;
+      font: 12px sans-serif;
+      opacity: 0.7;
+    }
+    #qwt-theme-select:hover,
+    #qwt-theme-select:focus-visible {
+      opacity: 1;
+      border-color: var(--qwt-fg, rgba(0, 0, 0, 0.4));
+    }
+    #qwt-theme-select:focus-visible {
+      outline: 2px solid var(--qwt-link, #2a76dd);
+      outline-offset: 2px;
+    }
+    @media print { #qwt-theme-select { display: none; } }
+  </style>
+  <script>
+  (function () {
+    "use strict";
+    var KEY = "mln-theme";
+    var DARK_CLASS = "qwt-dark";
+    var OPTIONS = [["light", "Light"], ["offwhite", "Off-white"], ["parchment", "Parchment"], ["dark", "Dark"]];
+    var root = document.documentElement;
+
+    function valid(choice) {
+      return OPTIONS.some(function (o) { return o[0] === choice; });
+    }
+
+    function stored() {
+      try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    }
+
+    function initialTheme() {
+      var saved = stored();
+      if (valid(saved)) return saved;
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "offwhite";
+    }
+
+    function applyTheme(choice) {
+      if (choice === "offwhite" || choice === "parchment") {
+        root.setAttribute("data-palette", choice);
+      } else {
+        root.removeAttribute("data-palette");
+      }
+      // The body can be missing when this runs from <head>; init() re-applies it.
+      if (document.body) document.body.classList.toggle(DARK_CLASS, choice === "dark");
+    }
+
+    var start = initialTheme();
+    applyTheme(start); // set the palette before first paint
+
+    function init() {
+      if (document.getElementById("qwt-theme-select")) return;
+      applyTheme(start);
+      var sel = document.createElement("select");
+      sel.id = "qwt-theme-select";
+      sel.setAttribute("aria-label", "Colour theme");
+      OPTIONS.forEach(function (o) {
+        var opt = document.createElement("option");
+        opt.value = o[0];
+        opt.textContent = o[1];
+        sel.appendChild(opt);
+      });
+      sel.value = start;
+      sel.addEventListener("change", function () {
+        applyTheme(sel.value);
+        try { localStorage.setItem(KEY, sel.value); } catch (e) { /* private mode */ }
+      });
+      document.body.appendChild(sel);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+  </script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Quarto Website Template</h1>
+  <h1 class="title">Principles of Scientific Computing</h1>
 
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-04-22 20:08:07 (UTC)</p>
+  <p class="date">Last modified: 2026-10-14 02:06:18 (PDT)</p>
 </section>
 <section>
 <section id="welcome" class="title-slide slide level1 unnumbered center">
@@ -229,80 +254,95 @@
 </section>
 <section class="slide level2">
 
-<p>This is a Quarto website template that you can use to create your own website.</p>
-<p>The notes are available in multiple formats:</p>
+<p><em>Principles of Scientific Computing</em> (psc) collects practical guidance on writing, organizing, sharing, and maintaining code for research projects. It is the computing companion to <a href="https://morrison-lab.github.io/psw/"><em>Principles of Scientific Writing</em></a>.</p>
+<p>The guidance applies to any research project, whether it is a lab analysis, a course, or a software package. Most examples use R, but the principles carry over to other languages.</p>
+</section>
+<section id="whats-here" class="slide level2">
+<h2>What’s here</h2>
+</section>
+<section class="slide level2">
+
 <ul>
-<li><strong>HTML Website</strong>: Navigate using the navbar for easy access to all pages</li>
-<li><strong>RevealJS Slides</strong>: Each chapter can generate a presentation format with <code>-slides.html</code> suffix</li>
-<li><strong>PDF Handouts</strong>: Each chapter can generate a PDF handout with <code>-handout.pdf</code> suffix</li>
-<li><strong>DOCX Documents</strong>: Each chapter can generate a Microsoft Word document with <code>.docx</code> extension</li>
+<li><p><strong>Writing code</strong>: <a href="./chapters/coding-style.html">coding style</a>, <a href="./chapters/coding-practices.html">coding practices</a>, <a href="./chapters/data-masking.html">data masking</a>, and <a href="./chapters/big-data.html">working with big data</a>.</p></li>
+<li><p><strong>Projects</strong>: <a href="./chapters/code-repositories.html">code repositories</a>, <a href="./chapters/reproducible-environments.html">reproducible environments</a>, and <a href="./chapters/code-publication.html">code publication</a>.</p></li>
+<li><p><strong>Collaboration</strong>: <a href="./chapters/github.html">Git and GitHub</a>, <a href="./chapters/collaborative-software-development.html">collaborative software development</a>, and <a href="./chapters/continuous-integration.html">continuous integration</a>.</p></li>
+<li><p><strong>Tools</strong>: <a href="./chapters/unix.html">the Unix command line</a> and <a href="./chapters/quarto.html">Quarto</a>.</p></li>
+<li><p><strong>Resources</strong>: <a href="./chapters/resources.html">learning resources</a> for R, Git, Python, Julia, and open science.</p></li>
+</ul>
+<p>Each page is also available as RevealJS slides (<code>-slides.html</code>), a PDF handout (<code>-handout.pdf</code>), and a Word document (<code>.docx</code>).</p>
+</section>
+<section id="related-guides" class="slide level2">
+<h2>Related guides</h2>
+</section>
+<section class="slide level2">
+
+<ul>
+<li><p><a href="https://morrison-lab.github.io/psw/"><em>Principles of Scientific Writing</em></a> covers writing about research and statistical analysis.</p></li>
+<li><p><a href="https://morrison-lab.github.io/wai/"><em>Working with AI</em></a> covers AI coding assistants and agent-driven pull requests.</p></li>
+<li><p>The <a href="https://ucd-serg.github.io/lab-manual/">UCD-SERG lab manual</a> covers policies and resources specific to the UC Davis Seroepidemiology Research Group, such as computing clusters, onboarding, and communication.</p></li>
 </ul>
 </section>
-<section id="about-this-website" class="slide level2" data-number="0.1">
-<h2><span class="header-section-number">0.1</span> About this website</h2>
+<section id="origin" class="slide level2">
+<h2>Origin</h2>
 </section>
 <section class="slide level2">
 
-<p>This website is built with <a href="https://quarto.org/">Quarto</a>, an open-source scientific and technical publishing system. You can use Quarto to create books, websites, blogs, presentations, and more from markdown files.</p>
+<p>These chapters began in the <a href="https://ucd-serg.github.io/lab-manual/">UCD-SERG lab manual</a> and moved here, with their history, so that they can serve projects outside that group.</p>
+<p>The UCD-SERG lab manual is a fork of the <a href="https://jadebc.github.io/lab-manual/index.html">Benjamin-Chung Lab Manual</a>, and many of these chapters keep text from the Benjamin-Chung manual. We are grateful to Jade Benjamin-Chung and that manual’s other original contributors, Kunal Mishra, Stephanie Djajadi, Nolan Pokpongkiat, Anna Nguyen, Iris Tong, and Gabby Barratt Heitmann, for writing the manual and sharing it openly.</p>
+<p>This site is built from the <a href="https://github.com/Morrison-Lab/qwt">qwt</a> Quarto website template, whose structure also comes from the UCD-SERG lab manual.</p>
 </section>
-<section id="getting-started" class="slide level2" data-number="0.2">
-<h2><span class="header-section-number">0.2</span> Getting Started</h2>
-</section>
-<section class="slide level2 scrollable">
-
-<p>To use this template:</p>
-<ol type="1">
-<li><p><strong>Update the configuration</strong>: Edit <code>_quarto-website.yml</code> to change the website title, site URL, and navigation menu.</p></li>
-<li><p><strong>Add your content</strong>: Create new <code>.qmd</code> files for each page and add them to the navigation menu in <code>_quarto-website.yml</code>.</p></li>
-<li><p><strong>Customize the style</strong>: Modify <code>styles.css</code> to change the appearance of your website.</p></li>
-<li><p><strong>Add references</strong>: Update <code>references.bib</code> with your citations.</p></li>
-</ol>
-</section>
-<section id="building-the-website" class="slide level2" data-number="0.3">
-<h2><span class="header-section-number">0.3</span> Building the website</h2>
+<section id="license" class="slide level2">
+<h2>License</h2>
 </section>
 <section class="slide level2">
 
-<p>To render the website locally:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To preview the website with live reload:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">quarto</span> preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The rendered output will be in the <code>_site/</code> directory, which can be published to GitHub Pages.</p>
-</section>
-<section id="publishing-to-github-pages" class="slide level2" data-number="0.4">
-<h2><span class="header-section-number">0.4</span> Publishing to GitHub Pages</h2>
-</section>
-<section class="slide level2 scrollable">
-
-<p>This template includes a GitHub Actions workflow that automatically builds and publishes your website to GitHub Pages when you push to the main branch.</p>
-<p>To enable GitHub Pages:</p>
-<ol type="1">
-<li>Go to your repository settings</li>
-<li>Navigate to “Pages” in the left sidebar</li>
-<li>Under “Build and deployment”, set Source to “GitHub Actions”</li>
-<li>Push your changes to the main branch</li>
-<li>The workflow will automatically build and deploy your website</li>
-</ol>
-<p>Your website will be available at <code>https://YOUR-USERNAME.github.io/YOUR-REPO/</code></p>
-</section>
-<section id="license" class="slide level2" data-number="0.5">
-<h2><span class="header-section-number">0.5</span> License</h2>
-</section>
-<section class="slide level2">
-
-<p>Add your license information here.</p>
-</section>
-<section id="references" class="slide level2 unnumbered">
-<h2>References</h2>
-</section>
-<section class="slide level2 smaller scrollable" id="references">
-
-<div id="refs" role="list">
-
-</div>
+<p>The text of this site, including the code examples on its pages, is licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)</a>, the license that the UCD-SERG lab manual and the Benjamin-Chung Lab Manual state on their home pages. Reuse of that text must credit the authors named under Origin above.</p>
+<p>The rest of the repository’s code, such as its R package, scripts, and workflows, is licensed under the MIT License; see <a href="https://github.com/Morrison-Lab/psc/blob/main/LICENSE"><code>LICENSE</code></a>. Quarto extensions copied into <code>_extensions/</code> keep their own licenses.</p>
 
 
 <script>
+const defaultAnchorIconFallback = "#";
+
+function getDefaultAnchorTemplate() {
+  const defaultAnchor = document.querySelector("a.anchorjs-link[data-anchorjs-icon]");
+  if (!defaultAnchor) {
+    return null;
+  }
+
+  return {
+    icon: defaultAnchor.getAttribute("data-anchorjs-icon"),
+    style: defaultAnchor.getAttribute("style")
+  };
+}
+
+function alignEquationAnchorWithDefault(anchor, template) {
+  if (!anchor) {
+    return;
+  }
+
+  anchor.classList.remove("external");
+
+  if (template && template.icon) {
+    anchor.setAttribute("data-anchorjs-icon", template.icon);
+    anchor.textContent = "";
+  } else if (!anchor.textContent) {
+    anchor.textContent = defaultAnchorIconFallback;
+  }
+
+  if (template && template.style) {
+    anchor.setAttribute("style", template.style);
+  } else {
+    anchor.removeAttribute("style");
+  }
+}
+
+function alignEquationAnchorsWithDefault() {
+  const template = getDefaultAnchorTemplate();
+  document.querySelectorAll("a.equation-anchor").forEach(function (anchor) {
+    alignEquationAnchorWithDefault(anchor, template);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const equations = document.querySelectorAll("span[id^='eq-']");
   equations.forEach(function (equation) {
@@ -322,13 +362,132 @@ document.addEventListener("DOMContentLoaded", function () {
     equation.classList.add("equation-anchor-target");
 
     const anchor = document.createElement("a");
-    anchor.className = "equation-anchor";
+    anchor.className = "equation-anchor anchorjs-link";
     anchor.href = "#" + id;
     anchor.setAttribute("aria-label", "Permalink to this equation");
-    anchor.textContent = "#";
     equation.appendChild(anchor);
   });
+
+  alignEquationAnchorsWithDefault();
 });
+
+window.addEventListener("load", alignEquationAnchorsWithDefault);
+</script>
+
+<script>
+(function () {
+  var css = [
+    "#revealjs-html-link {",
+    "  position: fixed;",
+    "  top: 8px;",
+    "  right: 8px;",
+    "  z-index: 31;",
+    "  font-size: 0.55em;",
+    "  line-height: 1;",
+    "}",
+    "#revealjs-html-link a {",
+    "  color: var(--qwt-muted, rgba(0, 0, 0, 0.5));",
+    "  text-decoration: none;",
+    "  border: 1px solid var(--qwt-border, rgba(0, 0, 0, 0.2));",
+    "  padding: 4px 8px;",
+    "  border-radius: 4px;",
+    "  background: var(--qwt-chip-bg, rgba(255, 255, 255, 0.8));",
+    "  transition: color 0.15s, background 0.15s, border-color 0.15s;",
+    "}",
+    "#revealjs-html-link a:hover {",
+    "  color: var(--qwt-fg, rgba(0, 0, 0, 0.9));",
+    "  background: var(--qwt-chip-bg-hover, rgba(255, 255, 255, 0.98));",
+    "  border-color: var(--qwt-fg, rgba(0, 0, 0, 0.4));",
+    "}"
+  ].join("\n");
+
+  function getHtmlBase() {
+    var url = window.location.href.split("#")[0];
+    return url.replace(/-slides\.html$/, ".html");
+  }
+
+  function getCurrentSectionId() {
+    if (typeof Reveal === "undefined" || !Reveal.getCurrentSlide) {
+      return null;
+    }
+    var slide = Reveal.getCurrentSlide();
+    if (!slide) {
+      return null;
+    }
+    // If the current slide itself has an id, use it
+    if (slide.id) {
+      return slide.id;
+    }
+    // Walk backwards through sibling sections to find the nearest one with an id
+    var sibling = slide.previousElementSibling;
+    while (sibling) {
+      if (sibling.tagName === "SECTION" && sibling.id) {
+        return sibling.id;
+      }
+      sibling = sibling.previousElementSibling;
+    }
+    // Fall back to the first section[id] inside the parent container
+    var parent = slide.parentElement;
+    if (parent && parent.tagName === "SECTION") {
+      var firstNamed = parent.querySelector("section[id]");
+      if (firstNamed) {
+        return firstNamed.id;
+      }
+    }
+    return null;
+  }
+
+  function updateHtmlLink() {
+    var anchor = document.getElementById("revealjs-html-anchor");
+    if (!anchor) {
+      return;
+    }
+    var sectionId = getCurrentSectionId();
+    anchor.href = getHtmlBase() + (sectionId ? "#" + sectionId : "");
+  }
+
+  function initRevealJsHtmlLink() {
+    var htmlBase = getHtmlBase();
+
+    // Don't add the link if the URL doesn't follow the -slides.html convention
+    if (htmlBase === window.location.href.split("#")[0]) {
+      return;
+    }
+
+    // Inject styles
+    var styleElement = document.createElement("style");
+    styleElement.textContent = css;
+    document.head.appendChild(styleElement);
+
+    // Create the link element and append it directly to body so it stays
+    // visible across all slides regardless of Reveal.js section visibility
+    var div = document.createElement("div");
+    div.id = "revealjs-html-link";
+    var anchor = document.createElement("a");
+    anchor.id = "revealjs-html-anchor";
+    anchor.href = htmlBase;
+    anchor.target = "_blank";
+    anchor.title = "View this section in the HTML notes";
+    anchor.setAttribute("aria-label", "View this section in the HTML notes");
+    anchor.innerHTML = "&#128196;&nbsp;Webpage version";
+    div.appendChild(anchor);
+    document.body.appendChild(div);
+
+    // Register Reveal.js slide-change listener to keep the link updated
+    if (typeof Reveal !== "undefined") {
+      Reveal.on("ready", updateHtmlLink);
+      Reveal.on("slidechanged", updateHtmlLink);
+    }
+
+    updateHtmlLink();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initRevealJsHtmlLink);
+  } else {
+    initRevealJsHtmlLink();
+  }
+})();
 </script>
 
 </section></section>
@@ -521,7 +680,7 @@ document.addEventListener("DOMContentLoaded", function () {
         margin: 0,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -617,7 +776,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/ucd-serg\.github\.io\/qwt\/");
+            var filterRegex = new RegExp("https:\/\/morrison-lab\.github\.io\/psc\/");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
