@@ -130,7 +130,7 @@ with a link to the preview build.
 
 In GitHub's **Files changed** view,
 you can select the **Viewed** checkbox in a file's header
-to collapse that file in the diff.
+to mark it reviewed and collapse it.
 That helps you focus on the meaningful changes.
 
 #### Reviewing Copilot-generated pull requests
