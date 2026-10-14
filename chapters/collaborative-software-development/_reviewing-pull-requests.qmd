@@ -130,7 +130,7 @@ with a link to the preview build.
 
 In GitHub's **Files changed** view,
 you can click the three dots (`...`) next to a file
-and choose **View file**
+and choose **Viewed**
 to hide it from the diff.
 That helps you focus on the meaningful changes.
 

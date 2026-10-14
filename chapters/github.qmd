@@ -107,10 +107,10 @@ and GitHub-specific platform features.
 | `git add -p`                                        | adds changes to commit, showing you changes one by one
 | `git commit -m <commit message>`                    | commit file with a message   |
 | `git push -u origin <branch_name>`                  | push branch to remote and set to track (-u only works if this is first push)   |
-| `git branch --set-upstream-to origin <branch_name>` | set upstream to `origin/<branch_name>` (use if you forgot -u on first push)   |
+| `git branch --set-upstream-to=origin/<branch_name>` | set upstream to `origin/<branch_name>` (use if you forgot -u on first push)   |
 | `git push origin <branch_name>`                     | push work to branch   |
 | `git checkout <branch_name>` \ `git merge master`   | switch to branch and merge changes from `master` into `<branch_name>` (two commands) | 
-| `git merge <branch_name> master`                    | switch to branch and merge changes from `master` into `<branch_name>` (one command) | 
+| `git merge master`                                  | while on `<branch_name>`, merge changes from `master` into it (does not switch branches) | 
 | `git checkout --track origin/<branch_name>`         | pulls a remote branch and creates a local branch to track it (use when trying to pull someone else's branch onto your local computer)   |
 | `git push --delete <remote_name> <branch_name>`     | delete remote branch   |
 | `git branch -d <branch_name>`                       | deletes local branch, -D to force   |

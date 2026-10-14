@@ -40,11 +40,22 @@ result2 <- pmap(.l = mylists, .f = square_sum)
 
 ```
 
-There are two major differences between `mapply()` and `pmap()`. The first difference is that `mapply()` takes seperate lists as its input arguments, while `pmap()` takes a list of list. Secondly, the output of `mapply()` will be in the form of a matrix or an array, but `pmap()` produces a list directly.
+There are two major differences between `mapply()` and `pmap()`. The first difference is that `mapply()` takes seperate lists as its input arguments, while `pmap()` takes a list of list. Secondly, `mapply()` simplifies its output by default:
+it returns a vector, matrix, or array when it can (here, a matrix with one column), and a list otherwise,
+whereas `pmap()` always produces a list.
+Set `SIMPLIFY = FALSE` in `mapply()` to get a list.
 
 However, when **the input lists are of different lengths AND/OR the wrapper function doesn't take arguments in pairs, `mapply()` and `pmap()` may not give the preferable results.**
 
-Both `mapply()` and `pmap()` will recycle shorter input lists to match the length of the longest input list. Assume that now `mylist2 = list(6:12)`. Then, `pmap(mylists, square_sum)` will generate `[36  50  68  90 100 122 148]` where elements 0, 1, and 2 are recycled to match 10, 11, and 12. And it will return an error message that "longer object length is not a multiple of shorter object length."
+The two functions treat inputs of different lengths differently.
+`mapply()` recycles shorter inputs to the length of the longest, with a warning if the lengths are not multiples.
+`pmap()` recycles only inputs of length 1 and gives an error for any other mismatch.
+In the example above, each list holds one vector, so both functions call `square_sum()` once, on whole vectors.
+Assume that now `mylist2 = list(6:12)`.
+Then `x^2 + y^2` itself recycles `0:3` to length 7 (as `0, 1, 2, 3, 0, 1, 2`),
+and both functions return `36  50  68  90 100 122 148`,
+with the warning "longer object length is not a multiple of shorter object length".
+That silent recycling is rarely what you want.
 
 Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, **when the input lists are of different lengths, the best practice is probably to use `lapply()` and then combine the results.** 
 
@@ -92,7 +103,7 @@ n_cores <- 4
 cl <- makeCluster(n_cores)
 
 #Use parLapply() to apply func to each element in mylist
-result <- parLapply(cl = cl, x = mylist, FUN = func)
+result <- parLapply(cl = cl, X = mylist, fun = func)
 
 #Stop the parallel processing
 stopCluster(cl)
@@ -118,7 +129,7 @@ future::plan(
 )
 
 # Use future_lapply() to apply func to each element in mylist
-future_lapply(x = mylist, FUN = func)
+future_lapply(X = mylist, FUN = func)
 ```
 
 Here, `future::availableCores()` checks how many cores your machine has. Similar to `parLapply()` showed above, `future_lapply()` parallelizes the computation of `lapply()` by executing the function `func` simultaneously on different sub-lists of `mylist`.

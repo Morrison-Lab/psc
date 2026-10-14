@@ -20,7 +20,8 @@ You may optionally wish to include the inputs and outputs of the script as well,
 ```
   
 ### Sections and subsections
-Rstudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of Sections and Subsections. You can easily navigate through longer scripts using the navigation pane in RStudio, as shown on the right below. 
+Rstudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of Sections and Subsections. You can easily navigate through longer scripts using the navigation pane in RStudio.
+This is how to write a section and its subsections:
 
 ```
 # Section -------
@@ -32,7 +33,16 @@ Rstudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-
 
 ### Code folding
 
-Consider using RStudio's [code folding](https://support.posit.co/hc/en-us/articles/200484568-Code-Folding-and-Sections) feature to collapse and expand different sections of your code. Any comment line with at least four trailing dashes (-), equal signs (=), or pound signs (#) automatically creates a code section. For example:
+Consider using RStudio's [code folding](https://support.posit.co/hc/en-us/articles/200484568-Code-Folding-and-Sections) feature to collapse and expand different sections of your code. Any comment line with at least four trailing dashes (-), equal signs (=), or pound signs (#) automatically creates a code section.
+For example, each of these comments creates a foldable section:
+
+```r
+# Load packages ----
+
+# Clean data ====
+
+# Fit models ####
+```
 
 
 ### Comments in the body of your code

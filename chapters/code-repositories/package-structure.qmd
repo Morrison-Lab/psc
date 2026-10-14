@@ -47,7 +47,7 @@ myproject/
 │   │       ├── table1.csv
 │   │       └── table2.xlsx
 │   └── analyses/       # Analyses using restricted data (see below)
-└── .Rproj              # RStudio project file
+└── <package>.Rproj     # RStudio project file
 ```
 
 ### Where to Place Analysis Files {#sec-analysis-file-placement}
@@ -107,7 +107,7 @@ All vignettes and articles will be rendered by `pkgdown::build_site()` on your p
 
 #### Analyses with Restricted Data (inst/analyses/)
 
-For analyses that rely on **private, sensitive, or restricted data**, place `.qmd` or `.qmd` files in `inst/analyses/`:
+For analyses that rely on **private, sensitive, or restricted data**, place `.qmd` or `.Rmd` files in `inst/analyses/`:
 
 ```
 myproject/
@@ -212,7 +212,10 @@ Rscript data-raw/03-merge-datasets.R
 Rscript data-raw/04-create-analysis-data.R
 ```
 
-This is especially useful when data upstream changes --- you can simply run the shell script to reproduce everything. After running shell scripts, `.Rout` log files will be generated for each script. It is important to check these files to ensure everything has run correctly.
+This is especially useful when data upstream changes --- you can simply run the shell script to reproduce everything. `Rscript` prints each script's output to the terminal and writes no log file.
+To keep a log, run each script with `R CMD BATCH`, which writes a `.Rout` file,
+or redirect the output, as in `Rscript script.R > script.log 2>&1`.
+Check these logs to ensure everything has run correctly.
 
 ### Storing Analysis Outputs
 
