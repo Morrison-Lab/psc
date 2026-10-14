@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 02:01:49 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:08:22 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -931,7 +931,7 @@
 <span id="cb26-14"><a aria-label="14"></a></span>
 <span id="cb26-15"><a aria-label="15"></a><span class="co"># String operations</span></span>
 <span id="cb26-16"><a aria-label="16"></a>stringr<span class="sc">::</span><span class="fu">str_which</span>()       <span class="co"># instead of grep()</span></span>
-<span id="cb26-17"><a aria-label="17"></a>stringr<span class="sc">::</span><span class="fu">str_replace</span>()     <span class="co"># instead of gsub()</span></span>
+<span id="cb26-17"><a aria-label="17"></a>stringr<span class="sc">::</span><span class="fu">str_replace_all</span>() <span class="co"># instead of gsub()</span></span>
 <span id="cb26-18"><a aria-label="18"></a></span>
 <span id="cb26-19"><a aria-label="19"></a><span class="co"># Date/time operations</span></span>
 <span id="cb26-20"><a aria-label="20"></a>lubridate<span class="sc">::</span>NA_Date_        <span class="co"># instead of as.Date(NA)</span></span>
@@ -955,7 +955,7 @@
 <span id="cb27-4"><a aria-label="4"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"survey.csv"</span>))</span>
 <span id="cb27-5"><a aria-label="5"></a><span class="fu">saveRDS</span>(results, <span class="fu">here</span>(<span class="st">"inst"</span>, <span class="st">"analyses"</span>, <span class="st">"results.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This solves the problem of different working directory paths across collaborators. For example, one person might have the project at <code>/home/oski/Some-R-Project</code> while another has it at <code>/home/bear/R-Code/Some-R-Project</code>. The <code>here</code> package handles this automatically.</p>
-<p>This works regardless of where collaborators clone the repository. For more details, see the <a href="https://github.com/jennybc/here_here">here package vignette</a>.</p>
+<p>This works regardless of where collaborators clone the repository. For more details, see the <a href="https://here.r-lib.org/articles/here.html">here package vignette</a>.</p>
 <h3 id="sec-here-subpath">Pass subpath components directly to <code>here()</code></h3>
 <p><code>here::here()</code> already accepts path components as arguments and joins them with the project root. Do not wrap <code>here::here()</code> in <code>file.path()</code> or <code>fs::path()</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a><span class="co"># Good: pass subpath components directly</span></span>

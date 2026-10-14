@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 02:01:49 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:08:22 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -608,7 +608,7 @@ Table&nbsp;2: Commonly used Git commands
 <td>push branch to remote and set to track (-u only works if this is first push)</td>
 </tr>
 <tr class="odd">
-<td><code>git branch --set-upstream-to origin &lt;branch_name&gt;</code></td>
+<td><code>git branch --set-upstream-to=origin/&lt;branch_name&gt;</code></td>
 <td>set upstream to <code>origin/&lt;branch_name&gt;</code> (use if you forgot -u on first push)</td>
 </tr>
 <tr class="even">
@@ -620,22 +620,18 @@ Table&nbsp;2: Commonly used Git commands
 <td>switch to branch and merge changes from <code>master</code> into <code>&lt;branch_name&gt;</code> (two commands)</td>
 </tr>
 <tr class="even">
-<td><code>git merge &lt;branch_name&gt; master</code></td>
-<td>switch to branch and merge changes from <code>master</code> into <code>&lt;branch_name&gt;</code> (one command)</td>
-</tr>
-<tr class="odd">
 <td><code>git checkout --track origin/&lt;branch_name&gt;</code></td>
 <td>pulls a remote branch and creates a local branch to track it (use when trying to pull someone else’s branch onto your local computer)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>git push --delete &lt;remote_name&gt; &lt;branch_name&gt;</code></td>
 <td>delete remote branch</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>git branch -d &lt;branch_name&gt;</code></td>
 <td>deletes local branch, -D to force</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>git fetch --all --prune</code></td>
 <td>untrack deleted remote branches</td>
 </tr>
@@ -687,7 +683,7 @@ Table&nbsp;2: Commonly used Git commands
 <section class="slide level2">
 
 <p>Never push .Rout files! If someone else runs an R script and creates an .Rout file at the same time and both of you try to push to github, it is incredibly difficult to reconcile these two logs. If you run logs, keep them on your own system or (preferably) set up a shared directory where all logs are name and date timestamped.</p>
-<p>There is a standardized <code>.gitignore</code> for <code>R</code> which you <a href="https://github.com/github/gitignore/blob/master/R.gitignore">can download</a> and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a <a href="https://tidyverse.org/blog/2017/12/workflow-vs-script/">great discussion of project-oriented workflows</a>, extolling the virtues of a self-contained, portable projects, for your reference.</p>
+<p>There is a standardized <code>.gitignore</code> for <code>R</code> which you <a href="https://github.com/github/gitignore/blob/main/R.gitignore">can download</a> and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a <a href="https://tidyverse.org/blog/2017/12/workflow-vs-script/">great discussion of project-oriented workflows</a>, extolling the virtues of self-contained, portable projects, for your reference.</p>
 </section>
 <section id="sec-gitlab" class="slide level2" data-number="13">
 <h2><span class="header-section-number">13</span> GitLab</h2>

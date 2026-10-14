@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 02:01:49 (PDT)
+Last modified: 2026-10-14 03:08:22 (PDT)
 
 ## 1 Lab Protocols for Code and Data
 
@@ -1548,7 +1548,7 @@ Every file in a project that doesn’t have roxygen function documentation shoul
 
 ### 14.5 Sections and subsections
 
-Rstudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of Sections and Subsections. You can easily navigate through longer scripts using the navigation pane in RStudio, as shown on the right below.
+RStudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-preview-little-things/)) supports the use of sections and subsections. You can easily navigate through longer scripts using the navigation pane in RStudio. Create sections and subsections with comment lines like these:
 
     # Section -------
 
@@ -1558,7 +1558,7 @@ Rstudio ([v1.4 or more recent](https://blog.rstudio.com/2020/12/02/rstudio-v1-4-
 
 ### 14.6 Code folding
 
-Consider using RStudio’s [code folding](https://support.posit.co/hc/en-us/articles/200484568-Code-Folding-and-Sections) feature to collapse and expand different sections of your code. Any comment line with at least four trailing dashes (-), equal signs (=), or pound signs (#) automatically creates a code section. For example:
+Consider using RStudio’s [code folding](https://support.posit.co/hc/en-us/articles/200484568-Code-Folding-and-Sections) feature to collapse and expand different sections of your code. Any comment line with at least four trailing dashes (-), equal signs (=), or pound signs (#) automatically creates a code section. The section headers shown above are examples.
 
 ### 14.7 Comments in the body of your code
 
@@ -1829,7 +1829,7 @@ Our shared linter set enforces the function-definition half of this rule: `lms::
 
 ## 28 The here package
 
-The `here` package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path `/home/oski/Some-R-Project`. My collaborator might clone the repository and work with it at some other path, such as `/home/bear/R-Code/Some-R-Project`. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the `here` package comes in and this a [great vignette describing it](https://github.com/jennybc/here_here).
+The `here` package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path `/home/oski/Some-R-Project`. My collaborator might clone the repository and work with it at some other path, such as `/home/bear/R-Code/Some-R-Project`. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the `here` package comes in, and [here is a great vignette describing it](https://here.r-lib.org/articles/here.html).
 
 *See also [The here Package](../chapters/coding-style.llms.md#sec-here-package-style) for code style guidelines on using the here package.*
 
@@ -2141,7 +2141,7 @@ The following list is not exhaustive, but is a compact overview to begin to tran
 | \_ | \_ |
 | `str()` | `dplyr::glimpse()` |
 | `grep(pattern, x)` | `stringr::str_which(string, pattern)` |
-| `gsub(pattern, replacement, x)` | `stringr::str_replace(string, pattern, replacement)` |
+| `gsub(pattern, replacement, x)` | `stringr::str_replace_all(string, pattern, replacement)` |
 | `ifelse(test_expression, yes, no)` | `if_else(condition, true, false)` |
 | Nested: `ifelse(test_expression1, yes1, ifelse(test_expression2, yes2, ifelse(test_expression3, yes3, no)))` | `case_when(test_expression1 ~ yes1, test_expression2 ~ yes2, test_expression3 ~ yes3, TRUE ~ no)` |
 | `proc.time()` | `tictoc::tic()` and `tictoc::toc()` |
@@ -2158,7 +2158,7 @@ Working with Tidyverse within functions can be somewhat of a pain due to non-sta
 - [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html) (package vignette)
 - [Using dplyr in packages](https://dplyr.tidyverse.org/articles/in-packages.html) (package vignette)
 - [Tidy Eval in 5 Minutes](https://www.youtube.com/watch?v=nERXS3ssntw) (video)
-- [Tidy Evaluation](https://dplyr.tidyverse.org/articles/programming.html) (e-book)
+- [Data masking](https://rlang.r-lib.org/reference/topic-data-mask.html) (rlang documentation)
 - [Evaluation](https://adv-r.hadley.nz/evaluation.html) (advanced details)
 - [Data Frame Columns as Arguments to Dplyr Functions](https://www.brodrigues.co/blog/2016-07-18-data-frame-columns-as-arguments-to-dplyr-functions/) (blog)
 - [Standard Evaluation for \*\_join](https://stackoverflow.com/questions/28125816/r-standard-evaluation-for-join-dplyr) (stackoverflow)
@@ -2206,13 +2206,13 @@ Please see the simple specific example below where the two input lists are of th
 
     #unlist(as.list(result1)) = result2 = [36 50 68 90]
 
-There are two major differences between `mapply()` and `pmap()`. The first difference is that `mapply()` takes seperate lists as its input arguments, while `pmap()` takes a list of list. Secondly, the output of `mapply()` will be in the form of a matrix or an array, but `pmap()` produces a list directly.
+There are two major differences between `mapply()` and `pmap()`. The first difference is that `mapply()` takes separate lists as its input arguments, while `pmap()` takes a list of lists. Secondly, `mapply()` simplifies its output to a vector, matrix, or array when it can (`SIMPLIFY = TRUE` is the default) and otherwise returns a list, but `pmap()` always returns a list.
 
-However, when **the input lists are of different lengths AND/OR the wrapper function doesn’t take arguments in pairs, `mapply()` and `pmap()` may not give the preferable results.**
+However, when **the input lists, or the vectors inside them, are of different lengths AND/OR the wrapper function doesn’t take arguments in pairs, `mapply()` and `pmap()` may not give the preferable results.**
 
-Both `mapply()` and `pmap()` will recycle shorter input lists to match the length of the longest input list. Assume that now `mylist2 = list(6:12)`. Then, `pmap(mylists, square_sum)` will generate `[36 50 68 90 100 122 148]` where elements 0, 1, and 2 are recycled to match 10, 11, and 12. And it will return an error message that “longer object length is not a multiple of shorter object length.”
+`mapply()` recycles shorter inputs to the length of the longest input, while `pmap()` recycles only inputs of length 1 and requires all other inputs to have the same length. In the example above, `mylist1` and `mylist2` each hold a single element (a vector), so both functions make a single call, `square_sum(0:3, 6:9)`. Assume that now `mylist2 = list(6:12)`. Then, `pmap(mylists, square_sum)` calls `square_sum(0:3, 6:12)`, and R’s vector arithmetic inside `square_sum()` recycles `0:3`, generating `[36 50 68 90 100 122 148]` where elements 0, 1, and 2 are recycled to match 10, 11, and 12. R also gives the warning “longer object length is not a multiple of shorter object length.”
 
-Thus, unless the recycling pattern described above is desirable feature for a certain experiment design, **when the input lists are of different lengths, the best practice is probably to use `lapply()` and then combine the results.**
+Thus, unless the recycling pattern described above is a desirable feature for a certain experiment design, **when the input lists, or the vectors inside them, are of different lengths, the best practice is probably to use `lapply()` and then combine the results.**
 
 Here is an example where we’d like to find the `square_sum` for every element combination of `mylist1` and `mylist2`.
 
@@ -2253,7 +2253,7 @@ Below is a generic example of `parLapply()`:
     cl <- makeCluster(n_cores)
 
     #Use parLapply() to apply func to each element in mylist
-    result <- parLapply(cl = cl, x = mylist, FUN = func)
+    result <- parLapply(cl = cl, X = mylist, fun = func)
 
     #Stop the parallel processing
     stopCluster(cl)
@@ -2264,9 +2264,9 @@ You can use `parallel::detectCores()` to test how many cores your machine has an
 
 We will always start `parLapply()` with `makeCluster()`. **`stopCluster()` is not fully necessary but follows the best practices.** If not stopped, the processing will continue in the back end and consuming the computation capacity for other software in your machine. But keep in mind that stopping the cluster is similar quitting R, meaning that you will need to re-load the packages needed when you need to do parallel processing use `parLapply()` again.
 
-#### `future.lapply()`
+#### `future_lapply()`
 
-Below is a generic example of `future.lapply()`:
+Below is a generic example of `future_lapply()`:
 
     library(future)
     library(future.apply)
@@ -2277,7 +2277,7 @@ Below is a generic example of `future.lapply()`:
     )
 
     # Use future_lapply() to apply func to each element in mylist
-    future_lapply(x = mylist, FUN = func)
+    future_lapply(X = mylist, FUN = func)
 
 Here, `future::availableCores()` checks how many cores your machine has. Similar to `parLapply()` showed above, `future_lapply()` parallelizes the computation of `lapply()` by executing the function `func` simultaneously on different sub-lists of `mylist`.
 

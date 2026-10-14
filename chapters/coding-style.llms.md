@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 02:01:49 (PDT)
+Last modified: 2026-10-14 03:08:22 (PDT)
 
 Follow these code style guidelines for all R code:
 
@@ -693,7 +693,7 @@ dplyr::bind_cols()         # instead of cbind()
 
 # String operations
 stringr::str_which()       # instead of grep()
-stringr::str_replace()     # instead of gsub()
+stringr::str_replace_all() # instead of gsub()
 
 # Date/time operations
 lubridate::NA_Date_        # instead of as.Date(NA)
@@ -721,7 +721,7 @@ saveRDS(results, here("inst", "analyses", "results.rds"))
 
 This solves the problem of different working directory paths across collaborators. For example, one person might have the project at `/home/oski/Some-R-Project` while another has it at `/home/bear/R-Code/Some-R-Project`. The `here` package handles this automatically.
 
-This works regardless of where collaborators clone the repository. For more details, see the [here package vignette](https://github.com/jennybc/here_here).
+This works regardless of where collaborators clone the repository. For more details, see the [here package vignette](https://here.r-lib.org/articles/here.html).
 
 ### 16.1 Pass subpath components directly to `here()`
 

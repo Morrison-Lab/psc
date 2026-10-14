@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 02:01:49 (PDT)
+Last modified: 2026-10-14 03:08:22 (PDT)
 
 ## 1 Understanding GitHub Actions
 
@@ -145,7 +145,7 @@ When several of your repositories need the same workflow, prefer calling a share
 
 ## 4 How GitHub Actions Workflows Work
 
-When you set up a workflow, `usethis` creates a YAML configuration file in `.github/workflows/`. For example, `check-standard` creates `.github/workflows/R-CMD-check.yaml`.
+When you set up a workflow, `usethis` creates a YAML configuration file in `.github/workflows/`. For example, `usethis::use_github_action("check-standard")` copies the `check-standard` example workflow from [r-lib/actions](https://github.com/r-lib/actions/tree/v2/examples) to `.github/workflows/R-CMD-check.yaml`.
 
 This workflow automatically runs when you:
 
@@ -388,7 +388,7 @@ Specialized action for deploying pull request previews to GitHub Pages. Unlike t
 ``` yaml
 # Deploy preview when PR is opened/updated
 - uses: rossjrw/pr-preview-action@v1
-  if: contains(['opened', 'reopened', 'synchronize'], github.event.action)
+  if: contains(fromJSON('["opened", "reopened", "synchronize"]'), github.event.action)
   with:
     source-dir: ./docs/
     action: deploy

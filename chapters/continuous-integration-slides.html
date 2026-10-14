@@ -311,7 +311,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-14 02:01:49 (PDT)</p>
+  <p class="date">Last modified: 2026-10-14 03:08:22 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -440,7 +440,7 @@
 </section>
 <section class="slide level2">
 
-<p>When you set up a workflow, <code>usethis</code> creates a YAML configuration file in <code>.github/workflows/</code>. For example, <code>check-standard</code> creates <code>.github/workflows/R-CMD-check.yaml</code>.</p>
+<p>When you set up a workflow, <code>usethis</code> creates a YAML configuration file in <code>.github/workflows/</code>. For example, <code>usethis::use_github_action("check-standard")</code> copies the <code>check-standard</code> example workflow from <a href="https://github.com/r-lib/actions/tree/v2/examples">r-lib/actions</a> to <code>.github/workflows/R-CMD-check.yaml</code>.</p>
 <p>This workflow automatically runs when you:</p>
 <ul>
 <li>Push commits to <code>main</code> or <code>master</code></li>
@@ -652,7 +652,7 @@ act:   add the label, start working         # both runs now think they own it</c
 <p><em>Advanced usage - only remove unmerged PR previews:</em></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a aria-label="1"></a><span class="co"># Deploy preview when PR is opened/updated</span></span>
 <span id="cb13-2"><a aria-label="2"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> rossjrw/pr-preview-action@v1</span></span>
-<span id="cb13-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">if</span><span class="kw">:</span><span class="at"> contains(['opened', 'reopened', 'synchronize'], github.event.action)</span></span>
+<span id="cb13-3"><a aria-label="3"></a><span class="at">  </span><span class="fu">if</span><span class="kw">:</span><span class="at"> contains(fromJSON('["opened", "reopened", "synchronize"]'), github.event.action)</span></span>
 <span id="cb13-4"><a aria-label="4"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb13-5"><a aria-label="5"></a><span class="at">    </span><span class="fu">source-dir</span><span class="kw">:</span><span class="at"> ./docs/</span></span>
 <span id="cb13-6"><a aria-label="6"></a><span class="at">    </span><span class="fu">action</span><span class="kw">:</span><span class="at"> deploy</span></span>

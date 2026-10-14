@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 02:01:49 (PDT)
+Last modified: 2026-10-14 03:08:22 (PDT)
 
 ## 1 Basics
 
@@ -177,10 +177,9 @@ The lab’s pull request roles, author and reviewer expectations, [stacked pull 
 | `git add -p` | adds changes to commit, showing you changes one by one |
 | `git commit -m <commit message>` | commit file with a message |
 | `git push -u origin <branch_name>` | push branch to remote and set to track (-u only works if this is first push) |
-| `git branch --set-upstream-to origin <branch_name>` | set upstream to `origin/<branch_name>` (use if you forgot -u on first push) |
+| `git branch --set-upstream-to=origin/<branch_name>` | set upstream to `origin/<branch_name>` (use if you forgot -u on first push) |
 | `git push origin <branch_name>` | push work to branch |
 | `git checkout <branch_name>`  `git merge master` | switch to branch and merge changes from `master` into `<branch_name>` (two commands) |
-| `git merge <branch_name> master` | switch to branch and merge changes from `master` into `<branch_name>` (one command) |
 | `git checkout --track origin/<branch_name>` | pulls a remote branch and creates a local branch to track it (use when trying to pull someone else’s branch onto your local computer) |
 | `git push --delete <remote_name> <branch_name>` | delete remote branch |
 | `git branch -d <branch_name>` | deletes local branch, -D to force |
@@ -225,7 +224,7 @@ For more details and troubleshooting scenarios, see the [Repeated Amend chapter]
 
 Never push .Rout files! If someone else runs an R script and creates an .Rout file at the same time and both of you try to push to github, it is incredibly difficult to reconcile these two logs. If you run logs, keep them on your own system or (preferably) set up a shared directory where all logs are name and date timestamped.
 
-There is a standardized `.gitignore` for `R` which you [can download](https://github.com/github/gitignore/blob/master/R.gitignore) and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a [great discussion of project-oriented workflows](https://tidyverse.org/blog/2017/12/workflow-vs-script/), extolling the virtues of a self-contained, portable projects, for your reference.
+There is a standardized `.gitignore` for `R` which you [can download](https://github.com/github/gitignore/blob/main/R.gitignore) and add to your project. This ensures you’re not committing log files or things that would otherwise best be left ignored to GitHub. This is a [great discussion of project-oriented workflows](https://tidyverse.org/blog/2017/12/workflow-vs-script/), extolling the virtues of self-contained, portable projects, for your reference.
 
 ## 13 GitLab
 
