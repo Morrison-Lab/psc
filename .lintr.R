@@ -29,5 +29,8 @@ exclusions <- list(
   ),
   # Mermaid diagram chunks are not R code; the lab manual excluded this
   # page for the same reason.
-  "chapters/quarto/mermaid-diagrams.qmd" = Inf
+  "chapters/quarto/mermaid-diagrams.qmd" = Inf,
+  # lms/ is its own R package, linted as a package with its own
+  # lms::default_linters() by the lint-lms job in lint-project.yaml.
+  "lms" = Inf
 )

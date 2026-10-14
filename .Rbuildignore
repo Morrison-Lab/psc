@@ -16,3 +16,4 @@ _freeze/
 ^AGENTS\.md$
 ^CLAUDE\.md$
 ^\.claude$
+^lms$
