@@ -95,8 +95,16 @@ with the source loaded so symbols (and `.onLoad()` side effects) resolve correct
 
 ```r
 pkgload::load_all()
-lintr::lint_package()
+lintr::lint_package(
+  linters = default_linters(),
+  exclusions = list("tests/testthat.R" = list(undesirable_function_linter = Inf))
+)
 ```
+
+The package has no `.lintr` file of its own,
+so name its linters explicitly;
+without them `lint_package()` falls back to lintr's defaults.
+psc's `lint-lms` CI job lints with the same linters and exclusions.
 
 `.onLoad()` calls `rex::register_shortcuts()` so the `{rex}` DSL tokens used in the
 snake_case regex are not flagged as undefined globals. After editing `R/` roxygen
