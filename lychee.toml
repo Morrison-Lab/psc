@@ -25,11 +25,6 @@ exclude = [
   "https://localhost.*",
   "https://YOUR-ORG.github.io/.*",
   "https://your-org.github.io/.*",
-  # The lms/ directory link 404s on PRs until the PR that adds lms/
-  # (psc#33) is merged; remove this entry afterwards (psc#36).
-  # Scoped to that one URL so other links into this repository's main
-  # branch are still checked.
-  "^https://github.com/Morrison-Lab/psc/tree/main/lms/?$",
   # Ported from UCD-SERG/lab-manual along with the chapters that link these:
   # Old RStudio blog moved to posit.co; frequently times out in CI
   "https://blog.rstudio.com/.*",
