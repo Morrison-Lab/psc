@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-14 12:39:25 (PDT)
+Last modified: 2026-10-15 15:15:23 (PDT)
 
 ## 1 Introduction
 
@@ -34,7 +34,7 @@ Quarto files are designed to be used in three ways:
 
 ### 1.2 Why Quarto?
 
-If you’re an R Markdown user, you might be thinking “Quarto sounds a lot like R Markdown.” You’re not wrong! Quarto unifies the functionality of many packages from the R Markdown ecosystem (rmarkdown, bookdown, distill, xaringan, etc.) into a single consistent system as well as extends it with native support for multiple programming languages like Python and Julia in addition to R. In a way, Quarto reflects everything that was learned from expanding and supporting the R Markdown ecosystem over a decade.
+Quarto is the successor to R Markdown, the tool many R users know for combining prose and code. Besides R, Quarto runs Python and Julia code, and it replaces the separate add-on packages that R Markdown needed for books, websites, and slides ([Wickham et al. 2023](#ref-wickham2023r4ds), ch. 28).
 
 ### 1.3 Getting Started
 
