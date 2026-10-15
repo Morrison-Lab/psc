@@ -157,3 +157,46 @@ test_that("expect_message with a positional class is allowed", {
     lms:::condition_class_linter()
   )
 })
+
+test_that("a magrittr pipe supplies the object", {
+  lintr::expect_no_lint(
+    'f() %>% expect_error("bad input", "my_pkg_error")',
+    lms:::condition_class_linter()
+  )
+  lintr::expect_lint(
+    'f() %>% expect_error("bad input")',
+    "include a `class =` assertion",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("a comment between the pipe and the call is skipped", {
+  lintr::expect_lint(
+    'f() |> # comment\n  expect_error("bad input")',
+    "include a `class =` assertion",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("a pipe placeholder does not shift the arguments", {
+  lintr::expect_lint(
+    'f |> expect_error("bad input", object = _)',
+    "include a `class =` assertion",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("a named argument with an empty value supplies nothing", {
+  lintr::expect_no_lint(
+    "expect_error(f(), regexp = )",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("a leading empty argument takes the object slot", {
+  lintr::expect_lint(
+    'expect_error(, "bad input")',
+    "include a `class =` assertion",
+    lms:::condition_class_linter()
+  )
+})

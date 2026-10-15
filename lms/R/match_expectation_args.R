@@ -7,9 +7,12 @@
 #' then unnamed arguments, in order, to the formals still unmatched.
 #' All three formals come before `...`, so partial matching applies to them.
 #'
-#' A call on the right of `|>` gets the piped value as its first unnamed
-#' argument.
-#' An empty argument, as in `f(x, , y)`, takes its slot but supplies nothing.
+#' A call on the right of `|>` or a magrittr pipe (`%>%`, `%T>%`, `%<>%`)
+#' gets the piped value as its first unnamed argument,
+#' unless the call places it with a placeholder:
+#' `_` as a named argument for `|>`, or `.` as any argument for magrittr.
+#' An empty argument, as in `f(x, , y)` or `f(x, regexp = )`,
+#' takes its slot but supplies nothing.
 #' A forwarded `...` could supply any formal,
 #' so a call containing one is reported as supplying all three.
 #'
@@ -27,16 +30,29 @@ match_expectation_args <- function(call) {
   }
 
   arg_names <- vapply(slots, function(slot) slot$name, character(1))
-  unnamed_texts <- texts[is.na(arg_names)]
-  matches <- pmatch(arg_names[!is.na(arg_names)], formals)
-  named <- formals[matches[!is.na(matches)]]
+  is_named <- !is.na(arg_names)
+  unnamed_texts <- texts[!is_named]
+  matches <- pmatch(arg_names[is_named], formals)
+  hit <- !is.na(matches)
+  matched <- formals[matches[hit]]
+  # A named argument with an empty value (`regexp = `) takes its formal
+  # but supplies nothing.
+  named <- matched[nzchar(texts[is_named][hit])]
 
-  previous <- xml2::xml_find_first(call, "preceding-sibling::*[1]")
-  if (identical(xml2::xml_name(previous), "PIPE")) {
+  # A pipe passes its left side as the first unnamed argument,
+  # unless the call places it with a placeholder:
+  # `_` in a named argument for `|>`, or `.` in any argument for magrittr.
+  pipe <- piped_into(call)
+  placed <- if (identical(pipe, "|>")) {
+    "_" %in% texts[is_named]
+  } else {
+    "." %in% texts
+  }
+  if (!is.na(pipe) && !placed) {
     unnamed_texts <- c("<piped value>", unnamed_texts)
   }
 
-  unmatched <- setdiff(formals, named)
+  unmatched <- setdiff(formals, matched)
   n_filled <- min(length(unnamed_texts), length(unmatched))
   filled <- unmatched[seq_len(n_filled)]
   supplied <- nzchar(unnamed_texts[seq_len(n_filled)])

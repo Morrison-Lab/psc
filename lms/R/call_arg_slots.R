@@ -24,7 +24,10 @@ call_arg_slots <- function(call) {
     return(list())
   }
 
+  # A factor keeps an empty slot (such as the first in `f(, x)`), which
+  # would otherwise have no elements and be dropped by split().
   slot_id <- cumsum(arg_kinds == "OP-COMMA")
+  slot_id <- factor(slot_id, levels = 0:max(slot_id))
   lapply(split(seq_along(args), slot_id), function(idx) {
     idx <- idx[arg_kinds[idx] != "OP-COMMA"]
     eq <- which(arg_kinds[idx] == "EQ_SUB")
