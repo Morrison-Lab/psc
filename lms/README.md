@@ -67,7 +67,8 @@ before linting:
 
 For local linting, install `lms` once the same way.
 
-The commit in these examples installs lms 0.1.1.
+The commit in these examples installs lms 0.1.1,
+which predates 0.1.2's handling of a positional `class` argument.
 Pin a full commit SHA of psc `main`, as here,
 until `lms` has release tags (see [Versioning](#versioning)).
 

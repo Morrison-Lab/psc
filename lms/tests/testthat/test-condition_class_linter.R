@@ -96,3 +96,64 @@ test_that("info is not mistaken for class", {
     lms:::condition_class_linter()
   )
 })
+
+test_that("a piped object counts as the first argument", {
+  lintr::expect_no_lint(
+    'f() |> expect_error("bad input", "my_pkg_error")',
+    lms:::condition_class_linter()
+  )
+  lintr::expect_lint(
+    'f() |> expect_error("bad input")',
+    "include a `class =` assertion",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("comments between arguments do not hide them", {
+  lintr::expect_no_lint(
+    'expect_error(f(), "bad input", # why\n "my_pkg_error")',
+    lms:::condition_class_linter()
+  )
+  lintr::expect_lint(
+    'expect_error(f(), # why\n "bad input")',
+    "include a `class =` assertion",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("backticked and quoted argument names are matched", {
+  lintr::expect_no_lint(
+    'expect_error(f(), "bad input", `class` = "my_pkg_error")',
+    lms:::condition_class_linter()
+  )
+  lintr::expect_no_lint(
+    'expect_error(f(), "bad input", "class" = "my_pkg_error")',
+    lms:::condition_class_linter()
+  )
+  lintr::expect_lint(
+    'expect_error(f(), `regexp` = "bad input")',
+    "include a `class =` assertion",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("an empty argument takes its slot but supplies nothing", {
+  lintr::expect_no_lint(
+    'expect_error(f(), , "my_pkg_error")',
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("a forwarded ... is not flagged", {
+  lintr::expect_no_lint(
+    "check <- function(...) expect_error(f(), ...)",
+    lms:::condition_class_linter()
+  )
+})
+
+test_that("expect_message with a positional class is allowed", {
+  lintr::expect_no_lint(
+    'expect_message(f(), "informative", "my_pkg_message")',
+    lms:::condition_class_linter()
+  )
+})
