@@ -1,8 +1,10 @@
 #' Condition-class linter for testthat expectations
 #'
 #' Flags `expect_error()`, `expect_warning()`, and `expect_message()` calls
-#' that assert on message text (`regexp =` or positional `regexp`) without
-#' also asserting on a condition `class =`.
+#' that assert on message text (`regexp`) without
+#' also asserting on a condition `class`.
+#' Either argument may be named, partially named, or positional;
+#' `match_expectation_args()` matches them as R does.
 #'
 #' Matching only message text is brittle:
 #' wording can change while the underlying condition type stays correct.
@@ -34,21 +36,8 @@ condition_class_linter <- function() {
     }
 
     needs_class <- vapply(calls, function(call) {
-      arg_names <- xml2::xml_text(xml2::xml_find_all(call, "./SYMBOL_SUB"))
-      has_class <- "class" %in% arg_names
-      has_named_regexp <- "regexp" %in% arg_names
-
-      # The second positional argument is the third direct `expr` child:
-      # function call, first argument, then unnamed `regexp`.
-      # Requiring an immediate preceding comma excludes named arguments,
-      # whose value expression is preceded by `EQ_SUB` instead.
-      positional_regexp <- xml2::xml_find_first(
-        call,
-        "./expr[3][preceding-sibling::*[1][self::OP-COMMA]]"
-      )
-      has_positional_regexp <- !inherits(positional_regexp, "xml_missing")
-
-      !has_class && (has_named_regexp || has_positional_regexp)
+      supplied <- match_expectation_args(call)
+      "regexp" %in% supplied && !("class" %in% supplied)
     }, logical(1))
 
     lintr::xml_nodes_to_lints(
