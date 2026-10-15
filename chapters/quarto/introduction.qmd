@@ -78,11 +78,11 @@ and orchestrate rendering.
 
 ### Why Quarto?
 
-Quarto is the successor to R Markdown.
-It folds the R Markdown ecosystem
-(rmarkdown, bookdown, distill, xaringan and others)
-into one system,
-and it supports Python and Julia as well as R
+Quarto is the successor to R Markdown,
+the tool many R users know for combining prose and code.
+Besides R, Quarto runs Python and Julia code,
+and it replaces the separate add-on packages
+that R Markdown needed for books, websites and slides
 [@wickham2023r4ds, ch. 28].
 
 ### Getting Started
