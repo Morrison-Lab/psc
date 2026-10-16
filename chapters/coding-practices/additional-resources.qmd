@@ -8,6 +8,12 @@
 - [Building reproducible analytical pipelines with R](https://raps-with-r.dev/) - project-level reproducibility in R
 - [Posit Recipes](https://posit.cloud/learn/recipes) - short, task-focused R code snippets
 
+### Learning Python
+
+- [Python Tutor](https://pythontutor.com/) - steps through a short program one line at a time
+  and draws each variable and object in memory;
+  it visualizes Python, Java, C, C++ and JavaScript (not R) and limits program length, so use it on small examples
+
 ### Coming to R from SAS
 
 - [The sassy system](https://r-sassy.org/) - packages that bring familiar SAS concepts to R;
