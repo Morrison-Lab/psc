@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-15 20:34:27 (PDT)
+Last modified: 2026-10-15 21:20:53 (PDT)
 
 ## 1 Protocols for Code and Data
 
@@ -2364,27 +2364,31 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [Building reproducible analytical pipelines with R](https://raps-with-r.dev/) - project-level reproducibility in R
 - [Posit Recipes](https://posit.cloud/learn/recipes) - short, task-focused R code snippets
 
-### 46.2 Coming to R from SAS
+### 46.2 Learning Python
+
+- [Python Tutor](https://pythontutor.com/) - steps through a short program one line at a time and draws each variable and object in memory; it visualizes Python, Java, C, C++ and JavaScript (not R) and limits program length, so use it on small examples
+
+### 46.3 Coming to R from SAS
 
 - [The sassy system](https://r-sassy.org/) - packages that bring familiar SAS concepts to R; its [`{procs}`](https://cran.r-project.org/package=procs) package provides versions of `proc freq`, `proc means`, `proc ttest`, `proc reg`, and other common procedures
 - [R for SAS and SPSS Users](https://link.springer.com/book/10.1007/978-1-4614-0685-3) (Muenchen) - common SAS and SPSS tasks, done in R
 - [SAS and R](https://www.routledge.com/SAS-and-R-Data-Management-Statistical-Analysis-and-Graphics-Second-Edition/Kleinman-Horton/p/book/9781466584495) (Kleinman and Horton) - side-by-side SAS and R code for data management and analysis
 
-### 46.3 General R Programming
+### 46.4 General R Programming
 
 - Advanced R ([Wickham 2019](#ref-wickham2019advr)) - deep dive into R programming and internals, including [functions](https://adv-r.hadley.nz/functions.html), [object-oriented systems](https://adv-r.hadley.nz/oo.html#oop-systems), and [debugging](https://adv-r.hadley.nz/debugging.html)
 - [Debugging R code](https://www.maths.ed.ac.uk/~swood34/RCdebug/RCdebug.html) (Simon Wood) - debugging R and compiled code called from R
 - [Differences between the base R and `{magrittr}` pipes](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) - how `|>` and `%>%` behave differently
 - [Spatial Data Science: With Applications in R](https://r-spatial.org/book) - spatial data analysis in R
 
-### 46.4 Summary tables
+### 46.5 Summary tables
 
 - [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/) - flexible demographics and summary tables; start here
 - [`{table1}`](https://cran.r-project.org/package=table1) - HTML “Table 1” demographics tables
 - [`{arsenal}`](https://cran.r-project.org/package=arsenal) - summary tables, from the Mayo Clinic
 - `{procs}` (under “Coming to R from SAS” above) - SAS-style frequency and means tables
 
-### 46.5 R Package Development
+### 46.6 R Package Development
 
 - R Packages ([Wickham and Bryan 2023](#ref-wickham2023rpkgs)) - comprehensive guide to R package development
 - Tidyverse design guide ([Wickham 2023](#ref-wickham2023tidydesign)) - principles for designing R packages and APIs that are intuitive, composable, and consistent with tidyverse philosophy
@@ -2395,12 +2399,12 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [Releasing to CRAN](https://r-pkgs.org/release.html) and the [CRAN Cookbook](https://contributor.r-project.org/cran-cookbook/) - preparing a CRAN submission (see also [Code Publication](../chapters/code-publication.llms.md))
 - [Contributing to R](https://contributor.r-project.org/) - getting involved with base R itself
 
-### 46.6 Shiny Development
+### 46.7 Shiny Development
 
 - Mastering Shiny ([Wickham 2021](#ref-wickham2021shiny)) - comprehensive guide to building web applications with Shiny
 - Engineering Production-Grade Shiny Apps ([Fay et al. 2021](#ref-fay2021engineering)) - best practices for production Shiny applications
 
-### 46.7 Git and Version Control
+### 46.8 Git and Version Control
 
 - Happy Git and GitHub for the useR ([Bryan 2023](#ref-bryan2023happygit)) - essential guide to using Git and GitHub with R
 - [Pull request helpers in `{usethis}`](https://usethis.r-lib.org/articles/pr-functions.html) - the `pr_*()` workflow from R
