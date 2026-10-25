@@ -1,0 +1,77 @@
+[Modular programming](https://en.wikipedia.org/wiki/Modular_programming)
+splits a program into separate **modules**,
+each of which does one job and can be understood, tested and changed on its own.
+In R and Python, a module can be a function, a file or a package.
+Splitting a problem into such parts is called
+[decomposition](https://en.wikipedia.org/wiki/Decomposition_(computer_science)).
+Guides to scientific computing recommend it:
+@wilson2014best advise modularizing code rather than copying and pasting it,
+and @wilson2017good advise decomposing programs into functions.
+
+Each module has an **interface** and an **implementation**.
+The interface is what other code may rely on:
+for an R function, its name, arguments and return value;
+for a package, its exported functions [@wickham2023rpkgs].
+The implementation is everything else.
+Code that calls a module depends only on its interface,
+so the smaller the interface,
+the more of the module you can change without changing that code.
+
+Two properties describe how well a program is divided [@stevens1974structured]:
+
+- **Cohesion** is how closely the parts inside one module belong together.
+  Aim for high cohesion:
+  a file that cleans one dataset is more cohesive
+  than a `utils.R` file that holds every helper in the project.
+- **Coupling** is how strongly one module depends on another,
+  for example on its internal details or on shared global state.
+  Aim for low coupling:
+  a script that calls a function from another file
+  is less coupled than one that `source()`s that file
+  and then uses the intermediate objects it created.
+
+### Decide what each module hides
+
+@parnas1972criteria described two ways to split the same program into modules.
+One split followed the steps of the program in order.
+The other gave each module one design decision that was likely to change,
+such as a file format or a data structure,
+and hid that decision behind the module's interface.
+Parnas argued that the second split is easier to change,
+because a change to one of those decisions touches only one module.
+This approach is called **information hiding**.
+
+In a data analysis, decisions that often change include:
+
+- the format and location of the raw data;
+- how a variable is coded or cleaned;
+- which model is fitted.
+
+Give each decision its own function or file.
+For example, suppose that only `read_survey_data()` knows that the survey arrives as a CSV file:
+
+```r
+read_survey_data <- function(path) {
+  readr::read_csv(path, show_col_types = FALSE)
+}
+```
+
+If the survey later moves into a database,
+you change only `read_survey_data()`,
+and the code that calls it keeps working:
+
+```r
+raw_data <- read_survey_data(here::here("data", "survey.csv"))
+clean_data <- clean_survey_data(raw_data)
+model <- fit_coverage_model(clean_data)
+```
+
+### When to make something a module
+
+A useful test is whether you can state the code's job in one sentence
+and name its inputs and outputs.
+If you can, it is a candidate for its own function.
+Move a set of functions into a package
+only once several projects use them,
+since a package adds documentation, tests and releases to maintain
+(see [Complete Package Development Workflow](#sec-r-workflow)).
