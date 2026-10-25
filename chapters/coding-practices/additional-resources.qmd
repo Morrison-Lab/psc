@@ -64,6 +64,6 @@
 - [Pull request helpers in `{usethis}`](https://usethis.r-lib.org/articles/pr-functions.html) - the `pr_*()` workflow from R
 - [Oh Shit, Git!?!](https://ohshitgit.com/) - plain-language fixes for common Git mistakes
 - [`{saperlipopette}`](https://maelle.github.io/saperlipopette/) - practice Git rescue exercises from R
-- [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/) - a short, free Git book
+- [Git Magic](https://github.com/blynn/gitmagic) - source repository of a short, free Git book
 - [`{gitdown}`](https://thinkr-open.github.io/gitdown/) - R package for documenting git commit history as a bookdown report,
   organized by patterns like tags or issues
