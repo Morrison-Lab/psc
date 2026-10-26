@@ -23,14 +23,14 @@ It exports:
   `cli::`-oriented undesirable functions,
   function-location and function-length checks,
   and condition-class assertions for `testthat` expectations that match `regexp`.
-- `nested_call_linter()` and `bare_condition_linter()` --- the no-nested-calls policy:
-  don't pass one call's result straight into another (name it, or pipe),
-  and name every `if()` and `while()` condition before testing it
-  (a bare name or `TRUE`/`FALSE`, as in `while (TRUE)`, is already a name).
-  Off by default while existing code is swept;
-  turn both on with `lms::default_linters(nested_calls = TRUE)`.
-  Tidyselect helpers, `aes()` and `vars()`, and anything inside a data-masking or quoting call
-  (`mutate()`, `filter()`, `quote()`, `with()`, `subset()`, and so on) are not flagged.
+- `nested_call_linter()` and `bare_condition_linter()` --- the no-nested-calls policy.
+  The first flags a call passed straight to another call (name it, or pipe).
+  Inside a data-masking or quoting call (`mutate()`, `filter()`, `quote()`, `with()`, `subset()`, and so on),
+  and for tidyselect helpers, `aes()` and `vars()`, it flags nothing.
+  The second flags an `if()` or `while()` condition that is not already a bare name or `TRUE`/`FALSE`,
+  as in `while (TRUE)`.
+  Both are off by default while existing code is swept;
+  turn them on with `lms::default_linters(nested_calls = TRUE)`.
 - `undesirable_functions()` --- the underlying undesirable-function map,
   if a repo needs to extend it.
 
