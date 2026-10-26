@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-25 11:29:04 (PDT)</p>
+  <p class="date">Last modified: 2026-10-25 19:24:45 (PDT)</p>
 </section>
 <section class="slide level2">
 
@@ -1323,7 +1323,7 @@ Table&nbsp;1: Trade-offs between snapshot and explicit tests
 <ul>
 <li><a href="https://bench.r-lib.org/"><code>{bench}</code></a> - Accurate benchmarking</li>
 <li><a href="https://profvis.r-lib.org/"><code>{profvis}</code></a> - Interactive profiling</li>
-<li><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a> - Function-call caching to eliminate repeated bottlenecks (<a href="#/sec-memoise" class="quarto-xref">Section&nbsp;37.2</a>)</li>
+<li><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a> - Function-call caching to eliminate repeated bottlenecks (<a href="#/sec-memoise" class="quarto-xref">Section&nbsp;38.2</a>)</li>
 <li><a href="https://adv-r.hadley.nz/perf-measure.html">Measuring Performance</a> chapter in Advanced R</li>
 <li><a href="https://adv-r.hadley.nz/perf-improve.html">Improving Performance</a> chapter in Advanced R</li>
 <li><a href="https://github.com/lorenzwalthert/touchstone"><code>{touchstone}</code></a> - CI benchmarking with PR comments</li>
@@ -1945,7 +1945,7 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <li>The current function is hard to scan because implementation details hide the main idea</li>
 </ul>
 </section>
-<section id="how-to-decompose-in-practice" class="slide level2" data-number="21">
+<section id="sec-decompose-in-practice" class="slide level2" data-number="21">
 <h2><span class="header-section-number">21</span> How to decompose in practice</h2>
 </section>
 <section class="slide level2 scrollable">
@@ -1959,8 +1959,21 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <li>Add or update tests around each helper and the top-level function.</li>
 </ol>
 </section>
-<section id="sec-decompose-validation" class="slide level2" data-number="22">
-<h2><span class="header-section-number">22</span> Decomposing validation blocks</h2>
+<section id="top-down-and-bottom-up-design" class="slide level2" data-number="22">
+<h2><span class="header-section-number">22</span> Top-down and bottom-up design</h2>
+</section>
+<section class="slide level2">
+
+<p>The sequence in <a href="#/sec-decompose-in-practice">How to decompose in practice</a> starts from the top: name the top-level steps first, then write a function for each. This is top-down design, also called stepwise refinement, and a step that is still too large can be refined the same way. The opposite is bottom-up design: write and test the small pieces first, then combine them into larger functions until the top-level workflow exists. See <a href="https://en.wikipedia.org/wiki/Bottom-up_and_top-down_approaches#Software_development">Bottom-up and top-down approaches</a> for more on both approaches, including how top-down design spread in software in the 1970s.</p>
+<p>Each approach has a strength and a typical risk:</p>
+<ul>
+<li>Top-down design keeps the overall workflow clear, but the lowest-level functions are written and tested last, so problems in them surface late. Writing a short stub for each step, a placeholder that returns a fixed value, lets the top-level function run and be tested early.</li>
+<li>Bottom-up design gets working, tested pieces quickly, and those pieces are easy to reuse. But the pieces may not fit together, because they were written before the workflow that calls them.</li>
+</ul>
+<p>Most software projects combine the two. Sketch the top-level workflow first, so the pieces have a known purpose and interface, and reuse existing functions, from your own code or from packages, wherever one already does a step.</p>
+</section>
+<section id="sec-decompose-validation" class="slide level2" data-number="23">
+<h2><span class="header-section-number">23</span> Decomposing validation blocks</h2>
 </section>
 <section class="slide level2">
 
@@ -2022,25 +2035,25 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <li>Adding a new data source requires one new call, not a copy-pasted block.</li>
 <li>Error message formatting stays consistent across all sources.</li>
 </ul>
-<p>Place each extracted helper in its own file (<a href="#/sec-one-function-per-file" class="quarto-xref">Section&nbsp;25</a>), not above or below the caller in the same file.</p>
+<p>Place each extracted helper in its own file (<a href="#/sec-one-function-per-file" class="quarto-xref">Section&nbsp;26</a>), not above or below the caller in the same file.</p>
 </section>
-<section id="examples-borrowed-from-package-prs" class="slide level2" data-number="23">
-<h2><span class="header-section-number">23</span> Examples borrowed from package PRs</h2>
+<section id="examples-borrowed-from-package-prs" class="slide level2" data-number="24">
+<h2><span class="header-section-number">24</span> Examples borrowed from package PRs</h2>
 </section>
 <section class="slide level2">
 
 <p>In <a href="https://github.com/UCD-SERG/rpt/pull/100"><code>UCD-SERG/rpt</code> PR #100</a>, a top-level function was updated to call dedicated helpers, with helper logic split into separate files. The workflow moved from “do everything in one function” toward a clearer sequence of validation, cleaning, calculation, and formatting steps. This made the top-level function easier to read, while isolating validation and formatting details in reusable units.</p>
 <p>In <a href="https://github.com/UCD-SERG/shigella/pull/11"><code>UCD-SERG/shigella</code> PR #11</a>, focused analysis functions were added in separate files, moving away from larger script-style helpers toward single-purpose, testable package functions.</p>
 </section>
-<section id="related-references" class="slide level2" data-number="24">
-<h2><span class="header-section-number">24</span> Related references</h2>
+<section id="related-references" class="slide level2" data-number="25">
+<h2><span class="header-section-number">25</span> Related references</h2>
 </section>
 <section class="slide level2">
 
 <p>For background and related ideas, see <a href="#/sec-modular-design">Modular design</a>, <a href="https://en.wikipedia.org/wiki/Code_refactoring">Code refactoring</a>, and <a href="https://en.wikipedia.org/wiki/Functional_decomposition">Functional decomposition</a>.</p>
 </section>
-<section id="sec-one-function-per-file" class="slide level2" data-number="25">
-<h2><span class="header-section-number">25</span> One function per file</h2>
+<section id="sec-one-function-per-file" class="slide level2" data-number="26">
+<h2><span class="header-section-number">26</span> One function per file</h2>
 </section>
 <section class="slide level2">
 
@@ -2054,8 +2067,8 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <h3 id="relationship-to-function-decomposition">Relationship to function decomposition</h3>
 <p>When decomposing a large function (<a href="#/sec-function-decomposition" class="quarto-xref">Section&nbsp;19</a>), place each extracted helper in its own file rather than above or below the caller in the same file. The caller file then contains only the orchestration function, and each helper is independently findable and testable.</p>
 </section>
-<section id="sec-function-length-limits" class="slide level2" data-number="26">
-<h2><span class="header-section-number">26</span> Function length limits</h2>
+<section id="sec-function-length-limits" class="slide level2" data-number="27">
+<h2><span class="header-section-number">27</span> Function length limits</h2>
 </section>
 <section class="slide level2 scrollable">
 
@@ -2075,8 +2088,8 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 <li>Decompose when the top-level story is hard to follow or hard to test.</li>
 </ol>
 </section>
-<section id="sec-kiss" class="slide level2" data-number="27">
-<h2><span class="header-section-number">27</span> Keep It Short and Simple (KISS)</h2>
+<section id="sec-kiss" class="slide level2" data-number="28">
+<h2><span class="header-section-number">28</span> Keep It Short and Simple (KISS)</h2>
 </section>
 <section class="slide level2">
 
@@ -2091,26 +2104,26 @@ Table&nbsp;2: Comparison of <code>@noRd</code> and <code>@keywords internal</cod
 </ul>
 <p>Simplicity is not an excuse to drop requirements: the goal is the simplest solution that still does the whole job, not a simpler job. The preceding sections on function decomposition and function length limits, and the guidance on <a href="../chapters/coding-style.html#sec-avoid-nesting">avoiding deep nesting</a>, are concrete applications of this principle.</p>
 </section>
-<section id="sec-decompose-qmd-chunks" class="slide level2" data-number="28">
-<h2><span class="header-section-number">28</span> Decomposing Code Chunks in Quarto Documents</h2>
+<section id="sec-decompose-qmd-chunks" class="slide level2" data-number="29">
+<h2><span class="header-section-number">29</span> Decomposing Code Chunks in Quarto Documents</h2>
 </section>
 <section class="slide level2">
 
 <p>A Quarto document should read as narrative plus orchestration: each code chunk calls documented functions and displays their results, and the surrounding prose carries the analysis story. Complex logic belongs in named functions, not inline in chunks.</p>
-<p>When a chunk grows into substantial logic — a multi-step data manipulation, a function defined inline, a non-trivial transformation, or the same block copied across chunks — extract that logic into a function and have the chunk call it. Following the function-decomposition (<a href="#/sec-function-decomposition" class="quarto-xref">Section&nbsp;19</a>), one-function-per-file (<a href="#/sec-one-function-per-file" class="quarto-xref">Section&nbsp;25</a>), and length-limit (<a href="#/sec-function-length-limits" class="quarto-xref">Section&nbsp;26</a>) principles, give the function its own file under <code>R/</code>, with full <a href="https://roxygen2.r-lib.org/"><code>{roxygen2}</code></a> documentation, the same way any other package function is written. The chunk then shrinks to a call plus whatever narrative or display wraps it.</p>
+<p>When a chunk grows into substantial logic — a multi-step data manipulation, a function defined inline, a non-trivial transformation, or the same block copied across chunks — extract that logic into a function and have the chunk call it. Following the function-decomposition (<a href="#/sec-function-decomposition" class="quarto-xref">Section&nbsp;19</a>), one-function-per-file (<a href="#/sec-one-function-per-file" class="quarto-xref">Section&nbsp;26</a>), and length-limit (<a href="#/sec-function-length-limits" class="quarto-xref">Section&nbsp;27</a>) principles, give the function its own file under <code>R/</code>, with full <a href="https://roxygen2.r-lib.org/"><code>{roxygen2}</code></a> documentation, the same way any other package function is written. The chunk then shrinks to a call plus whatever narrative or display wraps it.</p>
 <p>Why this matters: a function can be unit-tested, reused across chunks and analyses, and documented; inline chunk code can be none of these. Keeping logic inline also buries the analysis narrative under implementation detail, and duplicates code that should have one home.</p>
 <p>The UCD-SERG shared linter set enforces the function-definition half of this rule: <code>lms::function_location_linter()</code> (part of <code>lms::default_linters()</code>) flags a named function defined at the top level of any file outside the designated directories (<code>R/</code> and <code>tests/</code> by default), including inside a <code>.qmd</code> chunk. Loose chunk logic that was never wrapped in a function at all is not something a linter can catch, so watch for it when writing and reviewing analyses: a chunk carrying substantial inline logic is a decomposition finding, and the fix is to move the logic into <code>R/</code> and leave the chunk calling it.</p>
 </section>
-<section id="sec-here-package-practices" class="slide level2" data-number="29">
-<h2><span class="header-section-number">29</span> The here package</h2>
+<section id="sec-here-package-practices" class="slide level2" data-number="30">
+<h2><span class="header-section-number">30</span> The here package</h2>
 </section>
 <section class="slide level2">
 
 <p>The <code>here</code> package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path <code>/home/oski/Some-R-Project</code>. My collaborator might clone the repository and work with it at some other path, such as <code>/home/bear/R-Code/Some-R-Project</code>. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the <code>here</code> package comes in, and <a href="https://here.r-lib.org/articles/here.html">here is a great vignette describing it</a>.</p>
 <p><em>See also <a href="../chapters/coding-style.html#sec-here-package-style">The here Package</a> for code style guidelines on using the here package.</em></p>
 </section>
-<section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="30">
-<h2><span class="header-section-number">30</span> Integrating Box and Dropbox</h2>
+<section id="sec-integrating-box-and-dropbox" class="slide level2" data-number="31">
+<h2><span class="header-section-number">31</span> Integrating Box and Dropbox</h2>
 </section>
 <section class="slide level2">
 
@@ -2134,15 +2147,15 @@ saveRDS(token, "/path/to/tokenfile.RDS")
 drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </code></pre>
 </section>
-<section id="sec-r-lib-packages" class="slide level2" data-number="31">
-<h2><span class="header-section-number">31</span> r-lib Packages</h2>
+<section id="sec-r-lib-packages" class="slide level2" data-number="32">
+<h2><span class="header-section-number">32</span> r-lib Packages</h2>
 </section>
 <section class="slide level2">
 
 <p>The <a href="https://github.com/r-lib">r-lib</a> GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem.</p>
 </section>
-<section id="package-development" class="slide level2" data-number="32">
-<h2><span class="header-section-number">32</span> Package Development</h2>
+<section id="package-development" class="slide level2" data-number="33">
+<h2><span class="header-section-number">33</span> Package Development</h2>
 </section>
 <section class="slide level2">
 
@@ -2173,8 +2186,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lifecycle"><a href="https://lifecycle.r-lib.org/"><code>{lifecycle}</code></a></h3>
 <p><a href="https://lifecycle.r-lib.org/"><code>{lifecycle}</code></a> manages the life cycle of functions and arguments, providing the experimental/superseded/deprecated badges and deprecation warnings used across the tidyverse and r-lib ecosystems.</p>
 </section>
-<section id="testing-and-quality" class="slide level2" data-number="33">
-<h2><span class="header-section-number">33</span> Testing and Quality</h2>
+<section id="testing-and-quality" class="slide level2" data-number="34">
+<h2><span class="header-section-number">34</span> Testing and Quality</h2>
 </section>
 <section class="slide level2">
 
@@ -2187,8 +2200,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lintr"><a href="https://lintr.r-lib.org/"><code>{lintr}</code></a></h3>
 <p><a href="https://lintr.r-lib.org/"><code>{lintr}</code></a> performs static code analysis (linting) for R. It checks for style issues, potential errors, and common anti-patterns, and integrates with RStudio, VS Code, and CI pipelines.</p>
 </section>
-<section id="core-language-and-infrastructure" class="slide level2" data-number="34">
-<h2><span class="header-section-number">34</span> Core Language and Infrastructure</h2>
+<section id="core-language-and-infrastructure" class="slide level2" data-number="35">
+<h2><span class="header-section-number">35</span> Core Language and Infrastructure</h2>
 </section>
 <section class="slide level2">
 
@@ -2205,8 +2218,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-cpp11"><a href="https://cpp11.r-lib.org/"><code>{cpp11}</code></a></h3>
 <p><a href="https://cpp11.r-lib.org/"><code>{cpp11}</code></a> provides a modern C++11 interface for interacting with R’s C API. It is a lightweight, header-only alternative to <code>Rcpp</code>, designed to simplify writing and debugging C++ extensions for R.</p>
 </section>
-<section id="system-and-process" class="slide level2" data-number="35">
-<h2><span class="header-section-number">35</span> System and Process</h2>
+<section id="system-and-process" class="slide level2" data-number="36">
+<h2><span class="header-section-number">36</span> System and Process</h2>
 </section>
 <section class="slide level2">
 
@@ -2219,8 +2232,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-ps"><a href="https://ps.r-lib.org/"><code>{ps}</code></a></h3>
 <p><a href="https://ps.r-lib.org/"><code>{ps}</code></a> provides a cross-platform API for listing, querying, and manipulating system processes from R. It is used internally by <code>processx</code> and <code>callr</code>.</p>
 </section>
-<section id="http-and-web" class="slide level2" data-number="36">
-<h2><span class="header-section-number">36</span> HTTP and Web</h2>
+<section id="http-and-web" class="slide level2" data-number="37">
+<h2><span class="header-section-number">37</span> HTTP and Web</h2>
 </section>
 <section class="slide level2">
 
@@ -2233,13 +2246,13 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-gargle"><a href="https://gargle.r-lib.org/"><code>{gargle}</code></a></h3>
 <p><a href="https://gargle.r-lib.org/"><code>{gargle}</code></a> provides authentication utilities for Google APIs, including OAuth 2.0, service accounts, and Application Default Credentials. It is used by <code>googledrive</code>, <code>googlesheets4</code>, and other Google-backed R packages.</p>
 </section>
-<section id="utilities" class="slide level2" data-number="37">
-<h2><span class="header-section-number">37</span> Utilities</h2>
+<section id="utilities" class="slide level2" data-number="38">
+<h2><span class="header-section-number">38</span> Utilities</h2>
 </section>
 <section class="slide level2">
 
 <h3 id="sec-here-pkg"><a href="https://here.r-lib.org/"><code>{here}</code></a></h3>
-<p><a href="https://here.r-lib.org/"><code>{here}</code></a> builds file paths relative to the project root, so scripts work regardless of the current working directory. We recommend <code>{here}</code> for file paths (see <a href="#/sec-here-package-practices" class="quarto-xref">Section&nbsp;29</a>).</p>
+<p><a href="https://here.r-lib.org/"><code>{here}</code></a> builds file paths relative to the project root, so scripts work regardless of the current working directory. We recommend <code>{here}</code> for file paths (see <a href="#/sec-here-package-practices" class="quarto-xref">Section&nbsp;30</a>).</p>
 <h3 id="sec-memoise"><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a></h3>
 <p><a href="https://memoise.r-lib.org/"><code>{memoise}</code></a> adds memoisation (function-call caching) to R functions. Wrapping an expensive, pure function with <code>memoise::memoise()</code> causes it to cache computed return values in memory or on disk, so repeated calls with identical arguments return instantly from cache instead of recomputing. It supports multiple storage backends via the <code>cache</code> argument (such as <code>cachem::cache_mem()</code> for in-memory caching and <code>cachem::cache_disk()</code> for persistent disk caching across sessions), and provides <code>memoise::forget()</code> to clear caches, <code>memoise::is.memoised()</code> to test whether a function is memoised, and <code>memoise::has_cache()</code> to check whether specific arguments have cached results. Use <code>{memoise}</code> only for deterministic functions without side effects (such as pure mathematical evaluations, stable API queries, or idempotent data processing pipelines). Never memoise stochastic simulation routines or functions that generate pseudorandom numbers; memoisation suppresses stochastic variation across repeated calls, silently collapsing random variability by returning stale cached draws.</p>
 <h3 id="sec-scales"><a href="https://scales.r-lib.org/"><code>{scales}</code></a></h3>
@@ -2265,8 +2278,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <li>Call <code>rex::rex(...)</code> to compile expressions into regular expression strings for use with functions like <code>grepl()</code>, <code>gsub()</code>, or <a href="https://stringr.tidyverse.org/"><code>{stringr}</code></a> functions.</li>
 </ul>
 </section>
-<section id="github-actions" class="slide level2" data-number="38">
-<h2><span class="header-section-number">38</span> GitHub Actions</h2>
+<section id="github-actions" class="slide level2" data-number="39">
+<h2><span class="header-section-number">39</span> GitHub Actions</h2>
 </section>
 <section class="slide level2">
 
@@ -2280,16 +2293,16 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </ul>
 <p>These actions are widely used across R packages hosted on GitHub.</p>
 </section>
-<section id="sec-tidyverse" class="slide level2" data-number="39">
-<h2><span class="header-section-number">39</span> Tidyverse</h2>
+<section id="sec-tidyverse" class="slide level2" data-number="40">
+<h2><span class="header-section-number">40</span> Tidyverse</h2>
 </section>
 <section class="slide level2">
 
 <p>Throughout this document there have been references to the Tidyverse, but this section is to explicitly show you how to transform your Base R tendencies to Tidyverse (or Data.Table, Tidyverse’s performance-optimized competitor). For most of our work that does not utilize very large datasets, we recommend that you code in Tidyverse rather than Base R. Tidyverse is quickly becoming <a href="https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/">the gold standard</a> in R data analysis and modern data science packages and code should use Tidyverse style and packages unless there’s a significant reason not to (i.e.&nbsp;big data pipelines that would benefit from Data.Table’s performance optimizations). Note that <a href="https://dtplyr.tidyverse.org/"><code>{dtplyr}</code></a> provides a data.table backend for dplyr, enabling you to use most of dplyr’s tidy syntax with data.table’s performance optimizations.</p>
 <p>The package author has published R for Data Science <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span>, which leans heavily on many Tidyverse packages and may be worth checking out.</p>
 </section>
-<section id="core-tidyverse-packages" class="slide level2" data-number="40">
-<h2><span class="header-section-number">40</span> Core Tidyverse Packages</h2>
+<section id="core-tidyverse-packages" class="slide level2" data-number="41">
+<h2><span class="header-section-number">41</span> Core Tidyverse Packages</h2>
 </section>
 <section class="slide level2">
 
@@ -2320,8 +2333,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 <h3 id="sec-lubridate"><a href="https://lubridate.tidyverse.org/">lubridate</a></h3>
 <p><a href="https://lubridate.tidyverse.org/"><code>{lubridate}</code></a> provides a set of functions for working with date-times, extending and improving on R’s existing support for them. Key functions include <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code> for parsing dates, and <code>year()</code>, <code>month()</code>, <code>day()</code> for extracting components.</p>
 </section>
-<section id="base-r-to-tidyverse-translation" class="slide level2" data-number="41">
-<h2><span class="header-section-number">41</span> Base R to Tidyverse Translation</h2>
+<section id="base-r-to-tidyverse-translation" class="slide level2" data-number="42">
+<h2><span class="header-section-number">42</span> Base R to Tidyverse Translation</h2>
 </section>
 <section class="slide level2">
 
@@ -2438,8 +2451,8 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </table>
 <p>For a more extensive set of syntactical translations to Tidyverse, you can check out <a href="https://tavareshugo.github.io/data_carpentry_extras/base-r_tidyverse_equivalents/base-r_tidyverse_equivalents.html">this document</a>.</p>
 </section>
-<section id="programming-with-tidyverse" class="slide level2" data-number="42">
-<h2><span class="header-section-number">42</span> Programming with Tidyverse</h2>
+<section id="programming-with-tidyverse" class="slide level2" data-number="43">
+<h2><span class="header-section-number">43</span> Programming with Tidyverse</h2>
 </section>
 <section class="slide level2">
 
@@ -2455,15 +2468,15 @@ drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 </ul>
 <p>See also <a href="../chapters/coding-style.html#sec-tidyverse-replacements">Tidyverse Replacements</a></p>
 </section>
-<section id="sec-coding-with-r-and-python" class="slide level2" data-number="43">
-<h2><span class="header-section-number">43</span> Coding with R and Python</h2>
+<section id="sec-coding-with-r-and-python" class="slide level2" data-number="44">
+<h2><span class="header-section-number">44</span> Coding with R and Python</h2>
 </section>
 <section class="slide level2">
 
 <p>If you’re using both R and Python, you may wish to check out the <a href="https://www.rdocumentation.org/packages/feather/versions/0.3.3">Feather package</a> for exchanging data between the two languages <a href="https://blog.rstudio.com/2016/03/29/feather/">extremely quickly</a>.</p>
 </section>
-<section id="sec-repeating-analyses-with-different-variations" class="slide level2" data-number="44">
-<h2><span class="header-section-number">44</span> Repeating analyses with different variations</h2>
+<section id="sec-repeating-analyses-with-different-variations" class="slide level2" data-number="45">
+<h2><span class="header-section-number">45</span> Repeating analyses with different variations</h2>
 </section>
 <section class="slide level2">
 
@@ -2548,8 +2561,8 @@ future::plan(
 future_lapply(X = mylist, FUN = func)</code></pre>
 <p>Here, <code>future::availableCores()</code> checks how many cores your machine has. Similar to <code>parLapply()</code> showed above, <code>future_lapply()</code> parallelizes the computation of <code>lapply()</code> by executing the function <code>func</code> simultaneously on different sub-lists of <code>mylist</code>.</p>
 </section>
-<section id="sec-reviewing-code" class="slide level2" data-number="45">
-<h2><span class="header-section-number">45</span> Reviewing Code</h2>
+<section id="sec-reviewing-code" class="slide level2" data-number="46">
+<h2><span class="header-section-number">46</span> Reviewing Code</h2>
 </section>
 <section class="slide level2 scrollable">
 
@@ -2569,7 +2582,7 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 <ul>
 <li>Does the script run cleanly from start to finish in a fresh R session?</li>
 <li>Are package dependencies managed reproducibly via <a href="https://rstudio.github.io/renv/"><code>{renv}</code></a> (see <a href="../chapters/reproducible-environments.html#sec-reproducible-environments">Reproducible Environments</a>)?</li>
-<li>Are file paths relative and constructed with <a href="https://here.r-lib.org/"><code>{here}</code></a> (see <a href="#/sec-here-package-practices" class="quarto-xref">Section&nbsp;29</a>), avoiding machine-specific absolute paths?</li>
+<li>Are file paths relative and constructed with <a href="https://here.r-lib.org/"><code>{here}</code></a> (see <a href="#/sec-here-package-practices" class="quarto-xref">Section&nbsp;30</a>), avoiding machine-specific absolute paths?</li>
 </ul></li>
 <li><strong>Code correctness and data integrity</strong>:
 <ul>
@@ -2606,8 +2619,8 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 <li>The author has completed the pre-review quality checks in <a href="#/sec-r-qa-checklist" class="quarto-xref">Section&nbsp;12</a>.</li>
 </ul>
 </section>
-<section id="sec-getting-help-with-code" class="slide level2" data-number="46">
-<h2><span class="header-section-number">46</span> Getting Help with Code</h2>
+<section id="sec-getting-help-with-code" class="slide level2" data-number="47">
+<h2><span class="header-section-number">47</span> Getting Help with Code</h2>
 </section>
 <section class="slide level2">
 
@@ -2630,8 +2643,8 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 <li><a href="https://r4ds.hadley.nz/workflow-help.html#making-a-reprex">R for Data Science: Making a reprex</a> <span class="citation" data-cites="wickham2023r4ds">(<a href="#/references" role="doc-biblioref" onclick="">Wickham et al. 2023</a>)</span>: Step-by-step guide to creating effective reproducible examples</li>
 </ul>
 </section>
-<section id="sec-r-resources" class="slide level2" data-number="47">
-<h2><span class="header-section-number">47</span> Additional Resources</h2>
+<section id="sec-r-resources" class="slide level2" data-number="48">
+<h2><span class="header-section-number">48</span> Additional Resources</h2>
 </section>
 <section class="slide level2 smaller scrollable" id="references">
 
@@ -2691,7 +2704,7 @@ future_lapply(X = mylist, FUN = func)</code></pre>
 <li><a href="https://usethis.r-lib.org/articles/pr-functions.html">Pull request helpers in <code>{usethis}</code></a> - the <code>pr_*()</code> workflow from R</li>
 <li><a href="https://ohshitgit.com/">Oh Shit, Git!?!</a> - plain-language fixes for common Git mistakes</li>
 <li><a href="https://maelle.github.io/saperlipopette/"><code>{saperlipopette}</code></a> - practice Git rescue exercises from R</li>
-<li><a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">Git Magic</a> - a short, free Git book</li>
+<li><a href="https://github.com/blynn/gitmagic">Git Magic</a> - source repository of a short, free Git book</li>
 <li><a href="https://thinkr-open.github.io/gitdown/"><code>{gitdown}</code></a> - R package for documenting git commit history as a bookdown report, organized by patterns like tags or issues</li>
 </ul>
 

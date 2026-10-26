@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-25 11:29:04 (PDT)
+Last modified: 2026-10-25 19:24:45 (PDT)
 
 ## 1 Protocols for Code and Data
 
@@ -1059,7 +1059,7 @@ n_iterations <- 1000
 
 - [`{bench}`](https://bench.r-lib.org/) - Accurate benchmarking
 - [`{profvis}`](https://profvis.r-lib.org/) - Interactive profiling
-- [`{memoise}`](https://memoise.r-lib.org/) - Function-call caching to eliminate repeated bottlenecks ([Section 37.2](#sec-memoise))
+- [`{memoise}`](https://memoise.r-lib.org/) - Function-call caching to eliminate repeated bottlenecks ([Section 38.2](#sec-memoise))
 - [Measuring Performance](https://adv-r.hadley.nz/perf-measure.html) chapter in Advanced R
 - [Improving Performance](https://adv-r.hadley.nz/perf-improve.html) chapter in Advanced R
 - [`{touchstone}`](https://github.com/lorenzwalthert/touchstone) - CI benchmarking with PR comments
@@ -1728,7 +1728,18 @@ A practical sequence is:
 4.  Keep the orchestration function short, so it reads like a workflow outline.
 5.  Add or update tests around each helper and the top-level function.
 
-## 22 Decomposing validation blocks
+## 22 Top-down and bottom-up design
+
+The sequence in [How to decompose in practice](#sec-decompose-in-practice) starts from the top: name the top-level steps first, then write a function for each. This is top-down design, also called stepwise refinement, and a step that is still too large can be refined the same way. The opposite is bottom-up design: write and test the small pieces first, then combine them into larger functions until the top-level workflow exists. See [Bottom-up and top-down approaches](https://en.wikipedia.org/wiki/Bottom-up_and_top-down_approaches#Software_development) for more on both approaches, including how top-down design spread in software in the 1970s.
+
+Each approach has a strength and a typical risk:
+
+- Top-down design keeps the overall workflow clear, but the lowest-level functions are written and tested last, so problems in them surface late. Writing a short stub for each step, a placeholder that returns a fixed value, lets the top-level function run and be tested early.
+- Bottom-up design gets working, tested pieces quickly, and those pieces are easy to reuse. But the pieces may not fit together, because they were written before the workflow that calls them.
+
+Most software projects combine the two. Sketch the top-level workflow first, so the pieces have a known purpose and interface, and reuse existing functions, from your own code or from packages, wherever one already does a step.
+
+## 23 Decomposing validation blocks
 
 A common case for decomposition is a function that opens with a long sequence of input-validation checks. When the same validation pattern repeats for multiple inputs, extract it into a helper:
 
@@ -1792,39 +1803,39 @@ Benefits of this pattern:
 - Adding a new data source requires one new call, not a copy-pasted block.
 - Error message formatting stays consistent across all sources.
 
-Place each extracted helper in its own file ([Section 25](#sec-one-function-per-file)), not above or below the caller in the same file.
+Place each extracted helper in its own file ([Section 26](#sec-one-function-per-file)), not above or below the caller in the same file.
 
-## 23 Examples borrowed from package PRs
+## 24 Examples borrowed from package PRs
 
 In [`UCD-SERG/rpt` PR \#100](https://github.com/UCD-SERG/rpt/pull/100), a top-level function was updated to call dedicated helpers, with helper logic split into separate files. The workflow moved from “do everything in one function” toward a clearer sequence of validation, cleaning, calculation, and formatting steps. This made the top-level function easier to read, while isolating validation and formatting details in reusable units.
 
 In [`UCD-SERG/shigella` PR \#11](https://github.com/UCD-SERG/shigella/pull/11), focused analysis functions were added in separate files, moving away from larger script-style helpers toward single-purpose, testable package functions.
 
-## 24 Related references
+## 25 Related references
 
 For background and related ideas, see [Modular design](#sec-modular-design), [Code refactoring](https://en.wikipedia.org/wiki/Code_refactoring), and [Functional decomposition](https://en.wikipedia.org/wiki/Functional_decomposition).
 
-## 25 One function per file
+## 26 One function per file
 
 Give each function its own file rather than bundling multiple functions into one file. This applies to exported functions, internal helpers, and test helpers alike — the only exception is a trivial two-line wrapper that is inseparable from its caller.
 
-### 25.1 R packages
+### 26.1 R packages
 
 Under `R/`, name the file after the function it contains: `simulate_data()` lives in `R/simulate_data.R`. A private helper that is more than a two-liner still gets its own file, named after the helper, even if only one caller uses it.
 
-### 25.2 Why
+### 26.2 Why
 
 A file with one function is easier to find, easier to diff (a change to one function does not sit inside an unrelated grep hit for a different one), and matches how `git blame` and code-review tools attribute changes. Bundling unrelated functions into one file — because they were added in the same PR, or because an existing file happened to be open — accumulates unrelated concerns over time.
 
-### 25.3 Adding to an existing multi-function file
+### 26.3 Adding to an existing multi-function file
 
 When adding a function to a file that already holds others (common in older code that predates this convention), put the **new** function in its own file so at least new code follows the convention going forward. Splitting every pre-existing function out is a separate, larger refactor.
 
-### 25.4 Relationship to function decomposition
+### 26.4 Relationship to function decomposition
 
 When decomposing a large function ([Section 19](#sec-function-decomposition)), place each extracted helper in its own file rather than above or below the caller in the same file. The caller file then contains only the orchestration function, and each helper is independently findable and testable.
 
-## 26 Function length limits
+## 27 Function length limits
 
 Function length matters because very long functions can hide workflow intent, increase maintenance burden, and make targeted testing harder. The sources below combine community discussions (opinion-based) with a formal complexity reference. Use the community links for examples of practitioner viewpoints, and the complexity reference for a formal metric.
 
@@ -1842,7 +1853,7 @@ Synthesizing these viewpoints for research code yields the following practical r
 3.  Watch decision complexity (branching and nesting), not only length.
 4.  Decompose when the top-level story is hard to follow or hard to test.
 
-## 27 Keep It Short and Simple (KISS)
+## 28 Keep It Short and Simple (KISS)
 
 The [KISS principle](https://en.wikipedia.org/wiki/KISS_principle) — “Keep It Short and Simple” — says that most systems work best when they are kept simple, so unnecessary complexity should be avoided rather than managed. A blunter phrasing — the one aircraft engineer Kelly Johnson actually coined at the Lockheed Skunk Works — is “keep it simple, stupid”: his standing challenge was that his team’s aircraft must be repairable by an average mechanic in the field with only a handful of common tools.
 
@@ -1857,23 +1868,23 @@ Rationales for keeping code short and simple:
 
 Simplicity is not an excuse to drop requirements: the goal is the simplest solution that still does the whole job, not a simpler job. The preceding sections on function decomposition and function length limits, and the guidance on [avoiding deep nesting](../chapters/coding-style.llms.md#sec-avoid-nesting), are concrete applications of this principle.
 
-## 28 Decomposing Code Chunks in Quarto Documents
+## 29 Decomposing Code Chunks in Quarto Documents
 
 A Quarto document should read as narrative plus orchestration: each code chunk calls documented functions and displays their results, and the surrounding prose carries the analysis story. Complex logic belongs in named functions, not inline in chunks.
 
-When a chunk grows into substantial logic — a multi-step data manipulation, a function defined inline, a non-trivial transformation, or the same block copied across chunks — extract that logic into a function and have the chunk call it. Following the function-decomposition ([Section 19](#sec-function-decomposition)), one-function-per-file ([Section 25](#sec-one-function-per-file)), and length-limit ([Section 26](#sec-function-length-limits)) principles, give the function its own file under `R/`, with full [`{roxygen2}`](https://roxygen2.r-lib.org/) documentation, the same way any other package function is written. The chunk then shrinks to a call plus whatever narrative or display wraps it.
+When a chunk grows into substantial logic — a multi-step data manipulation, a function defined inline, a non-trivial transformation, or the same block copied across chunks — extract that logic into a function and have the chunk call it. Following the function-decomposition ([Section 19](#sec-function-decomposition)), one-function-per-file ([Section 26](#sec-one-function-per-file)), and length-limit ([Section 27](#sec-function-length-limits)) principles, give the function its own file under `R/`, with full [`{roxygen2}`](https://roxygen2.r-lib.org/) documentation, the same way any other package function is written. The chunk then shrinks to a call plus whatever narrative or display wraps it.
 
 Why this matters: a function can be unit-tested, reused across chunks and analyses, and documented; inline chunk code can be none of these. Keeping logic inline also buries the analysis narrative under implementation detail, and duplicates code that should have one home.
 
 The UCD-SERG shared linter set enforces the function-definition half of this rule: `lms::function_location_linter()` (part of `lms::default_linters()`) flags a named function defined at the top level of any file outside the designated directories (`R/` and `tests/` by default), including inside a `.qmd` chunk. Loose chunk logic that was never wrapped in a function at all is not something a linter can catch, so watch for it when writing and reviewing analyses: a chunk carrying substantial inline logic is a decomposition finding, and the fix is to move the logic into `R/` and leave the chunk calling it.
 
-## 29 The here package
+## 30 The here package
 
 The `here` package is one great R package that helps multiple collaborators deal with the mess that is working directories within an R project structure. Let’s say we have an R project at the path `/home/oski/Some-R-Project`. My collaborator might clone the repository and work with it at some other path, such as `/home/bear/R-Code/Some-R-Project`. Dealing with working directories and paths explicitly can be a very large pain, and as you might imagine, setting up a Config with paths requires those paths to flexibly work for all contributors to a project. This is where the `here` package comes in, and [here is a great vignette describing it](https://here.r-lib.org/articles/here.html).
 
 *See also [The here Package](../chapters/coding-style.llms.md#sec-here-package-style) for code style guidelines on using the here package.*
 
-## 30 Integrating Box and Dropbox
+## 31 Integrating Box and Dropbox
 
 Box and Dropbox are cloud-based file sharing systems that are useful when dealing with large files. When our scripts generate large output files, the files can slow down the workflow if they are pushed to GitHub. This makes collaboration difficult when not everyone has a copy of the file, unless we decide to duplicate files and share them manually. The files might also take up a lot of local storage. Box and Dropbox help us avoid these issues by automatically storing the files, reading data, and writing data back to the cloud.
 
@@ -1881,13 +1892,13 @@ Box and Dropbox are separate platforms, but we can use either one to store and s
 
 Make sure to authenticate before reading and writing from either Box or Dropbox. The authentication commands should go in the configuration file; it only needs to be done once. This will prompt you to give your login credentials for Box and Dropbox and will allow your application to access your shared folders.
 
-### 30.1 Box
+### 31.1 Box
 
 Follow the instructions in this section to use the `boxr` package. Note that there are a few setup steps that need to be done on the box website before you can use the `boxr` package, [explained here](https://r-box.github.io/boxr/articles/boxr-app-interactive.html#create) in the section “Creating an Interactive App.” This gets the authentication keys that must be put in box. Once that is done, add the authentication keys to your code in the configuration file, with `box_auth(client_id = "<your_client_id>", client_secret = "<your_client_secret_id>")`. It is also important to set the default working directory so that the code can reference the correct folder in box: `box_setwd(<folder_id>)`. The folder ID is the sequence of digits at the end of the URL.
 
 Further details can be found [here](https://github.com/r-box/boxr).
 
-### 30.2 Dropbox
+### 31.2 Dropbox
 
 Follow the instructions at [this link](https://github.com/karthik/rdrop2) to use the `rdrop2` package. Similar to the `boxr` package, you must authenticate before reading and writing from Dropbox, which can be done by adding `drop_auth()` to the configuration file.
 
@@ -1903,183 +1914,183 @@ Saving the authentication token is not required, although it may be useful if yo
     # to use a stored token, provide the rdstoken argument
     drop_auth(rdstoken = "/path/to/tokenfile.RDS")
 
-## 31 r-lib Packages
+## 32 r-lib Packages
 
 The [r-lib](https://github.com/r-lib) GitHub organization, maintained primarily by the Posit team, hosts a collection of foundational R packages for package development, infrastructure, and general programming. These packages underpin much of the modern R ecosystem.
 
-## 32 Package Development
+## 33 Package Development
 
-### 32.1 [`{usethis}`](https://usethis.r-lib.org/)
+### 33.1 [`{usethis}`](https://usethis.r-lib.org/)
 
 [`{usethis}`](https://usethis.r-lib.org/) automates repetitive tasks that arise during project setup and development, both for R packages and non-package projects. It provides functions for setting up testing, CI, licenses, Git, and GitHub integrations, making it the go-to companion for `devtools`.
 
-### 32.2 [`{devtools}`](https://devtools.r-lib.org/)
+### 33.2 [`{devtools}`](https://devtools.r-lib.org/)
 
 [`{devtools}`](https://devtools.r-lib.org/) provides a suite of tools for the R package development workflow. It wraps many lower-level tools such as `pkgbuild`, `pkgload`, and `rcmdcheck` behind a convenient interface. Key functions include `load_all()`, `document()`, `test()`, `check()`, and `install()`.
 
-### 32.3 [`{roxygen2}`](https://roxygen2.r-lib.org/)
+### 33.3 [`{roxygen2}`](https://roxygen2.r-lib.org/)
 
 [`{roxygen2}`](https://roxygen2.r-lib.org/) lets you write documentation in-source, alongside the code it documents, using `#'` comment blocks. It generates `.Rd` files for the `man/` directory and updates `NAMESPACE`. It is the standard approach to R package documentation.
 
-### 32.4 [`{pkgdown}`](https://pkgdown.r-lib.org/)
+### 33.4 [`{pkgdown}`](https://pkgdown.r-lib.org/)
 
 [`{pkgdown}`](https://pkgdown.r-lib.org/) builds a documentation website for an R package from its source. It converts `README`, vignettes, and function documentation into a navigable website, and integrates with GitHub Actions for automatic deployment.
 
-### 32.5 [`{pkgload}`](https://pkgload.r-lib.org/)
+### 33.5 [`{pkgload}`](https://pkgload.r-lib.org/)
 
 [`{pkgload}`](https://pkgload.r-lib.org/) simulates the process of installing and loading a package, enabling rapid interactive development. It is the backend for `devtools::load_all()`.
 
-### 32.6 [`{pkgbuild}`](https://pkgbuild.r-lib.org/)
+### 33.6 [`{pkgbuild}`](https://pkgbuild.r-lib.org/)
 
 [`{pkgbuild}`](https://pkgbuild.r-lib.org/) provides tools for building R packages, finding compilers, and checking whether a build environment (such as Rtools on Windows) is available.
 
-### 32.7 [`{rcmdcheck}`](https://rcmdcheck.r-lib.org/)
+### 33.7 [`{rcmdcheck}`](https://rcmdcheck.r-lib.org/)
 
 [`{rcmdcheck}`](https://rcmdcheck.r-lib.org/) runs `R CMD check` from within R and captures the results in a structured format. It is used by CI systems and `devtools::check()`.
 
-### 32.8 [`{remotes}`](https://remotes.r-lib.org/)
+### 33.8 [`{remotes}`](https://remotes.r-lib.org/)
 
 [`{remotes}`](https://remotes.r-lib.org/) installs R packages from remote sources including GitHub, GitLab, Bitbucket, URLs, and local files. It is a lightweight alternative to `devtools::install_github()`.
 
-### 32.9 [`{pak}`](https://pak.r-lib.org/)
+### 33.9 [`{pak}`](https://pak.r-lib.org/)
 
 [`{pak}`](https://pak.r-lib.org/) installs R packages from CRAN, GitHub, and other sources, with fast parallel downloads and automatic system-dependency handling. It is r-lib’s modern alternative to `install.packages()` and `remotes` for interactive use.
 
-### 32.10 [`{revdepcheck}`](https://revdepcheck.r-lib.org/)
+### 33.10 [`{revdepcheck}`](https://revdepcheck.r-lib.org/)
 
 [`{revdepcheck}`](https://revdepcheck.r-lib.org/) automates reverse dependency checking — checking that changes to a package do not break packages that depend on it. It is used by package maintainers before CRAN releases.
 
-### 32.11 [`{desc}`](https://desc.r-lib.org/)
+### 33.11 [`{desc}`](https://desc.r-lib.org/)
 
 [`{desc}`](https://desc.r-lib.org/) provides tools for reading, writing, and manipulating `DESCRIPTION` files. It is used internally by `usethis` and other developer-facing tools.
 
-### 32.12 [`{pkgcache}`](https://r-lib.github.io/pkgcache/)
+### 33.12 [`{pkgcache}`](https://r-lib.github.io/pkgcache/)
 
 [`{pkgcache}`](https://r-lib.github.io/pkgcache/) provides a local cache of CRAN-like metadata and package files, speeding up package installation. It is used internally by `pak`.
 
-### 32.13 [`{lifecycle}`](https://lifecycle.r-lib.org/)
+### 33.13 [`{lifecycle}`](https://lifecycle.r-lib.org/)
 
 [`{lifecycle}`](https://lifecycle.r-lib.org/) manages the life cycle of functions and arguments, providing the experimental/superseded/deprecated badges and deprecation warnings used across the tidyverse and r-lib ecosystems.
 
-## 33 Testing and Quality
+## 34 Testing and Quality
 
-### 33.1 [`{testthat}`](https://testthat.r-lib.org/)
+### 34.1 [`{testthat}`](https://testthat.r-lib.org/)
 
 [`{testthat}`](https://testthat.r-lib.org/) is the most widely used R testing framework. It provides a readable, expressive way to write unit tests for R packages, with functions like `expect_equal()`, `expect_error()`, and `expect_snapshot()`.
 
-### 33.2 [`{covr}`](https://covr.r-lib.org/)
+### 34.2 [`{covr}`](https://covr.r-lib.org/)
 
 [`{covr}`](https://covr.r-lib.org/) measures and reports test coverage for R packages. It can generate HTML reports, submit results to Codecov, and is commonly integrated into CI pipelines.
 
-### 33.3 [`{waldo}`](https://waldo.r-lib.org/)
+### 34.3 [`{waldo}`](https://waldo.r-lib.org/)
 
 [`{waldo}`](https://waldo.r-lib.org/) finds and describes differences between R objects. It provides clearer, more informative output than `identical()` or `all.equal()`, and is used internally by `testthat` to display test failures.
 
-### 33.4 [`{lintr}`](https://lintr.r-lib.org/)
+### 34.4 [`{lintr}`](https://lintr.r-lib.org/)
 
 [`{lintr}`](https://lintr.r-lib.org/) performs static code analysis (linting) for R. It checks for style issues, potential errors, and common anti-patterns, and integrates with RStudio, VS Code, and CI pipelines.
 
-## 34 Core Language and Infrastructure
+## 35 Core Language and Infrastructure
 
-### 34.1 [`{rlang}`](https://rlang.r-lib.org/)
+### 35.1 [`{rlang}`](https://rlang.r-lib.org/)
 
 [`{rlang}`](https://rlang.r-lib.org/) provides a low-level API for working with R’s core language features, including environments, quosures, symbols, and non-standard evaluation (tidy eval). It is a foundational dependency for tidyverse packages and tidy eval programming.
 
-### 34.2 [`{vctrs}`](https://vctrs.r-lib.org/)
+### 35.2 [`{vctrs}`](https://vctrs.r-lib.org/)
 
 [`{vctrs}`](https://vctrs.r-lib.org/) defines a principled type system for R vectors, providing tools for coercion, casting, and size-stability. It underpins the consistent behavior of `dplyr` and `tidyr` across vector types.
 
-### 34.3 [`{withr}`](https://withr.r-lib.org/)
+### 35.3 [`{withr}`](https://withr.r-lib.org/)
 
 [`{withr}`](https://withr.r-lib.org/) allows code to be run with temporarily modified global state — changing options, environment variables, working directories, or random seeds — and reliably restoring them afterward. Essential for writing side-effect-free tests.
 
-### 34.4 [`{cli}`](https://cli.r-lib.org/)
+### 35.4 [`{cli}`](https://cli.r-lib.org/)
 
 [`{cli}`](https://cli.r-lib.org/) provides a rich toolkit for building command-line interfaces in R. It supports color, ANSI styling, progress bars, spinners, and formatted messages. It is the modern replacement for `crayon` and is used throughout the tidyverse.
 
-### 34.5 [`{R6}`](https://r6.r-lib.org/)
+### 35.5 [`{R6}`](https://r6.r-lib.org/)
 
 [`{R6}`](https://r6.r-lib.org/) implements encapsulated, reference-based object-oriented programming in R. Unlike S3 or S4, R6 classes support mutable state and inheritance in a style familiar from Python or Java.
 
-### 34.6 [`{cpp11}`](https://cpp11.r-lib.org/)
+### 35.6 [`{cpp11}`](https://cpp11.r-lib.org/)
 
 [`{cpp11}`](https://cpp11.r-lib.org/) provides a modern C++11 interface for interacting with R’s C API. It is a lightweight, header-only alternative to `Rcpp`, designed to simplify writing and debugging C++ extensions for R.
 
-## 35 System and Process
+## 36 System and Process
 
-### 35.1 [`{fs}`](https://fs.r-lib.org/)
+### 36.1 [`{fs}`](https://fs.r-lib.org/)
 
 [`{fs}`](https://fs.r-lib.org/) provides a cross-platform, uniform interface to file system operations. It replaces inconsistent base R file functions with a tidy API using `path_*()`, `file_*()`, `dir_*()`, and `link_*()` functions that always return character vectors.
 
-### 35.2 [`{processx}`](https://processx.r-lib.org/)
+### 36.2 [`{processx}`](https://processx.r-lib.org/)
 
 [`{processx}`](https://processx.r-lib.org/) runs external system processes asynchronously or synchronously from R, with full control over stdin, stdout, and stderr. It is the backend for `callr`, and is used internally by `rcmdcheck`.
 
-### 35.3 [`{callr}`](https://callr.r-lib.org/)
+### 36.3 [`{callr}`](https://callr.r-lib.org/)
 
 [`{callr}`](https://callr.r-lib.org/) calls R functions in separate R processes. This is useful for running code in a clean environment, isolating side effects, or parallelizing work. It builds on top of `processx`.
 
-### 35.4 [`{ps}`](https://ps.r-lib.org/)
+### 36.4 [`{ps}`](https://ps.r-lib.org/)
 
 [`{ps}`](https://ps.r-lib.org/) provides a cross-platform API for listing, querying, and manipulating system processes from R. It is used internally by `processx` and `callr`.
 
-## 36 HTTP and Web
+## 37 HTTP and Web
 
-### 36.1 [`{httr2}`](https://httr2.r-lib.org/)
+### 37.1 [`{httr2}`](https://httr2.r-lib.org/)
 
 [`{httr2}`](https://httr2.r-lib.org/) is a modern, pipe-friendly HTTP client for R. It replaces `httr` with a cleaner API, better support for OAuth, rate limiting, retries, and request/response bodies. Preferred for new code.
 
-### 36.2 [`{httr}`](https://httr.r-lib.org/)
+### 37.2 [`{httr}`](https://httr.r-lib.org/)
 
 [`{httr}`](https://httr.r-lib.org/) is a widely-used HTTP client for R, providing wrappers for `GET()`, `POST()`, `PUT()`, `DELETE()`, and other HTTP verbs, as well as OAuth support. It has been superseded by `httr2` for new development.
 
-### 36.3 [`{gh}`](https://gh.r-lib.org/)
+### 37.3 [`{gh}`](https://gh.r-lib.org/)
 
 [`{gh}`](https://gh.r-lib.org/) provides a minimal client for the GitHub REST API. It handles authentication and pagination, and is used internally by `usethis` for GitHub operations.
 
-### 36.4 [`{gargle}`](https://gargle.r-lib.org/)
+### 37.4 [`{gargle}`](https://gargle.r-lib.org/)
 
 [`{gargle}`](https://gargle.r-lib.org/) provides authentication utilities for Google APIs, including OAuth 2.0, service accounts, and Application Default Credentials. It is used by `googledrive`, `googlesheets4`, and other Google-backed R packages.
 
-## 37 Utilities
+## 38 Utilities
 
-### 37.1 [`{here}`](https://here.r-lib.org/)
+### 38.1 [`{here}`](https://here.r-lib.org/)
 
-[`{here}`](https://here.r-lib.org/) builds file paths relative to the project root, so scripts work regardless of the current working directory. We recommend `{here}` for file paths (see [Section 29](#sec-here-package-practices)).
+[`{here}`](https://here.r-lib.org/) builds file paths relative to the project root, so scripts work regardless of the current working directory. We recommend `{here}` for file paths (see [Section 30](#sec-here-package-practices)).
 
-### 37.2 [`{memoise}`](https://memoise.r-lib.org/)
+### 38.2 [`{memoise}`](https://memoise.r-lib.org/)
 
 [`{memoise}`](https://memoise.r-lib.org/) adds memoisation (function-call caching) to R functions. Wrapping an expensive, pure function with `memoise::memoise()` causes it to cache computed return values in memory or on disk, so repeated calls with identical arguments return instantly from cache instead of recomputing. It supports multiple storage backends via the `cache` argument (such as `cachem::cache_mem()` for in-memory caching and `cachem::cache_disk()` for persistent disk caching across sessions), and provides `memoise::forget()` to clear caches, `memoise::is.memoised()` to test whether a function is memoised, and `memoise::has_cache()` to check whether specific arguments have cached results. Use `{memoise}` only for deterministic functions without side effects (such as pure mathematical evaluations, stable API queries, or idempotent data processing pipelines). Never memoise stochastic simulation routines or functions that generate pseudorandom numbers; memoisation suppresses stochastic variation across repeated calls, silently collapsing random variability by returning stale cached draws.
 
-### 37.3 [`{scales}`](https://scales.r-lib.org/)
+### 38.3 [`{scales}`](https://scales.r-lib.org/)
 
 [`{scales}`](https://scales.r-lib.org/) converts data values into perceptual properties and formats labels for dates, currencies, and percentages; it powers the scale system of [`{ggplot2}`](https://ggplot2.tidyverse.org/).
 
-### 37.4 [`{sessioninfo}`](https://sessioninfo.r-lib.org/)
+### 38.4 [`{sessioninfo}`](https://sessioninfo.r-lib.org/)
 
 [`{sessioninfo}`](https://sessioninfo.r-lib.org/) collects and prints detailed information about the current R session, including package versions and sources. It is a more informative replacement for base R’s `sessionInfo()`.
 
-### 37.5 [`{downlit}`](https://downlit.r-lib.org/)
+### 38.5 [`{downlit}`](https://downlit.r-lib.org/)
 
 [`{downlit}`](https://downlit.r-lib.org/) provides syntax highlighting for R code and automatically links function names to their documentation. It is used by `pkgdown` and Quarto for rendering R code in documentation websites.
 
-### 37.6 [`{prettyunits}`](https://r-lib.github.io/prettyunits/)
+### 38.6 [`{prettyunits}`](https://r-lib.github.io/prettyunits/)
 
 [`{prettyunits}`](https://r-lib.github.io/prettyunits/) formats quantities such as file sizes, time durations, and byte counts in human-readable form. It is used internally by `devtools`, `remotes`, and progress-reporting packages.
 
-### 37.7 [`{lobstr}`](https://lobstr.r-lib.org/)
+### 38.7 [`{lobstr}`](https://lobstr.r-lib.org/)
 
 [`{lobstr}`](https://lobstr.r-lib.org/) provides tools for visualizing R data structures, including shared-reference trees (`ref()`), abstract syntax trees (`ast()`), and object sizes (`obj_size()`). It is a useful learning and debugging tool.
 
-### 37.8 [`{crayon}`](https://r-lib.github.io/crayon/)
+### 38.8 [`{crayon}`](https://r-lib.github.io/crayon/)
 
 [`{crayon}`](https://r-lib.github.io/crayon/) adds color and formatting to terminal output in R using ANSI codes. It has been largely superseded by `cli` but remains widely used in older code and packages.
 
-### 37.9 [`{styler}`](https://styler.r-lib.org/)
+### 38.9 [`{styler}`](https://styler.r-lib.org/)
 
 [`{styler}`](https://styler.r-lib.org/) formats R code according to the tidyverse style guide. It provides an RStudio add-in and functions for styling individual files, packages, or projects. See [Section 13](#sec-auto-styling) for more details.
 
-### 37.10 [`{rex}`](https://rex.r-lib.org/)
+### 38.10 [`{rex}`](https://rex.r-lib.org/)
 
 [`{rex}`](https://rex.r-lib.org/) provides a human-readable interface for constructing regular expressions in R without having to write complex, unreadable regex strings manually. It allows regular expressions to be composed modularly using functions such as `rex()`, `character_class()`, `capture()`, and `some_of()`.
 
@@ -2089,9 +2100,9 @@ When using `{rex}` inside another R package:
 - Call `rex::register_shortcuts(pkgname)` in `.onLoad()` to prevent `R CMD check` NOTEs regarding undefined global variables when using `rex` shortcuts in package code.
 - Call `rex::rex(...)` to compile expressions into regular expression strings for use with functions like `grepl()`, `gsub()`, or [`{stringr}`](https://stringr.tidyverse.org/) functions.
 
-## 38 GitHub Actions
+## 39 GitHub Actions
 
-### 38.1 [actions](https://github.com/r-lib/actions)
+### 39.1 [actions](https://github.com/r-lib/actions)
 
 The [`r-lib/actions`](https://github.com/r-lib/actions) repository provides reusable GitHub Actions workflows for R package development. Commonly used actions include:
 
@@ -2102,25 +2113,25 @@ The [`r-lib/actions`](https://github.com/r-lib/actions) repository provides reus
 
 These actions are widely used across R packages hosted on GitHub.
 
-## 39 Tidyverse
+## 40 Tidyverse
 
 Throughout this document there have been references to the Tidyverse, but this section is to explicitly show you how to transform your Base R tendencies to Tidyverse (or Data.Table, Tidyverse’s performance-optimized competitor). For most of our work that does not utilize very large datasets, we recommend that you code in Tidyverse rather than Base R. Tidyverse is quickly becoming [the gold standard](https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/) in R data analysis and modern data science packages and code should use Tidyverse style and packages unless there’s a significant reason not to (i.e. big data pipelines that would benefit from Data.Table’s performance optimizations). Note that [`{dtplyr}`](https://dtplyr.tidyverse.org/) provides a data.table backend for dplyr, enabling you to use most of dplyr’s tidy syntax with data.table’s performance optimizations.
 
 The package author has published R for Data Science ([Wickham et al. 2023](#ref-wickham2023r4ds)), which leans heavily on many Tidyverse packages and may be worth checking out.
 
-## 40 Core Tidyverse Packages
+## 41 Core Tidyverse Packages
 
 The [tidyverse](https://www.tidyverse.org/) is a collection of R packages designed for data science that share an underlying design philosophy, grammar, and data structures. As of tidyverse 1.3.0, the following nine packages are included in the core tidyverse and are loaded automatically when you run `library(tidyverse)`:
 
-### 40.1 [ggplot2](https://ggplot2.tidyverse.org/)
+### 41.1 [ggplot2](https://ggplot2.tidyverse.org/)
 
 [`{ggplot2}`](https://ggplot2.tidyverse.org/) is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics and what graphical primitives to use, and it takes care of the details.
 
-### 40.2 [dplyr](https://dplyr.tidyverse.org/)
+### 41.2 [dplyr](https://dplyr.tidyverse.org/)
 
 [`{dplyr}`](https://dplyr.tidyverse.org/) provides a grammar of data manipulation, providing a consistent set of verbs that solve the most common data manipulation challenges. Key functions include `filter()`, `select()`, `mutate()`, `summarize()`, and `arrange()`.
 
-### 40.3 [tidyr](https://tidyr.tidyverse.org/)
+### 41.3 [tidyr](https://tidyr.tidyverse.org/)
 
 [`{tidyr}`](https://tidyr.tidyverse.org/) provides a set of functions that help you get to tidy data. Tidy data is data with a consistent form: in brief, every variable goes in a column, and every column is a variable. Key functions include `pivot_longer()`, `pivot_wider()`, `separate()`, and `unite()`.
 
@@ -2134,31 +2145,31 @@ While both [`{dplyr}`](https://dplyr.tidyverse.org/) and [`{tidyr}`](https://tid
 
 These packages work together seamlessly in data analysis workflows. A typical pattern is to use tidyr to reshape your data into the right structure, then use dplyr to manipulate and analyze it.
 
-### 40.4 [readr](https://readr.tidyverse.org/)
+### 41.4 [readr](https://readr.tidyverse.org/)
 
 [`{readr}`](https://readr.tidyverse.org/) provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.
 
-### 40.5 [purrr](https://purrr.tidyverse.org/)
+### 41.5 [purrr](https://purrr.tidyverse.org/)
 
 [`{purrr}`](https://purrr.tidyverse.org/) enhances R’s [functional programming](https://en.wikipedia.org/wiki/Functional_programming) (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors. Once you master the basic concepts, purrr allows you to replace many for loops with code that is easier to write and more expressive. See [Section 9](#sec-iteration) for more details on using purrr.
 
-### 40.6 [tibble](https://tibble.tidyverse.org/)
+### 41.6 [tibble](https://tibble.tidyverse.org/)
 
 [`{tibble}`](https://tibble.tidyverse.org/) is a modern re-imagining of the data frame, keeping what time has proven to be effective, and throwing out what it has not. Tibbles are data.frames that are lazy and surly: they do less and complain more forcing you to confront problems earlier, typically leading to cleaner, more expressive code.
 
-### 40.7 [stringr](https://stringr.tidyverse.org/)
+### 41.7 [stringr](https://stringr.tidyverse.org/)
 
 [`{stringr}`](https://stringr.tidyverse.org/) provides a cohesive set of functions designed to make working with strings as easy as possible. It is built on top of stringi, which uses the ICU C library to provide fast, correct implementations of common string manipulations.
 
-### 40.8 [forcats](https://forcats.tidyverse.org/)
+### 41.8 [forcats](https://forcats.tidyverse.org/)
 
 [`{forcats}`](https://forcats.tidyverse.org/) provides a suite of useful tools that solve common problems with factors. R uses factors to handle categorical variables, variables that have a fixed and known set of possible values.
 
-### 40.9 [lubridate](https://lubridate.tidyverse.org/)
+### 41.9 [lubridate](https://lubridate.tidyverse.org/)
 
 [`{lubridate}`](https://lubridate.tidyverse.org/) provides a set of functions for working with date-times, extending and improving on R’s existing support for them. Key functions include `ymd()`, `mdy()`, `dmy()` for parsing dates, and `year()`, `month()`, `day()` for extracting components.
 
-## 41 Base R to Tidyverse Translation
+## 42 Base R to Tidyverse Translation
 
 The following list is not exhaustive, but is a compact overview to begin to translate Base R into something better:
 
@@ -2191,7 +2202,7 @@ The following list is not exhaustive, but is a compact overview to begin to tran
 
 For a more extensive set of syntactical translations to Tidyverse, you can check out [this document](https://tavareshugo.github.io/data_carpentry_extras/base-r_tidyverse_equivalents/base-r_tidyverse_equivalents.html).
 
-## 42 Programming with Tidyverse
+## 43 Programming with Tidyverse
 
 Working with Tidyverse within functions can be somewhat of a pain due to non-standard evaluation (NSE) semantics. If you’re an avid function writer, we’d recommend checking out the following resources:
 
@@ -2205,17 +2216,17 @@ Working with Tidyverse within functions can be somewhat of a pain due to non-sta
 
 See also [Tidyverse Replacements](../chapters/coding-style.llms.md#sec-tidyverse-replacements)
 
-## 43 Coding with R and Python
+## 44 Coding with R and Python
 
 If you’re using both R and Python, you may wish to check out the [Feather package](https://www.rdocumentation.org/packages/feather/versions/0.3.3) for exchanging data between the two languages [extremely quickly](https://blog.rstudio.com/2016/03/29/feather/).
 
-## 44 Repeating analyses with different variations
+## 45 Repeating analyses with different variations
 
 In many cases, we will need to apply our modeling on different combinations of interests (outcomes, exposures, etc.). We can certainly use a `for` loop to repeat the execution of a wrapper function, but generally, `for` loops request high memory usage and produce the results in long computation time.
 
 Fortunately, R has some functions which implement looping in a compact form to help repeating your analyses with different variations (subgroups, outcomes, covariate sets, etc.) with better performances.
 
-### 44.1 `lapply()` and `sapply()`
+### 45.1 `lapply()` and `sapply()`
 
 `lapply()` is a function in the base R package that applies a function to each element of a list and returns a list. It’s typically faster than `for`. Here is a simple generic example:
 
@@ -2223,7 +2234,7 @@ Fortunately, R has some functions which implement looping in a compact form to h
 
 There is another very similar function called `sapply()`. It also takes a list as its input, but if the output of the `func` is of the same length for each element in the input list, then `sapply()` will simplify the output to the simplest data structure possible, which will usually be a vector.
 
-### 44.2 `mapply()` and `pmap()`
+### 45.2 `mapply()` and `pmap()`
 
 Sometimes, we’d like to employ a wrapper function that takes arguments from multiple different lists/vectors. Then, we can consider using `mapply()` from the base R package or `pmap()` from the `purrr` package.
 
@@ -2274,7 +2285,7 @@ This example doesn’t work in the way that 0 is paired to 6, 1 is paired to 7, 
 
 We can use `flatten()` or `unlist()` functions to decrease the depths of our results. If the results are data frames, then we will need to use `bind_rows()` to combine them.
 
-### 44.3 Parallel processing with `parallel` and `future` packages
+### 45.3 Parallel processing with `parallel` and `future` packages
 
 One big drawback of `lapply()` is its long computation time, especially when the list length is long. Fortunately, computers nowadays must have multiple cores which makes parallel processing possible to help make computation much faster.
 
@@ -2321,11 +2332,11 @@ Below is a generic example of `future_lapply()`:
 
 Here, `future::availableCores()` checks how many cores your machine has. Similar to `parLapply()` showed above, `future_lapply()` parallelizes the computation of `lapply()` by executing the function `func` simultaneously on different sub-lists of `mylist`.
 
-## 45 Reviewing Code
+## 46 Reviewing Code
 
 Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The recommended pull request workflow, author and reviewer expectations, and response protocol are consolidated in [Collaborative Software Development](../chapters/collaborative-software-development.llms.md#sec-collab-dev).
 
-### 45.1 Why We Review Code
+### 46.1 Why We Review Code
 
 Code review serves several vital purposes:
 
@@ -2334,14 +2345,14 @@ Code review serves several vital purposes:
 - **Knowledge transfer**: Sharing analytical methods, R idioms, and package features across the team.
 - **Maintainability**: Ensuring that analysis pipelines can be understood, modified, and extended by other team members in the future.
 
-### 45.2 What Reviewers Look For
+### 46.2 What Reviewers Look For
 
 When reviewing a colleague’s code, evaluate these key dimensions:
 
 1.  **Reproducibility**:
     - Does the script run cleanly from start to finish in a fresh R session?
     - Are package dependencies managed reproducibly via [`{renv}`](https://rstudio.github.io/renv/) (see [Reproducible Environments](../chapters/reproducible-environments.llms.md#sec-reproducible-environments))?
-    - Are file paths relative and constructed with [`{here}`](https://here.r-lib.org/) (see [Section 29](#sec-here-package-practices)), avoiding machine-specific absolute paths?
+    - Are file paths relative and constructed with [`{here}`](https://here.r-lib.org/) (see [Section 30](#sec-here-package-practices)), avoiding machine-specific absolute paths?
 2.  **Code correctness and data integrity**:
     - Are data transformations and filtering steps logical and documented?
     - Are missing values (`NA`), edge cases, and empty groupings handled appropriately?
@@ -2354,7 +2365,7 @@ When reviewing a colleague’s code, evaluate these key dimensions:
     - Do comments explain non-obvious design choices or statistical assumptions (see [Section 14](#sec-documenting-code))?
     - Are architectural or analytical decisions documented with an ADR where appropriate (see [Section 15](#sec-adrs))?
 
-### 45.3 How to Give Constructive Feedback
+### 46.3 How to Give Constructive Feedback
 
 Effective code review builds a supportive, high-trust research culture:
 
@@ -2363,7 +2374,7 @@ Effective code review builds a supportive, high-trust research culture:
 - **Distinguish blocking vs. non-blocking comments**: Clearly separate essential correctness or reproducibility issues (blocking) from optional stylistic preferences or ideas for future exploration (non-blocking nits).
 - **Ask clarifying questions**: When logic is unclear, ask the author to explain their intent before proposing a rewrite.
 
-### 45.4 When to Approve
+### 46.4 When to Approve
 
 Approve a pull request when:
 
@@ -2372,7 +2383,7 @@ Approve a pull request when:
 - All blocking review findings have been resolved or explicitly deferred to a tracked follow-up issue.
 - The author has completed the pre-review quality checks in [Section 12](#sec-r-qa-checklist).
 
-## 46 Getting Help with Code
+## 47 Getting Help with Code
 
 When you encounter a coding problem, creating a **reprex** (minimal **repr**oducible **ex**ample) is one of the most effective ways to get help—and often helps you solve the problem yourself.
 
@@ -2393,9 +2404,9 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [`{reprex}`](https://reprex.tidyverse.org/) package: Automates creation of reproducible examples
 - [R for Data Science: Making a reprex](https://r4ds.hadley.nz/workflow-help.html#making-a-reprex) ([Wickham et al. 2023](#ref-wickham2023r4ds)): Step-by-step guide to creating effective reproducible examples
 
-## 47 Additional Resources
+## 48 Additional Resources
 
-### 47.1 Learning R
+### 48.1 Learning R
 
 - R for Data Science ([Wickham et al. 2023](#ref-wickham2023r4ds)) - learn data science with the tidyverse
 - [R for Epidemiology](https://www.r4epi.com/) - an introduction to R, with epidemiology examples
@@ -2405,31 +2416,31 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [Building reproducible analytical pipelines with R](https://raps-with-r.dev/) - project-level reproducibility in R
 - [Posit Recipes](https://posit.cloud/learn/recipes) - short, task-focused R code snippets
 
-### 47.2 Learning Python
+### 48.2 Learning Python
 
 - [Python Tutor](https://pythontutor.com/) - steps through a short program one line at a time and draws each variable and object in memory; it visualizes Python, Java, C, C++ and JavaScript (not R) and limits program length, so use it on small examples
 
-### 47.3 Coming to R from SAS
+### 48.3 Coming to R from SAS
 
 - [The sassy system](https://r-sassy.org/) - packages that bring familiar SAS concepts to R; its [`{procs}`](https://cran.r-project.org/package=procs) package provides versions of `proc freq`, `proc means`, `proc ttest`, `proc reg`, and other common procedures
 - [R for SAS and SPSS Users](https://link.springer.com/book/10.1007/978-1-4614-0685-3) (Muenchen) - common SAS and SPSS tasks, done in R
 - [SAS and R](https://www.routledge.com/SAS-and-R-Data-Management-Statistical-Analysis-and-Graphics-Second-Edition/Kleinman-Horton/p/book/9781466584495) (Kleinman and Horton) - side-by-side SAS and R code for data management and analysis
 
-### 47.4 General R Programming
+### 48.4 General R Programming
 
 - Advanced R ([Wickham 2019](#ref-wickham2019advr)) - deep dive into R programming and internals, including [functions](https://adv-r.hadley.nz/functions.html), [object-oriented systems](https://adv-r.hadley.nz/oo.html#oop-systems), and [debugging](https://adv-r.hadley.nz/debugging.html)
 - [Debugging R code](https://www.maths.ed.ac.uk/~swood34/RCdebug/RCdebug.html) (Simon Wood) - debugging R and compiled code called from R
 - [Differences between the base R and `{magrittr}` pipes](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) - how `|>` and `%>%` behave differently
 - [Spatial Data Science: With Applications in R](https://r-spatial.org/book) - spatial data analysis in R
 
-### 47.5 Summary tables
+### 48.5 Summary tables
 
 - [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/) - flexible demographics and summary tables; start here
 - [`{table1}`](https://cran.r-project.org/package=table1) - HTML “Table 1” demographics tables
 - [`{arsenal}`](https://cran.r-project.org/package=arsenal) - summary tables, from the Mayo Clinic
 - `{procs}` (under “Coming to R from SAS” above) - SAS-style frequency and means tables
 
-### 47.6 R Package Development
+### 48.6 R Package Development
 
 - R Packages ([Wickham and Bryan 2023](#ref-wickham2023rpkgs)) - comprehensive guide to R package development
 - Tidyverse design guide ([Wickham 2023](#ref-wickham2023tidydesign)) - principles for designing R packages and APIs that are intuitive, composable, and consistent with tidyverse philosophy
@@ -2440,18 +2451,18 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [Releasing to CRAN](https://r-pkgs.org/release.html) and the [CRAN Cookbook](https://contributor.r-project.org/cran-cookbook/) - preparing a CRAN submission (see also [Code Publication](../chapters/code-publication.llms.md))
 - [Contributing to R](https://contributor.r-project.org/) - getting involved with base R itself
 
-### 47.7 Shiny Development
+### 48.7 Shiny Development
 
 - Mastering Shiny ([Wickham 2021](#ref-wickham2021shiny)) - comprehensive guide to building web applications with Shiny
 - Engineering Production-Grade Shiny Apps ([Fay et al. 2021](#ref-fay2021engineering)) - best practices for production Shiny applications
 
-### 47.8 Git and Version Control
+### 48.8 Git and Version Control
 
 - Happy Git and GitHub for the useR ([Bryan 2023](#ref-bryan2023happygit)) - essential guide to using Git and GitHub with R
 - [Pull request helpers in `{usethis}`](https://usethis.r-lib.org/articles/pr-functions.html) - the `pr_*()` workflow from R
 - [Oh Shit, Git!?!](https://ohshitgit.com/) - plain-language fixes for common Git mistakes
 - [`{saperlipopette}`](https://maelle.github.io/saperlipopette/) - practice Git rescue exercises from R
-- [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/) - a short, free Git book
+- [Git Magic](https://github.com/blynn/gitmagic) - source repository of a short, free Git book
 - [`{gitdown}`](https://thinkr-open.github.io/gitdown/) - R package for documenting git commit history as a bookdown report, organized by patterns like tags or issues
 
 Back to top
