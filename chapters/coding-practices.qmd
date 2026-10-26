@@ -80,6 +80,10 @@ format:
 
 {{< include coding-practices/function-calls.qmd >}}
 
+## Modular design {#sec-modular-design}
+
+{{< include coding-practices/modular-design.qmd >}}
+
 ## Function decomposition {#sec-function-decomposition}
 
 {{< include coding-practices/function-decomposition.qmd >}}
