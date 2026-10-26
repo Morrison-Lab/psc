@@ -157,6 +157,6 @@ single-purpose, testable package functions.
 ## Related references
 
 For background and related ideas,
-see [Decomposition (computer science)](<https://en.wikipedia.org/wiki/Decomposition_(computer_science)>),
+see [Modular design](#sec-modular-design),
 [Code refactoring](https://en.wikipedia.org/wiki/Code_refactoring),
 and [Functional decomposition](https://en.wikipedia.org/wiki/Functional_decomposition).
