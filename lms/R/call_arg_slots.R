@@ -32,7 +32,9 @@ call_arg_slots <- function(call) {
     idx <- idx[arg_kinds[idx] != "OP-COMMA"]
     eq <- which(arg_kinds[idx] == "EQ_SUB")
     if (length(eq)) {
-      name <- gsub("^[`'\"]|[`'\"]$", "", xml2::xml_text(args[[idx[1]]]))
+      arg_text <- xml2::xml_text(args[[idx[1]]])
+      # nolint next: undesirable_function_linter. No stringr dependency.
+      name <- gsub("^[`'\"]|[`'\"]$", "", arg_text)
       value <- idx[-seq_len(eq[1])]
     } else {
       name <- NA_character_
