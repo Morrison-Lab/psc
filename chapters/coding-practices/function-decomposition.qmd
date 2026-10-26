@@ -22,7 +22,7 @@ Consider decomposition when one or more of these are true:
 - You want to test one part of a workflow independently of the rest
 - The current function is hard to scan because implementation details hide the main idea
 
-## How to decompose in practice
+## How to decompose in practice {#sec-decompose-in-practice}
 
 A practical sequence is:
 
@@ -31,6 +31,40 @@ A practical sequence is:
 3. Give each helper a single, specific contract (inputs, outputs, and assumptions).
 4. Keep the orchestration function short, so it reads like a workflow outline.
 5. Add or update tests around each helper and the top-level function.
+
+## Top-down and bottom-up design
+
+The sequence in [How to decompose in practice](#sec-decompose-in-practice)
+starts from the top:
+name the top-level steps first, then write a function for each.
+This is top-down design, also called stepwise refinement,
+and a step that is still too large can be refined the same way.
+The opposite is bottom-up design:
+write and test the small pieces first,
+then combine them into larger functions
+until the top-level workflow exists.
+See [Bottom-up and top-down approaches](https://en.wikipedia.org/wiki/Bottom-up_and_top-down_approaches#Software_development)
+for more on both approaches,
+including how top-down design spread in software in the 1970s.
+
+Each approach has a strength and a typical risk:
+
+- Top-down design keeps the overall workflow clear,
+  but the lowest-level functions are written and tested last,
+  so problems in them surface late.
+  Writing a short stub for each step,
+  a placeholder that returns a fixed value,
+  lets the top-level function run and be tested early.
+- Bottom-up design gets working, tested pieces quickly,
+  and those pieces are easy to reuse.
+  But the pieces may not fit together,
+  because they were written before the workflow that calls them.
+
+Most software projects combine the two.
+Sketch the top-level workflow first,
+so the pieces have a known purpose and interface,
+and reuse existing functions, from your own code or from packages,
+wherever one already does a step.
 
 ## Decomposing validation blocks {#sec-decompose-validation}
 
@@ -123,6 +157,6 @@ single-purpose, testable package functions.
 ## Related references
 
 For background and related ideas,
-see [Decomposition (computer science)](<https://en.wikipedia.org/wiki/Decomposition_(computer_science)>),
+see [Modular design](#sec-modular-design),
 [Code refactoring](https://en.wikipedia.org/wiki/Code_refactoring),
 and [Functional decomposition](https://en.wikipedia.org/wiki/Functional_decomposition).
