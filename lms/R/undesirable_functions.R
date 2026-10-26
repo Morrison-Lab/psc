@@ -2,8 +2,11 @@
 #'
 #' The default lintr undesirable-function map, extended with the UCD-SERG
 #' conventions: base and rlang messaging functions are steered toward their
-#' `cli::` equivalents, `library()` is discouraged inside package code, and a
-#' few of lintr's defaults (`structure()`, `browser()`) are dropped.
+#' `cli::` equivalents, `library()` is discouraged inside package code, base R
+#' functions with a tidyverse replacement (`data.frame()`, `read.csv()`,
+#' `rbind()`, `gsub()` and the rest of the function-name swaps in the
+#' coding-style chapter) are steered toward it, and a few of lintr's defaults
+#' (`structure()`, `browser()`) are dropped.
 #'
 #' Exported so a downstream repository can further `lintr::modify_defaults()`
 #' it if a single repo needs to diverge, without copy-pasting the whole map.
