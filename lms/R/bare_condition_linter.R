@@ -1,10 +1,10 @@
 #' Bare-condition linter
 #'
 #' Flags an `if()` or `while()` whose condition is anything but a bare name or
-#' a literal. Compute the condition into a named logical first, then test the
-#' name: the name documents the test, puts each comparison on its own line
-#' where a misplaced parenthesis is visible in review, and can be inspected
-#' before the branch runs. The real bug that motivated the rule, a misplaced
+#' a logical literal (`TRUE` or `FALSE`). Compute the condition into a named
+#' logical first, then test the name: the name documents the test, puts each
+#' comparison on its own line where a misplaced parenthesis is visible in
+#' review, and can be inspected before the branch runs. The real bug that motivated the rule, a misplaced
 #' parenthesis in `sum(lengths(x) == 1)`, was fixed in
 #' <https://github.com/UCD-SERG/serodynamics/pull/326>.
 #'
@@ -19,7 +19,7 @@ bare_condition_linter <- function() {
   xpath <- "
     //expr[IF or WHILE]/expr[1][
       not(
-        count(*) = 1
+        count(*[not(self::COMMENT)]) = 1
         and (SYMBOL or NUM_CONST[text() = 'TRUE' or text() = 'FALSE'])
       )
     ]

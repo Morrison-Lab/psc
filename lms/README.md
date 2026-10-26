@@ -25,7 +25,8 @@ It exports:
   and condition-class assertions for `testthat` expectations that match `regexp`.
 - `nested_call_linter()` and `bare_condition_linter()` --- the no-nested-calls policy:
   don't pass one call's result straight into another (name it, or pipe),
-  and name every `if()` and `while()` condition before testing it.
+  and name every `if()` and `while()` condition before testing it
+  (a bare name or `TRUE`/`FALSE`, as in `while (TRUE)`, is already a name).
   Off by default while existing code is swept;
   turn both on with `lms::default_linters(nested_calls = TRUE)`.
   Tidyselect helpers, `aes()` and `vars()`, and anything inside a data-masking or quoting call

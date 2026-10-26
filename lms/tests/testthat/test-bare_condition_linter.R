@@ -24,10 +24,11 @@ test_that("a non-bare while() condition is flagged", {
   )
 })
 
-test_that("bare names and literals are not flagged", {
+test_that("bare names and logical literals are not flagged", {
   lintr::expect_no_lint("if (single_plot) 1", bare_condition_linter())
   lintr::expect_no_lint("while (TRUE) break", bare_condition_linter())
   lintr::expect_no_lint("while (not_done) 1", bare_condition_linter())
+  lintr::expect_no_lint("if (x # a comment\n) 1", bare_condition_linter())
 })
 
 test_that("negated, parenthesized, and numeric conditions are flagged", {
