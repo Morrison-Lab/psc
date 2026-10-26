@@ -4,9 +4,9 @@
 #' a literal. Compute the condition into a named logical first, then test the
 #' name: the name documents the test, puts each comparison on its own line
 #' where a misplaced parenthesis is visible in review, and can be inspected
-#' before the branch runs (Ezra Morrison, 2026-10-09: "a policy that if
-#' conditions have to be pre-calculated, so that mistakes like the one fixed
-#' in serodynamics#326 are harder to make").
+#' before the branch runs. The real bug that motivated the rule, a misplaced
+#' parenthesis in `sum(lengths(x) == 1)`, was fixed in
+#' <https://github.com/UCD-SERG/serodynamics/pull/326>.
 #'
 #' For a `while()` loop, compute the named condition before the loop and
 #' recompute it at the end of the loop body. `while (TRUE)` is allowed.

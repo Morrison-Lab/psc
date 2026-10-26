@@ -55,3 +55,32 @@ test_that("the allowed names are configurable", {
     nested_call_linter(tidyselect_helpers = character())
   )
 })
+
+test_that("nothing inside a data-masking verb is flagged", {
+  lintr::expect_no_lint("mutate(df, a = f(g(b)))", nested_call_linter())
+  lintr::expect_no_lint("quote(f(g(x)))", nested_call_linter())
+  lintr::expect_no_lint("bquote(f(g(x)))", nested_call_linter())
+})
+
+test_that("an empty allow-list flags every nested call", {
+  lintr::expect_lint(
+    "mutate(df, a = f(g(b)))",
+    list(
+      list(message = "Don't nest function calls"),
+      list(message = "Don't nest function calls")
+    ),
+    nested_call_linter(data_masking_verbs = character())
+  )
+  lintr::expect_lint(
+    "select(df, all_of(v))",
+    "Don't nest function calls",
+    nested_call_linter(tidyselect_helpers = character())
+  )
+})
+
+test_that("default_linters() adds the nesting linters only on request", {
+  off <- names(default_linters())
+  on <- names(default_linters(nested_calls = TRUE))
+  expect_false("nested_call_linter" %in% off)
+  expect_true(all(c("nested_call_linter", "bare_condition_linter") %in% on))
+})

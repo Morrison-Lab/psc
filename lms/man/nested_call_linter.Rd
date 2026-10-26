@@ -26,8 +26,7 @@ A \code{\link[lintr:Linter]{lintr::Linter()}} object.
 Flags a function call passed straight to another call as an argument, as in
 \code{f(g(x))}. Name the intermediate result, or chain the steps with a pipe
 (\verb{|>}), so the data flow reads top to bottom and each value can be
-inspected (Ezra Morrison, 2026-10-09: "a policy of no nested function calls
-(pipes are fine)").
+inspected.
 }
 \details{
 Not flagged, because the outer call interprets the argument itself:
@@ -35,9 +34,12 @@ Not flagged, because the outer call interprets the argument itself:
 \item tidyselect helpers (\code{all_of()}, \code{starts_with()} and the rest of
 \code{tidyselect_helpers}), and ggplot2's \code{aes()} and \code{vars()}, as the
 argument;
-\item any argument of a data-masking or quoting function (\code{mutate()},
-\code{filter()}, \code{summarise()}, \code{aes()}, \code{quote()} and the rest of
+\item anything inside a call to a data-masking or quoting function
+(\code{mutate()}, \code{filter()}, \code{summarise()}, \code{aes()}, \code{quote()} and the rest of
 \code{data_masking_verbs});
 \item the steps of a pipe chain, and formulas, which are not calls to nest.
 }
+
+Only a call that is itself an argument is flagged: \code{f(a + g(x))} and
+\code{f(!g(x))} wrap the call in an operator, and are not.
 }
