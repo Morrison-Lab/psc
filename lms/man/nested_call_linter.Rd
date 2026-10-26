@@ -31,11 +31,11 @@ inspected.
 \details{
 Not flagged, because the outer call interprets the argument itself:
 \itemize{
-\item tidyselect helpers (\code{all_of()}, \code{starts_with()} and the rest of
+\item tidyselect helpers (\code{all_of()}, \code{starts_with()}, and the rest of
 \code{tidyselect_helpers}), and ggplot2's \code{aes()} and \code{vars()}, as the
 argument;
 \item anything inside a call to a data-masking or quoting function
-(\code{mutate()}, \code{filter()}, \code{summarise()}, \code{aes()}, \code{quote()} and the rest of
+(\code{mutate()}, \code{filter()}, \code{summarise()}, \code{aes()}, \code{quote()}, and the rest of
 \code{data_masking_verbs});
 \item the steps of a pipe chain, and formulas, which are not calls to nest.
 }

@@ -6,11 +6,11 @@
 #' inspected.
 #'
 #' Not flagged, because the outer call interprets the argument itself:
-#' - tidyselect helpers (`all_of()`, `starts_with()` and the rest of
+#' - tidyselect helpers (`all_of()`, `starts_with()`, and the rest of
 #'   `tidyselect_helpers`), and ggplot2's `aes()` and `vars()`, as the
 #'   argument;
 #' - anything inside a call to a data-masking or quoting function
-#'   (`mutate()`, `filter()`, `summarise()`, `aes()`, `quote()` and the rest of
+#'   (`mutate()`, `filter()`, `summarise()`, `aes()`, `quote()`, and the rest of
 #'   `data_masking_verbs`);
 #' - the steps of a pipe chain, and formulas, which are not calls to nest.
 #'
