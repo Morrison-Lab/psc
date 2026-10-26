@@ -8,22 +8,22 @@ undesirable_linter <- function() {
 test_that("base R functions with tidyverse replacements are flagged", {
   lintr::expect_lint(
     "grep('a', x)",
-    "use stringr::str_which()",
+    "use stringr::str_which\\(\\) .*stringr::str_subset\\(\\) for value = TRUE",
     undesirable_linter()
   )
   lintr::expect_lint(
     "d <- data.frame(a = 1)",
-    "use tibble::tibble()",
+    "use tibble::tibble\\(\\)",
     undesirable_linter()
   )
   lintr::expect_lint(
     "read.csv('a.csv')",
-    "use readr::read_csv()",
+    "use readr::read_csv\\(\\)",
     undesirable_linter()
   )
   lintr::expect_lint(
     "sessionInfo()",
-    "use sessioninfo::session_info()",
+    "use sessioninfo::session_info\\(\\)",
     undesirable_linter()
   )
 })
