@@ -93,5 +93,40 @@ so it's worth getting rid of these bad habits now.
 
 ---
 
+Give each object one lasting name.
+Use an alias to shorten a name inside one piece of code,
+but avoid creating a synonym.
+[GeeksforGeeks compares aliases and synonyms in SQL](https://www.geeksforgeeks.org/sql/difference-between-alias-and-synonym-in-sql/):
+
+- An **alias** is a second name that lasts only within one scope.
+  In SQL, `SELECT pat.id AS patient_id FROM patients pat`
+  names the table `pat` and the column `patient_id` for that query only.
+  `import pandas as pd` in Python names the module `pd` for one file.
+- A **synonym** is a second name that is stored,
+  so it lasts until someone removes it.
+  Some databases, such as Oracle and SQL Server, provide `CREATE SYNONYM`,
+  which stores a name that points to another object
+  ([Oracle documentation](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-SYNONYM.html)).
+  PostgreSQL and MySQL do not have this command.
+
+Keep an alias recognizable, such as `pat` rather than `p`,
+since the descriptive-name advice at the top of this section still applies.
+A synonym in your own code makes readers look for a difference between the two names.
+
+An R package has one common exception.
+When you rename an exported function,
+keep the old name for a while as a wrapper so that existing code still runs,
+and mark it as deprecated with [`{lifecycle}`](https://lifecycle.r-lib.org/articles/communicate.html):
+
+```r
+# Keep the old name only as a deprecated wrapper
+prep_data <- function(raw_data) {
+  lifecycle::deprecate_warn("1.2.0", "prep_data()", "prep_study_data()")
+  prep_study_data(raw_data)
+}
+```
+
+---
+
 For more help, check out [Be Expressive: How to Give Your Variables Better Names](https://spin.atomicobject.com/2017/11/01/good-variable-names/)
 
