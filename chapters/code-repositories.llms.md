@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-21 10:38:25 (PDT)
+Last modified: 2026-10-25 19:23:43 (PDT)
 
 Each study has at least one code repository that typically holds R code, shell scripts with Unix code, and research outputs (results .RDS files, tables, figures). Repositories may also include datasets. This chapter outlines how to organize these files. Adhering to a standard format makes it easier to collaborate across projects.
 
