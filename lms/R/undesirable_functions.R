@@ -35,19 +35,19 @@ undesirable_functions <- function() {
 
     # Tidyverse replacements, as listed in the coding-style chapter
     # (chapters/coding-style/tidyverse-replacements.qmd).
-    data.frame = "use tibble::tibble()",
-    read.csv = "use readr::read_csv()",
-    write.csv = "use readr::write_csv()",
-    readRDS = "use readr::read_rds()",
-    saveRDS = "use readr::write_rds()",
-    rbind = "use dplyr::bind_rows() (or `# nolint` for matrices)",
-    cbind = "use dplyr::bind_cols() (or `# nolint` for matrices)",
-    grep = paste(
+    "data.frame" = "use tibble::tibble()",
+    "read.csv" = "use readr::read_csv()",
+    "write.csv" = "use readr::write_csv()",
+    "readRDS" = "use readr::read_rds()",
+    "saveRDS" = "use readr::write_rds()",
+    "rbind" = "use dplyr::bind_rows() (or `# nolint` for matrices)",
+    "cbind" = "use dplyr::bind_cols() (or `# nolint` for matrices)",
+    "grep" = paste(
       "use stringr::str_which()",
       "(or stringr::str_subset() for value = TRUE)"
     ),
-    gsub = "use stringr::str_replace_all()",
-    sessionInfo = "use sessioninfo::session_info()",
+    "gsub" = "use stringr::str_replace_all()",
+    "sessionInfo" = "use sessioninfo::session_info()",
 
     library = paste(
       "\nuse `::`, `usethis::use_import_from()`, or `withr::local_package()`",
