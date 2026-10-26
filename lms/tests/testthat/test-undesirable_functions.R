@@ -28,6 +28,29 @@ test_that("base R functions with tidyverse replacements are flagged", {
   )
 })
 
+test_that("the remaining mapped functions are flagged", {
+  lintr::expect_lint(
+    "write.csv(d, 'a.csv')",
+    "use readr::write_csv\\(\\)",
+    undesirable_linter()
+  )
+  lintr::expect_lint(
+    "readRDS('a.rds')",
+    "use readr::read_rds\\(\\)",
+    undesirable_linter()
+  )
+  lintr::expect_lint(
+    "saveRDS(x, 'a.rds')",
+    "use readr::write_rds\\(\\)",
+    undesirable_linter()
+  )
+  lintr::expect_lint(
+    "gsub('a', 'b', x)",
+    "use stringr::str_replace_all\\(\\)",
+    undesirable_linter()
+  )
+})
+
 test_that("rbind() and cbind() point to the matrix exception", {
   lintr::expect_lint(
     "cbind(a, b)",

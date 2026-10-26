@@ -20,8 +20,9 @@ It exports:
   `lintr::linters_with_defaults()` plus the lab's rules.
   Those rules are `|>` pipe consistency,
   snake_case-with-acronyms object names,
-  `cli::`-oriented undesirable functions
-  and the tidyverse replacements for `data.frame()`, `read.csv()`, `rbind()`, `cbind()`, `gsub()` and the other function-name swaps in the coding-style chapter's list
+  `cli::`-oriented undesirable functions,
+  the tidyverse replacements for `data.frame()`, `read.csv()`, `rbind()`, `cbind()`, `gsub()`,
+  and the other function-name swaps in the coding-style chapter's list
   (not `as.Date(NA)` or `attr(x, "label") <-`, which are not function names),
   function-location and function-length checks,
   and condition-class assertions for `testthat` expectations that match `regexp`.

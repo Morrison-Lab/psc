@@ -4,9 +4,9 @@
 #' conventions: base and rlang messaging functions are steered toward their
 #' `cli::` equivalents, `library()` is discouraged inside package code, base R
 #' functions with a tidyverse replacement (`data.frame()`, `read.csv()`,
-#' `rbind()`, `gsub()` and the rest of the function-name swaps in the
-#' coding-style chapter) are steered toward it, and a few of lintr's defaults
-#' (`structure()`, `browser()`) are dropped.
+#' `rbind()`, `gsub()`, and the rest of the function-name swaps in the
+#' coding-style chapter) are steered toward their tidyverse replacements, and
+#' a few of lintr's defaults (`structure()`, `browser()`) are dropped.
 #'
 #' Exported so a downstream repository can further `lintr::modify_defaults()`
 #' it if a single repo needs to diverge, without copy-pasting the whole map.
@@ -42,7 +42,10 @@ undesirable_functions <- function() {
     saveRDS = "use readr::write_rds()",
     rbind = "use dplyr::bind_rows() (or `# nolint` for matrices)",
     cbind = "use dplyr::bind_cols() (or `# nolint` for matrices)",
-    grep = "use stringr::str_which() (or str_subset() for value = TRUE)",
+    grep = paste(
+      "use stringr::str_which()",
+      "(or stringr::str_subset() for value = TRUE)"
+    ),
     gsub = "use stringr::str_replace_all()",
     sessionInfo = "use sessioninfo::session_info()",
 
