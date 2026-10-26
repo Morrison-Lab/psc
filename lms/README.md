@@ -20,7 +20,8 @@ It exports:
   `lintr::linters_with_defaults()` plus the lab's rules.
   Those rules are `|>` pipe consistency,
   snake_case-with-acronyms object names,
-  `cli::`-oriented undesirable functions,
+  `cli::`-oriented undesirable functions
+  and the tidyverse replacements for `data.frame()`, `read.csv()`, `rbind()`, `cbind()`, `gsub()` and the rest of the coding-style chapter's list,
   function-location and function-length checks,
   and condition-class assertions for `testthat` expectations that match `regexp`.
 - `undesirable_functions()` --- the underlying undesirable-function map,
