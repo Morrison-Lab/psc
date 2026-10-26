@@ -14,9 +14,9 @@ Flags an \verb{if()} or \verb{while()} whose condition is anything but a bare na
 a logical literal (\code{TRUE} or \code{FALSE}). Compute the condition into a named
 logical first, then test the name: the name documents the test, puts each
 comparison on its own line where a misplaced parenthesis is visible in
-review, and can be inspected before the branch runs. The real bug that motivated the rule, a misplaced
-parenthesis in \code{sum(lengths(x) == 1)}, was fixed in
-\url{https://github.com/UCD-SERG/serodynamics/pull/326}.
+review, and can be inspected before the branch runs. The real bug that
+motivated the rule, a misplaced parenthesis in \code{sum(lengths(x) == 1)}, was
+fixed in \url{https://github.com/UCD-SERG/serodynamics/pull/326}.
 }
 \details{
 For a \verb{while()} loop, compute the named condition before the loop and
