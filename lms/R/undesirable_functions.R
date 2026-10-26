@@ -42,7 +42,7 @@ undesirable_functions <- function() {
     saveRDS = "use readr::write_rds()",
     rbind = "use dplyr::bind_rows() (or `# nolint` for matrices)",
     cbind = "use dplyr::bind_cols() (or `# nolint` for matrices)",
-    grep = "use stringr::str_which()",
+    grep = "use stringr::str_which() (or str_subset() for value = TRUE)",
     gsub = "use stringr::str_replace_all()",
     sessionInfo = "use sessioninfo::session_info()",
 
