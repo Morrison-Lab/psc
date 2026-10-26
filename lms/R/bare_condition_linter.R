@@ -18,7 +18,10 @@ bare_condition_linter <- function() {
   # an `else if` is itself an `if` expression, so it is covered too.
   xpath <- "
     //expr[IF or WHILE]/expr[1][
-      not(count(*) = 1 and (SYMBOL or NUM_CONST or STR_CONST))
+      not(
+        count(*) = 1
+        and (SYMBOL or NUM_CONST[text() = 'TRUE' or text() = 'FALSE'])
+      )
     ]
   "
 

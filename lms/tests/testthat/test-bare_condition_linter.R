@@ -29,3 +29,21 @@ test_that("bare names and literals are not flagged", {
   lintr::expect_no_lint("while (TRUE) break", bare_condition_linter())
   lintr::expect_no_lint("while (not_done) 1", bare_condition_linter())
 })
+
+test_that("negated, parenthesized, and numeric conditions are flagged", {
+  lintr::expect_lint(
+    "if (!x) 1",
+    "Assign the condition to a named logical variable",
+    bare_condition_linter()
+  )
+  lintr::expect_lint(
+    "if ((x)) 1",
+    "Assign the condition to a named logical variable",
+    bare_condition_linter()
+  )
+  lintr::expect_lint(
+    "if (1) 1",
+    "Assign the condition to a named logical variable",
+    bare_condition_linter()
+  )
+})

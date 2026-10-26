@@ -11,7 +11,7 @@
 #'
 #' @param nested_calls Whether to include [nested_call_linter()] and
 #'   [bare_condition_linter()], the no-nested-calls policy. Off by default
-#'   while existing code is swept; turn it on in a repo's `.lintr.R` with
+#'   while existing code is swept; turn them on in a repo's `.lintr.R` with
 #'   `lms::default_linters(nested_calls = TRUE)`.
 #' @return A list of linters, as produced by
 #'   [lintr::linters_with_defaults()].
