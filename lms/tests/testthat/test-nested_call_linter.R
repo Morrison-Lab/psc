@@ -48,12 +48,10 @@ test_that("arguments of data-masking verbs are allowed", {
   )
 })
 
-test_that("the allowed names are configurable", {
-  lintr::expect_lint(
-    "select(df, all_of(v))",
-    "Don't nest function calls",
-    nested_call_linter(tidyselect_helpers = character())
-  )
+test_that("a call wrapped in an operator is not flagged", {
+  lintr::expect_no_lint("f(a + g(x))", nested_call_linter())
+  lintr::expect_no_lint("f(!g(x))", nested_call_linter())
+  lintr::expect_no_lint("f((g(x)))", nested_call_linter())
 })
 
 test_that("nothing inside a data-masking verb is flagged", {

@@ -28,7 +28,8 @@ It exports:
   and name every `if()` and `while()` condition before testing it.
   Off by default while existing code is swept;
   turn both on with `lms::default_linters(nested_calls = TRUE)`.
-  The tidyselect helpers, the arguments of data-masking verbs, and `aes()` are not flagged.
+  Tidyselect helpers, `aes()` and `vars()`, and anything inside a data-masking or quoting call
+  (`mutate()`, `filter()`, `quote()`, `with()`, `subset()`, and so on) are not flagged.
 - `undesirable_functions()` --- the underlying undesirable-function map,
   if a repo needs to extend it.
 
