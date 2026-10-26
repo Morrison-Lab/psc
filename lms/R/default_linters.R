@@ -9,11 +9,15 @@
 #' exclusions <- list(...)   # repo-specific, stays local
 #' ```
 #'
+#' @param nested_calls Whether to include [nested_call_linter()] and
+#'   [bare_condition_linter()], the no-nested-calls policy. Off by default
+#'   while existing code is swept; turn it on in a repo's `.lintr.R` with
+#'   `lms::default_linters(nested_calls = TRUE)`.
 #' @return A list of linters, as produced by
 #'   [lintr::linters_with_defaults()].
 #' @export
-default_linters <- function() {
-  lintr::linters_with_defaults(
+default_linters <- function(nested_calls = FALSE) {
+  linters <- lintr::linters_with_defaults(
     return_linter = NULL,
     trailing_whitespace_linter = NULL,
     lintr::redundant_equals_linter(),
@@ -30,4 +34,14 @@ default_linters <- function() {
     function_location_linter(),
     condition_class_linter()
   )
+  if (nested_calls) {
+    linters <- c(
+      linters,
+      list(
+        nested_call_linter = nested_call_linter(),
+        bare_condition_linter = bare_condition_linter()
+      )
+    )
+  }
+  linters
 }

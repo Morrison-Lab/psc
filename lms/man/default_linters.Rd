@@ -4,7 +4,13 @@
 \alias{default_linters}
 \title{Default UCD-SERG lintr linters}
 \usage{
-default_linters()
+default_linters(nested_calls = FALSE)
+}
+\arguments{
+\item{nested_calls}{Whether to include \code{\link[=nested_call_linter]{nested_call_linter()}} and
+\code{\link[=bare_condition_linter]{bare_condition_linter()}}, the no-nested-calls policy. Off by default
+while existing code is swept; turn it on in a repo's \code{.lintr.R} with
+\code{lms::default_linters(nested_calls = TRUE)}.}
 }
 \value{
 A list of linters, as produced by
