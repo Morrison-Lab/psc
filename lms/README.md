@@ -23,10 +23,11 @@ It exports:
   `cli::`-oriented undesirable functions,
   function-location and function-length checks,
   and condition-class assertions for `testthat` expectations that match `regexp`.
-- `nested_call_linter()` --- the no-nested-calls policy:
-  don't pass one call's result straight into another (name it, or pipe).
+- `nested_call_linter()` and `bare_condition_linter()` --- the no-nested-calls policy:
+  don't pass one call's result straight into another (name it, or pipe),
+  and name every `if()` and `while()` condition before testing it.
   Off by default while existing code is swept;
-  turn it on with `lms::default_linters(nested_calls = TRUE)`.
+  turn both on with `lms::default_linters(nested_calls = TRUE)`.
   The tidyselect helpers, the arguments of data-masking verbs, and `aes()` are not flagged.
 - `undesirable_functions()` --- the underlying undesirable-function map,
   if a repo needs to extend it.

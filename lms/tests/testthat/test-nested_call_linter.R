@@ -82,5 +82,5 @@ test_that("default_linters() adds the nesting linters only on request", {
   off <- names(default_linters())
   on <- names(default_linters(nested_calls = TRUE))
   expect_false("nested_call_linter" %in% off)
-  expect_true("nested_call_linter" %in% on)
+  expect_true(all(c("nested_call_linter", "bare_condition_linter") %in% on))
 })
