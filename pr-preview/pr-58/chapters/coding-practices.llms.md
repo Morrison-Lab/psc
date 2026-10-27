@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-27 14:11:27 (PDT)
+Last modified: 2026-10-27 15:12:14 (PDT)
 
 ## 1 Protocols for Code and Data
 
@@ -2218,7 +2218,7 @@ See also [Tidyverse Replacements](../chapters/coding-style.llms.md#sec-tidyverse
 
 ## 44 A Skeptical View
 
-Not everyone agrees that the Tidyverse should come first. In [*Tidyverse Skeptic*](https://matloff.github.io/TidyverseSkeptic/Skeptic.html) ([source on GitHub](https://github.com/matloff/TidyverseSkeptic)), Norm Matloff argues that teaching R to noncoders through the Tidyverse is counterproductive. The essay is about teaching beginners, not about teaching computer science students or about whether R is a good tool for experienced coders (which Matloff calls a matter of personal taste). Its main points:
+Not everyone agrees that the Tidyverse should come first. In [*Tidyverse Skeptic*](https://matloff.github.io/TidyverseSkeptic/Skeptic.html) ([2019](#ref-matloff-tidyverse-skeptic), source on [GitHub](https://github.com/matloff/TidyverseSkeptic)), Norm Matloff argues that teaching R to noncoders through the Tidyverse is counterproductive. The essay is about teaching beginners, not about teaching computer science students or about whether R is a good tool for experienced coders (which Matloff calls a matter of personal taste). Its main points:
 
 - **Keep it simple.** Base R (vectors, `$`, brackets, loops, `if`/`else`) is less abstract than the Tidyverse, so beginners reach useful analyses sooner.
 - **Functional programming is hard for beginners.** Replacing loops with `{purrr}`-style function calls asks novices to master functions, which Matloff sees as the hardest part of R for them.
@@ -2488,6 +2488,8 @@ Bryan, Jennifer. 2023. *Happy Git and GitHub for the useR*. <https://happygitwit
 Bryan, Jennifer, Jim Hester, David Robinson, Hadley Wickham, and Christophe Dervieux. 2024. *Reprex: Prepare Reproducible Example Code via the Clipboard*. <https://reprex.tidyverse.org/>.
 
 Fay, Colin, Sébastien Rochette, Vincent Guyader, and Cervan Girard. 2021. *Engineering Production-Grade Shiny Apps*. Chapman; Hall/CRC. <https://doi.org/10.1201/9781003029878>.
+
+Matloff, Norm. 2019. “Tidyverse Skeptic: Why the Tidyverse Is Not a Good Vehicle for Teaching Noncoders.” <https://matloff.github.io/TidyverseSkeptic/Skeptic.html>.
 
 Parnas, D. L. 1972. “On the Criteria to Be Used in Decomposing Systems into Modules.” *Communications of the ACM* 15 (12): 1053–58. <https://doi.org/10.1145/361598.361623>.
 
