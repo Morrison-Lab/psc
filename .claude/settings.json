@@ -58,7 +58,8 @@
       "Bash(gh issue view:*)",
       "Bash(gh issue list:*)",
       "Bash(gh run view:*)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "mcp__claude-code-remote__add_repo"
     ],
     "deny": [
       "Bash(git push --force:*)",
