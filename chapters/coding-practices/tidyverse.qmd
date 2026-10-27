@@ -167,8 +167,9 @@ In [*Tidyverse Skeptic*](https://matloff.github.io/TidyverseSkeptic/Skeptic.html
 ([source on GitHub](https://github.com/matloff/TidyverseSkeptic)),
 Norm Matloff argues that teaching R to noncoders through the Tidyverse is counterproductive.
 The essay is about teaching beginners,
-not about which tools experienced coders should prefer,
-which Matloff calls a matter of personal taste.
+not about teaching computer science students
+or about whether R is a good tool for experienced coders
+(which Matloff calls a matter of personal taste).
 Its main points:
 
 - **Keep it simple.**
@@ -178,7 +179,8 @@ Its main points:
   Replacing loops with `{purrr}`-style function calls asks novices to master functions,
   which Matloff sees as the hardest part of R for them.
 - **Pipes hinder debugging.**
-  Long pipelines are hard to inspect step by step,
+  Code written as separate statements can be run and checked one line at a time,
+  but a pipe is harder to step through,
   and beginners are the ones who make the most mistakes.
 - **Narrow coverage looks like success.**
   Courses built around a few `{dplyr}` verbs leave students unable to use the many CRAN packages
@@ -189,7 +191,8 @@ Its main points:
   so learners can choose the most convenient tool for each task.
 
 Matloff also notes that `{ggplot2}` predates the Tidyverse,
-and he raises concerns about one company (Posit) steering an open-source ecosystem.
+and while he praises Posit's overall contribution to R,
+he raises concerns about one company steering an open-source ecosystem.
 
 Our recommendation above still stands for day-to-day project code,
 but the essay is a useful counterweight:
