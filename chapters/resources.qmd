@@ -19,7 +19,7 @@ so this page points to those lists rather than repeating them:
 - [R Coding Practices: Additional Resources](coding-practices.qmd#sec-r-resources) -
   books on R, R packages, Shiny, and Git for R users
 - [R Coding Practices: Tidyverse](coding-practices.qmd#sec-tidyverse) -
-  tidy evaluation and programming with `{dplyr}`
+  tidy evaluation, programming with `{dplyr}`, and a skeptical view
 - [Continuous Integration](continuous-integration.qmd#sec-r-ci) -
   CI services and tools for R packages
 - [Quarto](quarto.qmd) -
@@ -35,6 +35,10 @@ so this page points to those lists rather than repeating them:
   curated list of tools for R package development
 - [Tidyverse style guide](https://style.tidyverse.org/) -
   the style guide behind [R Code Style](coding-style.qmd)
+- [Tidyverse Skeptic](https://matloff.github.io/TidyverseSkeptic/Skeptic.html) -
+  Norm Matloff's essay arguing that beginners should learn base R before the Tidyverse
+  ([source](https://github.com/matloff/TidyverseSkeptic);
+  summarized in [A Skeptical View](coding-practices.qmd#sec-tidyverse-skeptic))
 - [Hadley Wickham's R Style Guide](http://adv-r.had.co.nz/Style.html) -
   the style chapter of the first edition of *Advanced R*
 - [Tidyverse data-dict](https://data-dict.tidyverse.org/) -

@@ -159,3 +159,42 @@ we'd recommend checking out the following resources:
 - [Standard Evaluation for *_join](https://stackoverflow.com/questions/28125816/r-standard-evaluation-for-join-dplyr) (stackoverflow)
 
 See also [Tidyverse Replacements](coding-style.qmd#sec-tidyverse-replacements)
+
+## A Skeptical View {#sec-tidyverse-skeptic}
+
+Not everyone agrees that the Tidyverse should come first.
+In [*Tidyverse Skeptic*](https://matloff.github.io/TidyverseSkeptic/Skeptic.html)
+[-@matloff-tidyverse-skeptic, source on [GitHub](https://github.com/matloff/TidyverseSkeptic)],
+Norm Matloff argues that teaching R to noncoders through the Tidyverse is counterproductive.
+The essay is about teaching beginners,
+not about teaching computer science students
+or about whether R is a good tool for experienced coders
+(which Matloff calls a matter of personal taste).
+Its main points:
+
+- **Keep it simple.**
+  Base R (vectors, `$`, brackets, loops, `if`/`else`) is less abstract than the Tidyverse,
+  so beginners reach useful analyses sooner.
+- **Functional programming is hard for beginners.**
+  Replacing loops with `{purrr}`-style function calls asks novices to master functions,
+  which Matloff sees as the hardest part of R for them.
+- **Pipes hinder debugging.**
+  Code written as separate statements can be run and checked one line at a time,
+  but a pipe is harder to step through,
+  and beginners are the ones who make the most mistakes.
+- **Narrow coverage looks like success.**
+  Courses built around a few `{dplyr}` verbs leave students unable to use the many CRAN packages
+  that expect base R idioms such as `$`, subscripting, and `summary()`.
+- **Teach a mix.**
+  Start with base R, then cover the Tidyverse (because it is popular)
+  and `{data.table}` (because it is fast),
+  so learners can choose the most convenient tool for each task.
+
+Matloff also notes that `{ggplot2}` predates the Tidyverse,
+and while he praises Posit's overall contribution to R,
+he raises concerns about one company steering an open-source ecosystem.
+
+Our recommendation above still stands for day-to-day project code,
+but the essay is a useful counterweight:
+learn enough base R to read other people's code, debug your own,
+and use the many packages that are not built around the Tidyverse.
