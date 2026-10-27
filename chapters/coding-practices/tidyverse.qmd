@@ -164,7 +164,7 @@ See also [Tidyverse Replacements](coding-style.qmd#sec-tidyverse-replacements)
 
 Not everyone agrees that the Tidyverse should come first.
 In [*Tidyverse Skeptic*](https://matloff.github.io/TidyverseSkeptic/Skeptic.html)
-[@matloff-tidyverse-skeptic, source on [GitHub](https://github.com/matloff/TidyverseSkeptic)],
+[-@matloff-tidyverse-skeptic, source on [GitHub](https://github.com/matloff/TidyverseSkeptic)],
 Norm Matloff argues that teaching R to noncoders through the Tidyverse is counterproductive.
 The essay is about teaching beginners,
 not about teaching computer science students
