@@ -4,12 +4,12 @@ Code
 
 Published
 
-Last modified: 2026-10-26 23:11:06 (PDT)
+Last modified: 2026-10-27 16:10:40 (PDT)
 
 This page collects learning resources for scientific computing. Several chapters keep their own resource lists, so this page points to those lists rather than repeating them:
 
 - [R Coding Practices: Additional Resources](../chapters/coding-practices.llms.md#sec-r-resources) - books on R, R packages, Shiny, and Git for R users
-- [R Coding Practices: Tidyverse](../chapters/coding-practices.llms.md#sec-tidyverse) - tidy evaluation and programming with `{dplyr}`
+- [R Coding Practices: Tidyverse](../chapters/coding-practices.llms.md#sec-tidyverse) - tidy evaluation, programming with `{dplyr}`, and a skeptical view
 - [Continuous Integration](../chapters/continuous-integration.llms.md#sec-r-ci) - CI services and tools for R packages
 - [Quarto](../chapters/quarto.llms.md) - Quarto documentation, templates, and `{litedown}`
 - [Git and GitHub](../chapters/github.llms.md#sec-github) - GitHub Learn, the UC Davis DataLab Git sandbox, and graphical Git clients
@@ -19,6 +19,7 @@ This page collects learning resources for scientific computing. Several chapters
 
 - [Awesome R Package Development Tools](https://github.com/IndrajeetPatil/awesome-r-pkgtools) - curated list of tools for R package development
 - [Tidyverse style guide](https://style.tidyverse.org/) - the style guide behind [R Code Style](../chapters/coding-style.llms.md)
+- [Tidyverse Skeptic](https://matloff.github.io/TidyverseSkeptic/Skeptic.html) - Norm Matloff’s essay arguing that beginners should learn base R before the Tidyverse ([source](https://github.com/matloff/TidyverseSkeptic); summarized in [A Skeptical View](../chapters/coding-practices.llms.md#sec-tidyverse-skeptic))
 - [Hadley Wickham’s R Style Guide](http://adv-r.had.co.nz/Style.html) - the style chapter of the first edition of *Advanced R*
 - [Tidyverse data-dict](https://data-dict.tidyverse.org/) - open specification and CLI tool for creating, validating, and documenting data dictionaries in YAML format
 
