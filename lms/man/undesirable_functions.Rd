@@ -13,8 +13,11 @@ A named character vector suitable for
 \description{
 The default lintr undesirable-function map, extended with the UCD-SERG
 conventions: base and rlang messaging functions are steered toward their
-\verb{cli::} equivalents, \code{library()} is discouraged inside package code, and a
-few of lintr's defaults (\code{structure()}, \code{browser()}) are dropped.
+\verb{cli::} equivalents, \code{library()} is discouraged inside package code, base R
+functions with a tidyverse replacement (\code{data.frame()}, \code{read.csv()},
+\code{rbind()}, \code{gsub()}, and the rest of the function-name swaps in the
+coding-style chapter) are steered toward their tidyverse replacements, and
+a few of lintr's defaults (\code{structure()}, \code{browser()}) are dropped.
 }
 \details{
 Exported so a downstream repository can further \code{lintr::modify_defaults()}
