@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-25 22:15:19 (PDT)
+Last modified: 2026-10-28 15:28:01 (PDT)
 
 ## 1 Protocols for Code and Data
 
@@ -2216,17 +2216,31 @@ Working with Tidyverse within functions can be somewhat of a pain due to non-sta
 
 See also [Tidyverse Replacements](../chapters/coding-style.llms.md#sec-tidyverse-replacements)
 
-## 44 Coding with R and Python
+## 44 A Skeptical View
+
+Not everyone agrees that the Tidyverse should come first. In [*Tidyverse Skeptic*](https://matloff.github.io/TidyverseSkeptic/Skeptic.html) ([2019](#ref-matloff-tidyverse-skeptic), source on [GitHub](https://github.com/matloff/TidyverseSkeptic)), Norm Matloff argues that teaching R to noncoders through the Tidyverse is counterproductive. The essay is about teaching beginners, not about teaching computer science students or about whether R is a good tool for experienced coders (which Matloff calls a matter of personal taste). Its main points:
+
+- **Keep it simple.** Base R (vectors, `$`, brackets, loops, `if`/`else`) is less abstract than the Tidyverse, so beginners reach useful analyses sooner.
+- **Functional programming is hard for beginners.** Replacing loops with `{purrr}`-style function calls asks novices to master functions, which Matloff sees as the hardest part of R for them.
+- **Pipes hinder debugging.** Code written as separate statements can be run and checked one line at a time, but a pipe is harder to step through, and beginners are the ones who make the most mistakes.
+- **Narrow coverage looks like success.** Courses built around a few `{dplyr}` verbs leave students unable to use the many CRAN packages that expect base R idioms such as `$`, subscripting, and `summary()`.
+- **Teach a mix.** Start with base R, then cover the Tidyverse (because it is popular) and `{data.table}` (because it is fast), so learners can choose the most convenient tool for each task.
+
+Matloff also notes that `{ggplot2}` predates the Tidyverse, and while he praises Posit’s overall contribution to R, he raises concerns about one company steering an open-source ecosystem.
+
+Our recommendation above still stands for day-to-day project code, but the essay is a useful counterweight: learn enough base R to read other people’s code, debug your own, and use the many packages that are not built around the Tidyverse.
+
+## 45 Coding with R and Python
 
 If you’re using both R and Python, you may wish to check out the [Feather package](https://www.rdocumentation.org/packages/feather/versions/0.3.3) for exchanging data between the two languages [extremely quickly](https://blog.rstudio.com/2016/03/29/feather/).
 
-## 45 Repeating analyses with different variations
+## 46 Repeating analyses with different variations
 
 In many cases, we will need to apply our modeling on different combinations of interests (outcomes, exposures, etc.). We can certainly use a `for` loop to repeat the execution of a wrapper function, but generally, `for` loops request high memory usage and produce the results in long computation time.
 
 Fortunately, R has some functions which implement looping in a compact form to help repeating your analyses with different variations (subgroups, outcomes, covariate sets, etc.) with better performances.
 
-### 45.1 `lapply()` and `sapply()`
+### 46.1 `lapply()` and `sapply()`
 
 `lapply()` is a function in the base R package that applies a function to each element of a list and returns a list. It’s typically faster than `for`. Here is a simple generic example:
 
@@ -2234,7 +2248,7 @@ Fortunately, R has some functions which implement looping in a compact form to h
 
 There is another very similar function called `sapply()`. It also takes a list as its input, but if the output of the `func` is of the same length for each element in the input list, then `sapply()` will simplify the output to the simplest data structure possible, which will usually be a vector.
 
-### 45.2 `mapply()` and `pmap()`
+### 46.2 `mapply()` and `pmap()`
 
 Sometimes, we’d like to employ a wrapper function that takes arguments from multiple different lists/vectors. Then, we can consider using `mapply()` from the base R package or `pmap()` from the `purrr` package.
 
@@ -2285,7 +2299,7 @@ This example doesn’t work in the way that 0 is paired to 6, 1 is paired to 7, 
 
 We can use `flatten()` or `unlist()` functions to decrease the depths of our results. If the results are data frames, then we will need to use `bind_rows()` to combine them.
 
-### 45.3 Parallel processing with `parallel` and `future` packages
+### 46.3 Parallel processing with `parallel` and `future` packages
 
 One big drawback of `lapply()` is its long computation time, especially when the list length is long. Fortunately, computers nowadays must have multiple cores which makes parallel processing possible to help make computation much faster.
 
@@ -2332,11 +2346,11 @@ Below is a generic example of `future_lapply()`:
 
 Here, `future::availableCores()` checks how many cores your machine has. Similar to `parLapply()` showed above, `future_lapply()` parallelizes the computation of `lapply()` by executing the function `func` simultaneously on different sub-lists of `mylist`.
 
-## 46 Reviewing Code
+## 47 Reviewing Code
 
 Peer code review is a collaborative practice that improves scientific rigor, fosters shared understanding, and catches bugs before analysis results are shared or published. The recommended pull request workflow, author and reviewer expectations, and response protocol are consolidated in [Collaborative Software Development](../chapters/collaborative-software-development.llms.md#sec-collab-dev).
 
-### 46.1 Why We Review Code
+### 47.1 Why We Review Code
 
 Code review serves several vital purposes:
 
@@ -2345,7 +2359,7 @@ Code review serves several vital purposes:
 - **Knowledge transfer**: Sharing analytical methods, R idioms, and package features across the team.
 - **Maintainability**: Ensuring that analysis pipelines can be understood, modified, and extended by other team members in the future.
 
-### 46.2 What Reviewers Look For
+### 47.2 What Reviewers Look For
 
 When reviewing a colleague’s code, evaluate these key dimensions:
 
@@ -2365,7 +2379,7 @@ When reviewing a colleague’s code, evaluate these key dimensions:
     - Do comments explain non-obvious design choices or statistical assumptions (see [Section 14](#sec-documenting-code))?
     - Are architectural or analytical decisions documented with an ADR where appropriate (see [Section 15](#sec-adrs))?
 
-### 46.3 How to Give Constructive Feedback
+### 47.3 How to Give Constructive Feedback
 
 Effective code review builds a supportive, high-trust research culture:
 
@@ -2374,7 +2388,7 @@ Effective code review builds a supportive, high-trust research culture:
 - **Distinguish blocking vs. non-blocking comments**: Clearly separate essential correctness or reproducibility issues (blocking) from optional stylistic preferences or ideas for future exploration (non-blocking nits).
 - **Ask clarifying questions**: When logic is unclear, ask the author to explain their intent before proposing a rewrite.
 
-### 46.4 When to Approve
+### 47.4 When to Approve
 
 Approve a pull request when:
 
@@ -2383,7 +2397,7 @@ Approve a pull request when:
 - All blocking review findings have been resolved or explicitly deferred to a tracked follow-up issue.
 - The author has completed the pre-review quality checks in [Section 12](#sec-r-qa-checklist).
 
-## 47 Getting Help with Code
+## 48 Getting Help with Code
 
 When you encounter a coding problem, creating a **reprex** (minimal **repr**oducible **ex**ample) is one of the most effective ways to get help—and often helps you solve the problem yourself.
 
@@ -2404,9 +2418,9 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [`{reprex}`](https://reprex.tidyverse.org/) package: Automates creation of reproducible examples
 - [R for Data Science: Making a reprex](https://r4ds.hadley.nz/workflow-help.html#making-a-reprex) ([Wickham et al. 2023](#ref-wickham2023r4ds)): Step-by-step guide to creating effective reproducible examples
 
-## 48 Additional Resources
+## 49 Additional Resources
 
-### 48.1 Learning R
+### 49.1 Learning R
 
 - R for Data Science ([Wickham et al. 2023](#ref-wickham2023r4ds)) - learn data science with the tidyverse
 - [R for Epidemiology](https://www.r4epi.com/) - an introduction to R, with epidemiology examples
@@ -2416,31 +2430,31 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [Building reproducible analytical pipelines with R](https://raps-with-r.dev/) - project-level reproducibility in R
 - [Posit Recipes](https://posit.cloud/learn/recipes) - short, task-focused R code snippets
 
-### 48.2 Learning Python
+### 49.2 Learning Python
 
 - [Python Tutor](https://pythontutor.com/) - steps through a short program one line at a time and draws each variable and object in memory; it visualizes Python, Java, C, C++ and JavaScript (not R) and limits program length, so use it on small examples
 
-### 48.3 Coming to R from SAS
+### 49.3 Coming to R from SAS
 
 - [The sassy system](https://r-sassy.org/) - packages that bring familiar SAS concepts to R; its [`{procs}`](https://cran.r-project.org/package=procs) package provides versions of `proc freq`, `proc means`, `proc ttest`, `proc reg`, and other common procedures
 - [R for SAS and SPSS Users](https://link.springer.com/book/10.1007/978-1-4614-0685-3) (Muenchen) - common SAS and SPSS tasks, done in R
 - [SAS and R](https://www.routledge.com/SAS-and-R-Data-Management-Statistical-Analysis-and-Graphics-Second-Edition/Kleinman-Horton/p/book/9781466584495) (Kleinman and Horton) - side-by-side SAS and R code for data management and analysis
 
-### 48.4 General R Programming
+### 49.4 General R Programming
 
 - Advanced R ([Wickham 2019](#ref-wickham2019advr)) - deep dive into R programming and internals, including [functions](https://adv-r.hadley.nz/functions.html), [object-oriented systems](https://adv-r.hadley.nz/oo.html#oop-systems), and [debugging](https://adv-r.hadley.nz/debugging.html)
 - [Debugging R code](https://www.maths.ed.ac.uk/~swood34/RCdebug/RCdebug.html) (Simon Wood) - debugging R and compiled code called from R
 - [Differences between the base R and `{magrittr}` pipes](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) - how `|>` and `%>%` behave differently
 - [Spatial Data Science: With Applications in R](https://r-spatial.org/book) - spatial data analysis in R
 
-### 48.5 Summary tables
+### 49.5 Summary tables
 
 - [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/) - flexible demographics and summary tables; start here
 - [`{table1}`](https://cran.r-project.org/package=table1) - HTML “Table 1” demographics tables
 - [`{arsenal}`](https://cran.r-project.org/package=arsenal) - summary tables, from the Mayo Clinic
 - `{procs}` (under “Coming to R from SAS” above) - SAS-style frequency and means tables
 
-### 48.6 R Package Development
+### 49.6 R Package Development
 
 - R Packages ([Wickham and Bryan 2023](#ref-wickham2023rpkgs)) - comprehensive guide to R package development
 - Tidyverse design guide ([Wickham 2023](#ref-wickham2023tidydesign)) - principles for designing R packages and APIs that are intuitive, composable, and consistent with tidyverse philosophy
@@ -2451,12 +2465,12 @@ A good reprex ([Bryan et al. 2024](#ref-reprex)):
 - [Releasing to CRAN](https://r-pkgs.org/release.html) and the [CRAN Cookbook](https://contributor.r-project.org/cran-cookbook/) - preparing a CRAN submission (see also [Code Publication](../chapters/code-publication.llms.md))
 - [Contributing to R](https://contributor.r-project.org/) - getting involved with base R itself
 
-### 48.7 Shiny Development
+### 49.7 Shiny Development
 
 - Mastering Shiny ([Wickham 2021](#ref-wickham2021shiny)) - comprehensive guide to building web applications with Shiny
 - Engineering Production-Grade Shiny Apps ([Fay et al. 2021](#ref-fay2021engineering)) - best practices for production Shiny applications
 
-### 48.8 Git and Version Control
+### 49.8 Git and Version Control
 
 - Happy Git and GitHub for the useR ([Bryan 2023](#ref-bryan2023happygit)) - essential guide to using Git and GitHub with R
 - [Pull request helpers in `{usethis}`](https://usethis.r-lib.org/articles/pr-functions.html) - the `pr_*()` workflow from R
@@ -2474,6 +2488,8 @@ Bryan, Jennifer. 2023. *Happy Git and GitHub for the useR*. <https://happygitwit
 Bryan, Jennifer, Jim Hester, David Robinson, Hadley Wickham, and Christophe Dervieux. 2024. *Reprex: Prepare Reproducible Example Code via the Clipboard*. <https://reprex.tidyverse.org/>.
 
 Fay, Colin, Sébastien Rochette, Vincent Guyader, and Cervan Girard. 2021. *Engineering Production-Grade Shiny Apps*. Chapman; Hall/CRC. <https://doi.org/10.1201/9781003029878>.
+
+Matloff, Norm. 2019. “Tidyverse Skeptic: Why the Tidyverse Is Not a Good Vehicle for Teaching Noncoders.” <https://matloff.github.io/TidyverseSkeptic/Skeptic.html>.
 
 Parnas, D. L. 1972. “On the Criteria to Be Used in Decomposing Systems into Modules.” *Communications of the ACM* 15 (12): 1053–58. <https://doi.org/10.1145/361598.361623>.
 

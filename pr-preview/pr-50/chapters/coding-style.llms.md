@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-25 22:15:19 (PDT)
+Last modified: 2026-10-28 15:28:01 (PDT)
 
 Follow these code style guidelines for all R code:
 
@@ -693,6 +693,7 @@ dplyr::bind_cols()         # instead of cbind()
 
 # String operations
 stringr::str_which()       # instead of grep()
+stringr::str_subset()      # instead of grep(value = TRUE)
 stringr::str_replace_all() # instead of gsub()
 
 # Date/time operations
