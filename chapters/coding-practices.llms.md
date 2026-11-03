@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-29 09:14:27 (PDT)
+Last modified: 2026-11-03 10:57:06 (PST)
 
 ## 1 Protocols for Code and Data
 
@@ -2295,7 +2295,7 @@ Here is an example where we’d like to find the `square_sum` for every element 
       results[[i]] <- result
     }
 
-This example doesn’t work in the way that 0 is paired to 6, 1 is paired to 7, and so on. Instead, every element in `mylist1` will be paired with every element in `mylist2`. Thus, the “unlisted” results from the example will have \\4\*7 = 28\\ elements.
+This example doesn’t work in the way that 0 is paired to 6, 1 is paired to 7, and so on. Instead, every element in `mylist1` will be paired with every element in `mylist2`. Thus, the “unlisted” results from the example will have $4*7 = 28$ elements.
 
 We can use `flatten()` or `unlist()` functions to decrease the depths of our results. If the results are data frames, then we will need to use `bind_rows()` to combine them.
 
@@ -2303,7 +2303,7 @@ We can use `flatten()` or `unlist()` functions to decrease the depths of our res
 
 One big drawback of `lapply()` is its long computation time, especially when the list length is long. Fortunately, computers nowadays must have multiple cores which makes parallel processing possible to help make computation much faster.
 
-Assume you have a list called `mylist` of length 1000, and `lapply(X = mylist, FUN = func)` applies the function to each of the 1000 elements one by one in \\T\\ seconds. If we could execute the `func` in \\n\\ processors simultaneously, then ideally, we would shrink the computation time to \\T/n\\ seconds.
+Assume you have a list called `mylist` of length 1000, and `lapply(X = mylist, FUN = func)` applies the function to each of the 1000 elements one by one in $T$ seconds. If we could execute the `func` in $n$ processors simultaneously, then ideally, we would shrink the computation time to $T/n$ seconds.
 
 In practice, using functions under the `parallel` and the `future` packages, we can split `mylist` into smaller chunks and apply the function to each element of the several chunks in parallel in different cores to significantly reduce the run time.
 
