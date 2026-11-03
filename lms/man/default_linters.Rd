@@ -7,8 +7,9 @@
 default_linters(nested_calls = FALSE)
 }
 \arguments{
-\item{nested_calls}{Whether to include \code{\link[=nested_call_linter]{nested_call_linter()}} and
-\code{\link[=bare_condition_linter]{bare_condition_linter()}}, the no-nested-calls policy. Off by default
+\item{nested_calls}{Whether to include \code{\link[=nested_call_linter]{nested_call_linter()}},
+\code{\link[=bare_condition_linter]{bare_condition_linter()}} and \code{\link[=ggplot_args_linter]{ggplot_args_linter()}},
+the no-nested-calls policy. Off by default
 while existing code is swept; turn them on in a repo's \code{.lintr.R} with
 \code{lms::default_linters(nested_calls = TRUE)}.}
 }

@@ -32,7 +32,9 @@ It exports:
   and for tidyselect helpers, `aes()` and `vars()`, it flags nothing.
   The second flags an `if()` or `while()` condition that is not already a bare name or `TRUE`/`FALSE`,
   as in `while (TRUE)`.
-  Both are off by default while existing code is swept;
+  `ggplot_args_linter()` is the third: it flags any argument of `ggplot()` (`aes()` or the data),
+  so pipe the data into a bare `ggplot()` and add the mapping as its own layer (`df |> ggplot() + aes(x, y)`).
+  All three are off by default while existing code is swept;
   turn them on with `lms::default_linters(nested_calls = TRUE)`.
 - `undesirable_functions()` --- the underlying undesirable-function map,
   if a repo needs to extend it.
