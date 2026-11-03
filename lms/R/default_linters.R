@@ -10,7 +10,7 @@
 #' ```
 #'
 #' @param nested_calls Whether to include [nested_call_linter()],
-#'   [bare_condition_linter()] and [ggplot_aes_linter()],
+#'   [bare_condition_linter()] and [ggplot_args_linter()],
 #'   the no-nested-calls policy. Off by default
 #'   while existing code is swept; turn them on in a repo's `.lintr.R` with
 #'   `lms::default_linters(nested_calls = TRUE)`.
@@ -41,7 +41,7 @@ default_linters <- function(nested_calls = FALSE) {
       list(
         nested_call_linter = nested_call_linter(),
         bare_condition_linter = bare_condition_linter(),
-        ggplot_aes_linter = ggplot_aes_linter()
+        ggplot_args_linter = ggplot_args_linter()
       )
     )
   }
