@@ -202,6 +202,14 @@ body.quarto-dark .preview-home-changes-banner a:hover {
   color: #bbdefb;
 }
 
+/* Quarto's secondary grey is too dim on the dark page. */
+body.quarto-dark .code-tools-button,
+body.quarto-dark details > summary,
+body.quarto-dark .breadcrumb-item.active,
+body.quarto-dark .breadcrumb-item.active a {
+  color: #adb5bd;
+}
+
 /* Inline code styling for dark mode */
 body.quarto-dark code:not(pre > code) {
   background-color: #404040;
@@ -226,4 +234,12 @@ body.quarto-dark code:not(pre > code) {
 
 .equation-anchor:hover {
   opacity: 1;
+}
+
+/* Land a link target in the upper-middle of the view, not flush against the
+   fixed navbar, where it looks missed. scroll-margin-top applies to every
+   in-page jump and to the scrollIntoView() in anchor-landing.html. */
+:target,
+:is(h1, h2, h3, h4, h5, h6, div, section, figure, table, span)[id] {
+  scroll-margin-top: 30vh;
 }
