@@ -44,6 +44,8 @@ website:
         menu:
           - text: "R Code Style"
             href: chapters/coding-style.qmd
+          - text: "Python Code Style"
+            href: chapters/python-style.qmd
           - text: "R Coding Practices"
             href: chapters/coding-practices.qmd
           - text: "Data masking"
@@ -94,6 +96,7 @@ website:
       - section: "Writing code"
         contents:
           - chapters/coding-style.qmd
+          - chapters/python-style.qmd
           - chapters/coding-practices.qmd
           - chapters/data-masking.qmd
           - chapters/big-data.qmd

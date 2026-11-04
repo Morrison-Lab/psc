@@ -93,10 +93,12 @@ Posit
 PostgreSQL
 PowerShell
 Powerlevel
+Pyink
 REDCap
 REPL
 Rails
 RevealJS
+Ruff
 SERG
 SHA
 SQL
@@ -136,6 +138,7 @@ agentic
 aider
 backoff
 btop
+bugbear
 cholerae
 codebases
 diffing
@@ -143,6 +146,7 @@ dropdown
 ebsite
 edu
 emplate
+flake8
 gh
 github
 glab
@@ -153,6 +157,7 @@ iTerm2
 idempotency
 idempotent
 io
+isort
 jadebc
 jarl
 keybindings
@@ -172,6 +177,11 @@ powerline
 psc
 pseudomallei
 psw
+pycodestyle
+pydocstyle
+pyflakes
+pylint
+pyupgrade
 qwt
 ranger
 reattach
