@@ -43,8 +43,8 @@ Ruff cannot check this rule, so it is not yet enforced.
 
 # Planned work {#sec-python-planned}
 
-- Lint the Python chunks in `.qmd` files with the same configuration.
 - Run the checks through `Morrison-Lab/gha`'s `check-python-package` workflow in every repository that contains Python.
+- Run `check-python-qmd-chunks` in every repository whose `.qmd` files contain Python chunks.
 - Open an issue when upstream changes Google's guide.
 
 These are tracked in [#90](https://github.com/Morrison-Lab/psc/issues/90).
