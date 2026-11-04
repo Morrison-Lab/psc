@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-04 10:51:58 (PST)
+Last modified: 2026-11-04 11:00:21 (PST)
 
 # Welcome
 
@@ -14,7 +14,7 @@ The guidance applies to any research project, whether it is a lab analysis, a co
 
 ## What’s here
 
-- **Writing code**: [coding style](chapters/coding-style.llms.md), [coding practices](chapters/coding-practices.llms.md), [data masking](chapters/data-masking.llms.md), and [working with big data](chapters/big-data.llms.md).
+- **Writing code**: [coding style](chapters/coding-style.llms.md), [Python code style](chapters/python-style.llms.md), [coding practices](chapters/coding-practices.llms.md), [data masking](chapters/data-masking.llms.md), and [working with big data](chapters/big-data.llms.md).
 
 - **Projects**: [code repositories](chapters/code-repositories.llms.md), [reproducible environments](chapters/reproducible-environments.llms.md), and [code publication](chapters/code-publication.llms.md).
 
