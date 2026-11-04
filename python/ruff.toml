@@ -1,7 +1,7 @@
 # Lab Python lint and format configuration (Morrison-Lab/psc#90).
 # Canonical copy: Morrison-Lab/psc python/ruff.toml.
 # Repositories copy this file to their root as ruff.toml.
-# Rationale for each setting: chapters/python-style.qmd and python/DECISIONS.md.
+# Rationale for each setting: chapters/python-style.qmd and docs/adr-python-style.md.
 
 line-length = 80
 indent-width = 4

@@ -27,6 +27,7 @@ but the principles carry over to other languages.
 
 - **Writing code**:
   [coding style](chapters/coding-style.qmd),
+  [Python code style](chapters/python-style.qmd),
   [coding practices](chapters/coding-practices.qmd),
   [data masking](chapters/data-masking.qmd),
   and [working with big data](chapters/big-data.qmd).
