@@ -31,5 +31,5 @@ Upstream can reword or renumber the sections that the lab's amendments cite.
 
 - Repositories copy `python/ruff.toml` to their root, and CI fails on findings.
 - Ruff has no rule for nested calls, so that amendment needs a custom check before it is enforced.
-- Python chunks in `.qmd` files are not linted until the extraction check in [#90](https://github.com/Morrison-Lab/psc/issues/90) lands.
+- Python chunks in `.qmd` files will be linted by the `check-python-qmd-chunks` check in `Morrison-Lab/gha` once a repository calls it with this configuration.
 - Pinning the fork means someone must sync it from upstream on purpose; a weekly watcher will open an issue when upstream changes.
