@@ -195,3 +195,12 @@ ucdserg
 unlinked
 workspaces
 zsh
+Ruff
+Pyink
+pylint
+pycodestyle
+pyflakes
+isort
+pyupgrade
+bugbear
+pydocstyle

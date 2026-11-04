@@ -1,0 +1,50 @@
+---
+title: "Python Code Style"
+format:
+  html: default
+  revealjs:
+    output-file: python-style-slides.html
+  pdf:
+    output-file: python-style-handout.pdf
+  docx:
+    output-file: python-style.docx
+---
+
+# Base guide {#sec-python-base-guide}
+
+The lab's Python style is an amendment of
+[Google's Python style guide](https://github.com/Morrison-Lab/styleguide/blob/c03dfce4e1763d032e33696d126e5af4c7de03bf/pyguide.md),
+read in the lab's fork at a pinned commit.
+Follow that guide for everything the amendments below do not change.
+Google's current wording is at
+[google.github.io/styleguide/pyguide.html](https://google.github.io/styleguide/pyguide.html).
+
+# Amendments {#sec-python-amendments}
+
+## Linting and formatting with Ruff
+
+[Ruff](https://docs.astral.sh/ruff/) replaces the pylint configuration and the Pyink formatter that Google's guide mentions.
+It lints and formats in one tool.
+
+- Lint settings live in the lab's [`python/ruff.toml`](https://github.com/Morrison-Lab/psc/blob/main/python/ruff.toml).
+  Copy it to the root of a repository as `ruff.toml`.
+- Line length stays at 80 characters, as in Google's guide.
+- Docstrings follow Google's format.
+- Rule families are pycodestyle, pyflakes, isort, pydocstyle, pyupgrade, bugbear, comprehensions and simplify.
+
+CI runs the checks and fails on any finding.
+
+## No nested function calls
+
+The lab's [no-nested-calls rule](coding-style.qmd#sec-avoid-nesting) applies to Python.
+Give each intermediate result a name.
+Method chaining is fine.
+Ruff cannot check this rule, so it is not yet enforced.
+
+# Planned work {#sec-python-planned}
+
+- Lint the Python chunks in `.qmd` files with the same configuration.
+- Run the checks through `Morrison-Lab/gha`'s `check-python-package` workflow in every repository that contains Python.
+- Open an issue when upstream changes Google's guide.
+
+These are tracked in [#90](https://github.com/Morrison-Lab/psc/issues/90).
