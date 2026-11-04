@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-04 13:27:29 (PST)
+Last modified: 2026-11-04 13:33:30 (PST)
 
 # 1 Base guide
 
@@ -29,8 +29,8 @@ The lab’s [no-nested-calls rule](../chapters/coding-style.llms.md#sec-avoid-ne
 
 # 3 Planned work
 
-- Lint the Python chunks in `.qmd` files with the same configuration.
 - Run the checks through `Morrison-Lab/gha`’s `check-python-package` workflow in every repository that contains Python.
+- Run `check-python-qmd-chunks` in every repository whose `.qmd` files contain Python chunks.
 - Open an issue when upstream changes Google’s guide.
 
 These are tracked in [\#90](https://github.com/Morrison-Lab/psc/issues/90).
