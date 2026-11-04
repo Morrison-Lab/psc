@@ -60,7 +60,23 @@ def lint(text):
         )
 
 
+INDENTED = """::: {.callout-note}
+  ```{python}
+  x = 1
+  if x == None:
+      pass
+  ```
+:::
+"""
+
+
 class LintQmdChunks(unittest.TestCase):
+    def test_indented_chunks_are_dedented(self):
+        result = lint(INDENTED)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("page.qmd:4: E711", result.stdout)
+        self.assertNotIn("invalid-syntax", result.stdout)
+
     def test_clean_file_passes(self):
         result = lint(CLEAN)
         self.assertEqual(result.returncode, 0, result.stdout)

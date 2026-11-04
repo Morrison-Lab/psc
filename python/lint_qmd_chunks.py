@@ -42,10 +42,12 @@ def extract_chunks(text):
     source = []
     line_map = []
     fence = None
+    indent = ""
     for number, line in enumerate(text.split("\n"), start=1):
         if fence is None:
             opened = OPEN_FENCE.match(line)
             if opened:
+                indent = opened.group(1)
                 fence = opened.group(2)
                 if source:
                     source.extend(["", ""])
@@ -54,7 +56,8 @@ def extract_chunks(text):
         if line.strip() == fence:
             fence = None
             continue
-        source.append(line)
+        # A chunk inside a callout or list item is indented as a whole.
+        source.append(line.removeprefix(indent))
         line_map.append(number)
     return "\n".join(source) + "\n", line_map
 
@@ -80,7 +83,7 @@ def lint_file(path, config):
                 "check",
                 "--config",
                 str(config),
-                "--extend-ignore",
+                "--ignore",
                 CHUNK_IGNORES,
                 "--output-format",
                 "json",
