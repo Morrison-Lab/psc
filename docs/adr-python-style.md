@@ -2,8 +2,8 @@
 
 ## Status
 
-Accepted for the base guide and the Ruff tooling (Ezra, 2026-11-04).
-Proposed, awaiting Ezra's confirmation: the lab fork as the default reference.
+Accepted (Ezra, 2026-11-04), including the lab fork as the default reference
+(Ezra chose the recommended option with "daytb").
 
 ## Context
 
