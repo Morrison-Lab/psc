@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-04 23:19:58 (PST)
+Last modified: 2026-11-06 13:44:14 (PST)
 
 Follow these code style guidelines for all R code:
 
@@ -24,7 +24,7 @@ We recommend the [Google R Style Guide](https://google.github.io/styleguide/Rgui
 
 - **Use native pipe**: `|>` not `%>%` (available in R \>= 4.1.0). This is enforced by the example `.lintr.R` configuration via `pipe_consistency_linter(pipe = "|>")`
 
-Many of these rules can be enforced automatically with a `.lintr.R` configuration file; see the UCD-SERG lab manual’s [example](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R). See [Section 18](#sec-style-auto-style) for details on automated style checking.
+Many of these rules can be enforced automatically with a `.lintr.R` configuration file; see the UCD-SERG lab manual’s [example](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R). See [Section 19](#sec-style-auto-style) for details on automated style checking.
 
 ## 2 Clean Code Principles
 
@@ -46,7 +46,7 @@ Robert C. Martin’s *Clean Code* ([Martin 2008](#ref-martin2008cleancode)) prov
 
 ### 2.3 Comments
 
-- **Explain why, not what**: As detailed in [Section 10](#sec-comments), code should explain what it does through expressive naming and clear structure. Use comments to document the reasoning, statistical rationale, edge cases, or scientific domain decisions behind an implementation.
+- **Explain why, not what**: As detailed in [Section 11](#sec-comments), code should explain what it does through expressive naming and clear structure. Use comments to document the reasoning, statistical rationale, edge cases, or scientific domain decisions behind an implementation.
 - **Do not leave commented-out code**: Rely on version control (Git) to preserve historical code rather than leaving dead blocks in source files.
 
 ### 2.4 The Boy Scout Rule
@@ -55,7 +55,7 @@ Robert C. Martin’s *Clean Code* ([Martin 2008](#ref-martin2008cleancode)) prov
 
 ### 2.5 Don’t Repeat Yourself (DRY)
 
-- **Eliminate duplication**: Originating in *The Pragmatic Programmer* ([Hunt and Thomas 1999](#ref-hunt1999pragmatic)) and emphasized in *Clean Code*, the DRY principle states that every piece of knowledge must have a single, unambiguous representation. Duplicate logic is a primary source of bugs and maintenance overhead. When the same transformation or calculation appears in multiple places, extract it into a reusable helper function (see also [Section 14](#sec-package-code-practices)).
+- **Eliminate duplication**: Originating in *The Pragmatic Programmer* ([Hunt and Thomas 1999](#ref-hunt1999pragmatic)) and emphasized in *Clean Code*, the DRY principle states that every piece of knowledge must have a single, unambiguous representation. Duplicate logic is a primary source of bugs and maintenance overhead. When the same transformation or calculation appears in multiple places, extract it into a reusable helper function (see also [Section 15](#sec-package-code-practices)).
 
 ## 3 Function Structure and Documentation
 
@@ -404,7 +404,28 @@ ggplot(recent_cases, aes(x = onset_date)) +
 
 This is the same readability goal as [Section 5](#sec-avoid-nesting): prefer named steps you can read and check over one dense expression.
 
-## 10 Comments
+## 10 Name Function Arguments
+
+Name the arguments in every function call, so a reader sees what each value is for without looking up the function’s argument order.
+
+``` r
+# Good: each value says what it is for
+df |> ggplot() + aes(x = day, y = Volume) + geom_line()
+read_csv(file = path, show_col_types = FALSE)
+
+# Avoid: the reader must know the argument order
+df |> ggplot() + aes(day, Volume) + geom_line()
+read_csv(path, show_col_types = FALSE)
+```
+
+There are two exceptions:
+
+- A call with a single argument, such as `nrow(df)` or `log(x)`.
+- A call whose positional arguments are extremely obvious, such as `head(data, 1)`.
+
+Always name the arguments of `ggplot2::aes()`, even a single one: write `aes(x = Lag1)`, not `aes(Lag1)`. Positional `aes()` arguments are easy to misread, because the aesthetic each variable maps to is not visible at the call. `lms::aes_args_named_linter()` flags every unnamed `aes()` argument.
+
+## 11 Comments
 
 Use comments to explain *why*, not *what*:
 
@@ -450,9 +471,9 @@ In prose text chunks, Quarto ignores single line breaks, so you should also line
 
 You can configure RStudio’s settings to display the 80-character margin.
 
-## 11 Line Breaks and Formatting
+## 12 Line Breaks and Formatting
 
-### 11.1 Blank Lines Before Lists
+### 12.1 Blank Lines Before Lists
 
 Always include a blank line before starting a bullet list or numbered list in markdown/Quarto documents. This ensures proper rendering and readability.
 
@@ -477,7 +498,7 @@ Here’s what happens if you don’t add the blank line:
 
 Here are the requirements: - First item - Second item
 
-### 11.2 Semantic Line Breaks in Plain Text
+### 12.2 Semantic Line Breaks in Plain Text
 
 Add a newline at the end of every phrase or logical unit of text in plain-text source files. A phrase is typically a complete thought, clause, or sentence. This applies to:
 
@@ -523,7 +544,7 @@ This practice is also known as [semantic line breaks](https://sembr.org/).
 - Keep related short phrases together on one line
 - Do not break in the middle of inline code, links, or formatting
 
-### 11.3 Line Breaks in Code
+### 12.3 Line Breaks in Code
 
 - For `ggplot` calls and `dplyr` pipelines, do not crowd single lines. Here are some nontrivial examples of “beautiful” pipelines, where beauty is defined by coherence:
 
@@ -595,15 +616,15 @@ ggplot(data=data) +
 
 Imagine (or perhaps mournfully recall) the mess that can occur when you don’t strictly style a complicated `ggplot` call. Trying to fix bugs and ensure your code is working can be a nightmare. Now imagine trying to do it with the same code 6 months after you’ve written it. Invest the time now and reap the rewards as the code practically explains itself, line by line.
 
-## 12 Markdown and Quarto Formatting
+## 13 Markdown and Quarto Formatting
 
-### 12.1 Writing about code in Quarto documents
+### 13.1 Writing about code in Quarto documents
 
 When writing about code in prose sections of quarto documents, use backticks to apply a code style: for example, `dplyr::mutate()`. When talking about packages, use backticks and curly-braces with a hyperlink to the package website. For example: [`{dplyr}`](https://dplyr.tidyverse.org/).
 
 **Important:** Do not use raw HTML (`<a href="...">`) in `.qmd` files. Always use Quarto/markdown link syntax instead.
 
-## 13 Messaging and User Communication
+## 14 Messaging and User Communication
 
 Use [`{cli}`](https://cli.r-lib.org/) package functions for all user-facing messages in package functions. This is enforced by the example `.lintr.R` configuration via `undesirable_function_linter()`.
 
@@ -629,7 +650,7 @@ warning("Missing data detected")
 stop("Invalid input")
 ```
 
-### 13.1 CLI Styling: Progress Notes vs. Outcomes
+### 14.1 CLI Styling: Progress Notes vs. Outcomes
 
 When writing command-line tools, pipeline scripts, or package messaging, maintain a clear visual distinction between intermediate progress updates and terminal outcomes:
 
@@ -662,7 +683,7 @@ cli::cli_inform(c("*" = "{.strong STARTING TO COMPUTE ESTIMATES...}"))
 cli::cli_inform("failed: check inputs")
 ```
 
-## 14 Package Code Practices
+## 15 Package Code Practices
 
 - **No `library()` in package code**: Use `::` notation or declare in DESCRIPTION Imports. This is enforced by the example `.lintr.R` configuration via `undesirable_function_linter()`. Instead, use:
   - `::` for explicit namespace references (e.g., `dplyr::mutate()`)
@@ -672,7 +693,7 @@ cli::cli_inform("failed: check inputs")
 - **Document all exports**: Use roxygen2 (`@title`, `@description`, `@param`, `@returns`, `@examples`)
 - **Avoid code duplication**: Extract repeated logic into helper functions
 
-## 15 Tidyverse Replacements
+## 16 Tidyverse Replacements
 
 Use modern tidyverse/alternatives for base R functions:
 
@@ -708,7 +729,7 @@ sessioninfo::session_info() # instead of sessionInfo()
 
 See also [Tidyverse](../chapters/coding-practices.llms.md#sec-tidyverse).
 
-## 16 The here Package
+## 17 The here Package
 
 The `here` package helps manage file paths in projects by automatically finding the project root and building paths relative to it:
 
@@ -724,7 +745,7 @@ This solves the problem of different working directory paths across collaborator
 
 This works regardless of where collaborators clone the repository. For more details, see the [here package vignette](https://here.r-lib.org/articles/here.html).
 
-### 16.1 Pass subpath components directly to `here()`
+### 17.1 Pass subpath components directly to `here()`
 
 `here::here()` already accepts path components as arguments and joins them with the project root. Do not wrap `here::here()` in `file.path()` or `fs::path()`:
 
@@ -741,7 +762,7 @@ The wrapped form is functionally equivalent but harder to read and obscures the 
 
 *See also [The here package](../chapters/coding-practices.llms.md#sec-here-package-practices) for detailed explanation of the here package.*
 
-## 17 Object Naming
+## 18 Object Naming
 
 Use descriptive names that are both expressive and explicit. Being verbose is useful and easy in the age of autocompletion:
 
@@ -836,9 +857,9 @@ prep_data <- function(raw_data) {
 
 For more help, check out [Be Expressive: How to Give Your Variables Better Names](https://spin.atomicobject.com/2017/11/01/good-variable-names/)
 
-## 18 Automated Tools for Style and Project Workflow
+## 19 Automated Tools for Style and Project Workflow
 
-### 18.1 Styling
+### 19.1 Styling
 
 #### RStudio shortcuts
 
@@ -924,7 +945,7 @@ Linters are programming tools that check adherence to a given style, syntax erro
 >
 > The `lintr` package goes hand in hand with the `styler` package. The styler can be used to automatically fix the problems that the lintr catches.
 
-### 18.2 Using Lintr
+### 19.2 Using Lintr
 
 > **TIP:**
 >
@@ -955,7 +976,7 @@ Linters are programming tools that check adherence to a given style, syntax erro
 >
 > We recommend `.lintr.R` files for configuration (lintr also supports the `.lintr` format, but `.lintr.R` gets full R syntax support).
 
-### 18.3 A Recommended Lintr Configuration
+### 19.3 A Recommended Lintr Configuration
 
 We recommend a custom `.lintr.R` configuration file in each repository to enforce these style standards. You can view an example configuration, from the UCD-SERG lab manual, at <https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R>.
 
@@ -1020,7 +1041,7 @@ jarl check . --fix
 >
 > We recommend [`{lintr}`](https://lintr.r-lib.org/) with a custom `.lintr.R` configuration and a shared linter package (for example, the UCD-SERG lab manual’s [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) and this guide’s [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms)) as the primary standard for CI pipelines and package validation. However, `{jarl}` is an excellent choice for local pre-commit hooks and interactive developer workflows where instant lint feedback saves time on large repositories.
 
-### 18.4 Linting Changed Files vs. the Whole Project in CI
+### 19.4 Linting Changed Files vs. the Whole Project in CI
 
 A project can fall out of lint compliance without any change to its own source code or `.lintr` configuration: [`{lintr}`](https://lintr.r-lib.org/) releases sometimes add default linters or tighten existing ones, so code that passed yesterday can fail after a routine package update.
 
@@ -1030,7 +1051,7 @@ In most cases, a better default is to lint **changed files only**, so pre-existi
 
 Whole-project linting still has a place: run it on a schedule or as a manually triggered workflow, so that project-wide drift is still detected and cleaned up deliberately in its own dedicated pull request, rather than as a side effect of someone else’s change.
 
-## 19 Additional Resources
+## 20 Additional Resources
 
 - Tidyverse style guide ([Wickham 2023](#ref-wickham2023tidyverse)): Detailed coding style conventions for writing clear, consistent R code. Covers naming, syntax, pipes, functions, and more.
 

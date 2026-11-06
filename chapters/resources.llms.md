@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-04 23:19:58 (PST)
+Last modified: 2026-11-06 13:44:14 (PST)
 
 This page collects learning resources for scientific computing. Several chapters keep their own resource lists, so this page points to those lists rather than repeating them:
 

@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-04 23:19:58 (PST)
+Last modified: 2026-11-06 13:44:14 (PST)
 
 This chapter covers the social side of writing code together: opening pull requests, reviewing each other’s work, and responding to review feedback.
 
