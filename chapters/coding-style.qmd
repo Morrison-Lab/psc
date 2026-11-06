@@ -50,6 +50,10 @@ Follow these code style guidelines for all R code:
 
 {{< include coding-style/construct-inputs.qmd >}}
 
+## Name Function Arguments {#sec-name-arguments}
+
+{{< include coding-style/name-arguments.qmd >}}
+
 ## Comments {#sec-comments}
 
 {{< include coding-style/comments.qmd >}}
