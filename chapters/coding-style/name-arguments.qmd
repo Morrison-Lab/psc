@@ -1,0 +1,25 @@
+Name the arguments in every function call,
+so a reader sees what each value is for
+without looking up the function's argument order.
+
+```r
+# Good: each value says what it is for
+df |> ggplot() + aes(x = day, y = Volume) + geom_line()
+read_csv(file = path, show_col_types = FALSE)
+
+# Avoid: the reader must know the argument order
+df |> ggplot() + aes(day, Volume) + geom_line()
+read_csv(path, show_col_types = FALSE)
+```
+
+There are two exceptions:
+
+- A call with a single argument, such as `nrow(df)` or `log(x)`.
+- A call whose positional arguments are extremely obvious,
+  such as `head(data, 1)`.
+
+Always name the arguments of `ggplot2::aes()`, even a single one:
+write `aes(x = Lag1)`, not `aes(Lag1)`.
+Positional `aes()` arguments are easy to misread,
+because the aesthetic each variable maps to is not visible at the call.
+`lms::aes_args_named_linter()` flags every unnamed `aes()` argument.
