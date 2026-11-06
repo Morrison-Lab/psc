@@ -33,7 +33,7 @@ It exports:
   The second flags an `if()` or `while()` condition that is not already a bare name or `TRUE`/`FALSE`,
   as in `while (TRUE)`.
   `ggplot_args_linter()` is the third: it flags any argument of `ggplot()` (`aes()` or the data),
-  so pipe the data into a bare `ggplot()` and add the mapping as its own layer (`df |> ggplot() + aes(x, y)`).
+  so pipe the data into a bare `ggplot()` and add the mapping as its own layer (`df |> ggplot() + aes(x = x, y = y)`).
   `aes_args_named_linter()` is a fourth, a readability check:
   it flags every unnamed argument of `aes()`, so write `aes(x = day, y = Volume)`.
   All four are off by default while existing code is swept;

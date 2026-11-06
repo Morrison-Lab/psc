@@ -33,6 +33,19 @@ test_that("named aes() arguments are not flagged", {
   lintr::expect_no_lint("geom_point(aes(colour = g))", aes_args_named_linter())
 })
 
+test_that("arguments that cannot take a name are not flagged", {
+  lintr::expect_no_lint("aes(...)", aes_args_named_linter())
+  lintr::expect_no_lint("aes(!!!mapping)", aes_args_named_linter())
+  lintr::expect_no_lint("aes(!!mapping)", aes_args_named_linter())
+  lintr::expect_lint("aes(..., x)", message, aes_args_named_linter())
+})
+
+test_that("only ggplot2's aes() is checked", {
+  lintr::expect_no_lint("obj$aes(x, y)", aes_args_named_linter())
+  lintr::expect_no_lint("other::aes(x, y)", aes_args_named_linter())
+  lintr::expect_lint("ggplot2::aes(x)", message, aes_args_named_linter())
+})
+
 test_that("other functions' unnamed arguments are not flagged", {
   lintr::expect_no_lint("geom_point(data = d)", aes_args_named_linter())
   lintr::expect_no_lint("head(data, 1)", aes_args_named_linter())

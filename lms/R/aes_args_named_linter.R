@@ -13,9 +13,17 @@
 #' @return A [lintr::Linter()] object.
 #' @export
 aes_args_named_linter <- function() {
-  aes_call <- "//expr[expr[1]/SYMBOL_FUNCTION_CALL[text() = 'aes']]"
+  # ggplot2's aes(), bare or qualified, not obj$aes() or another package's aes()
+  is_aes <- paste0(
+    "expr[1][SYMBOL_FUNCTION_CALL[text() = 'aes']",
+    " and not(OP-DOLLAR)",
+    " and (not(SYMBOL_PACKAGE) or SYMBOL_PACKAGE[text() = 'ggplot2'])]"
+  )
+  aes_call <- paste0("//expr[", is_aes, "]")
   starts_arg <- "preceding-sibling::*[1][self::OP-LEFT-PAREN or self::OP-COMMA]"
-  xpath <- paste0(aes_call, "/expr[", starts_arg, "]")
+  # `...` forwarding and !! / !!! unquoting cannot take a name
+  not_forwarded <- "not(self::expr[SYMBOL[text() = '...'] or OP-EXCLAMATION])"
+  xpath <- paste0(aes_call, "/expr[", starts_arg, " and ", not_forwarded, "]")
 
   message <- paste(
     "Name the arguments of aes():",
