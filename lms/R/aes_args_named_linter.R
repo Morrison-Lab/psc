@@ -25,7 +25,7 @@ aes_args_named_linter <- function() {
   not_forwarded <- "not(self::expr[SYMBOL[text() = '...'] or OP-EXCLAMATION])"
   xpath <- paste0(aes_call, "/expr[", starts_arg, " and ", not_forwarded, "]")
 
-  message <- paste(
+  flag_message <- paste(
     "Name the arguments of aes():",
     "write `aes(x = day, y = Volume)`, not `aes(day, Volume)`."
   )
@@ -41,7 +41,7 @@ aes_args_named_linter <- function() {
     lintr::xml_nodes_to_lints(
       nodes,
       source_expression = source_expression,
-      lint_message = message,
+      lint_message = flag_message,
       type = "warning"
     )
   })
