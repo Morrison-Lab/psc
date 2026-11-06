@@ -20,10 +20,20 @@ aes_args_named_linter <- function() {
     " and (not(SYMBOL_PACKAGE) or SYMBOL_PACKAGE[text() = 'ggplot2'])]"
   )
   aes_call <- paste0("//expr[", is_aes, "]")
-  starts_arg <- "preceding-sibling::*[1][self::OP-LEFT-PAREN or self::OP-COMMA]"
-  # `...` forwarding and !! / !!! unquoting cannot take a name
-  not_forwarded <- "not(self::expr[SYMBOL[text() = '...'] or OP-EXCLAMATION])"
-  xpath <- paste0(aes_call, "/expr[", starts_arg, " and ", not_forwarded, "]")
+  # an argument starts right after "(" or ",", ignoring comments between
+  starts_arg <- paste0(
+    "preceding-sibling::*[not(self::COMMENT)][1]",
+    "[self::OP-LEFT-PAREN or self::OP-COMMA]"
+  )
+  # arguments that cannot take a name: `...` forwarding, `!!!` splicing,
+  # and `name := value` name injection
+  next_expr <- "OP-EXCLAMATION/following-sibling::expr[1]"
+  splice <- paste0(next_expr, "[", next_expr, "[OP-EXCLAMATION]]")
+  not_nameable <- paste0(
+    "not(self::expr[SYMBOL[text() = '...'] or ", splice,
+    " or LEFT_ASSIGN[text() = ':=']])"
+  )
+  xpath <- paste0(aes_call, "/expr[", starts_arg, " and ", not_nameable, "]")
 
   flag_message <- paste(
     "Name the arguments of aes():",

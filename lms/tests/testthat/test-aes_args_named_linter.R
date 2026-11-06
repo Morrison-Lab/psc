@@ -36,8 +36,33 @@ test_that("named aes() arguments are not flagged", {
 test_that("arguments that cannot take a name are not flagged", {
   lintr::expect_no_lint("aes(...)", aes_args_named_linter())
   lintr::expect_no_lint("aes(!!!mapping)", aes_args_named_linter())
-  lintr::expect_no_lint("aes(!!mapping)", aes_args_named_linter())
+  lintr::expect_no_lint(
+    "aes(!!col := day)",
+    aes_args_named_linter()
+  )
+  lintr::expect_no_lint(
+    "aes({{ col }} := day)",
+    aes_args_named_linter()
+  )
   lintr::expect_lint("aes(..., x)", lint_message, aes_args_named_linter())
+})
+
+test_that("unary and single-unquoted arguments are still flagged", {
+  lintr::expect_lint(
+    "aes(!is.na(x), y = y)",
+    lint_message,
+    aes_args_named_linter()
+  )
+  lintr::expect_lint("aes(!outlier)", lint_message, aes_args_named_linter())
+  lintr::expect_lint("aes(!!var)", lint_message, aes_args_named_linter())
+})
+
+test_that("an unnamed argument after a comment is flagged", {
+  lintr::expect_lint(
+    "aes(\n  # primary axis\n  day,\n  y = Volume\n)",
+    lint_message,
+    aes_args_named_linter()
+  )
 })
 
 test_that("only ggplot2's aes() is checked", {
