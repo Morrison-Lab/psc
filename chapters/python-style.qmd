@@ -53,8 +53,7 @@ because plotnine draws no 3-D graphics.
 Do not use Matplotlib directly for figures in new code.
 Name every argument, including those inside `aes()`,
 as the [name-arguments rule](coding-style.qmd#sec-name-arguments) says for R.
-Existing Matplotlib figures are converted separately, not in unrelated PRs
-([lds#2021](https://github.com/Morrison-Lab/lds/issues/2021)).
+Convert existing Matplotlib figures in their own PRs, not in unrelated ones.
 
 # Planned work {#sec-python-planned}
 
