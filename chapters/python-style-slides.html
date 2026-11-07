@@ -245,7 +245,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-11-06 13:44:14 (PST)</p>
+  <p class="date">Last modified: 2026-11-06 23:05:34 (PST)</p>
 </section>
 <section>
 <section id="sec-python-base-guide" class="title-slide slide level1 center" data-number="1">
@@ -281,6 +281,13 @@
 <section class="slide level2">
 
 <p>The lab’s <a href="../chapters/coding-style.html#sec-avoid-nesting">no-nested-calls rule</a> applies to Python. Give each intermediate result a name. Method chaining is fine. Ruff cannot check this rule, so it is not yet enforced.</p>
+</section>
+<section id="figures-with-plotnine-and-plotly" class="slide level2" data-number="2.3">
+<h2><span class="header-section-number">2.3</span> Figures with plotnine and plotly</h2>
+</section>
+<section class="slide level2">
+
+<p>Draw 2-D figures with <a href="https://plotnine.org/">plotnine</a>, a Python implementation of the grammar of graphics. Its calls mirror the lab’s <code>ggplot2</code> code, so a figure reads the same in R and in Python, and the lab’s <code>qnp</code> theme carries over. Draw 3-D figures with <a href="https://plotly.com/python/">plotly</a>, because plotnine draws no 3-D graphics. Do not use Matplotlib directly for figures in new code. Name every argument, including those inside <code>aes()</code>, as the <a href="../chapters/coding-style.html#sec-name-arguments">name-arguments rule</a> says for R. Convert existing Matplotlib figures in their own PRs, not in unrelated ones.</p>
 </section></section>
 <section>
 <section id="sec-python-planned" class="title-slide slide level1 center" data-number="3">

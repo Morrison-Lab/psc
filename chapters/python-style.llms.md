@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-06 13:44:14 (PST)
+Last modified: 2026-11-06 23:05:34 (PST)
 
 # 1 Base guide
 
@@ -26,6 +26,10 @@ CI runs the checks and fails on any finding.
 ## 2.2 No nested function calls
 
 The lab’s [no-nested-calls rule](../chapters/coding-style.llms.md#sec-avoid-nesting) applies to Python. Give each intermediate result a name. Method chaining is fine. Ruff cannot check this rule, so it is not yet enforced.
+
+## 2.3 Figures with plotnine and plotly
+
+Draw 2-D figures with [plotnine](https://plotnine.org/), a Python implementation of the grammar of graphics. Its calls mirror the lab’s `ggplot2` code, so a figure reads the same in R and in Python, and the lab’s `qnp` theme carries over. Draw 3-D figures with [plotly](https://plotly.com/python/), because plotnine draws no 3-D graphics. Do not use Matplotlib directly for figures in new code. Name every argument, including those inside `aes()`, as the [name-arguments rule](../chapters/coding-style.llms.md#sec-name-arguments) says for R. Convert existing Matplotlib figures in their own PRs, not in unrelated ones.
 
 # 3 Planned work
 

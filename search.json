@@ -1733,6 +1733,18 @@
     ]
   },
   {
+    "objectID": "chapters/python-style.html#figures-with-plotnine-and-plotly",
+    "href": "chapters/python-style.html#figures-with-plotnine-and-plotly",
+    "title": "Python Code Style",
+    "section": "2.3 Figures with plotnine and plotly",
+    "text": "2.3 Figures with plotnine and plotly\nDraw 2-D figures with plotnine, a Python implementation of the grammar of graphics. Its calls mirror the lab’s ggplot2 code, so a figure reads the same in R and in Python, and the lab’s qnp theme carries over. Draw 3-D figures with plotly, because plotnine draws no 3-D graphics. Do not use Matplotlib directly for figures in new code. Name every argument, including those inside aes(), as the name-arguments rule says for R. Convert existing Matplotlib figures in their own PRs, not in unrelated ones.",
+    "crumbs": [
+      "Home",
+      "Writing code",
+      "Python Code Style"
+    ]
+  },
+  {
     "objectID": "chapters/reproducible-environments.html#sec-package-version-control-with-renv",
     "href": "chapters/reproducible-environments.html#sec-package-version-control-with-renv",
     "title": "Reproducible Environments",
