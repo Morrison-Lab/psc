@@ -54,6 +54,25 @@ without reading the function body.
 
 ---
 
+Do not put the language in an object's name.
+When the same analysis appears in R and in Python, give the object the same name in both.
+Each language keeps its own namespace, so the names do not collide.
+
+```r
+# Good (R chunk)
+iris_two <- iris |> dplyr::select(Petal.Length, Petal.Width)
+```
+
+```python
+# Good (Python chunk)
+iris_two = iris[["Petal.Length", "Petal.Width"]]
+```
+
+Not `iris_two_r` and `iris_two_py`
+(Ezra, 2026-11-10: "why are you still putting _py and _R suffixes on objects in code").
+
+---
+
 Use `snake_case` for all variable and function names.
 Avoid using `.` in names (as in base R's `read.csv()`),
 as this goes against best practices in modern R and other languages.
