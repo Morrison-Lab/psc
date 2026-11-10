@@ -11,6 +11,12 @@ The following principles apply to all R code:
 - **Naming**: Use `snake_case` for functions and variables;
   acronyms may be uppercase (e.g., `prep_IDs_data`)
 - **Write tidy code**: Keep code clean, readable, and well-organized
+- **Decide style here, not by imitation**: The repo maintainers make style decisions explicitly
+  and record them in this guide,
+  and code does not copy the style of the code around it.
+  When this guide does not say how to write something,
+  raise the question as an issue on the psc repository
+  instead of copying a neighbouring file
 - **Avoid redundant logical comparisons**: Use logical variables directly in conditional statements (e.g., `if (x)` instead of `if (x == TRUE)` or `if (x == 1)`)
 
 {{< include /chapters/coding-style/_pipes.qmd >}}
