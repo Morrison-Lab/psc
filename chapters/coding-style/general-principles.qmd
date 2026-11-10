@@ -11,7 +11,8 @@ The following principles apply to all R code:
 - **Naming**: Use `snake_case` for functions and variables;
   acronyms may be uppercase (e.g., `prep_IDs_data`)
 - **Write tidy code**: Keep code clean, readable, and well-organized
-- **Decide style here, not by imitation**: Style decisions are made explicitly in this guide
+- **Decide style here, not by imitation**: The repo maintainers make style decisions explicitly
+  and record them in this guide
   (or in [psw](https://morrison-lab.github.io/psw/), for writing),
   and code does not copy the style of the code around it.
   When this guide does not say how to write something,
