@@ -8,8 +8,8 @@ default_linters(nested_calls = FALSE)
 }
 \arguments{
 \item{nested_calls}{Whether to include \code{\link[=nested_call_linter]{nested_call_linter()}},
-\code{\link[=bare_condition_linter]{bare_condition_linter()}}, \code{\link[=ggplot_args_linter]{ggplot_args_linter()}} and
-\code{\link[=aes_args_named_linter]{aes_args_named_linter()}},
+\code{\link[=bare_condition_linter]{bare_condition_linter()}}, \code{\link[=ggplot_args_linter]{ggplot_args_linter()}},
+\code{\link[=aes_args_named_linter]{aes_args_named_linter()}} and \code{\link[=base_subset_linter]{base_subset_linter()}},
 the no-nested-calls and readability policy. Off by default
 while existing code is swept; turn them on in a repo's \code{.lintr.R} with
 \code{lms::default_linters(nested_calls = TRUE)}.}

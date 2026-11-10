@@ -30,4 +30,27 @@ labelled::set_variable_labels() # instead of attr(x, "label") <- ...
 sessioninfo::session_info() # instead of sessionInfo()
 ```
 
+### Subsetting data frames
+
+Subset a data frame or tibble with `dplyr::filter()` for rows
+and `dplyr::select()` for columns.
+Extract one column as a vector with `dplyr::pull()`.
+Do not index a data frame with base `[]`.
+
+```r
+# Rows and columns
+smarket |>
+  dplyr::filter(Year < 2005) |>
+  dplyr::select(Lag1, Lag2)   # not smarket[smarket$Year < 2005, c("Lag1", "Lag2")]
+
+# One column, as a vector
+smarket |>
+  dplyr::filter(Year < 2005) |>
+  dplyr::pull(Direction)      # not smarket$Direction[smarket$Year < 2005]
+```
+
+Base `[]` stays for vectors, lists and matrices,
+where `filter()` and `select()` do not apply.
+When a matrix needs `x[i, ]`, mark the line `# nolint`.
+
 See also [Tidyverse](coding-practices.qmd#sec-tidyverse).
