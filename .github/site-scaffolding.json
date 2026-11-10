@@ -1,0 +1,41 @@
+{
+  "source_repo": "Morrison-Lab/qwt",
+  "source_ref": "main",
+  "files": [
+    {
+      "path": "offwhite.scss",
+      "source_path": "offwhite.scss",
+      "commit": "34c1056981bba24af4c4ef2e4df469b91b0f0b75",
+      "sha256": "6990d49a49eaab3357befe32469a15eababfb12f3df91c26da8836edce183ef2",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/34c1056981bba24af4c4ef2e4df469b91b0f0b75/offwhite.scss"
+    },
+    {
+      "path": "theme-picker.html",
+      "source_path": "theme-picker.html",
+      "commit": "7cfba65d8eac6b34915023a5d11efecacdf1d17a",
+      "sha256": "aa6859e5c9aeaf465094efaa8d7730c593515068fc2c7d4a93c40643210e03f9",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/7cfba65d8eac6b34915023a5d11efecacdf1d17a/theme-picker.html"
+    },
+    {
+      "path": "anchor-landing.html",
+      "source_path": "anchor-landing.html",
+      "commit": "dd7c5708d219552e40d15c762e8ca7f5228e005a",
+      "sha256": "ee631187883546beb90d1290771a7920a2cf123ba573ef515bf84d93a4203e07",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/dd7c5708d219552e40d15c762e8ca7f5228e005a/anchor-landing.html"
+    },
+    {
+      "path": "revealjs-html-links.lua",
+      "source_path": "revealjs-html-links.lua",
+      "commit": "b52135cd2c44399e93821b123fe2e12822665602",
+      "sha256": "12be3647edfd54462a3be734472ca8fca8e778d302890b5d1531c24b90540088",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/b52135cd2c44399e93821b123fe2e12822665602/revealjs-html-links.lua"
+    },
+    {
+      "path": "qwt-reveal-toggle.html",
+      "source_path": "qwt-reveal-toggle.html",
+      "commit": "7cfba65d8eac6b34915023a5d11efecacdf1d17a",
+      "sha256": "966ad069d0b8b4d2650c94cd65614e081fadb5beab88d59b0992cb6ee8fba2fd",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/7cfba65d8eac6b34915023a5d11efecacdf1d17a/qwt-reveal-toggle.html"
+    }
+  ]
+}
