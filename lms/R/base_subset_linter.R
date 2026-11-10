@@ -20,7 +20,7 @@ base_subset_linter <- function() {
     "]"
   )
 
-  message <- paste(
+  lint_text <- paste(
     "Don't subset a data frame with base [].",
     "Use dplyr::filter() for rows, dplyr::select() for columns,",
     "and dplyr::pull() for one column (`# nolint` for a matrix)."
@@ -34,7 +34,7 @@ base_subset_linter <- function() {
     lintr::xml_nodes_to_lints(
       nodes,
       source_expression = source_expression,
-      lint_message = message,
+      lint_message = lint_text,
       type = "warning"
     )
   })
