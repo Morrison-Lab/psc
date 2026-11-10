@@ -1,0 +1,30 @@
+# Keep the site scaffolding files byte-identical to Morrison-Lab/qwt.
+# The weekly run (or a manual dispatch) vendors each file at its pinned
+# upstream commit, records the commits and sha256 hashes in the manifest,
+# and opens a PR only when something changed (gha#1796).
+# Do not hand-edit these files here; edit them in qwt.
+name: Sync site scaffolding
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * 1' # Weekly on Monday at 07:00 UTC
+
+jobs:
+  sync:
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: Morrison-Lab/gha/.github/workflows/sync-shared-fragments.yml@v3
+    with:
+      source-repo: Morrison-Lab/qwt
+      dest-files: |
+        offwhite.scss=offwhite.scss
+        theme-picker.html=theme-picker.html
+        anchor-landing.html=anchor-landing.html
+        revealjs-html-links.lua=revealjs-html-links.lua
+        qwt-reveal-toggle.html=qwt-reveal-toggle.html
+      manifest-path: .github/site-scaffolding.json
+      pr-branch: automated/sync-site-scaffolding
+    secrets:
+      WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
