@@ -30,7 +30,7 @@ labelled::set_variable_labels() # instead of attr(x, "label") <- ...
 sessioninfo::session_info() # instead of sessionInfo()
 ```
 
-## Subsetting data frames
+### Subsetting data frames
 
 Subset a data frame or tibble with `dplyr::filter()` for rows
 and `dplyr::select()` for columns.

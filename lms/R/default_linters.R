@@ -10,8 +10,8 @@
 #' ```
 #'
 #' @param nested_calls Whether to include [nested_call_linter()],
-#'   [bare_condition_linter()], [ggplot_args_linter()] and
-#'   [aes_args_named_linter()], [base_subset_linter()],
+#'   [bare_condition_linter()], [ggplot_args_linter()],
+#'   [aes_args_named_linter()] and [base_subset_linter()],
 #'   the no-nested-calls and readability policy. Off by default
 #'   while existing code is swept; turn them on in a repo's `.lintr.R` with
 #'   `lms::default_linters(nested_calls = TRUE)`.
