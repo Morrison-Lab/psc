@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-11-10 03:22:27 (PST)</p>
+  <p class="date">Last modified: 2026-11-10 11:19:09 (PST)</p>
 </section>
 <section class="slide level2">
 
@@ -962,6 +962,18 @@
 <span id="cb27-25"><a aria-label="25"></a></span>
 <span id="cb27-26"><a aria-label="26"></a><span class="co"># Session info</span></span>
 <span id="cb27-27"><a aria-label="27"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="co"># instead of sessionInfo()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 id="subsetting-data-frames">Subsetting data frames</h3>
+<p>Subset a data frame or tibble with <code>dplyr::filter()</code> for rows and <code>dplyr::select()</code> for columns. Extract one column as a vector with <code>dplyr::pull()</code>. Do not index a data frame with base <code>[]</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a><span class="co"># Rows and columns</span></span>
+<span id="cb28-2"><a aria-label="2"></a>smarket <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Year <span class="sc">&lt;</span> <span class="dv">2005</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a aria-label="4"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Lag1, Lag2)   <span class="co"># not smarket[smarket$Year &lt; 2005, c("Lag1", "Lag2")]</span></span>
+<span id="cb28-5"><a aria-label="5"></a></span>
+<span id="cb28-6"><a aria-label="6"></a><span class="co"># One column, as a vector</span></span>
+<span id="cb28-7"><a aria-label="7"></a>smarket <span class="sc">|&gt;</span></span>
+<span id="cb28-8"><a aria-label="8"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Year <span class="sc">&lt;</span> <span class="dv">2005</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-9"><a aria-label="9"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(Direction)      <span class="co"># not smarket$Direction[smarket$Year &lt; 2005]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Base <code>[]</code> stays for vectors, lists and matrices, where <code>filter()</code> and <code>select()</code> do not apply. When a matrix needs <code>x[i, ]</code>, mark the line <code># nolint</code>.</p>
 <p>See also <a href="../chapters/coding-practices.html#sec-tidyverse">Tidyverse</a>.</p>
 </section>
 <section id="sec-here-package-style" class="slide level2" data-number="17">
@@ -970,21 +982,21 @@
 <section class="slide level2">
 
 <p>The <code>here</code> package helps manage file paths in projects by automatically finding the project root and building paths relative to it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a><span class="fu">library</span>(here)</span>
-<span id="cb28-2"><a aria-label="2"></a></span>
-<span id="cb28-3"><a aria-label="3"></a><span class="co"># Automatically finds project root and builds paths</span></span>
-<span id="cb28-4"><a aria-label="4"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"survey.csv"</span>))</span>
-<span id="cb28-5"><a aria-label="5"></a><span class="fu">saveRDS</span>(results, <span class="fu">here</span>(<span class="st">"inst"</span>, <span class="st">"analyses"</span>, <span class="st">"results.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-label="1"></a><span class="fu">library</span>(here)</span>
+<span id="cb29-2"><a aria-label="2"></a></span>
+<span id="cb29-3"><a aria-label="3"></a><span class="co"># Automatically finds project root and builds paths</span></span>
+<span id="cb29-4"><a aria-label="4"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data-raw"</span>, <span class="st">"survey.csv"</span>))</span>
+<span id="cb29-5"><a aria-label="5"></a><span class="fu">saveRDS</span>(results, <span class="fu">here</span>(<span class="st">"inst"</span>, <span class="st">"analyses"</span>, <span class="st">"results.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This solves the problem of different working directory paths across collaborators. For example, one person might have the project at <code>/home/oski/Some-R-Project</code> while another has it at <code>/home/bear/R-Code/Some-R-Project</code>. The <code>here</code> package handles this automatically.</p>
 <p>This works regardless of where collaborators clone the repository. For more details, see the <a href="https://here.r-lib.org/articles/here.html">here package vignette</a>.</p>
 <h3 id="sec-here-subpath">Pass subpath components directly to <code>here()</code></h3>
 <p><code>here::here()</code> already accepts path components as arguments and joins them with the project root. Do not wrap <code>here::here()</code> in <code>file.path()</code> or <code>fs::path()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-label="1"></a><span class="co"># Good: pass subpath components directly</span></span>
-<span id="cb29-2"><a aria-label="2"></a>rds_path <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inst"</span>, <span class="st">"extdata"</span>, <span class="st">"mapping.rds"</span>)</span>
-<span id="cb29-3"><a aria-label="3"></a></span>
-<span id="cb29-4"><a aria-label="4"></a><span class="co"># Bad: redundant wrapping adds noise and defeats the purpose</span></span>
-<span id="cb29-5"><a aria-label="5"></a>rds_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">"inst"</span>, <span class="st">"extdata"</span>, <span class="st">"mapping.rds"</span>)</span>
-<span id="cb29-6"><a aria-label="6"></a>rds_path <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">"inst"</span>, <span class="st">"extdata"</span>, <span class="st">"mapping.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-label="1"></a><span class="co"># Good: pass subpath components directly</span></span>
+<span id="cb30-2"><a aria-label="2"></a>rds_path <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inst"</span>, <span class="st">"extdata"</span>, <span class="st">"mapping.rds"</span>)</span>
+<span id="cb30-3"><a aria-label="3"></a></span>
+<span id="cb30-4"><a aria-label="4"></a><span class="co"># Bad: redundant wrapping adds noise and defeats the purpose</span></span>
+<span id="cb30-5"><a aria-label="5"></a>rds_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">"inst"</span>, <span class="st">"extdata"</span>, <span class="st">"mapping.rds"</span>)</span>
+<span id="cb30-6"><a aria-label="6"></a>rds_path <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">"inst"</span>, <span class="st">"extdata"</span>, <span class="st">"mapping.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The wrapped form is functionally equivalent but harder to read and obscures the intent. <code>here()</code> was designed to replace <code>file.path()</code> for project-relative paths, so let it do its job.</p>
 <p><em>See also <a href="../chapters/coding-practices.html#sec-here-package-practices">The here package</a> for detailed explanation of the here package.</em></p>
 </section>
@@ -994,22 +1006,22 @@
 <section class="slide level2">
 
 <p>Use descriptive names that are both expressive and explicit. Being verbose is useful and easy in the age of autocompletion:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-label="1"></a><span class="co"># Good</span></span>
-<span id="cb30-2"><a aria-label="2"></a>vaccination_coverage_2017_18</span>
-<span id="cb30-3"><a aria-label="3"></a>absentee_flu_residuals</span>
-<span id="cb30-4"><a aria-label="4"></a></span>
-<span id="cb30-5"><a aria-label="5"></a><span class="co"># Less good</span></span>
-<span id="cb30-6"><a aria-label="6"></a>vaxcov_1718</span>
-<span id="cb30-7"><a aria-label="7"></a>flu_res</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-label="1"></a><span class="co"># Good</span></span>
+<span id="cb31-2"><a aria-label="2"></a>vaccination_coverage_2017_18</span>
+<span id="cb31-3"><a aria-label="3"></a>absentee_flu_residuals</span>
+<span id="cb31-4"><a aria-label="4"></a></span>
+<span id="cb31-5"><a aria-label="5"></a><span class="co"># Less good</span></span>
+<span id="cb31-6"><a aria-label="6"></a>vaxcov_1718</span>
+<span id="cb31-7"><a aria-label="7"></a>flu_res</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level2">
 
 <p>Prefer nouns for objects and verbs for functions:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-label="1"></a><span class="co"># Good</span></span>
-<span id="cb31-2"><a aria-label="2"></a>clean_data <span class="ot">&lt;-</span> <span class="fu">prep_study_data</span>(raw_data)  <span class="co"># verb for function, noun for object</span></span>
-<span id="cb31-3"><a aria-label="3"></a></span>
-<span id="cb31-4"><a aria-label="4"></a><span class="co"># Less clear</span></span>
-<span id="cb31-5"><a aria-label="5"></a>data <span class="ot">&lt;-</span> <span class="fu">process</span>(input)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-label="1"></a><span class="co"># Good</span></span>
+<span id="cb32-2"><a aria-label="2"></a>clean_data <span class="ot">&lt;-</span> <span class="fu">prep_study_data</span>(raw_data)  <span class="co"># verb for function, noun for object</span></span>
+<span id="cb32-3"><a aria-label="3"></a></span>
+<span id="cb32-4"><a aria-label="4"></a><span class="co"># Less clear</span></span>
+<span id="cb32-5"><a aria-label="5"></a>data <span class="ot">&lt;-</span> <span class="fu">process</span>(input)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Generally we recommend using nouns for objects and verbs for functions. This is because functions are performing actions, while objects are not.</p>
 </section>
 <section class="slide level2">
@@ -1019,18 +1031,18 @@
 <li><code>add_...()</code> for functions that add one or more columns to a <code>data.frame</code> or <code>tibble</code> and return the modified table.</li>
 <li><code>compute_...()</code> for functions that compute and return a single vector.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-label="1"></a><span class="co"># Good</span></span>
-<span id="cb32-2"><a aria-label="2"></a>add_age_group <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb32-3"><a aria-label="3"></a>  data <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">cut</span>(age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">65</span>, <span class="cn">Inf</span>)))</span>
-<span id="cb32-4"><a aria-label="4"></a>}</span>
-<span id="cb32-5"><a aria-label="5"></a></span>
-<span id="cb32-6"><a aria-label="6"></a>compute_age_group <span class="ot">&lt;-</span> <span class="cf">function</span>(age) {</span>
-<span id="cb32-7"><a aria-label="7"></a>  <span class="fu">cut</span>(age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">65</span>, <span class="cn">Inf</span>))</span>
-<span id="cb32-8"><a aria-label="8"></a>}</span>
-<span id="cb32-9"><a aria-label="9"></a></span>
-<span id="cb32-10"><a aria-label="10"></a><span class="co"># Less clear</span></span>
-<span id="cb32-11"><a aria-label="11"></a>make_age_group <span class="ot">&lt;-</span> <span class="cf">function</span>(data) { ... }</span>
-<span id="cb32-12"><a aria-label="12"></a>get_age_group  <span class="ot">&lt;-</span> <span class="cf">function</span>(age)  { ... }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a aria-label="1"></a><span class="co"># Good</span></span>
+<span id="cb33-2"><a aria-label="2"></a>add_age_group <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb33-3"><a aria-label="3"></a>  data <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">cut</span>(age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">65</span>, <span class="cn">Inf</span>)))</span>
+<span id="cb33-4"><a aria-label="4"></a>}</span>
+<span id="cb33-5"><a aria-label="5"></a></span>
+<span id="cb33-6"><a aria-label="6"></a>compute_age_group <span class="ot">&lt;-</span> <span class="cf">function</span>(age) {</span>
+<span id="cb33-7"><a aria-label="7"></a>  <span class="fu">cut</span>(age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">65</span>, <span class="cn">Inf</span>))</span>
+<span id="cb33-8"><a aria-label="8"></a>}</span>
+<span id="cb33-9"><a aria-label="9"></a></span>
+<span id="cb33-10"><a aria-label="10"></a><span class="co"># Less clear</span></span>
+<span id="cb33-11"><a aria-label="11"></a>make_age_group <span class="ot">&lt;-</span> <span class="cf">function</span>(data) { ... }</span>
+<span id="cb33-12"><a aria-label="12"></a>get_age_group  <span class="ot">&lt;-</span> <span class="cf">function</span>(age)  { ... }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This distinction makes the return type visible from the call site without reading the function body.</p>
 </section>
 <section class="slide level2">
@@ -1078,11 +1090,11 @@
 </ul>
 <p>Keep an alias recognizable, such as <code>pat</code> rather than <code>p</code>, since the descriptive-name advice at the top of this section still applies. A synonym in your own code makes readers look for a difference between the two names.</p>
 <p>An R package has one common exception. When you rename an exported function, keep the old name for a while as a wrapper so that existing code still runs, and mark it as deprecated with <a href="https://lifecycle.r-lib.org/articles/communicate.html"><code>{lifecycle}</code></a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a aria-label="1"></a><span class="co"># Keep the old name only as a deprecated wrapper</span></span>
-<span id="cb33-2"><a aria-label="2"></a>prep_data <span class="ot">&lt;-</span> <span class="cf">function</span>(raw_data) {</span>
-<span id="cb33-3"><a aria-label="3"></a>  lifecycle<span class="sc">::</span><span class="fu">deprecate_warn</span>(<span class="st">"1.2.0"</span>, <span class="st">"prep_data()"</span>, <span class="st">"prep_study_data()"</span>)</span>
-<span id="cb33-4"><a aria-label="4"></a>  <span class="fu">prep_study_data</span>(raw_data)</span>
-<span id="cb33-5"><a aria-label="5"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-label="1"></a><span class="co"># Keep the old name only as a deprecated wrapper</span></span>
+<span id="cb34-2"><a aria-label="2"></a>prep_data <span class="ot">&lt;-</span> <span class="cf">function</span>(raw_data) {</span>
+<span id="cb34-3"><a aria-label="3"></a>  lifecycle<span class="sc">::</span><span class="fu">deprecate_warn</span>(<span class="st">"1.2.0"</span>, <span class="st">"prep_data()"</span>, <span class="st">"prep_study_data()"</span>)</span>
+<span id="cb34-4"><a aria-label="4"></a>  <span class="fu">prep_study_data</span>(raw_data)</span>
+<span id="cb34-5"><a aria-label="5"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level2">
 
@@ -1099,36 +1111,36 @@
 <li><p><strong>Code Autoformatting</strong> - RStudio includes a fantastic built-in utility (keyboard shortcut: <code>CMD-Shift-A</code> (Mac) or <code>Ctrl-Shift-A</code> (Windows/Linux)) for autoformatting highlighted chunks of code to fit many of the best practices listed here. It generally makes code more readable and fixes a lot of the small things you may not feel like fixing yourself. Try it out as a “first pass” on some code of yours that <em>doesn’t</em> follow many of these best practices!</p></li>
 <li><p><strong>Assignment Aligner</strong> - A <a href="https://www.r-bloggers.com/align-assign-rstudio-addin-to-align-assignment-operators/">cool R package</a> allows you to very powerfully format large chunks of assignment code to be much cleaner and much more readable. Follow the linked instructions and create a keyboard shortcut of your choosing (recommendation: <code>CMD-Shift-Z</code>). Here is an example of how assignment aligning can dramatically improve code readability:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-label="1"></a><span class="co"># Before</span></span>
-<span id="cb34-2"><a aria-label="2"></a>OUSD_not_found_aliases <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb34-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
-<span id="cb34-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
-<span id="cb34-5"><a aria-label="5"></a>  <span class="st">"Community United Elementary School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Community United"</span>),</span>
-<span id="cb34-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
-<span id="cb34-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
-<span id="cb34-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
-<span id="cb34-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
-<span id="cb34-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span> <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
-<span id="cb34-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
-<span id="cb34-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
-<span id="cb34-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span> <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
-<span id="cb34-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
-<span id="cb34-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-label="1"></a><span class="co"># After</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-label="1"></a><span class="co"># Before</span></span>
 <span id="cb35-2"><a aria-label="2"></a>OUSD_not_found_aliases <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb35-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
-<span id="cb35-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
+<span id="cb35-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
+<span id="cb35-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
 <span id="cb35-5"><a aria-label="5"></a>  <span class="st">"Community United Elementary School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Community United"</span>),</span>
-<span id="cb35-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
-<span id="cb35-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span>                  <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
-<span id="cb35-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span>               <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
-<span id="cb35-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span>     <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
-<span id="cb35-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span>          <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
-<span id="cb35-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span>         <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
-<span id="cb35-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span>   <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
-<span id="cb35-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span>                   <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
-<span id="cb35-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
+<span id="cb35-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
+<span id="cb35-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
+<span id="cb35-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
+<span id="cb35-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
+<span id="cb35-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span> <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
+<span id="cb35-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
+<span id="cb35-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
+<span id="cb35-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span> <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
+<span id="cb35-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
 <span id="cb35-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-label="1"></a><span class="co"># After</span></span>
+<span id="cb36-2"><a aria-label="2"></a>OUSD_not_found_aliases <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb36-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
+<span id="cb36-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
+<span id="cb36-5"><a aria-label="5"></a>  <span class="st">"Community United Elementary School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Community United"</span>),</span>
+<span id="cb36-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
+<span id="cb36-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span>                  <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
+<span id="cb36-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span>               <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
+<span id="cb36-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span>     <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
+<span id="cb36-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span>          <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
+<span id="cb36-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span>         <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
+<span id="cb36-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span>   <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
+<span id="cb36-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span>                   <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
+<span id="cb36-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
+<span id="cb36-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="styler"><a href="https://styler.r-lib.org/"><code>{styler}</code></a></h4>
 <p><a href="https://styler.r-lib.org/"><code>{styler}</code></a> is another <a href="https://tidyverse.org/blog/2017/12/styler-1.0.0/">cool R package from the Tidyverse</a> that can be powerful and used as a first pass on entire projects that need refactoring. The most useful function of the package is the <code>style_dir</code> function, which will style all files within a given directory. See the <a href="https://www.rdocumentation.org/packages/styler/versions/1.1.0/topics/style_dir">function’s documentation</a> and the vignette linked above for more details.</p>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -1167,17 +1179,17 @@
 </div>
 <div class="callout-content">
 <p>For automated styling of entire projects:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-label="1"></a><span class="co"># Install styler</span></span>
-<span id="cb36-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="st">"styler"</span>)</span>
-<span id="cb36-3"><a aria-label="3"></a></span>
-<span id="cb36-4"><a aria-label="4"></a><span class="co"># Style all files in R/ directory</span></span>
-<span id="cb36-5"><a aria-label="5"></a>styler<span class="sc">::</span><span class="fu">style_dir</span>(<span class="st">"R/"</span>)</span>
-<span id="cb36-6"><a aria-label="6"></a></span>
-<span id="cb36-7"><a aria-label="7"></a><span class="co"># Style entire package</span></span>
-<span id="cb36-8"><a aria-label="8"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span>
-<span id="cb36-9"><a aria-label="9"></a></span>
-<span id="cb36-10"><a aria-label="10"></a><span class="co"># Note: styler modifies files in-place</span></span>
-<span id="cb36-11"><a aria-label="11"></a><span class="co"># Always use with version control so you can review changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-label="1"></a><span class="co"># Install styler</span></span>
+<span id="cb37-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="st">"styler"</span>)</span>
+<span id="cb37-3"><a aria-label="3"></a></span>
+<span id="cb37-4"><a aria-label="4"></a><span class="co"># Style all files in R/ directory</span></span>
+<span id="cb37-5"><a aria-label="5"></a>styler<span class="sc">::</span><span class="fu">style_dir</span>(<span class="st">"R/"</span>)</span>
+<span id="cb37-6"><a aria-label="6"></a></span>
+<span id="cb37-7"><a aria-label="7"></a><span class="co"># Style entire package</span></span>
+<span id="cb37-8"><a aria-label="8"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span>
+<span id="cb37-9"><a aria-label="9"></a></span>
+<span id="cb37-10"><a aria-label="10"></a><span class="co"># Note: styler modifies files in-place</span></span>
+<span id="cb37-11"><a aria-label="11"></a><span class="co"># Always use with version control so you can review changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1220,17 +1232,17 @@
 </div>
 <div class="callout-content">
 <p>For checking code style without modifying files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-label="1"></a><span class="co"># Install lintr (and pkgload, used below)</span></span>
-<span id="cb37-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"lintr"</span>, <span class="st">"pkgload"</span>))</span>
-<span id="cb37-3"><a aria-label="3"></a></span>
-<span id="cb37-4"><a aria-label="4"></a><span class="co"># For package code, load the package first (see note below)</span></span>
-<span id="cb37-5"><a aria-label="5"></a>pkgload<span class="sc">::</span><span class="fu">load_all</span>()</span>
-<span id="cb37-6"><a aria-label="6"></a></span>
-<span id="cb37-7"><a aria-label="7"></a><span class="co"># Lint the entire package</span></span>
-<span id="cb37-8"><a aria-label="8"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span>
-<span id="cb37-9"><a aria-label="9"></a></span>
-<span id="cb37-10"><a aria-label="10"></a><span class="co"># Lint a specific file</span></span>
-<span id="cb37-11"><a aria-label="11"></a>lintr<span class="sc">::</span><span class="fu">lint</span>(<span class="st">"R/my_function.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-label="1"></a><span class="co"># Install lintr (and pkgload, used below)</span></span>
+<span id="cb38-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"lintr"</span>, <span class="st">"pkgload"</span>))</span>
+<span id="cb38-3"><a aria-label="3"></a></span>
+<span id="cb38-4"><a aria-label="4"></a><span class="co"># For package code, load the package first (see note below)</span></span>
+<span id="cb38-5"><a aria-label="5"></a>pkgload<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb38-6"><a aria-label="6"></a></span>
+<span id="cb38-7"><a aria-label="7"></a><span class="co"># Lint the entire package</span></span>
+<span id="cb38-8"><a aria-label="8"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span>
+<span id="cb38-9"><a aria-label="9"></a></span>
+<span id="cb38-10"><a aria-label="10"></a><span class="co"># Lint a specific file</span></span>
+<span id="cb38-11"><a aria-label="11"></a>lintr<span class="sc">::</span><span class="fu">lint</span>(<span class="st">"R/my_function.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The linter checks for:</p>
 <ul>
 <li>Unused variables</li>
@@ -1278,11 +1290,11 @@
 </ul>
 <h5 id="basic-usage">Basic Usage</h5>
 <p>Run the standalone CLI (see the <a href="https://jarl.etiennebacher.com/getting-started">getting started guide</a>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a aria-label="1"></a><span class="co"># Lint all R files in the current project</span></span>
-<span id="cb38-2"><a aria-label="2"></a><span class="ex">jarl</span> check .</span>
-<span id="cb38-3"><a aria-label="3"></a></span>
-<span id="cb38-4"><a aria-label="4"></a><span class="co"># Automatically fix supported lint violations</span></span>
-<span id="cb38-5"><a aria-label="5"></a><span class="ex">jarl</span> check . <span class="at">--fix</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a aria-label="1"></a><span class="co"># Lint all R files in the current project</span></span>
+<span id="cb39-2"><a aria-label="2"></a><span class="ex">jarl</span> check .</span>
+<span id="cb39-3"><a aria-label="3"></a></span>
+<span id="cb39-4"><a aria-label="4"></a><span class="co"># Automatically fix supported lint violations</span></span>
+<span id="cb39-5"><a aria-label="5"></a><span class="ex">jarl</span> check . <span class="at">--fix</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h5 id="comparison-with-lintr">Comparison with <code>{lintr}</code></h5>
 <table class="caption-top">
 <thead>
