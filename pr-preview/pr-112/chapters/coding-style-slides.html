@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-11-10 10:28:59 (PST)</p>
+  <p class="date">Last modified: 2026-11-10 10:40:46 (PST)</p>
 </section>
 <section class="slide level2">
 
@@ -351,7 +351,7 @@
 <li><p><strong>Use pipes to emphasize primary inputs</strong>: When writing functions and code, use the pipe operator to clearly show transformations on a primary object. The primary input should flow as the first argument to each function in the chain. Design functions so the most important argument (usually data) comes first, enabling natural pipeline composition. See the <a href="https://design.tidyverse.org/important-args-first.html">tidyverse design principles</a> for more details.</p></li>
 <li><p><strong>Use native pipe</strong>: <code>|&gt;</code> not <code>%&gt;%</code> (available in R &gt;= 4.1.0). This is enforced by the example <code>.lintr.R</code> configuration via <code>pipe_consistency_linter(pipe = "|&gt;")</code></p></li>
 </ul>
-<p>Many of these rules can be enforced automatically with a <code>.lintr.R</code> configuration file; see the UCD-SERG lab manual’s <a href="https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R">example</a>. See <a href="#/sec-style-auto-style" class="quarto-xref">Section&nbsp;20</a> for details on automated style checking.</p>
+<p>Many of these rules can be enforced automatically with a <code>.lintr.R</code> configuration file; see the UCD-SERG lab manual’s <a href="https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R">example</a>. See <a href="#/sec-style-auto-style" class="quarto-xref">Section&nbsp;19</a> for details on automated style checking.</p>
 </section>
 <section id="sec-clean-code" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> Clean Code Principles</h2>
@@ -962,12 +962,7 @@
 <span id="cb27-25"><a aria-label="25"></a></span>
 <span id="cb27-26"><a aria-label="26"></a><span class="co"># Session info</span></span>
 <span id="cb27-27"><a aria-label="27"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="co"># instead of sessionInfo()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="subsetting-data-frames" class="slide level2" data-number="17">
-<h2><span class="header-section-number">17</span> Subsetting data frames</h2>
-</section>
-<section class="slide level2">
-
+<h3 id="subsetting-data-frames">Subsetting data frames</h3>
 <p>Subset a data frame or tibble with <code>dplyr::filter()</code> for rows and <code>dplyr::select()</code> for columns. Extract one column as a vector with <code>dplyr::pull()</code>. Do not index a data frame with base <code>[]</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a><span class="co"># Rows and columns</span></span>
 <span id="cb28-2"><a aria-label="2"></a>smarket <span class="sc">|&gt;</span></span>
@@ -981,8 +976,8 @@
 <p>Base <code>[]</code> stays for vectors, lists and matrices, where <code>filter()</code> and <code>select()</code> do not apply. When a matrix needs <code>x[i, ]</code>, mark the line <code># nolint</code>.</p>
 <p>See also <a href="../chapters/coding-practices.html#sec-tidyverse">Tidyverse</a>.</p>
 </section>
-<section id="sec-here-package-style" class="slide level2" data-number="18">
-<h2><span class="header-section-number">18</span> The here Package</h2>
+<section id="sec-here-package-style" class="slide level2" data-number="17">
+<h2><span class="header-section-number">17</span> The here Package</h2>
 </section>
 <section class="slide level2">
 
@@ -1005,8 +1000,8 @@
 <p>The wrapped form is functionally equivalent but harder to read and obscures the intent. <code>here()</code> was designed to replace <code>file.path()</code> for project-relative paths, so let it do its job.</p>
 <p><em>See also <a href="../chapters/coding-practices.html#sec-here-package-practices">The here package</a> for detailed explanation of the here package.</em></p>
 </section>
-<section id="sec-object-naming" class="slide level2" data-number="19">
-<h2><span class="header-section-number">19</span> Object Naming</h2>
+<section id="sec-object-naming" class="slide level2" data-number="18">
+<h2><span class="header-section-number">18</span> Object Naming</h2>
 </section>
 <section class="slide level2">
 
@@ -1105,8 +1100,8 @@
 
 <p>For more help, check out <a href="https://spin.atomicobject.com/2017/11/01/good-variable-names/">Be Expressive: How to Give Your Variables Better Names</a></p>
 </section>
-<section id="sec-style-auto-style" class="slide level2" data-number="20">
-<h2><span class="header-section-number">20</span> Automated Tools for Style and Project Workflow</h2>
+<section id="sec-style-auto-style" class="slide level2" data-number="19">
+<h2><span class="header-section-number">19</span> Automated Tools for Style and Project Workflow</h2>
 </section>
 <section class="slide level2 scrollable">
 
@@ -1356,8 +1351,8 @@
 <p>In most cases, a better default is to lint <strong>changed files only</strong>, so pre-existing findings elsewhere in the project don’t block unrelated work. <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/lint-changed-files.yaml">r-lib/actions</a> provides a ready-made <code>lint-changed-files</code> example workflow; install it with <code>usethis::use_github_action("lint-changed-files")</code>.</p>
 <p>Whole-project linting still has a place: run it on a schedule or as a manually triggered workflow, so that project-wide drift is still detected and cleaned up deliberately in its own dedicated pull request, rather than as a side effect of someone else’s change.</p>
 </section>
-<section id="sec-r-resources-style" class="slide level2" data-number="21">
-<h2><span class="header-section-number">21</span> Additional Resources</h2>
+<section id="sec-r-resources-style" class="slide level2" data-number="20">
+<h2><span class="header-section-number">20</span> Additional Resources</h2>
 </section>
 <section class="slide level2 smaller scrollable" id="references">
 

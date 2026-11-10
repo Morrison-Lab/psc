@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-10 10:28:59 (PST)
+Last modified: 2026-11-10 10:40:46 (PST)
 
 Follow these code style guidelines for all R code:
 
@@ -24,7 +24,7 @@ We recommend the [Google R Style Guide](https://google.github.io/styleguide/Rgui
 
 - **Use native pipe**: `|>` not `%>%` (available in R \>= 4.1.0). This is enforced by the example `.lintr.R` configuration via `pipe_consistency_linter(pipe = "|>")`
 
-Many of these rules can be enforced automatically with a `.lintr.R` configuration file; see the UCD-SERG lab manual’s [example](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R). See [Section 20](#sec-style-auto-style) for details on automated style checking.
+Many of these rules can be enforced automatically with a `.lintr.R` configuration file; see the UCD-SERG lab manual’s [example](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R). See [Section 19](#sec-style-auto-style) for details on automated style checking.
 
 ## 2 Clean Code Principles
 
@@ -727,7 +727,7 @@ labelled::set_variable_labels() # instead of attr(x, "label") <- ...
 sessioninfo::session_info() # instead of sessionInfo()
 ```
 
-## 17 Subsetting data frames
+### 16.1 Subsetting data frames
 
 Subset a data frame or tibble with `dplyr::filter()` for rows and `dplyr::select()` for columns. Extract one column as a vector with `dplyr::pull()`. Do not index a data frame with base `[]`.
 
@@ -747,7 +747,7 @@ Base `[]` stays for vectors, lists and matrices, where `filter()` and `select()`
 
 See also [Tidyverse](../chapters/coding-practices.llms.md#sec-tidyverse).
 
-## 18 The here Package
+## 17 The here Package
 
 The `here` package helps manage file paths in projects by automatically finding the project root and building paths relative to it:
 
@@ -763,7 +763,7 @@ This solves the problem of different working directory paths across collaborator
 
 This works regardless of where collaborators clone the repository. For more details, see the [here package vignette](https://here.r-lib.org/articles/here.html).
 
-### 18.1 Pass subpath components directly to `here()`
+### 17.1 Pass subpath components directly to `here()`
 
 `here::here()` already accepts path components as arguments and joins them with the project root. Do not wrap `here::here()` in `file.path()` or `fs::path()`:
 
@@ -780,7 +780,7 @@ The wrapped form is functionally equivalent but harder to read and obscures the 
 
 *See also [The here package](../chapters/coding-practices.llms.md#sec-here-package-practices) for detailed explanation of the here package.*
 
-## 19 Object Naming
+## 18 Object Naming
 
 Use descriptive names that are both expressive and explicit. Being verbose is useful and easy in the age of autocompletion:
 
@@ -875,9 +875,9 @@ prep_data <- function(raw_data) {
 
 For more help, check out [Be Expressive: How to Give Your Variables Better Names](https://spin.atomicobject.com/2017/11/01/good-variable-names/)
 
-## 20 Automated Tools for Style and Project Workflow
+## 19 Automated Tools for Style and Project Workflow
 
-### 20.1 Styling
+### 19.1 Styling
 
 #### RStudio shortcuts
 
@@ -963,7 +963,7 @@ Linters are programming tools that check adherence to a given style, syntax erro
 >
 > The `lintr` package goes hand in hand with the `styler` package. The styler can be used to automatically fix the problems that the lintr catches.
 
-### 20.2 Using Lintr
+### 19.2 Using Lintr
 
 > **TIP:**
 >
@@ -994,7 +994,7 @@ Linters are programming tools that check adherence to a given style, syntax erro
 >
 > We recommend `.lintr.R` files for configuration (lintr also supports the `.lintr` format, but `.lintr.R` gets full R syntax support).
 
-### 20.3 A Recommended Lintr Configuration
+### 19.3 A Recommended Lintr Configuration
 
 We recommend a custom `.lintr.R` configuration file in each repository to enforce these style standards. You can view an example configuration, from the UCD-SERG lab manual, at <https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R>.
 
@@ -1059,7 +1059,7 @@ jarl check . --fix
 >
 > We recommend [`{lintr}`](https://lintr.r-lib.org/) with a custom `.lintr.R` configuration and a shared linter package (for example, the UCD-SERG lab manual’s [`.lintr.R`](https://github.com/UCD-SERG/lab-manual/blob/main/.lintr.R) and this guide’s [`{lms}`](https://github.com/Morrison-Lab/psc/tree/main/lms)) as the primary standard for CI pipelines and package validation. However, `{jarl}` is an excellent choice for local pre-commit hooks and interactive developer workflows where instant lint feedback saves time on large repositories.
 
-### 20.4 Linting Changed Files vs. the Whole Project in CI
+### 19.4 Linting Changed Files vs. the Whole Project in CI
 
 A project can fall out of lint compliance without any change to its own source code or `.lintr` configuration: [`{lintr}`](https://lintr.r-lib.org/) releases sometimes add default linters or tighten existing ones, so code that passed yesterday can fail after a routine package update.
 
@@ -1069,7 +1069,7 @@ In most cases, a better default is to lint **changed files only**, so pre-existi
 
 Whole-project linting still has a place: run it on a schedule or as a manually triggered workflow, so that project-wide drift is still detected and cleaned up deliberately in its own dedicated pull request, rather than as a side effect of someone else’s change.
 
-## 21 Additional Resources
+## 20 Additional Resources
 
 - Tidyverse style guide ([Wickham 2023](#ref-wickham2023tidyverse)): Detailed coding style conventions for writing clear, consistent R code. Covers naming, syntax, pipes, functions, and more.
 
