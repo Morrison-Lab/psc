@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-11-09 17:32:39 (PST)</p>
+  <p class="date">Last modified: 2026-11-09 23:14:57 (PST)</p>
 </section>
 <section class="slide level2">
 
@@ -865,6 +865,15 @@
 <p><strong>PDF rendering issues:</strong> If you encounter PDF rendering problems, ensure you have an up-to-date LaTeX installation, or install Quarto’s TinyTeX:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a aria-label="1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Environment conflicts:</strong> If Quarto finds the wrong R or Python installation, use <code>quarto check</code> output to verify which installation Quarto is using. For R, you can render a diagnostic document with <code>sessionInfo()</code> to compare Quarto’s environment with your interactive R session.</p>
+<p><strong>Search opens when you use the browser’s find or save:</strong> A Quarto website opens its search box on the keys in <code>keyboard-shortcut</code>, which default to <code>f</code>, <code>/</code> and <code>s</code>. Quarto’s script listens for the key being released and does not check for a modifier, so Ctrl-F or Cmd-F (find) and Ctrl-S or Cmd-S (save) open the search box as the key comes up, over the reader’s own find or save. Set the shortcut to a key that no browser command uses with a modifier, such as <code>/</code>, in <code>_quarto.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a aria-label="1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb34-2"><a aria-label="2"></a><span class="at">  </span><span class="fu">search</span><span class="kw">:</span></span>
+<span id="cb34-3"><a aria-label="3"></a><span class="at">    </span><span class="fu">keyboard-shortcut</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"/"</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong>Do:</strong> list in <code>keyboard-shortcut</code> only keys that no browser command uses with Ctrl or Cmd.</li>
+<li><strong>Don’t:</strong> leave the default, or add <code>f</code> or <code>s</code> back.</li>
+</ul>
+<p>The <code>check-search-shortcut</code> check in <a href="https://github.com/Morrison-Lab/gha/tree/main/check-search-shortcut"><code>gha</code></a> fails a site whose search opens on these keys.</p>
 <h3 id="advanced-troubleshooting">Advanced Troubleshooting</h3>
 <p>For more specialized issues, consult the <a href="https://quarto.org/docs/troubleshooting/">official Quarto Troubleshooting Guide</a>, which covers:</p>
 <ul>

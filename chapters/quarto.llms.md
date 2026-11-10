@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-09 17:32:39 (PST)
+Last modified: 2026-11-09 23:14:57 (PST)
 
 ## 1 Introduction
 
@@ -739,6 +739,19 @@ quarto install tinytex
 ```
 
 **Environment conflicts:** If Quarto finds the wrong R or Python installation, use `quarto check` output to verify which installation Quarto is using. For R, you can render a diagnostic document with `sessionInfo()` to compare Quarto’s environment with your interactive R session.
+
+**Search opens when you use the browser’s find or save:** A Quarto website opens its search box on the keys in `keyboard-shortcut`, which default to `f`, `/` and `s`. Quarto’s script listens for the key being released and does not check for a modifier, so Ctrl-F or Cmd-F (find) and Ctrl-S or Cmd-S (save) open the search box as the key comes up, over the reader’s own find or save. Set the shortcut to a key that no browser command uses with a modifier, such as `/`, in `_quarto.yml`:
+
+``` yaml
+website:
+  search:
+    keyboard-shortcut: ["/"]
+```
+
+- **Do:** list in `keyboard-shortcut` only keys that no browser command uses with Ctrl or Cmd.
+- **Don’t:** leave the default, or add `f` or `s` back.
+
+The `check-search-shortcut` check in [`gha`](https://github.com/Morrison-Lab/gha/tree/main/check-search-shortcut) fails a site whose search opens on these keys.
 
 ### 8.4 Advanced Troubleshooting
 
