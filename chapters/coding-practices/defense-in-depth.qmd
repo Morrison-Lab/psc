@@ -1,0 +1,59 @@
+**Defense in depth** is the practice of protecting an important guarantee with several independent layers,
+so that when one layer fails, another still catches the problem.
+The name comes from security engineering,
+where a system is protected by multiple countermeasures rather than a single wall.
+@reason2000human described the same idea for accidents in complex systems as the "Swiss cheese" model:
+each defense has holes, like a slice of Swiss cheese,
+and an accident happens only when the holes in every layer line up.
+Adding a layer does not remove the holes in the others;
+it makes it less likely that a problem passes through all of them.
+
+In research software, the guarantees worth layering include:
+
+- that results can be reproduced from the code and data;
+- that code merged to the main branch passes its tests;
+- that private data never reaches a public repository.
+
+Each of these can be guarded by several layers:
+
+- **Prevention** before the mistake, such as a type or argument check, or a pre-commit hook.
+- **Detection** soon after it, such as a test or a lint check that runs on every push.
+- **Review**, in which a person or a separate tool reads the change.
+- **Recovery** after it, such as version control, which lets you revert a bad change.
+
+### Make the layers independent
+
+Layers protect only if they do not fail for the same reason.
+Two checks that run the same script, read the same configuration,
+or depend on the same service fail together,
+and count as one layer.
+Prefer layers that differ in mechanism (a test, a linter, a reviewer),
+in timing (before a commit, in CI, at review),
+and in who or what operates them.
+
+### Test each layer on its own
+
+A layer that fails silently is worse than no layer,
+because it makes the guarantee look protected when it is not.
+Test each layer separately from the others:
+give it an input it must catch, and confirm that it does.
+For example, to test a linter in CI,
+push a branch with a deliberate violation and confirm that the check fails.
+Do this when the check is first added and again whenever it changes,
+since a configuration error often turns a check into one that always passes.
+
+A check that reports success should also show that it ran.
+A check that finds nothing because it inspected nothing
+(an empty file list, a wrong path, a skipped step)
+looks the same as a check that found nothing wrong.
+Have each layer fail, or say so loudly, when it has nothing to check,
+in keeping with the principle of failing fast
+(see [Assertions and Input Validation](coding-style.qmd#sec-assertions-input-validation)).
+
+### Layers have a cost
+
+Each layer costs time to build, maintain and wait for,
+and several layers guarding a trivial guarantee are over-engineered
+(see [KISS](#sec-kiss)).
+Reserve defense in depth for guarantees whose failure is costly or hard to notice,
+such as a wrong result in a published analysis.
