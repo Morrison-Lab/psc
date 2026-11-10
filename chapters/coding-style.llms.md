@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-10 11:19:09 (PST)
+Last modified: 2026-11-10 11:24:50 (PST)
 
 Follow these code style guidelines for all R code:
 
@@ -17,6 +17,8 @@ We recommend the [Google R Style Guide](https://google.github.io/styleguide/Rgui
 - **Naming**: Use `snake_case` for functions and variables; acronyms may be uppercase (e.g., `prep_IDs_data`)
 
 - **Write tidy code**: Keep code clean, readable, and well-organized
+
+- **Decide style here, not by imitation**: The repo maintainers make style decisions explicitly and record them in this guide, and code does not copy the style of the code around it. When this guide does not say how to write something, raise the question as an issue on the psc repository instead of copying a neighbouring file
 
 - **Avoid redundant logical comparisons**: Use logical variables directly in conditional statements (e.g., `if (x)` instead of `if (x == TRUE)` or `if (x == 1)`)
 
@@ -831,6 +833,22 @@ get_age_group  <- function(age)  { ... }
 ```
 
 This distinction makes the return type visible from the call site without reading the function body.
+
+------------------------------------------------------------------------
+
+Do not put the language in an object’s name, at the end or in the middle. When the same analysis appears in R and in Python, give the object the same name in both. Each language keeps its own namespace, so the names do not collide.
+
+``` r
+# Good (R chunk)
+iris_two <- iris |> dplyr::select(Petal.Length, Petal.Width)
+```
+
+``` python
+# Good (Python chunk)
+iris_two = iris[["Petal.Length", "Petal.Width"]]
+```
+
+Not `iris_two_r` and `iris_two_py`, and not `knn1_r_pred` or `x_py_scaled`.
 
 ------------------------------------------------------------------------
 

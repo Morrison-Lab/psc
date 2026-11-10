@@ -330,7 +330,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-11-10 11:19:09 (PST)</p>
+  <p class="date">Last modified: 2026-11-10 11:24:50 (PST)</p>
 </section>
 <section class="slide level2">
 
@@ -347,6 +347,7 @@
 <li><p><strong>Follow tidyverse conventions</strong>: This style is built on the tidyverse style guide, which provides comprehensive guidance on naming, syntax, pipes, functions, and more</p></li>
 <li><p><strong>Naming</strong>: Use <code>snake_case</code> for functions and variables; acronyms may be uppercase (e.g., <code>prep_IDs_data</code>)</p></li>
 <li><p><strong>Write tidy code</strong>: Keep code clean, readable, and well-organized</p></li>
+<li><p><strong>Decide style here, not by imitation</strong>: The repo maintainers make style decisions explicitly and record them in this guide, and code does not copy the style of the code around it. When this guide does not say how to write something, raise the question as an issue on the psc repository instead of copying a neighbouring file</p></li>
 <li><p><strong>Avoid redundant logical comparisons</strong>: Use logical variables directly in conditional statements (e.g., <code>if (x)</code> instead of <code>if (x == TRUE)</code> or <code>if (x == 1)</code>)</p></li>
 <li><p><strong>Use pipes to emphasize primary inputs</strong>: When writing functions and code, use the pipe operator to clearly show transformations on a primary object. The primary input should flow as the first argument to each function in the chain. Design functions so the most important argument (usually data) comes first, enabling natural pipeline composition. See the <a href="https://design.tidyverse.org/important-args-first.html">tidyverse design principles</a> for more details.</p></li>
 <li><p><strong>Use native pipe</strong>: <code>|&gt;</code> not <code>%&gt;%</code> (available in R &gt;= 4.1.0). This is enforced by the example <code>.lintr.R</code> configuration via <code>pipe_consistency_linter(pipe = "|&gt;")</code></p></li>
@@ -1047,6 +1048,15 @@
 </section>
 <section class="slide level2">
 
+<p>Do not put the language in an object’s name, at the end or in the middle. When the same analysis appears in R and in Python, give the object the same name in both. Each language keeps its own namespace, so the names do not collide.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-label="1"></a><span class="co"># Good (R chunk)</span></span>
+<span id="cb34-2"><a aria-label="2"></a>iris_two <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(Petal.Length, Petal.Width)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a aria-label="1"></a><span class="co"># Good (Python chunk)</span></span>
+<span id="cb35-2"><a aria-label="2"></a>iris_two <span class="op">=</span> iris[[<span class="st">"Petal.Length"</span>, <span class="st">"Petal.Width"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Not <code>iris_two_r</code> and <code>iris_two_py</code>, and not <code>knn1_r_pred</code> or <code>x_py_scaled</code>.</p>
+</section>
+<section class="slide level2">
+
 <p>Use <code>snake_case</code> for all variable and function names. Avoid using <code>.</code> in names (as in base R’s <code>read.csv()</code>), as this goes against best practices in modern R and other languages. Modern packages like <code>readr::read_csv()</code> follow this convention.</p>
 <p><strong>Uppercase acronyms are allowed</strong> in <code>snake_case</code> names (e.g., <code>prep_IDs_data</code>, <code>calculate_BMI_score</code>). This is enforced via a custom <code>object_name_linter</code> regex pattern in the example <code>.lintr.R</code> configuration.</p>
 <p>Try to make your variable names both more expressive and more explicit. Being a bit more verbose is useful and easy in the age of autocompletion! For example, instead of naming a variable <code>vaxcov_1718</code>, try naming it <code>vaccination_coverage_2017_18</code>. Similarly, <code>flu_res</code> could be named <code>absentee_flu_residuals</code>, making your code more readable and explicit.</p>
@@ -1090,11 +1100,11 @@
 </ul>
 <p>Keep an alias recognizable, such as <code>pat</code> rather than <code>p</code>, since the descriptive-name advice at the top of this section still applies. A synonym in your own code makes readers look for a difference between the two names.</p>
 <p>An R package has one common exception. When you rename an exported function, keep the old name for a while as a wrapper so that existing code still runs, and mark it as deprecated with <a href="https://lifecycle.r-lib.org/articles/communicate.html"><code>{lifecycle}</code></a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-label="1"></a><span class="co"># Keep the old name only as a deprecated wrapper</span></span>
-<span id="cb34-2"><a aria-label="2"></a>prep_data <span class="ot">&lt;-</span> <span class="cf">function</span>(raw_data) {</span>
-<span id="cb34-3"><a aria-label="3"></a>  lifecycle<span class="sc">::</span><span class="fu">deprecate_warn</span>(<span class="st">"1.2.0"</span>, <span class="st">"prep_data()"</span>, <span class="st">"prep_study_data()"</span>)</span>
-<span id="cb34-4"><a aria-label="4"></a>  <span class="fu">prep_study_data</span>(raw_data)</span>
-<span id="cb34-5"><a aria-label="5"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-label="1"></a><span class="co"># Keep the old name only as a deprecated wrapper</span></span>
+<span id="cb36-2"><a aria-label="2"></a>prep_data <span class="ot">&lt;-</span> <span class="cf">function</span>(raw_data) {</span>
+<span id="cb36-3"><a aria-label="3"></a>  lifecycle<span class="sc">::</span><span class="fu">deprecate_warn</span>(<span class="st">"1.2.0"</span>, <span class="st">"prep_data()"</span>, <span class="st">"prep_study_data()"</span>)</span>
+<span id="cb36-4"><a aria-label="4"></a>  <span class="fu">prep_study_data</span>(raw_data)</span>
+<span id="cb36-5"><a aria-label="5"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level2">
 
@@ -1111,36 +1121,36 @@
 <li><p><strong>Code Autoformatting</strong> - RStudio includes a fantastic built-in utility (keyboard shortcut: <code>CMD-Shift-A</code> (Mac) or <code>Ctrl-Shift-A</code> (Windows/Linux)) for autoformatting highlighted chunks of code to fit many of the best practices listed here. It generally makes code more readable and fixes a lot of the small things you may not feel like fixing yourself. Try it out as a “first pass” on some code of yours that <em>doesn’t</em> follow many of these best practices!</p></li>
 <li><p><strong>Assignment Aligner</strong> - A <a href="https://www.r-bloggers.com/align-assign-rstudio-addin-to-align-assignment-operators/">cool R package</a> allows you to very powerfully format large chunks of assignment code to be much cleaner and much more readable. Follow the linked instructions and create a keyboard shortcut of your choosing (recommendation: <code>CMD-Shift-Z</code>). Here is an example of how assignment aligning can dramatically improve code readability:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-label="1"></a><span class="co"># Before</span></span>
-<span id="cb35-2"><a aria-label="2"></a>OUSD_not_found_aliases <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb35-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
-<span id="cb35-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
-<span id="cb35-5"><a aria-label="5"></a>  <span class="st">"Community United Elementary School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Community United"</span>),</span>
-<span id="cb35-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
-<span id="cb35-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
-<span id="cb35-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
-<span id="cb35-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
-<span id="cb35-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span> <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
-<span id="cb35-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
-<span id="cb35-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
-<span id="cb35-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span> <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
-<span id="cb35-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
-<span id="cb35-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-label="1"></a><span class="co"># After</span></span>
-<span id="cb36-2"><a aria-label="2"></a>OUSD_not_found_aliases <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb36-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
-<span id="cb36-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
-<span id="cb36-5"><a aria-label="5"></a>  <span class="st">"Community United Elementary School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Community United"</span>),</span>
-<span id="cb36-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
-<span id="cb36-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span>                  <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
-<span id="cb36-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span>               <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
-<span id="cb36-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span>     <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
-<span id="cb36-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span>          <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
-<span id="cb36-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span>         <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
-<span id="cb36-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span>   <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
-<span id="cb36-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span>                   <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
-<span id="cb36-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
-<span id="cb36-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-label="1"></a><span class="co"># Before</span></span>
+<span id="cb37-2"><a aria-label="2"></a>OUSD_not_found_aliases <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb37-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
+<span id="cb37-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
+<span id="cb37-5"><a aria-label="5"></a>  <span class="st">"Community United Elementary School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Community United"</span>),</span>
+<span id="cb37-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
+<span id="cb37-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
+<span id="cb37-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
+<span id="cb37-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
+<span id="cb37-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span> <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
+<span id="cb37-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
+<span id="cb37-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
+<span id="cb37-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span> <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
+<span id="cb37-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
+<span id="cb37-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-label="1"></a><span class="co"># After</span></span>
+<span id="cb38-2"><a aria-label="2"></a>OUSD_not_found_aliases <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb38-3"><a aria-label="3"></a>  <span class="st">"Brookfield Village Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Brookfield"</span>),</span>
+<span id="cb38-4"><a aria-label="4"></a>  <span class="st">"Carl Munck Elementary"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Munck"</span>),</span>
+<span id="cb38-5"><a aria-label="5"></a>  <span class="st">"Community United Elementary School"</span> <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Community United"</span>),</span>
+<span id="cb38-6"><a aria-label="6"></a>  <span class="st">"East Oakland PRIDE Elementary"</span>      <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"East Oakland Pride"</span>),</span>
+<span id="cb38-7"><a aria-label="7"></a>  <span class="st">"EnCompass Academy"</span>                  <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"EnCompass"</span>),</span>
+<span id="cb38-8"><a aria-label="8"></a>  <span class="st">"Global Family School"</span>               <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Global"</span>),</span>
+<span id="cb38-9"><a aria-label="9"></a>  <span class="st">"International Community School"</span>     <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"International Community"</span>),</span>
+<span id="cb38-10"><a aria-label="10"></a>  <span class="st">"Madison Park Lower Campus"</span>          <span class="ot">=</span> <span class="st">"Madison Park Academy TK-5"</span>,</span>
+<span id="cb38-11"><a aria-label="11"></a>  <span class="st">"Manzanita Community School"</span>         <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Manzanita Community"</span>),</span>
+<span id="cb38-12"><a aria-label="12"></a>  <span class="st">"Martin Luther King Jr Elementary"</span>   <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"King"</span>),</span>
+<span id="cb38-13"><a aria-label="13"></a>  <span class="st">"PLACE @ Prescott"</span>                   <span class="ot">=</span> <span class="st">"Preparatory Literary Academy of Cultural Excellence"</span>,</span>
+<span id="cb38-14"><a aria-label="14"></a>  <span class="st">"RISE Community School"</span>              <span class="ot">=</span> <span class="fu">str_subset</span>(<span class="at">string =</span> OUSD_school_shapes<span class="sc">$</span>schnam, <span class="at">pattern =</span> <span class="st">"Rise Community"</span>)</span>
+<span id="cb38-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="styler"><a href="https://styler.r-lib.org/"><code>{styler}</code></a></h4>
 <p><a href="https://styler.r-lib.org/"><code>{styler}</code></a> is another <a href="https://tidyverse.org/blog/2017/12/styler-1.0.0/">cool R package from the Tidyverse</a> that can be powerful and used as a first pass on entire projects that need refactoring. The most useful function of the package is the <code>style_dir</code> function, which will style all files within a given directory. See the <a href="https://www.rdocumentation.org/packages/styler/versions/1.1.0/topics/style_dir">function’s documentation</a> and the vignette linked above for more details.</p>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -1179,17 +1189,17 @@
 </div>
 <div class="callout-content">
 <p>For automated styling of entire projects:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-label="1"></a><span class="co"># Install styler</span></span>
-<span id="cb37-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="st">"styler"</span>)</span>
-<span id="cb37-3"><a aria-label="3"></a></span>
-<span id="cb37-4"><a aria-label="4"></a><span class="co"># Style all files in R/ directory</span></span>
-<span id="cb37-5"><a aria-label="5"></a>styler<span class="sc">::</span><span class="fu">style_dir</span>(<span class="st">"R/"</span>)</span>
-<span id="cb37-6"><a aria-label="6"></a></span>
-<span id="cb37-7"><a aria-label="7"></a><span class="co"># Style entire package</span></span>
-<span id="cb37-8"><a aria-label="8"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span>
-<span id="cb37-9"><a aria-label="9"></a></span>
-<span id="cb37-10"><a aria-label="10"></a><span class="co"># Note: styler modifies files in-place</span></span>
-<span id="cb37-11"><a aria-label="11"></a><span class="co"># Always use with version control so you can review changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-label="1"></a><span class="co"># Install styler</span></span>
+<span id="cb39-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="st">"styler"</span>)</span>
+<span id="cb39-3"><a aria-label="3"></a></span>
+<span id="cb39-4"><a aria-label="4"></a><span class="co"># Style all files in R/ directory</span></span>
+<span id="cb39-5"><a aria-label="5"></a>styler<span class="sc">::</span><span class="fu">style_dir</span>(<span class="st">"R/"</span>)</span>
+<span id="cb39-6"><a aria-label="6"></a></span>
+<span id="cb39-7"><a aria-label="7"></a><span class="co"># Style entire package</span></span>
+<span id="cb39-8"><a aria-label="8"></a>styler<span class="sc">::</span><span class="fu">style_pkg</span>()</span>
+<span id="cb39-9"><a aria-label="9"></a></span>
+<span id="cb39-10"><a aria-label="10"></a><span class="co"># Note: styler modifies files in-place</span></span>
+<span id="cb39-11"><a aria-label="11"></a><span class="co"># Always use with version control so you can review changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1232,17 +1242,17 @@
 </div>
 <div class="callout-content">
 <p>For checking code style without modifying files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-label="1"></a><span class="co"># Install lintr (and pkgload, used below)</span></span>
-<span id="cb38-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"lintr"</span>, <span class="st">"pkgload"</span>))</span>
-<span id="cb38-3"><a aria-label="3"></a></span>
-<span id="cb38-4"><a aria-label="4"></a><span class="co"># For package code, load the package first (see note below)</span></span>
-<span id="cb38-5"><a aria-label="5"></a>pkgload<span class="sc">::</span><span class="fu">load_all</span>()</span>
-<span id="cb38-6"><a aria-label="6"></a></span>
-<span id="cb38-7"><a aria-label="7"></a><span class="co"># Lint the entire package</span></span>
-<span id="cb38-8"><a aria-label="8"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span>
-<span id="cb38-9"><a aria-label="9"></a></span>
-<span id="cb38-10"><a aria-label="10"></a><span class="co"># Lint a specific file</span></span>
-<span id="cb38-11"><a aria-label="11"></a>lintr<span class="sc">::</span><span class="fu">lint</span>(<span class="st">"R/my_function.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a aria-label="1"></a><span class="co"># Install lintr (and pkgload, used below)</span></span>
+<span id="cb40-2"><a aria-label="2"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"lintr"</span>, <span class="st">"pkgload"</span>))</span>
+<span id="cb40-3"><a aria-label="3"></a></span>
+<span id="cb40-4"><a aria-label="4"></a><span class="co"># For package code, load the package first (see note below)</span></span>
+<span id="cb40-5"><a aria-label="5"></a>pkgload<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb40-6"><a aria-label="6"></a></span>
+<span id="cb40-7"><a aria-label="7"></a><span class="co"># Lint the entire package</span></span>
+<span id="cb40-8"><a aria-label="8"></a>lintr<span class="sc">::</span><span class="fu">lint_package</span>()</span>
+<span id="cb40-9"><a aria-label="9"></a></span>
+<span id="cb40-10"><a aria-label="10"></a><span class="co"># Lint a specific file</span></span>
+<span id="cb40-11"><a aria-label="11"></a>lintr<span class="sc">::</span><span class="fu">lint</span>(<span class="st">"R/my_function.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The linter checks for:</p>
 <ul>
 <li>Unused variables</li>
@@ -1290,11 +1300,11 @@
 </ul>
 <h5 id="basic-usage">Basic Usage</h5>
 <p>Run the standalone CLI (see the <a href="https://jarl.etiennebacher.com/getting-started">getting started guide</a>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a aria-label="1"></a><span class="co"># Lint all R files in the current project</span></span>
-<span id="cb39-2"><a aria-label="2"></a><span class="ex">jarl</span> check .</span>
-<span id="cb39-3"><a aria-label="3"></a></span>
-<span id="cb39-4"><a aria-label="4"></a><span class="co"># Automatically fix supported lint violations</span></span>
-<span id="cb39-5"><a aria-label="5"></a><span class="ex">jarl</span> check . <span class="at">--fix</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a aria-label="1"></a><span class="co"># Lint all R files in the current project</span></span>
+<span id="cb41-2"><a aria-label="2"></a><span class="ex">jarl</span> check .</span>
+<span id="cb41-3"><a aria-label="3"></a></span>
+<span id="cb41-4"><a aria-label="4"></a><span class="co"># Automatically fix supported lint violations</span></span>
+<span id="cb41-5"><a aria-label="5"></a><span class="ex">jarl</span> check . <span class="at">--fix</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h5 id="comparison-with-lintr">Comparison with <code>{lintr}</code></h5>
 <table class="caption-top">
 <thead>
