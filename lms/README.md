@@ -36,7 +36,9 @@ It exports:
   so pipe the data into a bare `ggplot()` and add the mapping as its own layer (`df |> ggplot() + aes(x = x, y = y)`).
   `aes_args_named_linter()` is a fourth, a readability check:
   it flags every unnamed argument of `aes()`, so write `aes(x = day, y = Volume)`.
-  All four are off by default while existing code is swept;
+  `base_subset_linter()` is a fifth: it flags a `[` call with an empty index (`df[i, ]`, `df[, j]`),
+  so subset a data frame with `dplyr::filter()`, `dplyr::select()` and `dplyr::pull()`, and mark a matrix `# nolint`.
+  All five are off by default while existing code is swept;
   turn them on with `lms::default_linters(nested_calls = TRUE)`.
 - `undesirable_functions()` --- the underlying undesirable-function map,
   if a repo needs to extend it.
