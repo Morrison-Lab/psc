@@ -68,8 +68,7 @@ iris_two <- iris |> dplyr::select(Petal.Length, Petal.Width)
 iris_two = iris[["Petal.Length", "Petal.Width"]]
 ```
 
-Not `iris_two_r` and `iris_two_py`
-(Ezra, 2026-11-10: "why are you still putting _py and _R suffixes on objects in code").
+Not `iris_two_r` and `iris_two_py`.
 
 ---
 
