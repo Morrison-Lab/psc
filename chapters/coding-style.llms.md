@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-13 17:18:16 (PST)
+Last modified: 2026-11-15 05:58:46 (PST)
 
 Follow these code style guidelines for all R code:
 
@@ -849,6 +849,24 @@ iris_two = iris[["Petal.Length", "Petal.Width"]]
 ```
 
 Not `iris_two_r` and `iris_two_py`, and not `knn1_r_pred` or `x_py_scaled`.
+
+------------------------------------------------------------------------
+
+In code that goes with mathematical prose, such as lecture notes, name each object after the term that the prose uses for it, not after its symbol. A name built from a symbol, such as `phi` for a design vector, goes stale when the notes change their notation, and nothing flags the stale name. When the notation changes, rename the code objects named after the old symbol in the same change, or file an issue for them.
+
+Add a suffix to tell two names apart only when the names would otherwise clash, such as when another chunk on the same page uses the same name for a different object.
+
+``` r
+# Good: the names match the prose terms
+design_vector <- c(1, 2.5)
+coefficient_vector <- c(0.5, -1)
+outcome <- 3
+
+# Avoid: a retired symbol and a suffix that nothing needs
+phi_gop <- c(1, 2.5)
+b_gop <- c(0.5, -1)
+y_gop <- 3
+```
 
 ------------------------------------------------------------------------
 
