@@ -1,0 +1,23 @@
+# Flags a link whose text is the title of the heading or page it targets, with
+# no content type (section, chapter, page, ...) beside it, on lines a PR adds
+# (psw#660). Write "the [Practical considerations](#practical-considerations)
+# section", not "see [Practical considerations](#practical-considerations)".
+# Fix the wording, or put `<!-- check-title-references: allow -->` on the line.
+# Warn-only here until the check has run over this repository's pull requests.
+# No push trigger: a push run has no base to diff against and would report
+# success having checked nothing. A manual run scans the whole tree.
+name: Check title references
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    permissions:
+      contents: read
+    uses: Morrison-Lab/gha/.github/workflows/check-title-references.yml@v3
+    with:
+      fail: false
+      whole-tree: ${{ github.event_name == 'workflow_dispatch' }}
+      paths-ignore: '_extensions/**,**/outtakes/**,macros/**'
