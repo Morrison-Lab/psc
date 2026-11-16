@@ -5,16 +5,16 @@
     {
       "path": "offwhite.scss",
       "source_path": "offwhite.scss",
-      "commit": "34c1056981bba24af4c4ef2e4df469b91b0f0b75",
-      "sha256": "6990d49a49eaab3357befe32469a15eababfb12f3df91c26da8836edce183ef2",
-      "source_url": "https://github.com/Morrison-Lab/qwt/blob/34c1056981bba24af4c4ef2e4df469b91b0f0b75/offwhite.scss"
+      "commit": "9d62fb7791437017ddf5ede01c329ca45dfaa86a",
+      "sha256": "2b11f359a6760a2e16ee9e5defaa9c51b752a969a6db35725132642f86b9e2df",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/9d62fb7791437017ddf5ede01c329ca45dfaa86a/offwhite.scss"
     },
     {
       "path": "theme-picker.html",
       "source_path": "theme-picker.html",
-      "commit": "7cfba65d8eac6b34915023a5d11efecacdf1d17a",
-      "sha256": "aa6859e5c9aeaf465094efaa8d7730c593515068fc2c7d4a93c40643210e03f9",
-      "source_url": "https://github.com/Morrison-Lab/qwt/blob/7cfba65d8eac6b34915023a5d11efecacdf1d17a/theme-picker.html"
+      "commit": "fdb49ba5d1f72f972449d408ac81f2599af7a17f",
+      "sha256": "64ae8da54eedf856baafd4fd10fca109f3cf58dd29d4bc43061032fa0b49da52",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/fdb49ba5d1f72f972449d408ac81f2599af7a17f/theme-picker.html"
     },
     {
       "path": "anchor-landing.html",
@@ -33,9 +33,9 @@
     {
       "path": "qwt-reveal-toggle.html",
       "source_path": "qwt-reveal-toggle.html",
-      "commit": "7cfba65d8eac6b34915023a5d11efecacdf1d17a",
-      "sha256": "966ad069d0b8b4d2650c94cd65614e081fadb5beab88d59b0992cb6ee8fba2fd",
-      "source_url": "https://github.com/Morrison-Lab/qwt/blob/7cfba65d8eac6b34915023a5d11efecacdf1d17a/qwt-reveal-toggle.html"
+      "commit": "fdb49ba5d1f72f972449d408ac81f2599af7a17f",
+      "sha256": "80c7f352f62c2bc10507151b1b66e384e1a0747ed01bcbe6ade585766cc36401",
+      "source_url": "https://github.com/Morrison-Lab/qwt/blob/fdb49ba5d1f72f972449d408ac81f2599af7a17f/qwt-reveal-toggle.html"
     }
   ]
 }
