@@ -1,0 +1,20 @@
+# Flags a geometric claim (contour, ellipse, circle, level set, tangent line,
+# hyperplane, ...) with no figure within 40 lines or in an enclosing div,
+# on lines a PR adds (gha#2044).
+# Add a figure, or put `<!-- no-figure: reason -->` nearby.
+# No push trigger: a push run has no base to diff against and would report
+# success having checked nothing. A manual run scans the whole tree.
+name: Check geometric figures
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    permissions:
+      contents: read
+    uses: Morrison-Lab/gha/.github/workflows/check-geometric-figures.yml@v3
+    with:
+      whole-tree: ${{ github.event_name == 'workflow_dispatch' }}
+      paths-ignore: '_extensions/**,**/outtakes/**,macros/**,lms/**'
