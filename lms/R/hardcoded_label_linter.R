@@ -20,7 +20,9 @@
 #'   a `dictionary` is checked too, so a label for a computed variable
 #'   such as `count` goes in a named vector made in preprocessing
 #'   (`labs(dictionary = wage_labels)`);
-#' * every argument of `xlab()` and `ylab()`;
+#' * every argument of `xlab()` and `ylab()`,
+#'   and an `xlab`, `ylab` or `zlab` argument of any call,
+#'   such as base graphics' `plot()` and `hist()`;
 #' * the `name` argument (named or first) of every `scale_*()`,
 #'   and the `title` argument (named or first) of every `guide_*()`;
 #' * `col.names` of `kable()`, `colnames` of `datatable()`,
@@ -91,7 +93,9 @@ hardcoded_label_xpath <- function() {
     paste0(scale_call, named_arg("text() = 'name'")),
     paste0(scale_call, first_arg),
     paste0(guide_call, named_arg("text() = 'title'")),
-    paste0(guide_call, first_arg)
+    paste0(guide_call, first_arg),
+    # base graphics: plot(x, y, xlab = "..."), hist(x, xlab = "...")
+    paste0("/", named_arg(any_text(c("xlab", "ylab", "zlab"))))
   )
 
   # a string literal, or c(), paste0() and the like with one as an argument

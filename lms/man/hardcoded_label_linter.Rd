@@ -31,7 +31,9 @@ The linter checks:
 a \code{dictionary} is checked too, so a label for a computed variable
 such as \code{count} goes in a named vector made in preprocessing
 (\code{labs(dictionary = wage_labels)});
-\item every argument of \code{xlab()} and \code{ylab()};
+\item every argument of \code{xlab()} and \code{ylab()},
+and an \code{xlab}, \code{ylab} or \code{zlab} argument of any call,
+such as base graphics' \code{plot()} and \code{hist()};
 \item the \code{name} argument (named or first) of every \verb{scale_*()},
 and the \code{title} argument (named or first) of every \verb{guide_*()};
 \item \code{col.names} of \code{kable()}, \code{colnames} of \code{datatable()},

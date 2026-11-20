@@ -40,6 +40,7 @@ It exports:
   so subset a data frame with `dplyr::filter()`, `dplyr::select()` and `dplyr::pull()`, and mark a matrix `# nolint`.
   `hardcoded_label_linter()` is a sixth: it flags a string literal given as a variable's label
   in `labs()`, `xlab()`, `ylab()`, a scale's `name`, a guide's `title`,
+  a base graphics `xlab` or `ylab`,
   or a table's column labels (`kable(col.names = )`, `gt::cols_label()` and the like),
   so set labels on the data in preprocessing (`labelled::set_variable_labels()`) and let the plot or table read them.
   All six are off by default while existing code is swept;

@@ -58,6 +58,23 @@ test_that("xlab(), ylab(), scales and guides are checked", {
   )
 })
 
+test_that("base graphics axis labels are checked", {
+  lintr::expect_lint(
+    'plot(age, wage, xlab = "Age", ylab = "Wage", main = "Wages")',
+    list(label_message, label_message),
+    hardcoded_label_linter()
+  )
+  lintr::expect_lint(
+    'graphics::hist(wage, xlab = "Wage")',
+    label_message,
+    hardcoded_label_linter()
+  )
+  lintr::expect_no_lint(
+    'plot(age, wage, main = "Wages", xlab = wage_label)',
+    hardcoded_label_linter()
+  )
+})
+
 test_that("scale arguments other than the name are not flagged", {
   lintr::expect_no_lint(
     'scale_x_continuous(breaks = 1:3, labels = c("a", "b", "c"))',

@@ -146,6 +146,7 @@ so they stay in the plotting code.
 
 `lms::hardcoded_label_linter()` flags a string literal given as a variable's label
 in `labs()`, `xlab()`, `ylab()`, a scale's `name`, a guide's `title`,
+a base graphics `xlab` or `ylab`,
 `knitr::kable(col.names = )`, `DT::datatable(colnames = )`,
 `gt::cols_label()`, or `flextable::set_header_labels()`
 (see [`lms`](https://github.com/Morrison-Lab/psc/tree/main/lms)).
