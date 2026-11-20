@@ -38,7 +38,12 @@ It exports:
   it flags every unnamed argument of `aes()`, so write `aes(x = day, y = Volume)`.
   `base_subset_linter()` is a fifth: it flags a `[` call with an empty index (`df[i, ]`, `df[, j]`),
   so subset a data frame with `dplyr::filter()`, `dplyr::select()` and `dplyr::pull()`, and mark a matrix `# nolint`.
-  All five are off by default while existing code is swept;
+  `hardcoded_label_linter()` is a sixth: it flags a string literal given as a variable's label
+  in `labs()`, `xlab()`, `ylab()`, a scale's `name`, a guide's `title`,
+  a base graphics `xlab` or `ylab`,
+  or a table's column labels (`kable(col.names = )`, `gt::cols_label()` and the like),
+  so set labels on the data in preprocessing (`labelled::set_variable_labels()`) and let the plot or table read them.
+  All six are off by default while existing code is swept;
   turn them on with `lms::default_linters(nested_calls = TRUE)`.
 - `undesirable_functions()` --- the underlying undesirable-function map,
   if a repo needs to extend it.
