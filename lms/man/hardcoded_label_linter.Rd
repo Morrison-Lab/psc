@@ -32,18 +32,24 @@ a \code{dictionary} is checked too, so a label for a computed variable
 such as \code{count} goes in a named vector made in preprocessing
 (\code{labs(dictionary = wage_labels)});
 \item every argument of \code{xlab()} and \code{ylab()},
-and an \code{xlab}, \code{ylab} or \code{zlab} argument of any call,
+and an \code{xlab}, \code{ylab} or \code{zlab} argument of any call
+other than \code{c()}, \code{list()}, \code{set_variable_labels()} and \code{var_label()},
 such as base graphics' \code{plot()} and \code{hist()};
-\item the \code{name} argument (named or first) of every \verb{scale_*()},
-and the \code{title} argument (named or first) of every \verb{guide_*()};
+\item the \code{name} argument (named, or the first positional one) of every
+\verb{scale_*()} except \code{scale_discrete_manual()} and the identity scales,
+whose first argument is the aesthetics,
+and the \code{title} argument (named or first positional) of every \verb{guide_*()};
 \item \code{col.names} of \code{kable()}, \code{colnames} of \code{datatable()},
 and every argument of \code{gt::cols_label()}
 and \code{flextable::set_header_labels()}.
 }
 
 An argument is flagged when its value is a string literal,
-or a \code{c()}, \code{list()}, \code{paste()}, \code{paste0()}, \code{sprintf()} or \code{glue()} call
-with a string literal among its arguments.
+a \code{c()} or \code{list()} call with a string literal among its values,
+or a \code{paste()}, \code{paste0()}, \code{sprintf()}, \code{glue()}, \code{md()} or \code{html()} call
+with a string literal among its unnamed arguments,
+nested up to three calls deep (\code{c(count = paste0("Number of ", unit))}).
+Named options such as \code{sep = ""} and \code{collapse = ", "} are not label text.
 A label read from the data (\code{labelled::var_label(df$x)}),
 a math label (\code{expression(beta)}) and \code{NULL} are not flagged.
 }

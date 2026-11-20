@@ -144,6 +144,91 @@ test_that("a dictionary is flagged inline but not as a named object", {
   )
 })
 
+test_that("named options of formatting calls are not label text", {
+  lintr::expect_no_lint(
+    'labs(x = paste(x_label, unit_label, sep = ""))',
+    hardcoded_label_linter()
+  )
+  lintr::expect_no_lint(
+    'labs(x = paste0(label_parts, collapse = ", "))',
+    hardcoded_label_linter()
+  )
+  lintr::expect_no_lint(
+    'labs(x = glue::glue(x_label, .sep = ", "))',
+    hardcoded_label_linter()
+  )
+  lintr::expect_lint(
+    'labs(x = paste("Age", unit_label, sep = " "))',
+    label_message,
+    hardcoded_label_linter()
+  )
+})
+
+test_that("formatting calls nested in c() or list() are checked", {
+  lintr::expect_lint(
+    'labs(dictionary = c(count = paste0("Number of ", item)))',
+    label_message,
+    hardcoded_label_linter()
+  )
+  lintr::expect_lint(
+    'set_header_labels(ft, values = list(age = paste0("Age (", u, ")")))',
+    label_message,
+    hardcoded_label_linter()
+  )
+  lintr::expect_no_lint(
+    'kable(df, col.names = c(labelled::var_label(df[["age"]]), wage_label))',
+    hardcoded_label_linter()
+  )
+})
+
+test_that("gt's md() and html() labels are checked", {
+  lintr::expect_lint(
+    'tbl |> gt::cols_label(age = gt::md("**Age**"), wage = html("Wage"))',
+    list(label_message, label_message),
+    hardcoded_label_linter()
+  )
+})
+
+test_that("a scale's first argument is not a name when it is the aesthetics", {
+  lintr::expect_no_lint(
+    'scale_discrete_manual("colour", values = cols)',
+    hardcoded_label_linter()
+  )
+  lintr::expect_no_lint(
+    'ggplot2::scale_discrete_manual(c("colour", "fill"), values = cols)',
+    hardcoded_label_linter()
+  )
+})
+
+test_that("a positional name after a comment or named arguments is checked", {
+  lintr::expect_lint(
+    'scale_x_continuous(limits = c(0, 10), "Age")',
+    label_message,
+    hardcoded_label_linter()
+  )
+  lintr::expect_lint(
+    'scale_x_continuous(\n  # axis title\n  "Age"\n)',
+    label_message,
+    hardcoded_label_linter()
+  )
+  lintr::expect_lint(
+    'guide_legend(nrow = 2, "Span")',
+    label_message,
+    hardcoded_label_linter()
+  )
+})
+
+test_that("xlab and ylab keys of a label container are not flagged", {
+  lintr::expect_no_lint(
+    'plot_labels <- list(xlab = "Age", ylab = "Wage")',
+    hardcoded_label_linter()
+  )
+  lintr::expect_no_lint(
+    'df |> labelled::set_variable_labels(xlab = "Axis label")',
+    hardcoded_label_linter()
+  )
+})
+
 test_that("setting labels in preprocessing is not flagged", {
   lintr::expect_no_lint(
     'df |> labelled::set_variable_labels(wage = "Wage (thousands of dollars)")',
