@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-11-19 18:28:31 (PST)
+Last modified: 2026-11-20 00:03:26 (PST)
 
 ## 1 Protocols for Code and Data
 
@@ -1586,6 +1586,64 @@ var_label(data$blood_lead_level) <- "Blood lead concentration (ug/dL)"
 ```
 
 Labeling key variables at the point of creation ensures that downstream table generators (such as [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/)) can automatically display human-readable descriptions and correct units without error-prone manual relabeling.
+
+#### Read labels from the data in plots and tables
+
+Set each label once, on the data, in preprocessing, and let every plot and table read it from there. Don’t type a variable’s label again while building a plot or table: a second copy can drift from the first, and the next plot of the same variable needs a third.
+
+ggplot2 (version 4.0.0 and later) titles each axis and legend with the label of the variable mapped to it, so a plot of labeled data needs no `labs()` call:
+
+``` r
+# Preprocessing
+wages <- wages |>
+  labelled::set_variable_labels(
+    age = "Age (years)",
+    wage = "Wage (thousands of dollars)"
+  )
+
+# Plotting: the axis titles come from the labels
+wages |>
+  ggplot2::ggplot() +
+  ggplot2::aes(x = age, y = wage) +
+  ggplot2::geom_point()
+```
+
+Not:
+
+``` r
+wages |>
+  ggplot2::ggplot() +
+  ggplot2::aes(x = age, y = wage) +
+  ggplot2::geom_point() +
+  ggplot2::labs(x = "Age (years)", y = "Wage (thousands of dollars)")
+```
+
+A variable that a layer computes, such as the `count` of a histogram, is not a column of the data, so it has no label attribute. Name its label in a vector made in preprocessing, and pass that vector as the plot’s `dictionary`:
+
+``` r
+wage_labels <- c(count = "Number of workers")
+
+wages |>
+  ggplot2::ggplot() +
+  ggplot2::aes(x = wage) +
+  ggplot2::geom_histogram() +
+  ggplot2::labs(dictionary = wage_labels)
+```
+
+A table function that does not read the label attribute takes the labels from the data:
+
+``` r
+wage_names <- labelled::var_label(
+  wages,
+  unlist = TRUE,
+  null_action = "fill"
+)
+knitr::kable(wages, col.names = wage_names)
+```
+
+A plot’s `title`, `subtitle`, `caption`, and `alt` text describe the plot, not a variable, so they stay in the plotting code.
+
+`lms::hardcoded_label_linter()` flags a string literal given as a variable’s label in `labs()`, `xlab()`, `ylab()`, a scale’s `name`, a guide’s `title`, a base graphics `xlab` or `ylab`, `knitr::kable(col.names = )`, `DT::datatable(colnames = )`, `gt::cols_label()`, or `flextable::set_header_labels()` (see [`lms`](https://github.com/Morrison-Lab/psc/tree/main/lms)).
 
 *See also [Function Structure and Documentation](../chapters/coding-style.llms.md#sec-function-docs) for function documentation style guidelines.*
 
