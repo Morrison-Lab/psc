@@ -22,6 +22,7 @@ jobs:
         offwhite.scss=offwhite.scss
         theme-picker.html=theme-picker.html
         anchor-landing.html=anchor-landing.html
+        anchor-index.py=anchor-index.py
         revealjs-html-links.lua=revealjs-html-links.lua
         qwt-reveal-toggle.html=qwt-reveal-toggle.html
       manifest-path: .github/site-scaffolding.json
