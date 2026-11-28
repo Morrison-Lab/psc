@@ -1,23 +1,33 @@
-# Copy to .github/workflows/check-swallowed-citations.yml in your repo.
-# Diff-scoped check: flags a line a PR adds where an in-text cross-reference
-# swallows the citation after it, such as "as in @eq-x [@key, section 3]",
-# which Pandoc reads as one citation, so @key drops out of the page.
-# Fails by default.
-# Only contents:read is needed (the default), so no permissions block is required.
+# Thin caller of Morrison-Lab/gha's reusable swallowed-citation check.
+#
+# It flags a line a PR adds where an in-text cross-reference swallows the
+# citation after it, such as `@eq-x [@key, section 3]`: Pandoc reads the
+# pair as one citation, so @key drops out of the rendered page.
+# It is diff-scoped, so it never reflags older text. Blocking.
+# Mark a deliberate use with
+# `<!-- check-swallowed-citations: allow: <reason> -->`.
+#
+# Why it exists: Morrison-Lab/lds#3239, where a citation silently vanished.
+# The check came in Morrison-Lab/gha#2213; wiring is Morrison-Lab/gha#2214.
+# A manual run scans the whole tree.
+
 name: Check swallowed citations
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   check:
+    permissions:
+      contents: read
     uses: Morrison-Lab/gha/.github/workflows/check-swallowed-citations.yml@v3
-    # with:
-    #   globs: '*.qmd *.md'                     # pathspecs to check (recursive)
-    #   paths-ignore: 'chapters/outtakes/**'    # skip known-noisy paths
-    #   fail: false                             # warn only (defaults to true)
-    #   whole-tree: true                        # scan every line, not just a PR's additions
+    with:
+      # Vendored and submodule files are not ours to edit.
+      paths-ignore: '_extensions/**,macros/**'
+      # A manual run has no PR to diff against; make it report the whole tree.
+      whole-tree: ${{ github.event_name == 'workflow_dispatch' }}
